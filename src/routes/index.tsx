@@ -7,7 +7,6 @@ import {
   Smile,
   Wrench,
   Flame,
-  Users,
   Home,
   Wallet,
   Activity,
