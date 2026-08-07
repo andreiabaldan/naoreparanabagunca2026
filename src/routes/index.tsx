@@ -540,12 +540,12 @@ function UrgencyBanner() {
 const TIERS = [
   {
     name: "Básico",
-    price: "897",
-    old: "1.897",
-    installments: "12x R$ 89,70",
-    lots: ["Lote pioneira · até 31/03", "Lote 2 · R$ 1.297", "Lote 3 · R$ 1.697"],
+    price: "97",
+    old: "247",
+    installments: "12x R$ 9,70",
+    lots: ["INGRESSO COMPROMISSO · ATÉ 30/08", "Lote 2 · R$ 147", "Lote 3 · R$ 197"],
     perks: [
-      "Acesso aos 3 dias do evento",
+      "Acesso aos 2 dias do evento",
       "Kit de boas-vindas",
       "Coffee breaks e almoços",
       "Grupo oficial de participantes",
