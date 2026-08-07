@@ -90,7 +90,7 @@ function TopBar() {
           <MessageSquare className="h-4 w-4 text-primary-foreground" />
         </div>
         <span className="font-script text-2xl leading-none text-primary-foreground">
-          encontro delas
+          Não Repara na Bagunça
         </span>
       </div>
     </div>
@@ -117,35 +117,35 @@ function Hero() {
           <span className="italic text-gradient-brand">que muda tudo.</span>
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-balance text-lg text-muted-foreground sm:text-xl">
-          Três dias para respirar fundo, se reencontrar e voltar pra vida
+          Dois dias para respirar fundo, se reencontrar e voltar pra vida
           com um plano de verdade. Sem fórmula mágica, sem palco distante — só nós.
         </p>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-foreground/80">
           <span className="inline-flex items-center gap-2">
             <Calendar className="h-4 w-4 text-primary" />
-            14, 15 e 16 de Agosto · 2026
+            24 e 25 de outubro · 2026
           </span>
           <span className="hidden h-1 w-1 rounded-full bg-primary sm:block" />
           <span className="inline-flex items-center gap-2">
             <MapPin className="h-4 w-4 text-primary" />
-            Espaço Vila Aurora · São Paulo, SP
+            Parque Tecnológico de São José dos Campos
           </span>
         </div>
 
         <div className="mx-auto mt-12 max-w-2xl rounded-3xl border-2 border-primary/60 bg-card/70 p-6 shadow-glow backdrop-blur sm:p-8">
           <div className="flex flex-col items-center gap-2">
             <span className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
-              Lote pioneira · até 31/03
+              INGRESSO COMPROMISSO · ATÉ 30/08
             </span>
             <div className="flex items-baseline gap-3">
-              <span className="text-sm text-muted-foreground line-through">R$ 1.897</span>
+              <span className="text-sm text-muted-foreground line-through">R$ 247</span>
               <span className="font-display text-5xl font-semibold sm:text-6xl">
-                R$ 897
+                R$ 97
               </span>
             </div>
             <span className="text-sm text-muted-foreground">
-              ou 12x de R$ 89,70 no cartão
+              ou 12x de R$ 9,70 no cartão
             </span>
           </div>
           <div className="mt-6 flex justify-center">
@@ -205,7 +205,7 @@ const MOVEMENT = [
   { icon: Smile, title: "Leve", desc: "Nada de palestrinha pesada — a gente ri, chora e respira junto." },
   { icon: Sparkles, title: "Divertido", desc: "Música, boa comida, e conversas que se transformam em amizade." },
   { icon: Wrench, title: "Prático", desc: "Você sai com métodos, planilhas e passos concretos pra aplicar." },
-  { icon: Flame, title: "Transformador", desc: "Três dias que reorganizam o antes e o depois da sua vida." },
+  { icon: Flame, title: "Transformador", desc: "Dois dias que reorganizam o antes e o depois da sua vida." },
 ];
 
 function Movement() {
@@ -367,7 +367,7 @@ function SocialProof() {
           <SectionEyebrow>Prova social</SectionEyebrow>
           <h2 className="mt-6 text-balance text-4xl sm:text-5xl md:text-6xl">
             <span className="italic text-gradient-brand">+1.000 mulheres</span> já
-            atravessaram esse encontro.
+            viveram essa experiência.
           </h2>
         </div>
 
@@ -424,7 +424,7 @@ function SocialProof() {
 }
 
 const NUMBERS = [
-  { n: "3", label: "dias" },
+  { n: "2", label: "dias" },
   { n: "+1k", label: "mulheres" },
   { n: "24", label: "experiências" },
   { n: "∞", label: "conexões" },
@@ -527,8 +527,8 @@ function UrgencyBanner() {
           </span>
           <p className="flex-1 text-base sm:text-lg">
             <span className="font-semibold text-primary">Atenção:</span> restam apenas{" "}
-            <span className="font-bold">47 vagas</span> no lote pioneira. Depois de esgotado,
-            o próximo lote sai por R$ 1.297.
+            <span className="font-bold">47 vagas</span> no Lote Compromisso. Depois de esgotado,
+            o próximo lote sai por R$ 247.
           </p>
           <CTAButton>Garantir agora</CTAButton>
         </div>
@@ -540,12 +540,12 @@ function UrgencyBanner() {
 const TIERS = [
   {
     name: "Básico",
-    price: "897",
-    old: "1.897",
-    installments: "12x R$ 89,70",
-    lots: ["Lote pioneira · até 31/03", "Lote 2 · R$ 1.297", "Lote 3 · R$ 1.697"],
+    price: "97",
+    old: "247",
+    installments: "12x R$ 9,70",
+    lots: ["INGRESSO COMPROMISSO · ATÉ 30/08", "Lote 2 · R$ 147", "Lote 3 · R$ 197"],
     perks: [
-      "Acesso aos 3 dias do evento",
+      "Acesso aos 2 dias do evento",
       "Kit de boas-vindas",
       "Coffee breaks e almoços",
       "Grupo oficial de participantes",
@@ -554,10 +554,10 @@ const TIERS = [
   },
   {
     name: "Intermediário",
-    price: "1.397",
-    old: "2.497",
-    installments: "12x R$ 139,70",
-    lots: ["Lote pioneira · até 31/03", "Lote 2 · R$ 1.797", "Lote 3 · R$ 2.197"],
+    price: "197",
+    old: "347",
+    installments: "12x R$ 19,70",
+    lots: ["INGRESSO COMPROMISSO · ATÉ 30/08", "Lote 2 · R$ 247", "Lote 3 · R$ 297"],
     perks: [
       "Tudo do Básico",
       "Cadeira nas 3 primeiras fileiras",
@@ -569,16 +569,16 @@ const TIERS = [
   },
   {
     name: "Premium",
-    price: "2.497",
-    old: "3.997",
-    installments: "12x R$ 249,70",
-    lots: ["Lote pioneira · até 31/03", "Lote 2 · R$ 2.997", "Lote 3 · R$ 3.497"],
+    price: "347",
+    old: "547",
+    installments: "12x R$ 34,70",
+    lots: ["INGRESSO COMPROMISSO · ATÉ 30/08", "Lote 2 · R$ 397", "Lote 3 · R$ 447"],
     perks: [
       "Tudo do Intermediário",
       "Jantar VIP com a Lu na sexta",
       "Mentoria em grupo (3 meses)",
       "Camarote reservado",
-      "Presente exclusivo Encontro Delas",
+      "Presente exclusivo",
     ],
     highlight: false,
   },
@@ -680,11 +680,11 @@ function Venue() {
       <div className="mx-auto max-w-5xl px-6 text-center">
         <SectionEyebrow>O local</SectionEyebrow>
         <h2 className="mt-6 text-balance text-4xl sm:text-5xl md:text-6xl">
-          Espaço
-          <span className="italic text-gradient-brand"> Vila Aurora.</span>
+          Parque
+          <span className="italic text-gradient-brand"> Tecnológico.</span>
         </h2>
         <p className="mt-3 text-muted-foreground">
-          Um casarão restaurado no coração de São Paulo, feito pra abraçar quem chega.
+          Localizado em São José dos Campos, um espaço moderno e integrado para nos receber.
         </p>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-3">
@@ -704,7 +704,7 @@ function Venue() {
 
         <div className="mt-12 inline-flex items-center gap-2 text-sm text-muted-foreground">
           <Clock className="h-4 w-4 text-primary" />
-          Sexta 18h · Sábado 09h · Domingo 09h
+          Sábado 09h · Domingo 09h
         </div>
 
         <div className="mt-8 flex justify-center">
@@ -734,7 +734,7 @@ function FinalCTA() {
       <div className="relative mx-auto max-w-3xl px-6 text-center">
         <SectionEyebrow>Sua vez</SectionEyebrow>
         <h2 className="mt-6 text-balance text-4xl sm:text-6xl md:text-7xl">
-          Em Agosto, essa cadeira
+          Em Outubro, essa cadeira
           <span className="italic text-gradient-brand"> vai ter seu nome.</span>
         </h2>
         <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
@@ -745,7 +745,7 @@ function FinalCTA() {
           <CTAButton size="lg">Garantir meu ingresso agora</CTAButton>
         </div>
         <p className="mt-4 text-xs uppercase tracking-widest text-primary">
-          Lote pioneira encerra em 31/03 · restam 47 vagas
+          INGRESSO COMPROMISSO encerra em 30/08 · restam 47 vagas
         </p>
       </div>
     </section>
@@ -759,7 +759,7 @@ function Footer() {
         <div className="grid gap-10 md:grid-cols-3">
           <div>
             <span className="font-script text-4xl text-gradient-brand">
-              encontro delas
+              Não Repara na Bagunça
             </span>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">
               Um movimento de mulheres que se encontram pra se reencontrar.
@@ -772,7 +772,7 @@ function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-primary" />
-                ola@encontrodelas.com.br
+                contato@naoreparanabagunca.com.br
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-primary" />
@@ -799,8 +799,8 @@ function Footer() {
           </div>
         </div>
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row">
-          <span>© {new Date().getFullYear()} Encontro Delas. Todos os direitos reservados.</span>
-          <span>Feito com carinho em São Paulo</span>
+          <span>© {new Date().getFullYear()} Não Repara na Bagunça. Todos os direitos reservados.</span>
+          <span>Feito com carinho em São José dos Campos</span>
         </div>
       </div>
     </footer>
