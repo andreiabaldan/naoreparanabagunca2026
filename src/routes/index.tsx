@@ -90,7 +90,7 @@ function TopBar() {
           <MessageSquare className="h-4 w-4 text-primary-foreground" />
         </div>
         <span className="font-script text-2xl leading-none text-primary-foreground">
-          encontro delas
+          Não Repara na Bagunça
         </span>
       </div>
     </div>
