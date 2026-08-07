@@ -124,12 +124,12 @@ function Hero() {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-foreground/80">
           <span className="inline-flex items-center gap-2">
             <Calendar className="h-4 w-4 text-primary" />
-            14, 15 e 16 de Agosto · 2026
+            24 e 25 de outubro · 2026
           </span>
           <span className="hidden h-1 w-1 rounded-full bg-primary sm:block" />
           <span className="inline-flex items-center gap-2">
             <MapPin className="h-4 w-4 text-primary" />
-            Espaço Vila Aurora · São Paulo, SP
+            Parque Tecnológico de São José dos Campos
           </span>
         </div>
 
