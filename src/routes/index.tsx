@@ -136,16 +136,16 @@ function Hero() {
         <div className="mx-auto mt-12 max-w-2xl rounded-3xl border-2 border-primary/60 bg-card/70 p-6 shadow-glow backdrop-blur sm:p-8">
           <div className="flex flex-col items-center gap-2">
             <span className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
-              Lote pioneira · até 31/03
+              INGRESSO COMPROMISSO · ATÉ 30/08
             </span>
             <div className="flex items-baseline gap-3">
-              <span className="text-sm text-muted-foreground line-through">R$ 1.897</span>
+              <span className="text-sm text-muted-foreground line-through">R$ 247</span>
               <span className="font-display text-5xl font-semibold sm:text-6xl">
-                R$ 897
+                R$ 97
               </span>
             </div>
             <span className="text-sm text-muted-foreground">
-              ou 12x de R$ 89,70 no cartão
+              ou 12x de R$ 9,70 no cartão
             </span>
           </div>
           <div className="mt-6 flex justify-center">
