@@ -680,11 +680,11 @@ function Venue() {
       <div className="mx-auto max-w-5xl px-6 text-center">
         <SectionEyebrow>O local</SectionEyebrow>
         <h2 className="mt-6 text-balance text-4xl sm:text-5xl md:text-6xl">
-          Espaço
-          <span className="italic text-gradient-brand"> Vila Aurora.</span>
+          Parque
+          <span className="italic text-gradient-brand"> Tecnológico.</span>
         </h2>
         <p className="mt-3 text-muted-foreground">
-          Um casarão restaurado no coração de São Paulo, feito pra abraçar quem chega.
+          Localizado em São José dos Campos, um espaço moderno e integrado para nos receber.
         </p>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-3">
