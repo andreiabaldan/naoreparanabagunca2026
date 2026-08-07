@@ -772,7 +772,7 @@ function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-primary" />
-                ola@encontrodelas.com.br
+                contato@naoreparanabagunca.com.br
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-primary" />
