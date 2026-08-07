@@ -704,7 +704,7 @@ function Venue() {
 
         <div className="mt-12 inline-flex items-center gap-2 text-sm text-muted-foreground">
           <Clock className="h-4 w-4 text-primary" />
-          Sexta 18h · Sábado 09h · Domingo 09h
+          Sábado 09h · Domingo 09h
         </div>
 
         <div className="mt-8 flex justify-center">
