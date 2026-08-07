@@ -527,8 +527,8 @@ function UrgencyBanner() {
           </span>
           <p className="flex-1 text-base sm:text-lg">
             <span className="font-semibold text-primary">Atenção:</span> restam apenas{" "}
-            <span className="font-bold">47 vagas</span> no lote pioneira. Depois de esgotado,
-            o próximo lote sai por R$ 1.297.
+            <span className="font-bold">47 vagas</span> no Lote Compromisso. Depois de esgotado,
+            o próximo lote sai por R$ 247.
           </p>
           <CTAButton>Garantir agora</CTAButton>
         </div>
