@@ -117,7 +117,7 @@ function Hero() {
           <span className="italic text-gradient-brand">que muda tudo.</span>
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-balance text-lg text-muted-foreground sm:text-xl">
-          Três dias para respirar fundo, se reencontrar e voltar pra vida
+          Dois dias para respirar fundo, se reencontrar e voltar pra vida
           com um plano de verdade. Sem fórmula mágica, sem palco distante — só nós.
         </p>
 
