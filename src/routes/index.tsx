@@ -799,8 +799,8 @@ function Footer() {
           </div>
         </div>
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row">
-          <span>© {new Date().getFullYear()} Encontro Delas. Todos os direitos reservados.</span>
-          <span>Feito com carinho em São Paulo</span>
+          <span>© {new Date().getFullYear()} Não Repara na Bagunça. Todos os direitos reservados.</span>
+          <span>Feito com carinho em São José dos Campos</span>
         </div>
       </div>
     </footer>
