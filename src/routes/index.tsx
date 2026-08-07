@@ -759,7 +759,7 @@ function Footer() {
         <div className="grid gap-10 md:grid-cols-3">
           <div>
             <span className="font-script text-4xl text-gradient-brand">
-              encontro delas
+              Não Repara na Bagunça
             </span>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">
               Um movimento de mulheres que se encontram pra se reencontrar.
