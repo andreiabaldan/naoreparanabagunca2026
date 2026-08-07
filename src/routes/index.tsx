@@ -424,7 +424,7 @@ function SocialProof() {
 }
 
 const NUMBERS = [
-  { n: "3", label: "dias" },
+  { n: "2", label: "dias" },
   { n: "+1k", label: "mulheres" },
   { n: "24", label: "experiências" },
   { n: "∞", label: "conexões" },
