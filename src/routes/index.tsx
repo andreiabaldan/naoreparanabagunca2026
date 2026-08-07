@@ -205,7 +205,7 @@ const MOVEMENT = [
   { icon: Smile, title: "Leve", desc: "Nada de palestrinha pesada — a gente ri, chora e respira junto." },
   { icon: Sparkles, title: "Divertido", desc: "Música, boa comida, e conversas que se transformam em amizade." },
   { icon: Wrench, title: "Prático", desc: "Você sai com métodos, planilhas e passos concretos pra aplicar." },
-  { icon: Flame, title: "Transformador", desc: "Três dias que reorganizam o antes e o depois da sua vida." },
+  { icon: Flame, title: "Transformador", desc: "Dois dias que reorganizam o antes e o depois da sua vida." },
 ];
 
 function Movement() {
