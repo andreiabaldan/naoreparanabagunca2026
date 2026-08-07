@@ -734,7 +734,7 @@ function FinalCTA() {
       <div className="relative mx-auto max-w-3xl px-6 text-center">
         <SectionEyebrow>Sua vez</SectionEyebrow>
         <h2 className="mt-6 text-balance text-4xl sm:text-6xl md:text-7xl">
-          Em Agosto, essa cadeira
+          Em Outubro, essa cadeira
           <span className="italic text-gradient-brand"> vai ter seu nome.</span>
         </h2>
         <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
@@ -745,7 +745,7 @@ function FinalCTA() {
           <CTAButton size="lg">Garantir meu ingresso agora</CTAButton>
         </div>
         <p className="mt-4 text-xs uppercase tracking-widest text-primary">
-          Lote pioneira encerra em 31/03 · restam 47 vagas
+          INGRESSO COMPROMISSO encerra em 30/08 · restam 47 vagas
         </p>
       </div>
     </section>
