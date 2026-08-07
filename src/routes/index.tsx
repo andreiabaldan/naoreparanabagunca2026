@@ -367,7 +367,7 @@ function SocialProof() {
           <SectionEyebrow>Prova social</SectionEyebrow>
           <h2 className="mt-6 text-balance text-4xl sm:text-5xl md:text-6xl">
             <span className="italic text-gradient-brand">+1.000 mulheres</span> já
-            atravessaram esse encontro.
+            viveram essa experiência.
           </h2>
         </div>
 
