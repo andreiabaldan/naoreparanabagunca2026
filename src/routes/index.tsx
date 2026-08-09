@@ -48,9 +48,97 @@ const EVENT = {
   dateShort: "24 e 25 de outubro",
   venue: "Parque de Inovação Tecnológica",
   city: "São José dos Campos/SP",
+  /** Horários (editáveis). Substitua pelos horários confirmados. */
+  hoursShort: "Das [HORÁRIO] às [HORÁRIO]",
+  hoursDay1: "Sábado, 24/10 · das [HORÁRIO] às [HORÁRIO]",
+  hoursDay2: "Domingo, 25/10 · das [HORÁRIO] às [HORÁRIO]",
   /** URL do checkout. Troque pelo link real quando estiver configurado. */
   checkoutUrl: "#ingressos",
 };
+
+/* ---- Palestrantes (editável). Não inventar nomes: use placeholders. ---- */
+type Speaker = {
+  name: string;
+  role: string;
+  benefit: string;
+  photo?: string;
+};
+
+const SPEAKERS: Speaker[] = [
+  {
+    name: "Suelen Gubeisse",
+    role: "Personal Organizer · Idealizadora do NRNB",
+    benefit: "Vai ajudar você a começar a organizar a casa sem travar no meio.",
+    photo: founderPortrait,
+  },
+  {
+    name: "[NOME DO PALESTRANTE]",
+    role: "Especialista em [ÁREA]",
+    benefit: "Vai ajudar você a [BENEFÍCIO].",
+  },
+  {
+    name: "[NOME DO PALESTRANTE]",
+    role: "Especialista em [ÁREA]",
+    benefit: "Vai ajudar você a [BENEFÍCIO].",
+  },
+  {
+    name: "[NOME DO PALESTRANTE]",
+    role: "Especialista em [ÁREA]",
+    benefit: "Vai ajudar você a [BENEFÍCIO].",
+  },
+];
+
+/* ---- Programação (editável) ---- */
+type Slot = { time: string; title: string; speaker?: string; highlight?: boolean };
+
+const SCHEDULE: { id: "d1" | "d2"; tab: string; hours: string; slots: Slot[] }[] = [
+  {
+    id: "d1",
+    tab: "Sábado · 24 de outubro",
+    hours: "Das [HORÁRIO] às [HORÁRIO]",
+    slots: [
+      { time: "[HORÁRIO]", title: "Abertura do Não Repara na Bagunça", speaker: "Suelen Gubeisse", highlight: true },
+      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
+      { time: "[HORÁRIO]", title: "[EXPERIÊNCIA PRÁTICA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
+      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]" },
+      { time: "[HORÁRIO]", title: "[ATIVAÇÃO / INTERVALO]", speaker: "[NOME DA MARCA]" },
+      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]" },
+    ],
+  },
+  {
+    id: "d2",
+    tab: "Domingo · 25 de outubro",
+    hours: "Das [HORÁRIO] às [HORÁRIO]",
+    slots: [
+      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
+      { time: "[HORÁRIO]", title: "[EXPERIÊNCIA PRÁTICA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
+      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
+      { time: "[HORÁRIO]", title: "[ATIVAÇÃO / INTERVALO]", speaker: "[NOME DA MARCA]" },
+      { time: "[HORÁRIO]", title: "Encerramento", speaker: "Suelen Gubeisse" },
+    ],
+  },
+];
+
+/* ---- Patrocinadores (editável). Adicione { name, logo } quando tiver os logos. ---- */
+type Sponsor = { name: string; logo?: string; url?: string };
+const SPONSORS: { group: string; items: Sponsor[] }[] = [
+  {
+    group: "Marcas parceiras",
+    items: [
+      { name: "[LOGO DA MARCA]" },
+      { name: "[LOGO DA MARCA]" },
+      { name: "[LOGO DA MARCA]" },
+      { name: "[LOGO DA MARCA]" },
+      { name: "[LOGO DA MARCA]" },
+      { name: "[LOGO DA MARCA]" },
+    ],
+  },
+];
+
+/* ---- Experiências de marcas (opcional): deixe vazio para ocultar a seção. ---- */
+type Activation = { brand: string; logo?: string; title: string; description: string };
+const ACTIVATIONS: Activation[] = [];
+
 
 /** Percentual vendido do lote atual (editável). Use null se não houver dado real. */
 const LOT_SOLD_PERCENT: number | null = 87;
@@ -291,16 +379,21 @@ function Hero() {
           para viver melhor.
         </p>
 
-        <div className="mt-6 flex flex-col items-center gap-2 text-sm text-foreground/85 sm:flex-row sm:justify-center sm:gap-6">
+        <div className="mt-6 flex flex-col items-center gap-2 text-sm text-foreground/85 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-6 sm:gap-y-2">
           <span className="inline-flex items-center gap-2 font-semibold uppercase tracking-wide">
             <Calendar className="h-4 w-4 text-primary" />
             {EVENT.dateShort} · 2026
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <Clock className="h-4 w-4 shrink-0 text-primary" />
+            {EVENT.hoursShort}
           </span>
           <span className="inline-flex items-center gap-2 text-center">
             <MapPin className="h-4 w-4 shrink-0 text-primary" />
             {EVENT.venue} · {EVENT.city}
           </span>
         </div>
+
 
         <div className="mx-auto mt-8 max-w-md rounded-3xl border border-primary/40 bg-card/80 p-5 shadow-glow backdrop-blur">
           <CTAButton event="hero_cta_click" size="lg" className="w-full">
@@ -716,11 +809,20 @@ function Venue() {
               <MapPin className="h-5 w-5 shrink-0 text-primary" />
               {EVENT.venue} · {EVENT.city}
             </li>
+            <li className="flex items-start gap-3">
+              <Clock className="h-5 w-5 shrink-0 text-primary" />
+              <span>
+                {EVENT.hoursDay1}
+                <br />
+                {EVENT.hoursDay2}
+              </span>
+            </li>
             <li className="flex items-center gap-3 text-muted-foreground">
               <Heart className="h-5 w-5 shrink-0 text-primary" />
               [INSERIR ENDEREÇO COMPLETO, ESTACIONAMENTO, ACESSIBILIDADE E
-              HORÁRIOS CONFIRMADOS]
+              DEMAIS INFORMAÇÕES LOGÍSTICAS]
             </li>
+
           </ul>
         </div>
         <div className="overflow-hidden rounded-3xl border border-border/60">
@@ -895,7 +997,246 @@ function StickyCTA() {
   );
 }
 
+function Speakers() {
+  return (
+    <Section id="palestrantes">
+      <div className="text-center">
+        <SectionEyebrow>Palestrantes</SectionEyebrow>
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
+          Um encontro. Diferentes especialistas.{" "}
+          <span className="italic text-gradient-brand">
+            Uma vida mais organizada.
+          </span>
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-balance text-sm text-muted-foreground sm:text-base">
+          Conheça algumas das pessoas que vão subir ao palco do Não Repara na
+          Bagunça para compartilhar conhecimento, experiências e caminhos
+          práticos para uma vida mais leve e organizada.
+        </p>
+      </div>
+
+      <div className="-mx-5 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
+        {SPEAKERS.map((s, i) => (
+          <article
+            key={`${s.name}-${i}`}
+            className="w-[72%] shrink-0 snap-start overflow-hidden rounded-3xl border border-border/60 bg-card/50 sm:w-auto"
+          >
+            <div className="aspect-[4/5] w-full bg-background/60">
+              {s.photo ? (
+                <img
+                  src={s.photo}
+                  alt={`Foto de ${s.name}`}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+                  [FOTO]
+                </div>
+              )}
+            </div>
+            <div className="p-4">
+              <h3 className="text-base font-semibold leading-tight text-foreground">
+                {s.name}
+              </h3>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-primary">
+                {s.role}
+              </p>
+              <p className="mt-2 text-sm leading-snug text-muted-foreground">
+                {s.benefit}
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Schedule() {
+  const [day, setDay] = useState<"d1" | "d2">("d1");
+  const [expanded, setExpanded] = useState(false);
+  const current = SCHEDULE.find((d) => d.id === day)!;
+  const visible = expanded
+    ? current.slots
+    : current.slots.filter((s) => s.highlight);
+
+  return (
+    <Section id="programacao" className="bg-card/40">
+      <div className="text-center">
+        <SectionEyebrow>Programação</SectionEyebrow>
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
+          Dois dias para organizar{" "}
+          <span className="italic text-gradient-brand">
+            diferentes áreas da sua vida.
+          </span>
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-balance text-sm text-muted-foreground sm:text-base">
+          Casa, rotina, finanças, saúde, bem-estar e muito mais em uma
+          experiência criada para você aprender, experimentar e sair pronta para
+          colocar em prática.
+        </p>
+      </div>
+
+      <div className="mx-auto mt-7 flex max-w-lg gap-2 rounded-full border border-border/60 bg-background/60 p-1">
+        {SCHEDULE.map((d) => (
+          <button
+            key={d.id}
+            type="button"
+            onClick={() => {
+              setDay(d.id);
+              setExpanded(false);
+            }}
+            className={`flex-1 rounded-full px-3 py-2 text-[11px] font-semibold uppercase tracking-wide transition-colors sm:text-xs ${
+              day === d.id
+                ? "bg-gradient-brand text-primary-foreground"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            {d.tab}
+          </button>
+        ))}
+      </div>
+
+      <p className="mt-4 text-center text-xs font-semibold uppercase tracking-wide text-primary">
+        {current.hours}
+      </p>
+
+      <ol className="mx-auto mt-6 max-w-2xl space-y-0">
+        {visible.map((slot, i) => (
+          <li key={`${slot.time}-${i}`} className="flex gap-4">
+            <div className="flex flex-col items-center">
+              <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-primary" />
+              {i < visible.length - 1 && (
+                <span className="w-px flex-1 bg-border/70" />
+              )}
+            </div>
+            <div className="pb-6">
+              <span className="text-xs font-semibold uppercase tracking-wide text-primary">
+                {slot.time}
+              </span>
+              <h3 className="mt-1 text-base font-semibold leading-snug text-foreground">
+                {slot.title}
+              </h3>
+              {slot.speaker && (
+                <p className="mt-0.5 text-sm text-muted-foreground">
+                  {slot.speaker}
+                </p>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      {current.slots.length > visible.length && !expanded && (
+        <div className="text-center">
+          <button
+            type="button"
+            onClick={() => setExpanded(true)}
+            className="inline-flex items-center gap-2 rounded-full border border-primary/50 px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-foreground transition-colors hover:bg-primary/10"
+          >
+            Ver programação completa +
+          </button>
+        </div>
+      )}
+
+      <p className="mt-6 text-center text-xs text-muted-foreground">
+        *Programação sujeita a alterações.
+      </p>
+    </Section>
+  );
+}
+
+function Sponsors() {
+  return (
+    <Section id="patrocinadores">
+      <div className="text-center">
+        <SectionEyebrow>Patrocinadores</SectionEyebrow>
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-3xl">
+          Marcas que acreditam em{" "}
+          <span className="italic text-gradient-brand">
+            uma vida mais organizada.
+          </span>
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-balance text-sm text-muted-foreground sm:text-base">
+          O Não Repara na Bagunça acontece ao lado de marcas que compartilham o
+          nosso propósito de tornar a casa, a rotina e a vida mais leves.
+        </p>
+      </div>
+
+      {SPONSORS.map((group) => (
+        <div key={group.group} className="mt-8">
+          <p className="text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+            {group.group}
+          </p>
+          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+            {group.items.map((s, i) => (
+              <div
+                key={`${s.name}-${i}`}
+                className="flex h-20 items-center justify-center rounded-2xl border border-border/50 bg-card/40 px-3 text-center"
+              >
+                {s.logo ? (
+                  <img
+                    src={s.logo}
+                    alt={`Logo ${s.name}`}
+                    loading="lazy"
+                    decoding="async"
+                    className="max-h-10 w-auto opacity-80 grayscale transition hover:opacity-100 hover:grayscale-0"
+                  />
+                ) : (
+                  <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+                    {s.name}
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      {ACTIVATIONS.length > 0 && (
+        <div className="mt-12">
+          <h3 className="text-center text-balance text-xl leading-tight sm:text-2xl">
+            Experiências que você vai{" "}
+            <span className="italic text-gradient-brand">encontrar por lá</span>
+          </h3>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {ACTIVATIONS.map((a, i) => (
+              <article
+                key={`${a.title}-${i}`}
+                className="rounded-2xl border border-border/60 bg-card/50 p-5"
+              >
+                {a.logo ? (
+                  <img
+                    src={a.logo}
+                    alt={`Logo ${a.brand}`}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-8 w-auto"
+                  />
+                ) : (
+                  <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+                    {a.brand}
+                  </span>
+                )}
+                <h4 className="mt-3 text-base font-semibold text-foreground">
+                  {a.title}
+                </h4>
+                <p className="mt-1 text-sm leading-snug text-muted-foreground">
+                  {a.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      )}
+    </Section>
+  );
+}
+
 /* -------------------- Página -------------------- */
+
 
 function LandingPage() {
   useEffect(() => {
@@ -909,10 +1250,14 @@ function LandingPage() {
       <ForWhom />
       <Benefits />
       <Experience />
+      <Speakers />
+      <Schedule />
       <SocialProof />
       <Tickets />
       <Founder />
+      <Sponsors />
       <Venue />
+
       <FAQ />
       <FinalCTA />
       <Footer />
