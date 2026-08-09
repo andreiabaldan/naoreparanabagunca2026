@@ -1250,10 +1250,14 @@ function LandingPage() {
       <ForWhom />
       <Benefits />
       <Experience />
+      <Speakers />
+      <Schedule />
       <SocialProof />
       <Tickets />
       <Founder />
+      <Sponsors />
       <Venue />
+
       <FAQ />
       <FinalCTA />
       <Footer />
