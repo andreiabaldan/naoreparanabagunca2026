@@ -809,11 +809,20 @@ function Venue() {
               <MapPin className="h-5 w-5 shrink-0 text-primary" />
               {EVENT.venue} · {EVENT.city}
             </li>
+            <li className="flex items-start gap-3">
+              <Clock className="h-5 w-5 shrink-0 text-primary" />
+              <span>
+                {EVENT.hoursDay1}
+                <br />
+                {EVENT.hoursDay2}
+              </span>
+            </li>
             <li className="flex items-center gap-3 text-muted-foreground">
               <Heart className="h-5 w-5 shrink-0 text-primary" />
               [INSERIR ENDEREÇO COMPLETO, ESTACIONAMENTO, ACESSIBILIDADE E
-              HORÁRIOS CONFIRMADOS]
+              DEMAIS INFORMAÇÕES LOGÍSTICAS]
             </li>
+
           </ul>
         </div>
         <div className="overflow-hidden rounded-3xl border border-border/60">
