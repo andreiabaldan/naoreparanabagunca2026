@@ -48,9 +48,97 @@ const EVENT = {
   dateShort: "24 e 25 de outubro",
   venue: "Parque de Inovação Tecnológica",
   city: "São José dos Campos/SP",
+  /** Horários (editáveis). Substitua pelos horários confirmados. */
+  hoursShort: "Das [HORÁRIO] às [HORÁRIO]",
+  hoursDay1: "Sábado, 24/10 · das [HORÁRIO] às [HORÁRIO]",
+  hoursDay2: "Domingo, 25/10 · das [HORÁRIO] às [HORÁRIO]",
   /** URL do checkout. Troque pelo link real quando estiver configurado. */
   checkoutUrl: "#ingressos",
 };
+
+/* ---- Palestrantes (editável). Não inventar nomes: use placeholders. ---- */
+type Speaker = {
+  name: string;
+  role: string;
+  benefit: string;
+  photo?: string;
+};
+
+const SPEAKERS: Speaker[] = [
+  {
+    name: "Suelen Gubeisse",
+    role: "Personal Organizer · Idealizadora do NRNB",
+    benefit: "Vai ajudar você a começar a organizar a casa sem travar no meio.",
+    photo: founderPortrait,
+  },
+  {
+    name: "[NOME DO PALESTRANTE]",
+    role: "Especialista em [ÁREA]",
+    benefit: "Vai ajudar você a [BENEFÍCIO].",
+  },
+  {
+    name: "[NOME DO PALESTRANTE]",
+    role: "Especialista em [ÁREA]",
+    benefit: "Vai ajudar você a [BENEFÍCIO].",
+  },
+  {
+    name: "[NOME DO PALESTRANTE]",
+    role: "Especialista em [ÁREA]",
+    benefit: "Vai ajudar você a [BENEFÍCIO].",
+  },
+];
+
+/* ---- Programação (editável) ---- */
+type Slot = { time: string; title: string; speaker?: string; highlight?: boolean };
+
+const SCHEDULE: { id: "d1" | "d2"; tab: string; hours: string; slots: Slot[] }[] = [
+  {
+    id: "d1",
+    tab: "Sábado · 24 de outubro",
+    hours: "Das [HORÁRIO] às [HORÁRIO]",
+    slots: [
+      { time: "[HORÁRIO]", title: "Abertura do Não Repara na Bagunça", speaker: "Suelen Gubeisse", highlight: true },
+      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
+      { time: "[HORÁRIO]", title: "[EXPERIÊNCIA PRÁTICA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
+      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]" },
+      { time: "[HORÁRIO]", title: "[ATIVAÇÃO / INTERVALO]", speaker: "[NOME DA MARCA]" },
+      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]" },
+    ],
+  },
+  {
+    id: "d2",
+    tab: "Domingo · 25 de outubro",
+    hours: "Das [HORÁRIO] às [HORÁRIO]",
+    slots: [
+      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
+      { time: "[HORÁRIO]", title: "[EXPERIÊNCIA PRÁTICA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
+      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
+      { time: "[HORÁRIO]", title: "[ATIVAÇÃO / INTERVALO]", speaker: "[NOME DA MARCA]" },
+      { time: "[HORÁRIO]", title: "Encerramento", speaker: "Suelen Gubeisse" },
+    ],
+  },
+];
+
+/* ---- Patrocinadores (editável). Adicione { name, logo } quando tiver os logos. ---- */
+type Sponsor = { name: string; logo?: string; url?: string };
+const SPONSORS: { group: string; items: Sponsor[] }[] = [
+  {
+    group: "Marcas parceiras",
+    items: [
+      { name: "[LOGO DA MARCA]" },
+      { name: "[LOGO DA MARCA]" },
+      { name: "[LOGO DA MARCA]" },
+      { name: "[LOGO DA MARCA]" },
+      { name: "[LOGO DA MARCA]" },
+      { name: "[LOGO DA MARCA]" },
+    ],
+  },
+];
+
+/* ---- Experiências de marcas (opcional): deixe vazio para ocultar a seção. ---- */
+type Activation = { brand: string; logo?: string; title: string; description: string };
+const ACTIVATIONS: Activation[] = [];
+
 
 /** Percentual vendido do lote atual (editável). Use null se não houver dado real. */
 const LOT_SOLD_PERCENT: number | null = 87;
