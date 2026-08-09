@@ -1,33 +1,33 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
 import {
   Calendar,
   MapPin,
+  Check,
+  Home,
+  Clock,
+  Wallet,
   Heart,
   Sparkles,
-  Smile,
-  Wrench,
-  Flame,
-  Home,
-  Wallet,
+  Users,
+  ShoppingBag,
   Activity,
-  Network,
-  Clock,
-  Quote,
-  AlertTriangle,
-  Check,
-  Building2,
-  Car,
-  Accessibility,
-  Mail,
-  Phone,
-  MessageCircle,
-  MessageSquare,
+  ListChecks,
+  Lightbulb,
   ArrowRight,
+  Quote,
+  Star,
 } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { track } from "@/lib/tracking";
 
 import heroBg from "@/assets/hero-bg.jpg";
 import founderPortrait from "@/assets/founder-portrait.jpg";
-import founderSecondary from "@/assets/founder-secondary.jpg";
 import event1 from "@/assets/event-1.jpg";
 import event2 from "@/assets/event-2.jpg";
 import event3 from "@/assets/event-3.jpg";
@@ -35,35 +35,150 @@ import event4 from "@/assets/event-4.jpg";
 import event5 from "@/assets/event-5.jpg";
 import event6 from "@/assets/event-6.jpg";
 
+/* ==================================================================
+   CONFIGURAÇÃO EDITÁVEL — atualize aqui os dados reais do evento
+   ================================================================== */
+
+const EVENT = {
+  name: "Não Repara na Bagunça 2026",
+  concept: "O encontro que muda tudo.",
+  promise:
+    "2 dias para deixar sua casa, sua rotina e sua vida mais leves e organizadas.",
+  date: "24 e 25 de outubro de 2026",
+  dateShort: "24 e 25 de outubro",
+  venue: "Parque de Inovação Tecnológica",
+  city: "São José dos Campos/SP",
+  /** URL do checkout. Troque pelo link real quando estiver configurado. */
+  checkoutUrl: "#ingressos",
+};
+
+/** Percentual vendido do lote atual (editável). Use null se não houver dado real. */
+const LOT_SOLD_PERCENT: number | null = 87;
+const LOT_LABEL = "1º lote";
+
+type Ticket = {
+  id: "compromisso" | "vip" | "platinum";
+  name: string;
+  desire: string;
+  price: string;
+  installments: string;
+  nextLot: string | null;
+  soldPercent: number | null;
+  benefits: string[];
+  highlight?: string;
+  event: "ticket_compromisso_click" | "ticket_vip_click" | "ticket_platinum_click";
+};
+
+const TICKETS: Ticket[] = [
+  {
+    id: "compromisso",
+    name: "Compromisso",
+    desire: "Quero participar.",
+    price: "R$ 97",
+    installments: "ou 12x de R$ 9,70 no cartão",
+    nextLot: "[INSERIR VALOR DO PRÓXIMO LOTE]",
+    soldPercent: 87,
+    benefits: [
+      "Acesso aos 2 dias de evento",
+      "Acesso a todo o conteúdo do palco principal",
+      "[INSERIR BENEFÍCIO REAL]",
+    ],
+    event: "ticket_compromisso_click",
+  },
+  {
+    id: "vip",
+    name: "VIP",
+    desire: "Quero viver melhor essa experiência.",
+    price: "R$ 197",
+    installments: "ou 12x de R$ 19,70 no cartão",
+    nextLot: "[INSERIR VALOR DO PRÓXIMO LOTE]",
+    soldPercent: 62,
+    highlight: "Experiência recomendada",
+    benefits: [
+      "Tudo do ingresso Compromisso",
+      "Assento em setor preferencial",
+      "[INSERIR BENEFÍCIO REAL]",
+      "[INSERIR BENEFÍCIO REAL]",
+    ],
+    event: "ticket_vip_click",
+  },
+  {
+    id: "platinum",
+    name: "Platinum",
+    desire: "Quero viver tudo o que o NRNB pode oferecer.",
+    price: "R$ 347",
+    installments: "ou 12x de R$ 34,70 no cartão",
+    nextLot: "[INSERIR VALOR DO PRÓXIMO LOTE]",
+    soldPercent: 41,
+    highlight: "Experiência completa",
+    benefits: [
+      "Tudo do ingresso VIP",
+      "Setor Platinum nas primeiras fileiras",
+      "[INSERIR BENEFÍCIO REAL]",
+      "[INSERIR BENEFÍCIO REAL]",
+      "[INSERIR BENEFÍCIO REAL]",
+    ],
+    event: "ticket_platinum_click",
+  },
+];
+
 export const Route = createFileRoute("/")({
   component: LandingPage,
   head: () => ({
     meta: [
+      { title: "Não Repara na Bagunça 2026 — O encontro que muda tudo" },
+      {
+        name: "description",
+        content:
+          "2 dias para deixar sua casa, sua rotina e sua vida mais leves e organizadas. 24 e 25 de outubro de 2026, São José dos Campos/SP. Garanta seu ingresso.",
+      },
+      {
+        property: "og:title",
+        content: "Não Repara na Bagunça 2026 — O encontro que muda tudo",
+      },
+      {
+        property: "og:description",
+        content:
+          "2 dias para deixar sua casa, sua rotina e sua vida mais leves e organizadas. 24 e 25 de outubro de 2026, São José dos Campos/SP.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:image", content: heroBg },
       { name: "twitter:image", content: heroBg },
     ],
   }),
 });
 
-/* -------------------- Building blocks -------------------- */
+/* -------------------- Blocos reutilizáveis -------------------- */
+
+function goToTickets() {
+  const el = document.getElementById("ingressos");
+  el?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 function CTAButton({
   children,
+  event,
   size = "md",
   className = "",
 }: {
   children: React.ReactNode;
+  event: Parameters<typeof track>[0];
   size?: "md" | "lg";
   className?: string;
 }) {
   const sizes = {
-    md: "px-7 py-3.5 text-sm",
-    lg: "px-9 py-5 text-base",
+    md: "px-6 py-3.5 text-sm",
+    lg: "px-8 py-4.5 text-base",
   };
   return (
     <button
       type="button"
-      className={`group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand font-semibold text-primary-foreground shadow-glow transition-all hover:scale-[1.02] hover:brightness-110 active:scale-100 ${sizes[size]} ${className}`}
+      onClick={() => {
+        track(event);
+        goToTickets();
+      }}
+      className={`group inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-brand font-semibold uppercase tracking-wide text-primary-foreground shadow-glow transition-all hover:brightness-110 active:scale-[0.99] sm:w-auto ${sizes[size]} ${className}`}
     >
       <span>{children}</span>
       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -80,17 +195,66 @@ function SectionEyebrow({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* -------------------- Sections -------------------- */
+function LotProgress({
+  percent,
+  label,
+  compact = false,
+}: {
+  percent: number | null;
+  label?: string;
+  compact?: boolean;
+}) {
+  if (percent === null) return null;
+  return (
+    <div className="w-full">
+      <div className="flex items-center justify-between gap-3">
+        <span
+          className={`font-semibold text-primary ${compact ? "text-[11px]" : "text-xs"} uppercase tracking-wider`}
+        >
+          {percent}% {label ?? "deste lote"} vendido
+        </span>
+      </div>
+      <div
+        className="mt-2 h-2 w-full overflow-hidden rounded-full bg-foreground/10"
+        role="progressbar"
+        aria-valuenow={percent}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label={`${percent}% vendido`}
+      >
+        <div
+          className="h-full rounded-full bg-gradient-brand"
+          style={{ width: `${percent}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
+function Section({
+  id,
+  children,
+  className = "",
+}: {
+  id?: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <section id={id} className={`px-5 py-14 sm:px-6 sm:py-20 ${className}`}>
+      <div className="mx-auto max-w-6xl">{children}</div>
+    </section>
+  );
+}
+
+/* -------------------- Seções -------------------- */
 
 function TopBar() {
   return (
-    <div className="relative bg-gradient-brand">
-      <div className="mx-auto flex max-w-7xl items-center justify-center gap-3 px-4 py-3">
-        <div className="grid h-8 w-8 place-items-center rounded-full bg-background/20 backdrop-blur">
-          <MessageSquare className="h-4 w-4 text-primary-foreground" />
-        </div>
-        <span className="font-script text-2xl leading-none text-primary-foreground">
-          Não Repara na Bagunça
+    <div className="bg-gradient-brand">
+      <div className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-4 py-2.5 text-center">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground sm:text-xs">
+          {EVENT.dateShort} · {EVENT.city} · {LOT_LABEL} quase esgotado
         </span>
       </div>
     </div>
@@ -102,651 +266,584 @@ function Hero() {
     <section className="relative overflow-hidden">
       <img
         src={heroBg}
-        alt=""
-        aria-hidden
-        className="absolute inset-0 h-full w-full object-cover opacity-40"
+        alt="Mulheres reunidas no auditório do Não Repara na Bagunça"
+        fetchPriority="high"
+        className="absolute inset-0 h-full w-full object-cover opacity-45"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/70 to-background" />
-      <div className="absolute inset-0 bg-gradient-brand-soft opacity-60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/75 to-background" />
 
-      <div className="relative mx-auto max-w-5xl px-6 pb-20 pt-24 text-center sm:pt-32">
-        <SectionEyebrow>Edição 2026 · Vagas limitadas</SectionEyebrow>
-        <h1 className="mt-8 text-balance text-5xl leading-[1.05] sm:text-6xl md:text-7xl">
-          Bem-vinda ao encontro
-          <br />
-          <span className="italic text-gradient-brand">que muda tudo.</span>
+      <div className="relative mx-auto max-w-3xl px-5 pb-14 pt-12 text-center sm:px-6 sm:pb-20 sm:pt-20">
+        <SectionEyebrow>Não Repara na Bagunça 2026</SectionEyebrow>
+
+        <h1 className="mt-6 text-balance text-4xl leading-[1.05] sm:text-6xl">
+          <span className="italic text-gradient-brand">
+            O encontro que muda tudo.
+          </span>
         </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-balance text-lg text-muted-foreground sm:text-xl">
-          Dois dias para respirar fundo, se reencontrar e voltar pra vida
-          com um plano de verdade. Sem fórmula mágica, sem palco distante — só nós.
+
+        <p className="mx-auto mt-5 max-w-2xl text-balance text-xl font-semibold leading-snug text-foreground sm:text-2xl">
+          {EVENT.promise}
         </p>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-foreground/80">
-          <span className="inline-flex items-center gap-2">
+        <p className="mx-auto mt-4 max-w-xl text-balance text-sm text-muted-foreground sm:text-base">
+          Um fim de semana inteiro de experiências, conteúdos e aprendizados
+          práticos para você organizar o que está ao seu redor — e abrir espaço
+          para viver melhor.
+        </p>
+
+        <div className="mt-6 flex flex-col items-center gap-2 text-sm text-foreground/85 sm:flex-row sm:justify-center sm:gap-6">
+          <span className="inline-flex items-center gap-2 font-semibold uppercase tracking-wide">
             <Calendar className="h-4 w-4 text-primary" />
-            24 e 25 de outubro · 2026
+            {EVENT.dateShort} · 2026
           </span>
-          <span className="hidden h-1 w-1 rounded-full bg-primary sm:block" />
-          <span className="inline-flex items-center gap-2">
-            <MapPin className="h-4 w-4 text-primary" />
-            Parque Tecnológico de São José dos Campos
+          <span className="inline-flex items-center gap-2 text-center">
+            <MapPin className="h-4 w-4 shrink-0 text-primary" />
+            {EVENT.venue} · {EVENT.city}
           </span>
         </div>
 
-        <div className="mx-auto mt-12 max-w-2xl rounded-3xl border-2 border-primary/60 bg-card/70 p-6 shadow-glow backdrop-blur sm:p-8">
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
-              INGRESSO COMPROMISSO · ATÉ 30/08
-            </span>
-            <div className="flex items-baseline gap-3">
-              <span className="text-sm text-muted-foreground line-through">R$ 247</span>
-              <span className="font-display text-5xl font-semibold sm:text-6xl">
-                R$ 97
-              </span>
-            </div>
-            <span className="text-sm text-muted-foreground">
-              ou 12x de R$ 9,70 no cartão
-            </span>
-          </div>
-          <div className="mt-6 flex justify-center">
-            <CTAButton size="lg">Garantir meu ingresso</CTAButton>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-const PAINS = [
-  "Você acorda cansada antes mesmo do dia começar — e sente que segura tudo sozinha.",
-  "Faz por todos, mas ninguém pergunta como você está de verdade.",
-  "Guarda sonhos numa gaveta faz tempo, esperando 'a hora certa' que nunca chega.",
-  "Se sente invisível dentro da própria casa, do trabalho, das amizades.",
-  "Sabe que precisa mudar algo, mas não consegue nem começar sozinha.",
-];
-
-function Pains() {
-  return (
-    <section className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-4xl px-6 text-center">
-        <SectionEyebrow>Se identifica?</SectionEyebrow>
-        <h2 className="mt-6 text-balance text-4xl sm:text-5xl md:text-6xl">
-          Talvez você esteja
-          <span className="italic text-gradient-brand"> cansada de fingir </span>
-          que está tudo bem.
-        </h2>
-
-        <ul className="mt-14 space-y-4 text-left">
-          {PAINS.map((p, i) => (
-            <li
-              key={i}
-              className="group flex items-start gap-4 rounded-2xl border border-border bg-card/60 p-5 shadow-card transition-all hover:border-primary/40 hover:bg-card"
-            >
-              <span className="badge-icon shrink-0">
-                <Heart className="h-5 w-5 fill-current" />
-              </span>
-              <p className="pt-2 text-base text-foreground/90 sm:text-lg">{p}</p>
-            </li>
-          ))}
-        </ul>
-
-        <p className="mt-14 text-balance text-xl text-muted-foreground sm:text-2xl">
-          Você não está sozinha. E não precisa continuar assim.
-        </p>
-        <div className="mt-8 flex justify-center">
-          <CTAButton>Quero estar lá</CTAButton>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-const MOVEMENT = [
-  { icon: Smile, title: "Leve", desc: "Nada de palestrinha pesada — a gente ri, chora e respira junto." },
-  { icon: Sparkles, title: "Divertido", desc: "Música, boa comida, e conversas que se transformam em amizade." },
-  { icon: Wrench, title: "Prático", desc: "Você sai com métodos, planilhas e passos concretos pra aplicar." },
-  { icon: Flame, title: "Transformador", desc: "Dois dias que reorganizam o antes e o depois da sua vida." },
-];
-
-function Movement() {
-  return (
-    <section className="relative bg-surface py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <SectionEyebrow>O manifesto</SectionEyebrow>
-          <h2 className="mt-6 text-balance text-4xl sm:text-5xl md:text-6xl">
-            Isso não é um evento.
-            <br />É um <span className="italic text-gradient-brand">movimento.</span>
-          </h2>
-          <p className="mt-6 text-lg text-muted-foreground">
-            Um lugar seguro pra ser você inteira — vulnerável, potente, engraçada,
-            errada, brilhante. A gente veio construir uma comunidade que continua
-            depois que a luz da última noite se apaga.
+        <div className="mx-auto mt-8 max-w-md rounded-3xl border border-primary/40 bg-card/80 p-5 shadow-glow backdrop-blur">
+          <CTAButton event="hero_cta_click" size="lg" className="w-full">
+            Quero garantir meu ingresso
+          </CTAButton>
+          <p className="mt-4 text-sm font-semibold text-foreground">
+            {LOT_LABEL} quase esgotado
           </p>
-        </div>
-
-        <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {MOVEMENT.map(({ icon: Icon, title, desc }) => (
-            <div
-              key={title}
-              className="rounded-3xl border border-border bg-card p-7 shadow-card transition-all hover:-translate-y-1 hover:border-primary/40"
-            >
-              <span className="badge-icon">
-                <Icon className="h-5 w-5" />
-              </span>
-              <h3 className="mt-6 text-2xl">{title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
-            </div>
-          ))}
+          <div className="mt-2">
+            <LotProgress percent={LOT_SOLD_PERCENT} label={`do ${LOT_LABEL}`} />
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-const TIMELINE = [
-  { year: "2022", count: "120", desc: "A primeira edição. Uma sala pequena e a certeza de que era pra continuar." },
-  { year: "2023", count: "380", desc: "Fomos pra um teatro. Filas de espera pela primeira vez, e o começo das amizades." },
-  { year: "2024", count: "740", desc: "Duas cidades, dois palcos. As redes começaram a chamar de movimento." },
-  { year: "2025", count: "1.200", desc: "Uma semana em cartaz. Marido, filha, chefe — todo mundo notou a mudança." },
+const FOR_WHOM = [
+  "Você quer uma casa mais organizada, mas não sabe por onde começar.",
+  "Sente que sua rotina vive no modo “apagar incêndios”.",
+  "Quer aprender formas práticas de ganhar tempo no dia a dia.",
+  "Quer cuidar melhor da sua casa, do seu dinheiro e de você.",
+  "Adora organização, decoração, casa e soluções que facilitam a vida.",
+  "Sente que precisa organizar prioridades e tirar alguns planos do papel.",
+  "Quer uma rotina que funcione melhor para você e para sua família.",
 ];
 
-function Timeline() {
+function ForWhom() {
   return (
-    <section className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-4xl px-6">
-        <div className="text-center">
-          <SectionEyebrow>Nossa história</SectionEyebrow>
-          <h2 className="mt-6 text-balance text-4xl sm:text-5xl md:text-6xl">
-            Como um encontro virou
-            <span className="italic text-gradient-brand"> movimento.</span>
-          </h2>
-        </div>
-
-        <div className="relative mt-16 pl-8 sm:pl-16">
-          <span className="absolute left-4 top-6 bottom-6 w-px bg-gradient-to-b from-primary via-plum to-transparent sm:left-8" />
-          <ol className="space-y-8">
-            {TIMELINE.map((t) => (
-              <li key={t.year} className="relative">
-                <span className="absolute -left-[1.65rem] top-3 grid h-12 w-12 place-items-center rounded-full bg-gradient-brand text-xs font-bold text-primary-foreground shadow-glow sm:-left-[3.65rem]">
-                  {t.year}
-                </span>
-                <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
-                  <div className="flex items-baseline gap-3">
-                    <span className="font-display text-4xl text-gradient-brand">
-                      {t.count}
-                    </span>
-                    <span className="text-sm uppercase tracking-widest text-muted-foreground">
-                      mulheres
-                    </span>
-                  </div>
-                  <p className="mt-3 text-foreground/85">{t.desc}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <p className="mx-auto mt-16 max-w-2xl text-balance text-center text-xl italic text-muted-foreground sm:text-2xl">
-          "Em 2026, você vai ser a próxima história a ser contada aqui."
-        </p>
+    <Section className="bg-card/40">
+      <div className="text-center">
+        <SectionEyebrow>Para quem é</SectionEyebrow>
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
+          Se você sente que colocar a vida em ordem faria tudo ficar um pouco
+          mais leve, <span className="italic text-gradient-brand">esse fim
+          de semana é para você.</span>
+        </h2>
       </div>
-    </section>
+
+      <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+        {FOR_WHOM.map((item) => (
+          <li
+            key={item}
+            className="flex items-start gap-3 rounded-2xl border border-border/60 bg-background/60 p-4"
+          >
+            <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+            <span className="text-sm leading-relaxed text-foreground/90">
+              {item}
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      <p className="mx-auto mt-8 max-w-2xl text-balance text-center text-base font-medium text-foreground sm:text-lg">
+        Você não precisa sair do evento com uma vida perfeita. Precisa sair
+        sabendo como torná-la mais leve.
+      </p>
+    </Section>
   );
 }
 
-const EXPERIENCE = [
-  { icon: Home, title: "Casa em ordem", desc: "Método pra organizar o lar sem gastar o final de semana inteiro." },
-  { icon: Sparkles, title: "Rotina que respira", desc: "Rituais simples pra desafogar a semana antes de segunda acontecer." },
-  { icon: Wallet, title: "Dinheiro sem drama", desc: "Um plano financeiro real, adaptado à sua vida — não à do vizinho." },
-  { icon: Activity, title: "Corpo que sustenta", desc: "Movimento, sono e comida como aliados, não como mais uma cobrança." },
-  { icon: Heart, title: "Emoção no lugar", desc: "Conversa franca sobre culpa, exaustão e o que fazer com elas." },
-  { icon: Network, title: "Rede que fica", desc: "Grupos regionais pra continuar caminhando junto depois do evento." },
+const BENEFITS = [
+  {
+    icon: Home,
+    title: "Casa mais funcional",
+    text: "Soluções práticas para organizar ambientes e fazer sua casa trabalhar a seu favor.",
+  },
+  {
+    icon: Sparkles,
+    title: "Rotina mais leve",
+    text: "Maneiras de reduzir o improviso e tornar seus dias mais simples.",
+  },
+  {
+    icon: Clock,
+    title: "Mais tempo para você",
+    text: "Organização é gastar menos energia procurando, decidindo e refazendo.",
+  },
+  {
+    icon: Wallet,
+    title: "Finanças mais organizadas",
+    text: "Caminhos para colocar o dinheiro em ordem e decidir com mais clareza.",
+  },
+  {
+    icon: ListChecks,
+    title: "Clareza sobre prioridades",
+    text: "Organizar não é fazer tudo. É entender o que merece espaço na sua vida.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Ideias para colocar em prática",
+    text: "Nada de sair só inspirada. O objetivo é sair sabendo por onde começar.",
+  },
+];
+
+function Benefits() {
+  return (
+    <Section>
+      <div className="text-center">
+        <SectionEyebrow>O que muda para você</SectionEyebrow>
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
+          Imagine voltar para casa sabendo{" "}
+          <span className="italic text-gradient-brand">
+            exatamente por onde começar.
+          </span>
+        </h2>
+      </div>
+
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {BENEFITS.map(({ icon: Icon, title, text }) => (
+          <div
+            key={title}
+            className="rounded-2xl border border-border/60 bg-card/60 p-5 transition-colors hover:border-primary/50"
+          >
+            <div className="grid h-10 w-10 place-items-center rounded-xl bg-magenta-soft">
+              <Icon className="h-5 w-5 text-primary" />
+            </div>
+            <h3 className="mt-4 text-lg font-semibold">{title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              {text}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-8 flex justify-center">
+        <CTAButton event="benefits_cta_click" size="lg">
+          Eu quero viver esses 2 dias
+        </CTAButton>
+      </div>
+    </Section>
+  );
+}
+
+const TERRITORIES = [
+  { icon: Home, label: "Organização da casa" },
+  { icon: Clock, label: "Rotina e produtividade" },
+  { icon: Wallet, label: "Finanças" },
+  { icon: Activity, label: "Saúde e bem-estar" },
+  { icon: ListChecks, label: "Organização pessoal" },
+  { icon: Sparkles, label: "Experiências práticas" },
+  { icon: ShoppingBag, label: "Soluções e produtos" },
+  { icon: Users, label: "Conexão com outras mulheres" },
 ];
 
 function Experience() {
   return (
-    <section className="relative bg-surface py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <SectionEyebrow>Programa</SectionEyebrow>
-          <h2 className="mt-6 text-balance text-4xl sm:text-5xl md:text-6xl">
-            O que você vai
-            <span className="italic text-gradient-brand"> viver.</span>
-          </h2>
-        </div>
-
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {EXPERIENCE.map(({ icon: Icon, title, desc }) => (
-            <div
-              key={title}
-              className="group relative overflow-hidden rounded-3xl border border-border bg-card p-7 shadow-card transition-all hover:-translate-y-1 hover:border-primary/50"
-            >
-              <span className="badge-icon">
-                <Icon className="h-5 w-5" />
-              </span>
-              <h3 className="mt-5 text-xl">{title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
-              <div className="pointer-events-none absolute -bottom-24 -right-24 h-48 w-48 rounded-full bg-gradient-brand opacity-0 blur-3xl transition-opacity group-hover:opacity-30" />
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-14 flex justify-center">
-          <CTAButton size="lg">Reservar meu lugar</CTAButton>
-        </div>
+    <Section className="bg-card/40">
+      <div className="text-center">
+        <SectionEyebrow>O que você vai viver</SectionEyebrow>
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
+          Não é um fim de semana para ficar sentada{" "}
+          <span className="italic text-gradient-brand">
+            apenas ouvindo palestras.
+          </span>
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-balance text-sm text-muted-foreground sm:text-base">
+          É para aprender, experimentar, se inspirar e voltar para casa querendo
+          colocar tudo em prática.
+        </p>
       </div>
-    </section>
+
+      <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {TERRITORIES.map(({ icon: Icon, label }) => (
+          <div
+            key={label}
+            className="flex flex-col items-center gap-3 rounded-2xl border border-border/60 bg-background/60 px-3 py-6 text-center"
+          >
+            <Icon className="h-6 w-6 text-primary" />
+            <span className="text-xs font-semibold uppercase leading-snug tracking-wide text-foreground/90">
+              {label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </Section>
   );
 }
 
-const GALLERY = [event1, event2, event3, event4, event5, event6];
+const GALLERY = [
+  { src: event1, alt: "Auditório cheio durante o Não Repara na Bagunça" },
+  { src: event2, alt: "Mulheres interagindo durante o evento" },
+  { src: event3, alt: "Momento de experiência prática no evento" },
+  { src: event4, alt: "Público sorrindo durante a programação" },
+  { src: event5, alt: "Ativação de organização no evento" },
+  { src: event6, alt: "Conexão entre participantes do evento" },
+];
 
 const TESTIMONIALS = [
-  {
-    quote:
-      "Cheguei sem esperar nada e saí com uma agenda nova, uma amiga nova e uma coragem que eu tinha esquecido que existia dentro de mim.",
-    name: "Camila R.",
-    role: "Participante · edição 2024",
-    photo: event3,
-  },
-  {
-    quote:
-      "Foi o único fim de semana em anos em que eu chorei, ri e ainda voltei descansada. Já estou marcando o próximo com as meninas do meu grupo.",
-    name: "Fernanda M.",
-    role: "Participante · edição 2025",
-    photo: event4,
-  },
+  { text: "[INSERIR DEPOIMENTO REAL]", author: "[Nome da participante]" },
+  { text: "[INSERIR DEPOIMENTO REAL]", author: "[Nome da participante]" },
+  { text: "[INSERIR DEPOIMENTO REAL]", author: "[Nome da participante]" },
 ];
 
 function SocialProof() {
   return (
-    <section className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <SectionEyebrow>Prova social</SectionEyebrow>
-          <h2 className="mt-6 text-balance text-4xl sm:text-5xl md:text-6xl">
-            <span className="italic text-gradient-brand">+1.000 mulheres</span> já
-            viveram essa experiência.
-          </h2>
-        </div>
-
-        <div className="mt-14 grid grid-cols-3 gap-3 sm:grid-cols-6">
-          {GALLERY.map((src, i) => (
-            <div
-              key={i}
-              className="aspect-square overflow-hidden rounded-2xl border border-border shadow-card"
-            >
-              <img
-                src={src}
-                alt={`Momento do evento ${i + 1}`}
-                loading="lazy"
-                width={400}
-                height={400}
-                className="h-full w-full object-cover transition-transform duration-700 hover:scale-110"
-              />
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
-          {TESTIMONIALS.map((t) => (
-            <figure
-              key={t.name}
-              className="relative rounded-3xl border border-border bg-card p-8 shadow-card"
-            >
-              <Quote className="absolute right-6 top-6 h-14 w-14 text-primary/20" />
-              <blockquote className="text-lg leading-relaxed text-foreground/90">
-                "{t.quote}"
-              </blockquote>
-              <figcaption className="mt-6 flex items-center gap-4">
-                <img
-                  src={t.photo}
-                  alt=""
-                  loading="lazy"
-                  width={56}
-                  height={56}
-                  className="h-14 w-14 rounded-full object-cover ring-2 ring-primary/50"
-                />
-                <div>
-                  <div className="font-semibold">{t.name}</div>
-                  <div className="text-xs uppercase tracking-widest text-muted-foreground">
-                    {t.role}
-                  </div>
-                </div>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+    <Section>
+      <div className="text-center">
+        <SectionEyebrow>Prova social</SectionEyebrow>
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
+          Quem vive o Não Repara na Bagunça{" "}
+          <span className="italic text-gradient-brand">entende.</span>
+        </h2>
       </div>
-    </section>
-  );
-}
 
-const NUMBERS = [
-  { n: "2", label: "dias" },
-  { n: "+1k", label: "mulheres" },
-  { n: "24", label: "experiências" },
-  { n: "∞", label: "conexões" },
-];
-
-function Numbers() {
-  return (
-    <section className="relative bg-surface py-16">
-      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-6 px-6 sm:grid-cols-4">
-        {NUMBERS.map((s) => (
+      <div className="mt-8 grid auto-rows-[130px] grid-cols-2 gap-3 sm:auto-rows-[190px] sm:grid-cols-4">
+        {GALLERY.map((img, i) => (
           <div
-            key={s.label}
-            className="rounded-3xl border border-border bg-card p-6 text-center shadow-card"
+            key={img.src}
+            className={`overflow-hidden rounded-2xl border border-border/60 ${
+              i === 0 ? "col-span-2 row-span-2" : ""
+            } ${i === 3 ? "sm:row-span-2" : ""}`}
           >
-            <div className="font-display text-5xl text-gradient-brand sm:text-6xl">
-              {s.n}
-            </div>
-            <div className="mt-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              {s.label}
-            </div>
+            <img
+              src={img.src}
+              alt={img.alt}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+            />
           </div>
         ))}
       </div>
-    </section>
+
+      <div className="mt-6 grid gap-4 sm:grid-cols-3">
+        {TESTIMONIALS.map((t, i) => (
+          <figure
+            key={i}
+            className="rounded-2xl border border-border/60 bg-card/60 p-5"
+          >
+            <Quote className="h-5 w-5 text-primary" />
+            <blockquote className="mt-3 text-sm leading-relaxed text-foreground/90">
+              {t.text}
+            </blockquote>
+            <figcaption className="mt-4 flex items-center gap-2 text-xs uppercase tracking-wide text-muted-foreground">
+              <Star className="h-3.5 w-3.5 text-primary" />
+              {t.author}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Tickets() {
+  const ref = useRef<HTMLDivElement>(null);
+  const seen = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting && !seen.current) {
+          seen.current = true;
+          track("ticket_section_view");
+        }
+      },
+      { threshold: 0.25 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <Section id="ingressos" className="bg-card/40">
+      <div ref={ref} className="text-center">
+        <SectionEyebrow>Ingressos</SectionEyebrow>
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
+          Escolha como você quer{" "}
+          <span className="italic text-gradient-brand">
+            viver essa experiência.
+          </span>
+        </h2>
+      </div>
+
+      <div className="mt-8 grid gap-4 lg:grid-cols-3">
+        {TICKETS.map((t) => (
+          <div
+            key={t.id}
+            className={`flex flex-col rounded-3xl border bg-background/70 p-5 ${
+              t.id === "vip"
+                ? "border-primary shadow-glow lg:-mt-3"
+                : "border-border/60"
+            }`}
+          >
+            {t.highlight && (
+              <span className="mb-3 self-start rounded-full bg-gradient-brand px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-primary-foreground">
+                {t.highlight}
+              </span>
+            )}
+
+            <LotProgress percent={t.soldPercent} compact />
+
+            <h3 className="mt-4 font-display text-2xl font-semibold">
+              {t.name}
+            </h3>
+            <p className="mt-1 text-sm italic text-muted-foreground">
+              “{t.desire}”
+            </p>
+
+            <div className="mt-4">
+              <span className="font-display text-4xl font-semibold">
+                {t.price}
+              </span>
+              <p className="mt-1 text-xs text-muted-foreground">
+                {t.installments}
+              </p>
+              {t.nextLot && (
+                <p className="mt-1 text-xs font-medium text-primary">
+                  Próximo lote: {t.nextLot}
+                </p>
+              )}
+            </div>
+
+            <ul className="mt-5 flex-1 space-y-2.5">
+              {t.benefits.map((b) => (
+                <li key={b} className="flex items-start gap-2 text-sm">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                  <span className="text-foreground/90">{b}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={EVENT.checkoutUrl}
+              onClick={() => {
+                track(t.event, { ticket: t.id });
+                track("checkout_start", { ticket: t.id });
+              }}
+              className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold uppercase tracking-wide transition-all active:scale-[0.99] ${
+                t.id === "vip"
+                  ? "bg-gradient-brand text-primary-foreground shadow-glow hover:brightness-110"
+                  : "border border-primary/50 text-primary hover:bg-magenta-soft"
+              }`}
+            >
+              Quero este ingresso
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <p className="mt-6 text-center text-sm text-muted-foreground">
+        Os valores mudam conforme os lotes avançam. Garanta agora o valor atual.
+      </p>
+    </Section>
   );
 }
 
 function Founder() {
   return (
-    <section className="relative py-24 sm:py-32">
-      <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-2 lg:items-center">
-        <div className="relative">
+    <Section>
+      <div className="grid items-center gap-8 md:grid-cols-[0.8fr_1fr]">
+        <div className="overflow-hidden rounded-3xl border border-border/60">
           <img
             src={founderPortrait}
-            alt="A idealizadora do Encontro Delas"
+            alt="Suelen Gubeisse, idealizadora do Não Repara na Bagunça"
             loading="lazy"
-            width={800}
-            height={1000}
-            className="w-full rounded-[2rem] object-cover shadow-glow"
+            decoding="async"
+            className="h-full w-full object-cover"
           />
-          <img
-            src={founderSecondary}
-            alt=""
-            loading="lazy"
-            width={800}
-            height={600}
-            className="absolute -bottom-10 -right-6 hidden w-1/2 rounded-2xl border-4 border-background object-cover shadow-card sm:block"
-          />
-          <div className="pointer-events-none absolute -left-8 -top-8 h-40 w-40 rounded-full bg-gradient-brand opacity-30 blur-3xl" />
         </div>
-
         <div>
           <SectionEyebrow>Idealizadora</SectionEyebrow>
-          <h2 className="mt-6 text-balance text-4xl sm:text-5xl">
-            Oi, eu sou a
-            <span className="italic text-gradient-brand"> Lu Marques.</span>
+          <h2 className="mt-5 text-balance text-2xl leading-tight sm:text-3xl">
+            Quem criou o{" "}
+            <span className="italic text-gradient-brand">
+              Não Repara na Bagunça
+            </span>
           </h2>
-          <p className="mt-3 text-lg text-muted-foreground">
-            Filha, mãe, empreendedora — e mulher em construção, todo dia.
-          </p>
-
-          <div className="mt-6 space-y-4 text-foreground/85">
+          <div className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
             <p>
-              Aos 32 anos eu quebrei. Tinha o cargo, o casamento, a casa organizada, e ainda
-              assim acordava com um peso que ninguém enxergava. Passei um ano
-              montando o quebra-cabeça de novo — sozinha, e depois com outras mulheres.
+              Suelen Gubeisse é Personal Organizer, apaixonada por organização e
+              acredita que uma casa organizada pode ser o começo de uma vida
+              muito mais leve.
             </p>
             <p>
-              O Encontro Delas nasceu ali. De uma reunião de cinco amigas na sala de casa
-              pra uma promessa: nenhuma mulher devia ter que se reconstruir na surdina.
-              Hoje somos mais de mil, e você é a próxima.
+              Depois de anos entrando na casa de mulheres e vendo de perto como
+              a organização transforma muito mais do que armários, criou o Não
+              Repara na Bagunça.
+            </p>
+            <p className="font-medium text-foreground">
+              Um evento para mostrar, na prática, que organização não é sobre
+              ter uma casa perfeita. É sobre criar espaço para a vida que você
+              quer viver.
             </p>
           </div>
-
-          <div className="mt-8 rounded-2xl border border-primary/40 bg-gradient-brand-soft p-6">
-            <p className="font-display text-xl italic sm:text-2xl">
-              "Meu compromisso é que você saia daqui com um plano — não com uma
-              coleção de frases motivacionais."
-            </p>
-          </div>
-
-          <p className="mt-6 font-script text-3xl text-primary">Lu, com você.</p>
-
-          <div className="mt-8">
-            <CTAButton>Quero fazer parte</CTAButton>
-          </div>
         </div>
       </div>
-    </section>
-  );
-}
-
-function UrgencyBanner() {
-  return (
-    <section className="relative py-12">
-      <div className="mx-auto max-w-5xl px-6">
-        <div className="flex flex-col items-center gap-5 rounded-3xl border-2 border-primary/50 bg-gradient-brand-soft p-6 text-center shadow-card sm:flex-row sm:text-left">
-          <span className="badge-icon shrink-0">
-            <AlertTriangle className="h-5 w-5" />
-          </span>
-          <p className="flex-1 text-base sm:text-lg">
-            <span className="font-semibold text-primary">Atenção:</span> restam apenas{" "}
-            <span className="font-bold">47 vagas</span> no Lote Compromisso. Depois de esgotado,
-            o próximo lote sai por R$ 247.
-          </p>
-          <CTAButton>Garantir agora</CTAButton>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-const TIERS = [
-  {
-    name: "Básico",
-    price: "97",
-    old: "247",
-    installments: "12x R$ 9,70",
-    lots: ["INGRESSO COMPROMISSO · ATÉ 30/08", "Lote 2 · R$ 147", "Lote 3 · R$ 197"],
-    perks: [
-      "Acesso aos 2 dias do evento",
-      "Kit de boas-vindas",
-      "Coffee breaks e almoços",
-      "Grupo oficial de participantes",
-    ],
-    highlight: false,
-  },
-  {
-    name: "Intermediário",
-    price: "197",
-    old: "347",
-    installments: "12x R$ 19,70",
-    lots: ["INGRESSO COMPROMISSO · ATÉ 30/08", "Lote 2 · R$ 247", "Lote 3 · R$ 297"],
-    perks: [
-      "Tudo do Básico",
-      "Cadeira nas 3 primeiras fileiras",
-      "Meet & greet com a Lu",
-      "Workshop extra de sábado",
-      "Kit expandido (livro + planner)",
-    ],
-    highlight: true,
-  },
-  {
-    name: "Premium",
-    price: "347",
-    old: "547",
-    installments: "12x R$ 34,70",
-    lots: ["INGRESSO COMPROMISSO · ATÉ 30/08", "Lote 2 · R$ 397", "Lote 3 · R$ 447"],
-    perks: [
-      "Tudo do Intermediário",
-      "Jantar VIP com a Lu na sexta",
-      "Mentoria em grupo (3 meses)",
-      "Camarote reservado",
-      "Presente exclusivo",
-    ],
-    highlight: false,
-  },
-];
-
-function Pricing() {
-  return (
-    <section id="ingressos" className="relative bg-surface py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <SectionEyebrow>Ingressos</SectionEyebrow>
-          <h2 className="mt-6 text-balance text-4xl sm:text-5xl md:text-6xl">
-            Escolha seu
-            <span className="italic text-gradient-brand"> ingresso.</span>
-          </h2>
-          <p className="mt-4 text-muted-foreground">
-            Preços do lote pioneira. Restam poucas unidades em cada categoria.
-          </p>
-        </div>
-
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
-          {TIERS.map((t) => (
-            <div
-              key={t.name}
-              className={`relative flex flex-col rounded-3xl border p-8 shadow-card transition-all ${
-                t.highlight
-                  ? "border-primary bg-card shadow-glow lg:-translate-y-4 lg:scale-[1.03]"
-                  : "border-border bg-card hover:border-primary/40"
-              }`}
-            >
-              {t.highlight && (
-                <span className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-gradient-brand px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary-foreground shadow-glow">
-                  Mais popular
-                </span>
-              )}
-              <h3 className="text-2xl">{t.name}</h3>
-              <div className="mt-4 flex items-baseline gap-2">
-                <span className="text-sm text-muted-foreground line-through">
-                  R$ {t.old}
-                </span>
-              </div>
-              <div className="flex items-baseline gap-1">
-                <span className="text-sm text-muted-foreground">R$</span>
-                <span className="font-display text-5xl">{t.price}</span>
-              </div>
-              <span className="text-xs text-muted-foreground">{t.installments}</span>
-
-              <div className="mt-6 space-y-1.5 rounded-2xl border border-border bg-surface-2 p-4 text-xs">
-                {t.lots.map((l, i) => (
-                  <div
-                    key={l}
-                    className={`flex items-center gap-2 ${
-                      i === 0 ? "text-primary" : "text-muted-foreground line-through"
-                    }`}
-                  >
-                    <span className="h-1.5 w-1.5 rounded-full bg-current" />
-                    {l}
-                  </div>
-                ))}
-              </div>
-
-              <ul className="mt-6 flex-1 space-y-3 text-sm">
-                {t.perks.map((p) => (
-                  <li key={p} className="flex items-start gap-3">
-                    <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-gradient-brand text-primary-foreground">
-                      <Check className="h-3 w-3" strokeWidth={3} />
-                    </span>
-                    <span>{p}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <button
-                type="button"
-                className={`mt-8 w-full rounded-full px-6 py-4 text-sm font-semibold transition-all ${
-                  t.highlight
-                    ? "bg-gradient-brand text-primary-foreground shadow-glow hover:brightness-110"
-                    : "border border-primary/50 text-primary hover:bg-magenta-soft"
-                }`}
-              >
-                Comprar {t.name}
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    </Section>
   );
 }
 
 function Venue() {
-  const items = [
-    { icon: Building2, title: "Estrutura completa", desc: "Auditório, salas de vivência, café e loja em um só lugar." },
-    { icon: Accessibility, title: "Acesso facilitado", desc: "Espaço 100% acessível, com sinalização e apoio dedicado." },
-    { icon: Car, title: "Estacionamento", desc: "Vagas próprias com convênio e vans de metrô mais próximo." },
-  ];
   return (
-    <section className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-5xl px-6 text-center">
-        <SectionEyebrow>O local</SectionEyebrow>
-        <h2 className="mt-6 text-balance text-4xl sm:text-5xl md:text-6xl">
-          Parque
-          <span className="italic text-gradient-brand"> Tecnológico.</span>
-        </h2>
-        <p className="mt-3 text-muted-foreground">
-          Localizado em São José dos Campos, um espaço moderno e integrado para nos receber.
-        </p>
-
-        <div className="mt-12 grid gap-5 sm:grid-cols-3">
-          {items.map(({ icon: Icon, title, desc }) => (
-            <div
-              key={title}
-              className="rounded-3xl border border-border bg-card p-6 text-left shadow-card"
-            >
-              <span className="badge-icon">
-                <Icon className="h-5 w-5" />
-              </span>
-              <h3 className="mt-5 text-xl">{title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
-            </div>
-          ))}
+    <Section className="bg-card/40">
+      <div className="grid items-center gap-8 md:grid-cols-2">
+        <div>
+          <SectionEyebrow>Data e local</SectionEyebrow>
+          <h2 className="mt-5 text-balance text-2xl leading-tight sm:text-3xl">
+            Nos encontramos em{" "}
+            <span className="italic text-gradient-brand">
+              São José dos Campos.
+            </span>
+          </h2>
+          <ul className="mt-5 space-y-3 text-sm sm:text-base">
+            <li className="flex items-center gap-3">
+              <Calendar className="h-5 w-5 shrink-0 text-primary" />
+              {EVENT.date}
+            </li>
+            <li className="flex items-center gap-3">
+              <MapPin className="h-5 w-5 shrink-0 text-primary" />
+              {EVENT.venue} · {EVENT.city}
+            </li>
+            <li className="flex items-center gap-3 text-muted-foreground">
+              <Heart className="h-5 w-5 shrink-0 text-primary" />
+              [INSERIR ENDEREÇO COMPLETO, ESTACIONAMENTO, ACESSIBILIDADE E
+              HORÁRIOS CONFIRMADOS]
+            </li>
+          </ul>
         </div>
-
-        <div className="mt-12 inline-flex items-center gap-2 text-sm text-muted-foreground">
-          <Clock className="h-4 w-4 text-primary" />
-          Sábado 09h · Domingo 09h
-        </div>
-
-        <div className="mt-8 flex justify-center">
-          <CTAButton>Ver como chegar</CTAButton>
+        <div className="overflow-hidden rounded-3xl border border-border/60">
+          <img
+            src={event2}
+            alt="Espaço do evento em São José dos Campos"
+            loading="lazy"
+            decoding="async"
+            className="h-64 w-full object-cover sm:h-80"
+          />
         </div>
       </div>
-    </section>
+    </Section>
+  );
+}
+
+const FAQS = [
+  {
+    q: "Preciso entender de organização para participar?",
+    a: "Não. O evento é feito para qualquer mulher que queira deixar a casa, a rotina e a vida mais organizadas — do zero ou não.",
+  },
+  {
+    q: "É só para Personal Organizers?",
+    a: "Não. Personal Organizers são muito bem-vindas, mas o evento é para todas as mulheres que querem organizar o que está ao seu redor.",
+  },
+  {
+    q: "O ingresso vale para os dois dias?",
+    a: "Sim. Todos os ingressos dão acesso aos dois dias de evento, 24 e 25 de outubro de 2026.",
+  },
+  {
+    q: "O que está incluso no meu ingresso?",
+    a: "[INSERIR DESCRIÇÃO CONFIRMADA DO QUE ESTÁ INCLUSO EM CADA CATEGORIA]",
+  },
+  {
+    q: "Onde será realizado?",
+    a: "No Parque de Inovação Tecnológica, em São José dos Campos/SP.",
+  },
+  {
+    q: "Posso parcelar?",
+    a: "Sim. O pagamento pode ser parcelado em até 12x no cartão de crédito.",
+  },
+  {
+    q: "Como recebo meu ingresso?",
+    a: "[INSERIR PROCEDIMENTO CONFIRMADO DE ENVIO DO INGRESSO]",
+  },
+];
+
+function FAQ() {
+  return (
+    <Section>
+      <div className="mx-auto max-w-3xl">
+        <div className="text-center">
+          <SectionEyebrow>Dúvidas</SectionEyebrow>
+          <h2 className="mt-5 text-balance text-2xl leading-tight sm:text-3xl">
+            Perguntas frequentes
+          </h2>
+        </div>
+        <Accordion type="single" collapsible className="mt-6">
+          {FAQS.map((f) => (
+            <AccordionItem key={f.q} value={f.q}>
+              <AccordionTrigger className="text-left text-sm sm:text-base">
+                {f.q}
+              </AccordionTrigger>
+              <AccordionContent className="text-sm text-muted-foreground">
+                {f.a}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    </Section>
   );
 }
 
 function FinalCTA() {
   return (
-    <section className="relative overflow-hidden py-24 sm:py-32">
-      <div className="pointer-events-none absolute inset-0 grid grid-cols-3 gap-2 opacity-15">
-        {GALLERY.map((src, i) => (
-          <img
-            key={i}
-            src={src}
-            alt=""
-            aria-hidden
-            className="h-full w-full object-cover"
-          />
-        ))}
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background" />
+    <section className="relative overflow-hidden px-5 py-16 sm:px-6 sm:py-24">
+      <img
+        src={event4}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover opacity-30"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/85 to-background" />
 
-      <div className="relative mx-auto max-w-3xl px-6 text-center">
-        <SectionEyebrow>Sua vez</SectionEyebrow>
-        <h2 className="mt-6 text-balance text-4xl sm:text-6xl md:text-7xl">
-          Em Outubro, essa cadeira
-          <span className="italic text-gradient-brand"> vai ter seu nome.</span>
+      <div className="relative mx-auto max-w-2xl text-center">
+        <p className="text-balance text-lg text-muted-foreground sm:text-xl">
+          Talvez você chegue pela vontade de organizar sua casa.
+        </p>
+        <p className="mt-2 text-balance text-xl font-semibold sm:text-2xl">
+          E descubra que organizar muda muito mais do que a casa.
+        </p>
+        <p className="mt-4 text-sm uppercase tracking-[0.2em] text-primary">
+          Sua rotina · Seu tempo · Suas prioridades · Seus planos · A forma como
+          você vive
+        </p>
+
+        <h2 className="mt-8 font-display text-3xl leading-tight sm:text-5xl">
+          Não Repara na Bagunça 2026
         </h2>
-        <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-          Você já esperou tempo demais. Esse é o convite pra parar de esperar —
-          e vir viver algo com a gente.
+        <p className="mt-2 text-2xl italic text-gradient-brand sm:text-3xl">
+          O encontro que muda tudo.
         </p>
-        <div className="mt-10 flex justify-center">
-          <CTAButton size="lg">Garantir meu ingresso agora</CTAButton>
+
+        <p className="mt-5 text-sm text-foreground/85">
+          {EVENT.dateShort} · {EVENT.city}
+        </p>
+
+        <div className="mx-auto mt-6 max-w-md">
+          <p className="text-sm font-semibold">{LOT_LABEL} quase esgotado.</p>
+          <div className="mt-2">
+            <LotProgress percent={LOT_SOLD_PERCENT} label={`do ${LOT_LABEL}`} />
+          </div>
+          <div className="mt-6">
+            <CTAButton event="final_cta_click" size="lg" className="w-full">
+              Quero viver essa experiência
+            </CTAButton>
+          </div>
+          <p className="mt-3 text-xs text-muted-foreground">
+            Garanta o valor atual antes da virada do lote.
+          </p>
         </div>
-        <p className="mt-4 text-xs uppercase tracking-widest text-primary">
-          INGRESSO COMPROMISSO encerra em 30/08 · restam 47 vagas
-        </p>
       </div>
     </section>
   );
@@ -754,91 +851,72 @@ function FinalCTA() {
 
 function Footer() {
   return (
-    <footer className="relative border-t border-border bg-background py-14">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="grid gap-10 md:grid-cols-3">
-          <div>
-            <span className="font-script text-4xl text-gradient-brand">
-              Não Repara na Bagunça
-            </span>
-            <p className="mt-3 max-w-xs text-sm text-muted-foreground">
-              Um movimento de mulheres que se encontram pra se reencontrar.
-            </p>
-          </div>
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-widest text-primary">
-              Contato
-            </h4>
-            <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
-              <li className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-primary" />
-                contato@naoreparanabagunca.com.br
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="h-4 w-4 text-primary" />
-                (11) 9 9999-0000
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-sm font-semibold uppercase tracking-widest text-primary">
-              Legal
-            </h4>
-            <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
-              <li>
-                <a href="#" className="hover:text-primary">
-                  Política de Privacidade
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-primary">
-                  Termos de Serviço
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row">
-          <span>© {new Date().getFullYear()} Não Repara na Bagunça. Todos os direitos reservados.</span>
-          <span>Feito com carinho em São José dos Campos</span>
-        </div>
-      </div>
+    <footer className="border-t border-border/60 px-5 py-8 text-center sm:px-6">
+      <span className="font-script text-2xl text-primary">
+        Não Repara na Bagunça
+      </span>
+      <p className="mt-2 text-xs text-muted-foreground">
+        {EVENT.dateShort} de 2026 · {EVENT.venue} · {EVENT.city}
+      </p>
+      <p className="mt-4 text-xs text-muted-foreground">
+        © 2026 Não Repara na Bagunça. Todos os direitos reservados.
+      </p>
     </footer>
   );
 }
 
-function ChatFAB() {
+function StickyCTA() {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setShow(window.scrollY > 500);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <button
-      type="button"
-      aria-label="Falar no chat"
-      className="fixed bottom-6 right-6 z-50 grid h-14 w-14 place-items-center rounded-full bg-gradient-brand text-primary-foreground shadow-glow transition-transform hover:scale-110 active:scale-95"
+    <div
+      className={`fixed inset-x-0 bottom-0 z-50 border-t border-primary/30 bg-background/90 px-4 py-3 backdrop-blur transition-transform duration-300 lg:hidden ${
+        show ? "translate-y-0" : "translate-y-full"
+      }`}
     >
-      <MessageCircle className="h-6 w-6" />
-    </button>
+      <button
+        type="button"
+        onClick={() => {
+          track("sticky_cta_click");
+          goToTickets();
+        }}
+        className="w-full rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-primary-foreground shadow-glow"
+      >
+        Garantir ingresso
+      </button>
+    </div>
   );
 }
 
-/* -------------------- Page -------------------- */
+/* -------------------- Página -------------------- */
 
 function LandingPage() {
+  useEffect(() => {
+    track("page_view");
+  }, []);
+
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-background pb-20 lg:pb-0">
       <TopBar />
       <Hero />
-      <Pains />
-      <Movement />
-      <Timeline />
+      <ForWhom />
+      <Benefits />
       <Experience />
       <SocialProof />
-      <Numbers />
+      <Tickets />
       <Founder />
-      <UrgencyBanner />
-      <Pricing />
       <Venue />
+      <FAQ />
       <FinalCTA />
       <Footer />
-      <ChatFAB />
+      <StickyCTA />
     </main>
   );
 }
