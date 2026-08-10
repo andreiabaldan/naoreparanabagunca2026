@@ -37,6 +37,8 @@ import nrnb3 from "@/assets/dan_9119.jpg.asset.json";
 import nrnb4 from "@/assets/dan_9266.jpg.asset.json";
 import nrnb5 from "@/assets/dan_8916.jpg.asset.json";
 import nrnb6 from "@/assets/dan_8856.jpg.asset.json";
+import nrnbVideo from "@/assets/nrnb-video.mp4.asset.json";
+import nrnbVideoPoster from "@/assets/nrnb-video-poster.jpg.asset.json";
 
 /* ==================================================================
    CONFIGURAÇÃO EDITÁVEL — atualize aqui os dados reais do evento
