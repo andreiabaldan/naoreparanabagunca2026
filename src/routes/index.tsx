@@ -28,12 +28,8 @@ import { track } from "@/lib/tracking";
 
 import heroBg from "@/assets/hero-bg.jpg";
 import suelenPhoto from "@/assets/suelen.jpg.asset.json";
-import event1 from "@/assets/event-1.jpg";
 import event2 from "@/assets/event-2.jpg";
-import event3 from "@/assets/event-3.jpg";
 import event4 from "@/assets/event-4.jpg";
-import event5 from "@/assets/event-5.jpg";
-import event6 from "@/assets/event-6.jpg";
 import nrnb1 from "@/assets/nrnb-1.jpg.asset.json";
 import nrnb2 from "@/assets/nrnb-2.jpg.asset.json";
 import nrnb3 from "@/assets/nrnb-3.jpg.asset.json";
