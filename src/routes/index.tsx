@@ -975,14 +975,18 @@ function FinalCTA() {
 
 function Footer() {
   return (
-    <footer className="border-t border-border/60 px-5 py-8 text-center sm:px-6">
-      <span className="font-script text-2xl text-primary">
-        Não Repara na Bagunça
-      </span>
-      <p className="mt-2 text-xs text-muted-foreground">
+    <footer className="bg-magenta px-5 py-10 text-center sm:px-6">
+      <img
+        src={logoNrnb.url}
+        alt="Não Repara na Bagunça"
+        width={380}
+        height={135}
+        className="mx-auto w-[160px] max-w-full sm:w-[200px]"
+      />
+      <p className="mt-4 text-xs text-white/90">
         {EVENT.dateShort} de 2026 · {EVENT.venue}
       </p>
-      <p className="mt-4 text-xs text-muted-foreground">
+      <p className="mt-6 text-xs text-white/70">
         © 2026 Não Repara na Bagunça. Todos os direitos reservados.
       </p>
     </footer>
