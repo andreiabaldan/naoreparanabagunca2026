@@ -390,7 +390,7 @@ function Hero() {
           </span>
           <span className="inline-flex items-center gap-2 text-center">
             <MapPin className="h-4 w-4 shrink-0 text-primary" />
-            {EVENT.venue} · {EVENT.city}
+            Parque Tecnológico de&nbsp;São José dos Campos/SP
           </span>
         </div>
 
