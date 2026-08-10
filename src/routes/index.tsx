@@ -27,7 +27,7 @@ import {
 import { track } from "@/lib/tracking";
 
 import heroBg from "@/assets/hero-bg.jpg";
-import suelenPhoto from "@/assets/suelen.jpg.asset.json";
+import suelenPhoto from "@/assets/suelen_fundo.png.asset.json";
 import event2 from "@/assets/event-2.jpg";
 import event4 from "@/assets/event-4.jpg";
 import nrnb1 from "@/assets/nrnb-1.jpg.asset.json";
@@ -765,7 +765,7 @@ function Founder() {
             alt="Suelen Gubeisse, idealizadora do Não Repara na Bagunça"
             loading="lazy"
             decoding="async"
-            className="aspect-[3/4] w-full object-cover object-top"
+            className="aspect-[3/4] w-full object-cover object-center"
           />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/80 to-transparent" />
         </div>
