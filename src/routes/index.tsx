@@ -46,8 +46,9 @@ const EVENT = {
     "2 dias para deixar sua casa, sua rotina e sua vida mais leves e organizadas.",
   date: "24 e 25 de outubro de 2026",
   dateShort: "24 e 25 de outubro",
-  venue: "Parque Tecnológico de\u00a0São José dos Campos/SP",
+  venue: "PIT - Parque Tecnológico de\u00a0São José dos Campos/SP",
   city: "",
+  address: "Estr. Dr. Altino Bondesan, 500 - Eugênio de Melo, São José dos Campos - SP, 12247-016",
   /** Horários (editáveis). Substitua pelos horários confirmados. */
   hoursShort: "Das 09h às 17h",
   hoursDay1: "Sábado, 24/10 · das 09h às 17h",
