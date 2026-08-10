@@ -583,12 +583,12 @@ function Experience() {
 }
 
 const GALLERY = [
-  { src: nrnb1.url, alt: "Auditório montado para o Não Repara na Bagunça" },
-  { src: nrnb2.url, alt: "Palco e telão durante a programação do evento" },
-  { src: nrnb3.url, alt: "Vista do auditório com as cadeiras preparadas" },
-  { src: nrnb4.url, alt: "Estande de acessórios na feira do evento" },
-  { src: nrnb5.url, alt: "Feira de expositoras no Não Repara na Bagunça" },
-  { src: nrnb6.url, alt: "Mesa posta montada por expositoras do evento" },
+  { src: nrnb1.url, alt: "Suelen Gubeisse no palco do Não Repara na Bagunça" },
+  { src: nrnb2.url, alt: "Palestra sobre técnicas modernas de limpeza no palco principal" },
+  { src: nrnb3.url, alt: "Plateia de mulheres em momento de conexão durante o evento" },
+  { src: nrnb4.url, alt: "Demonstração prática no palco com o auditório lotado" },
+  { src: nrnb5.url, alt: "Participantes no espaço instagramável do evento" },
+  { src: nrnb6.url, alt: "Brindes e experiências das marcas parceiras" },
 ];
 
 const TESTIMONIALS = [
