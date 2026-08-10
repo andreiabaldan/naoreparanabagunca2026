@@ -829,7 +829,7 @@ function Venue() {
             </li>
             <li className="flex items-center gap-3 text-muted-foreground">
               <Heart className="h-5 w-5 shrink-0 text-primary" />
-              {EVENT.address}
+              Estacionamento Gratuito - {EVENT.address}
             </li>
 
           </ul>
