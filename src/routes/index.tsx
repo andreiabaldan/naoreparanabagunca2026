@@ -706,14 +706,15 @@ function Tickets() {
               <span className="font-display text-4xl font-semibold">
                 {t.price}
               </span>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {t.fullPrice}
+              </p>
               <p className="mt-1 text-xs text-muted-foreground">
                 {t.installments}
               </p>
-              {t.nextLot && (
-                <p className="mt-1 text-xs font-medium text-primary">
-                  Próximo lote: {t.nextLot}
-                </p>
-              )}
+              <p className="mt-3 rounded-xl bg-card/70 p-3 text-xs leading-relaxed text-muted-foreground">
+                {t.lots}
+              </p>
             </div>
 
             <ul className="mt-5 flex-1 space-y-2.5">
