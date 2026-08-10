@@ -27,7 +27,7 @@ import {
 import { track } from "@/lib/tracking";
 
 import heroBg from "@/assets/hero-bg.jpg";
-import founderPortrait from "@/assets/founder-portrait.jpg";
+import suelenPhoto from "@/assets/suelen.jpg.asset.json";
 import event1 from "@/assets/event-1.jpg";
 import event2 from "@/assets/event-2.jpg";
 import event3 from "@/assets/event-3.jpg";
