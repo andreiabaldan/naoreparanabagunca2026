@@ -46,8 +46,8 @@ const EVENT = {
     "2 dias para deixar sua casa, sua rotina e sua vida mais leves e organizadas.",
   date: "24 e 25 de outubro de 2026",
   dateShort: "24 e 25 de outubro",
-  venue: "Parque Tecnológico",
-  city: "São José dos Campos/SP",
+  venue: "Parque Tecnológico de\u00a0São José dos Campos/SP",
+  city: "",
   /** Horários (editáveis). Substitua pelos horários confirmados. */
   hoursShort: "Das 09h às 17h",
   hoursDay1: "Sábado, 24/10 · das 09h às 17h",
