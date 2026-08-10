@@ -30,12 +30,12 @@ import heroBg from "@/assets/hero-bg.jpg";
 import suelenPhoto from "@/assets/suelen_fundo.png.asset.json";
 import event2 from "@/assets/event-2.jpg";
 import event4 from "@/assets/event-4.jpg";
-import nrnb1 from "@/assets/nrnb-1.jpg.asset.json";
-import nrnb2 from "@/assets/nrnb-2.jpg.asset.json";
-import nrnb3 from "@/assets/nrnb-3.jpg.asset.json";
-import nrnb4 from "@/assets/nrnb-4.jpg.asset.json";
-import nrnb5 from "@/assets/nrnb-5.jpg.asset.json";
-import nrnb6 from "@/assets/nrnb-6.jpg.asset.json";
+import nrnb1 from "@/assets/dan_9014.jpg.asset.json";
+import nrnb2 from "@/assets/dan_9150.jpg.asset.json";
+import nrnb3 from "@/assets/dan_9119.jpg.asset.json";
+import nrnb4 from "@/assets/dan_9266.jpg.asset.json";
+import nrnb5 from "@/assets/dan_8916.jpg.asset.json";
+import nrnb6 from "@/assets/dan_8856.jpg.asset.json";
 
 /* ==================================================================
    CONFIGURAÇÃO EDITÁVEL — atualize aqui os dados reais do evento
