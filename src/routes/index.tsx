@@ -369,6 +369,9 @@ function Hero() {
         className="absolute inset-0 h-full w-full object-cover opacity-30"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/88 to-background" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-identity opacity-[0.10]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1 bg-gradient-identity" />
+
 
       <div className="relative mx-auto max-w-3xl px-5 pb-14 pt-12 text-center sm:px-6 sm:pb-20 sm:pt-20">
         <SectionEyebrow>Não Repara na Bagunça 2026</SectionEyebrow>
