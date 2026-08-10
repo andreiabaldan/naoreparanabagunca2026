@@ -176,3 +176,18 @@
 @utility animate-float {
   animation: float-slow 4s ease-in-out infinite;
 }
+
+@utility bg-gradient-identity {
+  background: var(--gradient-identity);
+}
+
+@utility bg-sky-tint {
+  background: var(--sky-tint);
+}
+
+@utility text-gradient-identity {
+  background: var(--gradient-identity);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
