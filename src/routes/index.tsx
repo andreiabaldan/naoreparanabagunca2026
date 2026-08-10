@@ -938,7 +938,7 @@ function FinalCTA() {
         </p>
 
         <p className="mt-5 text-sm text-foreground/85">
-          {EVENT.dateShort} · {EVENT.city}
+          {EVENT.dateShort} · {EVENT.venue}
         </p>
 
         <div className="mx-auto mt-6 max-w-md">
