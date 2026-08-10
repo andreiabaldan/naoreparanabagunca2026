@@ -858,7 +858,7 @@ const FAQS = [
   },
   {
     q: "Onde será realizado?",
-    a: "No Parque de Inovação Tecnológica, em São José dos Campos/SP.",
+    a: "No Parque Tecnológico, em São José dos Campos/SP.",
   },
   {
     q: "Posso parcelar?",
