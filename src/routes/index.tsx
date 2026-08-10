@@ -46,12 +46,12 @@ const EVENT = {
     "2 dias para deixar sua casa, sua rotina e sua vida mais leves e organizadas.",
   date: "24 e 25 de outubro de 2026",
   dateShort: "24 e 25 de outubro",
-  venue: "Parque de Inovação Tecnológica",
+  venue: "Parque Tecnológico",
   city: "São José dos Campos/SP",
   /** Horários (editáveis). Substitua pelos horários confirmados. */
-  hoursShort: "Das [HORÁRIO] às [HORÁRIO]",
-  hoursDay1: "Sábado, 24/10 · das [HORÁRIO] às [HORÁRIO]",
-  hoursDay2: "Domingo, 25/10 · das [HORÁRIO] às [HORÁRIO]",
+  hoursShort: "Das 09h às 17h",
+  hoursDay1: "Sábado, 24/10 · das 09h às 17h",
+  hoursDay2: "Domingo, 25/10 · das 09h às 17h",
   /** URL do checkout. Troque pelo link real quando estiver configurado. */
   checkoutUrl: "#ingressos",
 };
