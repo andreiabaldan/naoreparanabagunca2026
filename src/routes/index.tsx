@@ -829,8 +829,7 @@ function Venue() {
             </li>
             <li className="flex items-center gap-3 text-muted-foreground">
               <Heart className="h-5 w-5 shrink-0 text-primary" />
-              [INSERIR ENDEREÇO COMPLETO, ESTACIONAMENTO, ACESSIBILIDADE E
-              DEMAIS INFORMAÇÕES LOGÍSTICAS]
+              {EVENT.address}
             </li>
 
           </ul>
