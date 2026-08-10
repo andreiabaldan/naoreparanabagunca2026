@@ -581,12 +581,12 @@ function Experience() {
 }
 
 const GALLERY = [
-  { src: event1, alt: "Auditório cheio durante o Não Repara na Bagunça" },
-  { src: event2, alt: "Mulheres interagindo durante o evento" },
-  { src: event3, alt: "Momento de experiência prática no evento" },
-  { src: event4, alt: "Público sorrindo durante a programação" },
-  { src: event5, alt: "Ativação de organização no evento" },
-  { src: event6, alt: "Conexão entre participantes do evento" },
+  { src: nrnb1.url, alt: "Auditório montado para o Não Repara na Bagunça" },
+  { src: nrnb2.url, alt: "Palco e telão durante a programação do evento" },
+  { src: nrnb3.url, alt: "Vista do auditório com as cadeiras preparadas" },
+  { src: nrnb4.url, alt: "Estande de acessórios na feira do evento" },
+  { src: nrnb5.url, alt: "Feira de expositoras no Não Repara na Bagunça" },
+  { src: nrnb6.url, alt: "Mesa posta montada por expositoras do evento" },
 ];
 
 const TESTIMONIALS = [
