@@ -741,7 +741,7 @@ function Tickets() {
               className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold uppercase tracking-wide transition-all active:scale-[0.99] ${
                 t.id === "vip"
                   ? "bg-gradient-brand text-primary-foreground shadow-glow hover:brightness-110"
-                  : "border border-primary/50 text-primary hover:bg-magenta-soft"
+                  : "bg-primary text-primary-foreground hover:bg-plum"
               }`}
             >
               Quero este ingresso
