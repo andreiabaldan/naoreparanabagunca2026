@@ -816,7 +816,7 @@ function Venue() {
             </li>
             <li className="flex items-center gap-3">
               <MapPin className="h-5 w-5 shrink-0 text-primary" />
-              {EVENT.venue} · {EVENT.city}
+              {EVENT.venue}
             </li>
             <li className="flex items-start gap-3">
               <Clock className="h-5 w-5 shrink-0 text-primary" />
