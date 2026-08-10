@@ -46,8 +46,8 @@ const EVENT = {
     "2 dias para deixar sua casa, sua rotina e sua vida mais leves e organizadas.",
   date: "24 e 25 de outubro de 2026",
   dateShort: "24 e 25 de outubro",
-  venue: "Parque Tecnológico",
-  city: "São José dos Campos/SP",
+  venue: "Parque Tecnológico de\u00a0São José dos Campos/SP",
+  city: "",
   /** Horários (editáveis). Substitua pelos horários confirmados. */
   hoursShort: "Das 09h às 17h",
   hoursDay1: "Sábado, 24/10 · das 09h às 17h",
@@ -349,7 +349,7 @@ function TopBar() {
     <div className="bg-gradient-brand">
       <div className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-4 py-2.5 text-center">
         <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground sm:text-xs">
-          {EVENT.dateShort} · {EVENT.city} · {LOT_LABEL} quase esgotado
+          {EVENT.dateShort} · {EVENT.venue} · {LOT_LABEL} quase esgotado
         </span>
       </div>
     </div>
@@ -397,7 +397,7 @@ function Hero() {
           </span>
           <span className="inline-flex items-center gap-2 text-center">
             <MapPin className="h-4 w-4 shrink-0 text-primary" />
-            Parque Tecnológico de&nbsp;São José dos Campos/SP
+            {EVENT.venue}
           </span>
         </div>
 
@@ -816,7 +816,7 @@ function Venue() {
             </li>
             <li className="flex items-center gap-3">
               <MapPin className="h-5 w-5 shrink-0 text-primary" />
-              {EVENT.venue} · {EVENT.city}
+              {EVENT.venue}
             </li>
             <li className="flex items-start gap-3">
               <Clock className="h-5 w-5 shrink-0 text-primary" />
@@ -938,7 +938,7 @@ function FinalCTA() {
         </p>
 
         <p className="mt-5 text-sm text-foreground/85">
-          {EVENT.dateShort} · {EVENT.city}
+          {EVENT.dateShort} · {EVENT.venue}
         </p>
 
         <div className="mx-auto mt-6 max-w-md">
@@ -967,7 +967,7 @@ function Footer() {
         Não Repara na Bagunça
       </span>
       <p className="mt-2 text-xs text-muted-foreground">
-        {EVENT.dateShort} de 2026 · {EVENT.venue} · {EVENT.city}
+        {EVENT.dateShort} de 2026 · {EVENT.venue}
       </p>
       <p className="mt-4 text-xs text-muted-foreground">
         © 2026 Não Repara na Bagunça. Todos os direitos reservados.
