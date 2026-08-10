@@ -27,6 +27,7 @@ import {
 import { track } from "@/lib/tracking";
 
 import heroBg from "@/assets/hero-bg.jpg";
+import logoNrnb from "@/assets/logo_nrnb.webp.asset.json";
 import suelenPhoto from "@/assets/suelen_fundo.png.asset.json";
 import event2 from "@/assets/event-2.jpg";
 import event4 from "@/assets/event-4.jpg";
@@ -374,7 +375,14 @@ function Hero() {
 
 
       <div className="relative mx-auto max-w-3xl px-5 pb-14 pt-12 text-center sm:px-6 sm:pb-20 sm:pt-20">
-        <SectionEyebrow>Não Repara na Bagunça 2026</SectionEyebrow>
+        <img
+          src={logoNrnb.url}
+          alt="Não Repara na Bagunça"
+          width={380}
+          height={135}
+          className="mx-auto w-[220px] max-w-full rounded-xl shadow-card sm:w-[320px]"
+        />
+
 
         <h1 className="mt-6 text-balance text-4xl leading-[1.05] sm:text-6xl">
           <span className="italic text-gradient-brand">
