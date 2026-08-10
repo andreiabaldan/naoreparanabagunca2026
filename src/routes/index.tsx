@@ -382,7 +382,7 @@ function Hero() {
         <div className="mt-6 flex flex-col items-center gap-2 text-sm text-foreground/85 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-6 sm:gap-y-2">
           <span className="inline-flex items-center gap-2 font-semibold uppercase tracking-wide">
             <Calendar className="h-4 w-4 text-primary" />
-            {EVENT.dateShort} · 2026
+            24 E 25 DE OUTUBRO · 2026
           </span>
           <span className="inline-flex items-center gap-2">
             <Clock className="h-4 w-4 shrink-0 text-primary" />
