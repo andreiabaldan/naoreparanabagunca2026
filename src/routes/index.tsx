@@ -313,7 +313,7 @@ function LotProgress({
         </span>
       </div>
       <div
-        className="mt-2 h-2 w-full overflow-hidden rounded-full bg-foreground/10"
+        className="mt-2 h-2 w-full overflow-hidden rounded-full bg-sky/40"
         role="progressbar"
         aria-valuenow={percent}
         aria-valuemin={0}
@@ -366,9 +366,12 @@ function Hero() {
         src={heroBg}
         alt="Mulheres reunidas no auditório do Não Repara na Bagunça"
         fetchPriority="high"
-        className="absolute inset-0 h-full w-full object-cover opacity-45"
+        className="absolute inset-0 h-full w-full object-cover opacity-30"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/75 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/88 to-background" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-identity opacity-[0.10]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1 bg-gradient-identity" />
+
 
       <div className="relative mx-auto max-w-3xl px-5 pb-14 pt-12 text-center sm:px-6 sm:pb-20 sm:pt-20">
         <SectionEyebrow>Não Repara na Bagunça 2026</SectionEyebrow>
@@ -405,7 +408,7 @@ function Hero() {
         </div>
 
 
-        <div className="mx-auto mt-8 max-w-md rounded-3xl border border-primary/40 bg-card/80 p-5 shadow-glow backdrop-blur">
+        <div className="mx-auto mt-8 max-w-md rounded-3xl border border-primary/40 bg-card p-5 shadow-glow backdrop-blur">
           <CTAButton event="hero_cta_click" size="lg" className="w-full">
             Quero garantir meu ingresso
           </CTAButton>
@@ -433,7 +436,7 @@ const FOR_WHOM = [
 
 function ForWhom() {
   return (
-    <Section className="bg-card/40">
+    <Section className="bg-sky-tint">
       <div className="text-center">
         <SectionEyebrow>Para quem é</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
@@ -447,7 +450,7 @@ function ForWhom() {
         {FOR_WHOM.map((item) => (
           <li
             key={item}
-            className="flex items-start gap-3 rounded-2xl border border-border/60 bg-background/60 p-4"
+            className="flex items-start gap-3 rounded-2xl border border-border/60 bg-card shadow-card p-4"
           >
             <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
             <span className="text-sm leading-relaxed text-foreground/90">
@@ -515,7 +518,7 @@ function Benefits() {
         {BENEFITS.map(({ icon: Icon, title, text }) => (
           <div
             key={title}
-            className="rounded-2xl border border-border/60 bg-card/60 p-5 transition-colors hover:border-primary/50"
+            className="rounded-2xl border border-border/60 bg-card shadow-card p-5 transition-colors hover:border-primary/50"
           >
             <div className="grid h-10 w-10 place-items-center rounded-xl bg-magenta-soft">
               <Icon className="h-5 w-5 text-primary" />
@@ -550,7 +553,7 @@ const TERRITORIES = [
 
 function Experience() {
   return (
-    <Section className="bg-card/40">
+    <Section className="bg-secondary/60">
       <div className="text-center">
         <SectionEyebrow>O que você vai viver</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
@@ -569,7 +572,7 @@ function Experience() {
         {TERRITORIES.map(({ icon: Icon, label }) => (
           <div
             key={label}
-            className="flex flex-col items-center gap-3 rounded-2xl border border-border/60 bg-background/60 px-3 py-6 text-center"
+            className="flex flex-col items-center gap-3 rounded-2xl border border-border/60 bg-card shadow-card px-3 py-6 text-center"
           >
             <Icon className="h-6 w-6 text-primary" />
             <span className="text-xs font-semibold uppercase leading-snug tracking-wide text-foreground/90">
@@ -631,7 +634,7 @@ function SocialProof() {
         {TESTIMONIALS.map((t, i) => (
           <figure
             key={i}
-            className="rounded-2xl border border-border/60 bg-card/60 p-5"
+            className="rounded-2xl border border-border/60 bg-card shadow-card p-5"
           >
             <Quote className="h-5 w-5 text-primary" />
             <blockquote className="mt-3 text-sm leading-relaxed text-foreground/90">
@@ -669,7 +672,7 @@ function Tickets() {
   }, []);
 
   return (
-    <Section id="ingressos" className="bg-card/40">
+    <Section id="ingressos" className="bg-sky-tint">
       <div ref={ref} className="text-center">
         <SectionEyebrow>Ingressos</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
@@ -684,7 +687,7 @@ function Tickets() {
         {TICKETS.map((t) => (
           <div
             key={t.id}
-            className={`flex flex-col rounded-3xl border bg-background/70 p-5 ${
+            className={`flex flex-col rounded-3xl border bg-card shadow-card p-5 ${
               t.id === "vip"
                 ? "border-primary shadow-glow lg:-mt-3"
                 : "border-border/60"
@@ -715,7 +718,7 @@ function Tickets() {
               <p className="mt-1 text-xs text-muted-foreground">
                 {t.installments}
               </p>
-              <p className="mt-3 rounded-xl bg-card/70 p-3 text-xs leading-relaxed text-muted-foreground">
+              <p className="mt-3 rounded-xl bg-sky-tint p-3 text-xs leading-relaxed text-muted-foreground">
                 {t.lots}
               </p>
             </div>
@@ -738,7 +741,7 @@ function Tickets() {
               className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold uppercase tracking-wide transition-all active:scale-[0.99] ${
                 t.id === "vip"
                   ? "bg-gradient-brand text-primary-foreground shadow-glow hover:brightness-110"
-                  : "border border-primary/50 text-primary hover:bg-magenta-soft"
+                  : "bg-primary text-primary-foreground hover:bg-plum"
               }`}
             >
               Quero este ingresso
@@ -802,7 +805,7 @@ function Founder() {
 
 function Venue() {
   return (
-    <Section className="bg-card/40">
+    <Section className="bg-secondary/60">
       <div className="grid items-center gap-8 md:grid-cols-2">
         <div>
           <SectionEyebrow>Data e local</SectionEyebrow>
@@ -918,7 +921,7 @@ function FinalCTA() {
         loading="lazy"
         className="absolute inset-0 h-full w-full object-cover opacity-30"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/85 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/88 via-background/92 to-background" />
 
       <div className="relative mx-auto max-w-2xl text-center">
         <p className="text-balance text-lg text-muted-foreground sm:text-xl">
@@ -990,7 +993,7 @@ function StickyCTA() {
 
   return (
     <div
-      className={`fixed inset-x-0 bottom-0 z-50 border-t border-primary/30 bg-background/90 px-4 py-3 backdrop-blur transition-transform duration-300 lg:hidden ${
+      className={`fixed inset-x-0 bottom-0 z-50 border-t border-border bg-surface/95 px-4 py-3 backdrop-blur transition-transform duration-300 lg:hidden ${
         show ? "translate-y-0" : "translate-y-full"
       }`}
     >
@@ -1030,9 +1033,9 @@ function Speakers() {
         {SPEAKERS.map((s, i) => (
           <article
             key={`${s.name}-${i}`}
-            className="w-[72%] shrink-0 snap-start overflow-hidden rounded-3xl border border-border/60 bg-card/50 sm:w-auto"
+            className="w-[72%] shrink-0 snap-start overflow-hidden rounded-3xl border border-border/60 bg-card shadow-card sm:w-auto"
           >
-            <div className="aspect-[4/5] w-full bg-background/60">
+            <div className="aspect-[4/5] w-full bg-sky-tint">
               {s.photo ? (
                 <img
                   src={s.photo}
@@ -1074,7 +1077,7 @@ function Schedule() {
     : current.slots.filter((s) => s.highlight);
 
   return (
-    <Section id="programacao" className="bg-card/40">
+    <Section id="programacao" className="bg-sky-tint">
       <div className="text-center">
         <SectionEyebrow>Programação</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
@@ -1090,7 +1093,7 @@ function Schedule() {
         </p>
       </div>
 
-      <div className="mx-auto mt-7 flex max-w-lg gap-2 rounded-full border border-border/60 bg-background/60 p-1">
+      <div className="mx-auto mt-7 flex max-w-lg gap-2 rounded-full border border-border/60 bg-card shadow-card p-1">
         {SCHEDULE.map((d) => (
           <button
             key={d.id}
@@ -1185,7 +1188,7 @@ function Sponsors() {
             {group.items.map((s, i) => (
               <div
                 key={`${s.name}-${i}`}
-                className="flex h-20 items-center justify-center rounded-2xl border border-border/50 bg-card/40 px-3 text-center"
+                className="flex h-20 items-center justify-center rounded-2xl border border-border/50 bg-card shadow-card px-3 text-center"
               >
                 {s.logo ? (
                   <img
@@ -1216,7 +1219,7 @@ function Sponsors() {
             {ACTIVATIONS.map((a, i) => (
               <article
                 key={`${a.title}-${i}`}
-                className="rounded-2xl border border-border/60 bg-card/50 p-5"
+                className="rounded-2xl border border-border/60 bg-card shadow-card p-5"
               >
                 {a.logo ? (
                   <img
