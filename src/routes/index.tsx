@@ -967,7 +967,7 @@ function Footer() {
         Não Repara na Bagunça
       </span>
       <p className="mt-2 text-xs text-muted-foreground">
-        {EVENT.dateShort} de 2026 · {EVENT.venue} · {EVENT.city}
+        {EVENT.dateShort} de 2026 · {EVENT.venue}
       </p>
       <p className="mt-4 text-xs text-muted-foreground">
         © 2026 Não Repara na Bagunça. Todos os direitos reservados.
