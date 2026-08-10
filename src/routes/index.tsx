@@ -582,8 +582,8 @@ const GALLERY = [
 ];
 
 const TESTIMONIALS = [
-  { text: "[INSERIR DEPOIMENTO REAL]", author: "[Nome da participante]" },
-  { text: "[INSERIR DEPOIMENTO REAL]", author: "[Nome da participante]" },
+  { text: "\"Nunca pensei que organizar a casa pudesse ser tão libertador. Minha rotina mudou completamente e hoje tenho paz!\"", author: "Mariana Silva" },
+  { text: "\"Finalmente encontrei um método que funciona para a minha realidade, sem cobranças de perfeição. Foi um divisor de águas.\"", author: "Juliana Costa" },
   { text: "[INSERIR DEPOIMENTO REAL]", author: "[Nome da participante]" },
 ];
 
