@@ -433,7 +433,7 @@ const FOR_WHOM = [
 
 function ForWhom() {
   return (
-    <Section className="bg-card/40">
+    <Section className="bg-sky-tint">
       <div className="text-center">
         <SectionEyebrow>Para quem é</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
@@ -550,7 +550,7 @@ const TERRITORIES = [
 
 function Experience() {
   return (
-    <Section className="bg-card/40">
+    <Section className="bg-secondary/60">
       <div className="text-center">
         <SectionEyebrow>O que você vai viver</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
@@ -669,7 +669,7 @@ function Tickets() {
   }, []);
 
   return (
-    <Section id="ingressos" className="bg-card/40">
+    <Section id="ingressos" className="bg-sky-tint">
       <div ref={ref} className="text-center">
         <SectionEyebrow>Ingressos</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
@@ -802,7 +802,7 @@ function Founder() {
 
 function Venue() {
   return (
-    <Section className="bg-card/40">
+    <Section className="bg-secondary/60">
       <div className="grid items-center gap-8 md:grid-cols-2">
         <div>
           <SectionEyebrow>Data e local</SectionEyebrow>
@@ -1074,7 +1074,7 @@ function Schedule() {
     : current.slots.filter((s) => s.highlight);
 
   return (
-    <Section id="programacao" className="bg-card/40">
+    <Section id="programacao" className="bg-sky-tint">
       <div className="text-center">
         <SectionEyebrow>Programação</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
