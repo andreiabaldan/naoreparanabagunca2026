@@ -69,7 +69,7 @@ const SPEAKERS: Speaker[] = [
     name: "Suelen Gubeisse",
     role: "Personal Organizer · Idealizadora do NRNB",
     benefit: "Vai ajudar você a começar a organizar a casa sem travar no meio.",
-    photo: founderPortrait,
+    photo: suelenPhoto.url,
   },
   {
     name: "[NOME DO PALESTRANTE]",
