@@ -108,7 +108,7 @@ const SCHEDULE: { id: "d1" | "d2"; tab: string; hours: string; slots: Slot[] }[]
   {
     id: "d2",
     tab: "Domingo · 25 de outubro",
-    hours: "Das [HORÁRIO] às [HORÁRIO]",
+    hours: "Das 09h às 17h",
     slots: [
       { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
       { time: "[HORÁRIO]", title: "[EXPERIÊNCIA PRÁTICA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
