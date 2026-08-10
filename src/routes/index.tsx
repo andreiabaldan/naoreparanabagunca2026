@@ -1269,9 +1269,9 @@ function LandingPage() {
     <main className="min-h-screen bg-background pb-20 lg:pb-0">
       <TopBar />
       <Hero />
+      <Experience />
       <ForWhom />
       <Benefits />
-      <Experience />
       <Speakers />
       <Schedule />
       <SocialProof />
