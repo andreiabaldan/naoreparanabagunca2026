@@ -149,8 +149,9 @@ type Ticket = {
   name: string;
   desire: string;
   price: string;
+  fullPrice: string;
+  lots: string;
   installments: string;
-  nextLot: string | null;
   soldPercent: number | null;
   benefits: string[];
   highlight?: string;
@@ -162,14 +163,14 @@ const TICKETS: Ticket[] = [
     id: "compromisso",
     name: "Compromisso",
     desire: "Quero participar.",
-    price: "R$ 97",
+    price: "R$ 97,00",
+    fullPrice: "(valor cheio R$ 247,00)",
+    lots: "Pré-lançamento - R$ 97,00 / 1º lote R$ 147,00 / 2º lote R$ 197,00 / 3º lote R$ 247,00",
     installments: "ou 12x de R$ 9,70 no cartão",
-    nextLot: "[INSERIR VALOR DO PRÓXIMO LOTE]",
     soldPercent: 87,
     benefits: [
       "Acesso aos 2 dias de evento",
-      "Acesso a todo o conteúdo do palco principal",
-      "[INSERIR BENEFÍCIO REAL]",
+      "Acesso à feira “Não Repara na Bagunça”",
     ],
     event: "ticket_compromisso_click",
   },
@@ -177,16 +178,18 @@ const TICKETS: Ticket[] = [
     id: "vip",
     name: "VIP",
     desire: "Quero viver melhor essa experiência.",
-    price: "R$ 197",
-    installments: "ou 12x de R$ 19,70 no cartão",
-    nextLot: "[INSERIR VALOR DO PRÓXIMO LOTE]",
+    price: "R$ 147,00",
+    fullPrice: "(valor cheio R$ 297,00)",
+    lots: "Pré-lançamento - R$ 147,00 / 1º lote R$ 197,00 / 2º lote R$ 247,00 / 3º lote R$ 297,00",
+    installments: "ou 12x de R$ 14,70 no cartão",
     soldPercent: 62,
     highlight: "Experiência recomendada",
     benefits: [
-      "Tudo do ingresso Compromisso",
-      "Assento em setor preferencial",
-      "[INSERIR BENEFÍCIO REAL]",
-      "[INSERIR BENEFÍCIO REAL]",
+      "Acesso aos 2 dias de evento",
+      "Acesso à feira “Não Repara na Bagunça”",
+      "Assentos em áreas mais à frente da plateia",
+      "Acesso à área VIP exclusiva",
+      "Café e petit four",
     ],
     event: "ticket_vip_click",
   },
@@ -194,17 +197,21 @@ const TICKETS: Ticket[] = [
     id: "platinum",
     name: "Platinum",
     desire: "Quero viver tudo o que o NRNB pode oferecer.",
-    price: "R$ 347",
+    price: "R$ 347,00",
+    fullPrice: "(valor cheio R$ 597,00)",
+    lots: "Pré-lançamento - R$ 347,00 / 1º lote R$ 447,00 / 2º lote R$ 497,00 / 3º lote R$ 597,00",
     installments: "ou 12x de R$ 34,70 no cartão",
-    nextLot: "[INSERIR VALOR DO PRÓXIMO LOTE]",
     soldPercent: 41,
     highlight: "Experiência completa",
     benefits: [
-      "Tudo do ingresso VIP",
-      "Setor Platinum nas primeiras fileiras",
-      "[INSERIR BENEFÍCIO REAL]",
-      "[INSERIR BENEFÍCIO REAL]",
-      "[INSERIR BENEFÍCIO REAL]",
+      "Acesso aos 2 dias de evento",
+      "Sacola com brindes exclusivos",
+      "Acesso à feira “Não Repara na Bagunça”",
+      "Assentos nas primeiras fileiras (1ª e 2ª fileira — melhor localização da plateia)",
+      "Acesso à área VIP exclusiva",
+      "Café e petit four",
+      "Curso completo de organização com Suelen Gubeisse",
+      "Um encontro ao vivo com a Suelen para tirar dúvidas no momento da prática",
     ],
     event: "ticket_platinum_click",
   },
@@ -699,14 +706,15 @@ function Tickets() {
               <span className="font-display text-4xl font-semibold">
                 {t.price}
               </span>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {t.fullPrice}
+              </p>
               <p className="mt-1 text-xs text-muted-foreground">
                 {t.installments}
               </p>
-              {t.nextLot && (
-                <p className="mt-1 text-xs font-medium text-primary">
-                  Próximo lote: {t.nextLot}
-                </p>
-              )}
+              <p className="mt-3 rounded-xl bg-card/70 p-3 text-xs leading-relaxed text-muted-foreground">
+                {t.lots}
+              </p>
             </div>
 
             <ul className="mt-5 flex-1 space-y-2.5">
