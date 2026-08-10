@@ -32,11 +32,11 @@ import suelenPhoto from "@/assets/suelen_fundo.png.asset.json";
 import event2 from "@/assets/event-2.jpg";
 import event4 from "@/assets/event-4.jpg";
 import nrnb1 from "@/assets/dan_9014.jpg.asset.json";
-import nrnb2 from "@/assets/dan_9150.jpg.asset.json";
-import nrnb3 from "@/assets/dan_9119.jpg.asset.json";
-import nrnb4 from "@/assets/dan_9266.jpg.asset.json";
-import nrnb5 from "@/assets/dan_8916.jpg.asset.json";
-import nrnb6 from "@/assets/dan_8856.jpg.asset.json";
+import nova1 from "@/assets/nova1.jpg.asset.json";
+import nova2 from "@/assets/nova2.jpg.asset.json";
+import nova3 from "@/assets/nova_3.jpg.asset.json";
+import nova4 from "@/assets/nova_4.jpg.asset.json";
+import nova5 from "@/assets/nova_5.jpg.asset.json";
 import nrnbVideo from "@/assets/nrnb-video.mp4.asset.json";
 import nrnbVideoPoster from "@/assets/nrnb-video-poster.jpg.asset.json";
 
