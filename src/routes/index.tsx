@@ -95,7 +95,7 @@ const SCHEDULE: { id: "d1" | "d2"; tab: string; hours: string; slots: Slot[] }[]
   {
     id: "d1",
     tab: "Sábado · 24 de outubro",
-    hours: "Das [HORÁRIO] às [HORÁRIO]",
+    hours: "Das 09h às 17h",
     slots: [
       { time: "[HORÁRIO]", title: "Abertura do Não Repara na Bagunça", speaker: "Suelen Gubeisse", highlight: true },
       { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
