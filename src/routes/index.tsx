@@ -756,14 +756,15 @@ function Founder() {
   return (
     <Section>
       <div className="grid items-center gap-8 md:grid-cols-[0.8fr_1fr]">
-        <div className="overflow-hidden rounded-3xl border border-border/60">
+        <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-b from-primary/15 to-background md:max-w-none">
           <img
-            src={founderPortrait}
+            src={suelenPhoto.url}
             alt="Suelen Gubeisse, idealizadora do Não Repara na Bagunça"
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover"
+            className="aspect-[3/4] w-full object-cover object-top"
           />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/80 to-transparent" />
         </div>
         <div>
           <SectionEyebrow>Idealizadora</SectionEyebrow>
