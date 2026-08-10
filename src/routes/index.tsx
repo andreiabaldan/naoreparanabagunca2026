@@ -375,7 +375,7 @@ function Hero() {
 
         <p className="mx-auto mt-4 max-w-xl text-balance text-sm text-muted-foreground sm:text-base">
           Um fim de semana inteiro de experiências, conteúdos e aprendizados
-          práticos para você organizar o que está ao seu redor — e abrir espaço
+          práticos para você organizar o que está ao seu redor, e abrir espaço
           para viver melhor.
         </p>
 
