@@ -595,6 +595,105 @@ function Experience() {
   );
 }
 
+function VideoStory() {
+  const [playing, setPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const handlePlay = () => {
+    setPlaying(true);
+    track("video_play");
+    requestAnimationFrame(() => {
+      videoRef.current?.play();
+    });
+  };
+
+  return (
+    <Section className="relative overflow-hidden bg-background">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-24 top-10 h-64 w-64 rounded-full bg-[#86CBD7]/25 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-primary/15 blur-3xl"
+      />
+
+      <div className="relative text-center">
+        <SectionEyebrow>A experiência NRNB</SectionEyebrow>
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
+          Mais do que explicar,{" "}
+          <span className="italic text-gradient-brand">é melhor viver.</span>
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-balance text-sm text-muted-foreground sm:text-base">
+          Dê o play e sinta um pouco do que acontece quando centenas de mulheres
+          se encontram para tornar a casa, a rotina e a vida mais leves.
+        </p>
+      </div>
+
+      <div className="relative mt-10 flex justify-center">
+        <div className="relative w-full max-w-[320px] sm:max-w-[340px]">
+          <div
+            aria-hidden
+            className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-[#86CBD7]/40 to-primary/30 blur-[2px]"
+          />
+          <div className="relative aspect-[9/16] overflow-hidden rounded-[1.75rem] border border-border/60 bg-black shadow-card">
+            {playing ? (
+              <video
+                ref={videoRef}
+                src={nrnbVideo.url}
+                poster={nrnbVideoPoster.url}
+                controls
+                playsInline
+                preload="metadata"
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <button
+                type="button"
+                onClick={handlePlay}
+                aria-label="Reproduzir vídeo do Não Repara na Bagunça"
+                className="group relative h-full w-full"
+              >
+                <img
+                  src={nrnbVideoPoster.url}
+                  alt="Suelen Gubeisse no palco durante o Não Repara na Bagunça"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover"
+                />
+                <span className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+                <span className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-glow transition-transform group-hover:scale-105">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="ml-1 h-7 w-7"
+                    aria-hidden
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </span>
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className="relative mt-9 text-center">
+        <p className="text-base font-semibold text-foreground sm:text-lg">
+          Em outubro, seu lugar pode ser aqui.
+        </p>
+        <div className="mt-5 flex justify-center">
+          <CTAButton event="video_cta_click" size="lg">
+            Quero garantir meu ingresso
+          </CTAButton>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+
+
 const GALLERY = [
   { src: nrnb1.url, alt: "Suelen Gubeisse no palco do Não Repara na Bagunça" },
   { src: nrnb2.url, alt: "Palestra sobre técnicas modernas de limpeza no palco principal" },
