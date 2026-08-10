@@ -696,12 +696,13 @@ function VideoStory() {
 
 const GALLERY = [
   { src: nrnb1.url, alt: "Suelen Gubeisse no palco do Não Repara na Bagunça" },
-  { src: nrnb2.url, alt: "Palestra sobre técnicas modernas de limpeza no palco principal" },
-  { src: nrnb3.url, alt: "Plateia de mulheres em momento de conexão durante o evento" },
-  { src: nrnb4.url, alt: "Demonstração prática no palco com o auditório lotado" },
-  { src: nrnb5.url, alt: "Participantes no espaço instagramável do evento" },
-  { src: nrnb6.url, alt: "Brindes e experiências das marcas parceiras" },
+  { src: nova5.url, alt: "Plateia vibrando e aplaudindo durante o evento" },
+  { src: nova4.url, alt: "Suelen Gubeisse na palestra sobre organização de closet" },
+  { src: nova2.url, alt: "Participantes registrando o conteúdo no auditório lotado" },
+  { src: nova1.url, alt: "Participantes no espaço instagramável com as marcas parceiras" },
+  { src: nova3.url, alt: "Apresentação musical ao vivo no palco do evento" },
 ];
+
 
 const TESTIMONIALS = [
   { text: "\"Nunca pensei que organizar a casa pudesse ser tão libertador. Minha rotina mudou completamente e hoje tenho paz!\"", author: "Mariana Silva" },
