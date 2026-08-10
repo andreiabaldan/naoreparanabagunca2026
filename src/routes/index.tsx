@@ -30,12 +30,12 @@ import heroBg from "@/assets/hero-bg.jpg";
 import suelenPhoto from "@/assets/suelen_fundo.png.asset.json";
 import event2 from "@/assets/event-2.jpg";
 import event4 from "@/assets/event-4.jpg";
-import nrnb1 from "@/assets/nrnb-1.jpg.asset.json";
-import nrnb2 from "@/assets/nrnb-2.jpg.asset.json";
-import nrnb3 from "@/assets/nrnb-3.jpg.asset.json";
-import nrnb4 from "@/assets/nrnb-4.jpg.asset.json";
-import nrnb5 from "@/assets/nrnb-5.jpg.asset.json";
-import nrnb6 from "@/assets/nrnb-6.jpg.asset.json";
+import nrnb1 from "@/assets/dan_9014.jpg.asset.json";
+import nrnb2 from "@/assets/dan_9150.jpg.asset.json";
+import nrnb3 from "@/assets/dan_9119.jpg.asset.json";
+import nrnb4 from "@/assets/dan_9266.jpg.asset.json";
+import nrnb5 from "@/assets/dan_8916.jpg.asset.json";
+import nrnb6 from "@/assets/dan_8856.jpg.asset.json";
 
 /* ==================================================================
    CONFIGURAÇÃO EDITÁVEL — atualize aqui os dados reais do evento
@@ -583,12 +583,12 @@ function Experience() {
 }
 
 const GALLERY = [
-  { src: nrnb1.url, alt: "Auditório montado para o Não Repara na Bagunça" },
-  { src: nrnb2.url, alt: "Palco e telão durante a programação do evento" },
-  { src: nrnb3.url, alt: "Vista do auditório com as cadeiras preparadas" },
-  { src: nrnb4.url, alt: "Estande de acessórios na feira do evento" },
-  { src: nrnb5.url, alt: "Feira de expositoras no Não Repara na Bagunça" },
-  { src: nrnb6.url, alt: "Mesa posta montada por expositoras do evento" },
+  { src: nrnb1.url, alt: "Suelen Gubeisse no palco do Não Repara na Bagunça" },
+  { src: nrnb2.url, alt: "Palestra sobre técnicas modernas de limpeza no palco principal" },
+  { src: nrnb3.url, alt: "Plateia de mulheres em momento de conexão durante o evento" },
+  { src: nrnb4.url, alt: "Demonstração prática no palco com o auditório lotado" },
+  { src: nrnb5.url, alt: "Participantes no espaço instagramável do evento" },
+  { src: nrnb6.url, alt: "Brindes e experiências das marcas parceiras" },
 ];
 
 const TESTIMONIALS = [
