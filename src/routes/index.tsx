@@ -1375,6 +1375,7 @@ function LandingPage() {
       <TopBar />
       <Hero />
       <Experience />
+      <VideoStory />
       <ForWhom />
       <Benefits />
       <Speakers />
