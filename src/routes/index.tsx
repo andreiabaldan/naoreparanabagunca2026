@@ -34,6 +34,12 @@ import event3 from "@/assets/event-3.jpg";
 import event4 from "@/assets/event-4.jpg";
 import event5 from "@/assets/event-5.jpg";
 import event6 from "@/assets/event-6.jpg";
+import nrnb1 from "@/assets/nrnb-1.jpg.asset.json";
+import nrnb2 from "@/assets/nrnb-2.jpg.asset.json";
+import nrnb3 from "@/assets/nrnb-3.jpg.asset.json";
+import nrnb4 from "@/assets/nrnb-4.jpg.asset.json";
+import nrnb5 from "@/assets/nrnb-5.jpg.asset.json";
+import nrnb6 from "@/assets/nrnb-6.jpg.asset.json";
 
 /* ==================================================================
    CONFIGURAÇÃO EDITÁVEL — atualize aqui os dados reais do evento
