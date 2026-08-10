@@ -27,6 +27,7 @@ import {
 import { track } from "@/lib/tracking";
 
 import heroBg from "@/assets/hero-bg.jpg";
+import logoNrnb from "@/assets/logo_nrnb.webp.asset.json";
 import suelenPhoto from "@/assets/suelen_fundo.png.asset.json";
 import event2 from "@/assets/event-2.jpg";
 import event4 from "@/assets/event-4.jpg";
