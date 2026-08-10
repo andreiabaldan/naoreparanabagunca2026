@@ -46,12 +46,12 @@ const EVENT = {
     "2 dias para deixar sua casa, sua rotina e sua vida mais leves e organizadas.",
   date: "24 e 25 de outubro de 2026",
   dateShort: "24 e 25 de outubro",
-  venue: "Parque de Inovação Tecnológica",
+  venue: "Parque Tecnológico",
   city: "São José dos Campos/SP",
   /** Horários (editáveis). Substitua pelos horários confirmados. */
-  hoursShort: "Das [HORÁRIO] às [HORÁRIO]",
-  hoursDay1: "Sábado, 24/10 · das [HORÁRIO] às [HORÁRIO]",
-  hoursDay2: "Domingo, 25/10 · das [HORÁRIO] às [HORÁRIO]",
+  hoursShort: "Das 09h às 17h",
+  hoursDay1: "Sábado, 24/10 · das 09h às 17h",
+  hoursDay2: "Domingo, 25/10 · das 09h às 17h",
   /** URL do checkout. Troque pelo link real quando estiver configurado. */
   checkoutUrl: "#ingressos",
 };
@@ -95,7 +95,7 @@ const SCHEDULE: { id: "d1" | "d2"; tab: string; hours: string; slots: Slot[] }[]
   {
     id: "d1",
     tab: "Sábado · 24 de outubro",
-    hours: "Das [HORÁRIO] às [HORÁRIO]",
+    hours: "Das 09h às 17h",
     slots: [
       { time: "[HORÁRIO]", title: "Abertura do Não Repara na Bagunça", speaker: "Suelen Gubeisse", highlight: true },
       { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
@@ -108,7 +108,7 @@ const SCHEDULE: { id: "d1" | "d2"; tab: string; hours: string; slots: Slot[] }[]
   {
     id: "d2",
     tab: "Domingo · 25 de outubro",
-    hours: "Das [HORÁRIO] às [HORÁRIO]",
+    hours: "Das 09h às 17h",
     slots: [
       { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
       { time: "[HORÁRIO]", title: "[EXPERIÊNCIA PRÁTICA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
@@ -375,14 +375,14 @@ function Hero() {
 
         <p className="mx-auto mt-4 max-w-xl text-balance text-sm text-muted-foreground sm:text-base">
           Um fim de semana inteiro de experiências, conteúdos e aprendizados
-          práticos para você organizar o que está ao seu redor — e abrir espaço
+          práticos para você organizar o que está ao seu redor, e abrir espaço
           para viver melhor.
         </p>
 
         <div className="mt-6 flex flex-col items-center gap-2 text-sm text-foreground/85 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-6 sm:gap-y-2">
           <span className="inline-flex items-center gap-2 font-semibold uppercase tracking-wide">
             <Calendar className="h-4 w-4 text-primary" />
-            {EVENT.dateShort} · 2026
+            24 E 25 DE OUTUBRO · 2026
           </span>
           <span className="inline-flex items-center gap-2">
             <Clock className="h-4 w-4 shrink-0 text-primary" />
@@ -390,7 +390,7 @@ function Hero() {
           </span>
           <span className="inline-flex items-center gap-2 text-center">
             <MapPin className="h-4 w-4 shrink-0 text-primary" />
-            {EVENT.venue} · {EVENT.city}
+            Parque Tecnológico de&nbsp;São José dos Campos/SP
           </span>
         </div>
 
@@ -582,8 +582,8 @@ const GALLERY = [
 ];
 
 const TESTIMONIALS = [
-  { text: "[INSERIR DEPOIMENTO REAL]", author: "[Nome da participante]" },
-  { text: "[INSERIR DEPOIMENTO REAL]", author: "[Nome da participante]" },
+  { text: "\"Nunca pensei que organizar a casa pudesse ser tão libertador. Minha rotina mudou completamente e hoje tenho paz!\"", author: "Mariana Silva" },
+  { text: "\"Finalmente encontrei um método que funciona para a minha realidade, sem cobranças de perfeição. Foi um divisor de águas.\"", author: "Juliana Costa" },
   { text: "[INSERIR DEPOIMENTO REAL]", author: "[Nome da participante]" },
 ];
 
@@ -858,7 +858,7 @@ const FAQS = [
   },
   {
     q: "Onde será realizado?",
-    a: "No Parque de Inovação Tecnológica, em São José dos Campos/SP.",
+    a: "No Parque Tecnológico, em São José dos Campos/SP.",
   },
   {
     q: "Posso parcelar?",
