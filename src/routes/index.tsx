@@ -120,55 +120,63 @@ const SPEAKERS: Speaker[] = [
     topic: "Técnicas modernas de limpeza • Aromatização do lar",
     description:
       "Anfitriã do Não Repara na Bagunça, ela conduz os conteúdos de técnicas modernas de limpeza e aromatização do lar.",
-    photo: suelenPhoto.url,
+    photo: suelenAvatar.url,
   },
   {
     name: "Douglas Lopes",
     topic: "A Trilha do Propósito",
     description:
       "Descubra como encontrar direção para viver uma vida com mais propósito e realização.",
+    photo: spDouglas.url,
   },
   {
     name: "Natália Rico",
     topic: "A Força do Ecossistema",
     description:
       "Idealizadora do movimento Mulheres à Obra, compartilhará como o poder do ecossistema pode transformar vidas e fortalecer mulheres.",
+    photo: spNatalia.url,
   },
   {
     name: "Fernanda Ardito",
     topic: "Descomplicando a Mesa Posta",
     description:
       "Aprenda a fazer uma mesa posta simples, descomplicada, encantadora e feita com muito carinho.",
+    photo: spFernanda.url,
   },
   {
     name: "Andréia Baldan",
     topic: "Crescimento Inteligente",
     description:
       "Entenda como a desorganização impacta pessoas, equipes e empresas, e por onde começar a mudar essa realidade.",
+    photo: spAndreia.url,
   },
   {
     name: "Paula Chiaradia",
     topic: "Imagem que Comunica",
     description:
       "Antes de você falar, a sua imagem já contou uma história. Qual história ela está contando?",
+    photo: spPaula.url,
   },
   {
     name: "Michelle Sampaio",
     topic: "O Poder da Comunicação",
     description:
       "Aprenda como uma comunicação clara e intencional pode transformar a maneira como você é percebida.",
+    photo: spMichelle.url,
   },
   {
     name: "Stella Vilella",
     topic: "Nosso Corpo é Nossa Primeira Casa",
     description:
       "Porque cuidar do seu corpo é o primeiro passo para viver com mais leveza e qualidade de vida.",
+    photo: spStella.url,
   },
   {
     name: "Thaís Paraíso",
     topic: "Imagem que Comunica",
     description:
       "Aprenda como o autocuidado pode resgatar sua confiança e valorizar a mulher que existe em você.",
+    photo: spThais.url,
   },
 ];
 
