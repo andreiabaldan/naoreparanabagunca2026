@@ -51,8 +51,7 @@ import depoimentoPoster from "@/assets/depoimento-1-poster.jpg.asset.json";
 const EVENT = {
   name: "Não Repara na Bagunça 2026",
   concept: "O encontro que muda tudo.",
-  promise:
-    "2 dias para deixar sua casa, sua rotina e sua vida mais leves e organizadas.",
+  promise: "Organize sua casa, sua rotina e sua vida para viver de forma mais leve, prática e possível.",
   date: "24 e 25 de outubro de 2026",
   dateShort: "24 e 25 de outubro",
   venue: "PIT - Parque Tecnológico de\u00a0São José dos Campos/SP",
@@ -374,7 +373,7 @@ function TopBar() {
     <div className="bg-gradient-brand">
       <div className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-4 py-2.5 text-center">
         <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground sm:text-xs">
-          {EVENT.dateShort} · {EVENT.venue} · {LOT_LABEL} quase esgotado
+          1º LOTE QUASE ESGOTADO • GARANTA SEU INGRESSO PELO VALOR ATUAL
         </span>
       </div>
     </div>
@@ -395,17 +394,16 @@ function Hero() {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1 bg-gradient-identity" />
 
 
-      <div className="relative mx-auto max-w-3xl px-5 pb-14 pt-12 text-center sm:px-6 sm:pb-20 sm:pt-20">
+      <div className="relative mx-auto max-w-3xl px-5 pb-14 pt-10 text-center sm:px-6 sm:pb-20 sm:pt-16">
         <img
           src={logoNrnb.url}
           alt="Não Repara na Bagunça"
           width={380}
           height={135}
-          className="mx-auto w-[220px] max-w-full rounded-xl shadow-card sm:w-[320px]"
+          className="mx-auto w-[170px] max-w-full rounded-xl shadow-card sm:w-[240px]"
         />
 
-
-        <h1 className="mt-6 text-balance text-4xl leading-[1.05] sm:text-6xl">
+        <h1 className="mt-5 text-balance text-4xl leading-[1.05] sm:text-6xl">
           <span className="italic text-gradient-brand">
             O encontro que muda tudo.
           </span>
@@ -420,28 +418,20 @@ function Hero() {
           {EVENT.promise}
         </p>
 
-
-        <p className="mx-auto mt-4 max-w-xl text-balance text-sm text-muted-foreground sm:text-base">
-          Um fim de semana inteiro de experiências, conteúdos e aprendizados
-          práticos para você organizar o que está ao seu redor, e abrir espaço
-          para viver melhor.
-        </p>
-
-        <div className="mt-6 flex flex-col items-center gap-2 text-sm text-foreground/85 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-6 sm:gap-y-2">
-          <span className="inline-flex items-center gap-2 font-semibold uppercase tracking-wide">
+        <div className="mt-6 flex flex-col items-center gap-1.5 text-sm text-foreground/75 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-5 sm:gap-y-1">
+          <span className="inline-flex items-center gap-2">
             <Calendar className="h-4 w-4 text-primary" />
-            24 E 25 DE OUTUBRO · 2026
+            24 e 25 de outubro • 2026
           </span>
           <span className="inline-flex items-center gap-2">
             <Clock className="h-4 w-4 shrink-0 text-primary" />
-            {EVENT.hoursShort}
+            Das 9h às 18h30
           </span>
           <span className="inline-flex items-center gap-2 text-center">
             <MapPin className="h-4 w-4 shrink-0 text-primary" />
-            {EVENT.venue}
+            PIT — Parque Tecnológico de São José dos Campos/SP
           </span>
         </div>
-
 
         <div className="mx-auto mt-8 max-w-md rounded-3xl border border-primary/40 bg-card p-5 shadow-glow backdrop-blur">
           <CTAButton event="hero_cta_click" size="lg" className="w-full">
