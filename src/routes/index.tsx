@@ -58,9 +58,17 @@ const EVENT = {
   hoursShort: "Das 09h às 18h30",
   hoursDay1: "Sábado, 24/10 · das 09h às 18h30",
   hoursDay2: "Domingo, 25/10 · das 09h às 18h30",
-  /** URL do checkout. Troque pelo link real quando estiver configurado. */
+  /** CTAs genéricos levam para a seção de ingressos. */
   checkoutUrl: "#ingressos",
+  whatsappNumber: "5512991402832",
+  whatsappMessage:
+    'Olá, Suelen. Vim do site e quero tirar uma dúvida sobre o "Não Repara na Bagunça".',
 };
+
+export const WHATSAPP_URL = `https://wa.me/${EVENT.whatsappNumber}?text=${encodeURIComponent(EVENT.whatsappMessage)}`;
+
+/** Depoimento em vídeo (editável). Preencha a URL quando o arquivo for enviado. */
+const TESTIMONIAL_VIDEO: { src: string; poster?: string } | null = null;
 
 /* ---- Palestrantes (editável). Não inventar nomes: use placeholders. ---- */
 type Speaker = {
