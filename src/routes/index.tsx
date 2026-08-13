@@ -1430,15 +1430,15 @@ function Speakers() {
 function ThemeCard({ theme }: { theme: Theme }) {
   const Icon = theme.icon;
   return (
-    <article className="group flex h-full gap-3 rounded-2xl border border-border/60 bg-card p-4 shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40 sm:p-5">
-      <span className="badge-icon h-10 w-10 shrink-0 rounded-xl">
-        <Icon className="h-5 w-5" />
+    <article className="flex h-full items-start gap-3 rounded-2xl border border-border/60 bg-card p-4 shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40">
+      <span className="badge-icon h-9 w-9 shrink-0 rounded-xl">
+        <Icon className="h-4.5 w-4.5" />
       </span>
-      <div>
+      <div className="min-w-0">
         <h3 className="text-sm font-semibold leading-snug text-foreground sm:text-base">
           {theme.title}
         </h3>
-        <p className="mt-1 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+        <p className="mt-1 line-clamp-2 text-xs leading-snug text-muted-foreground">
           {theme.desc}
         </p>
       </div>
@@ -1446,8 +1446,64 @@ function ThemeCard({ theme }: { theme: Theme }) {
   );
 }
 
+function ThemeGroupBlock({
+  group,
+  isOpen,
+  onToggle,
+}: {
+  group: ThemeGroup;
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <div>
+      <div className="flex items-center gap-3">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary sm:text-xs">
+          {group.label}
+        </span>
+        <span className="h-px flex-1 bg-gradient-identity opacity-60" />
+      </div>
+      <p className="mt-2 max-w-2xl text-xs leading-relaxed text-muted-foreground sm:text-sm">
+        {group.blurb}
+      </p>
+
+      <div className="mt-4">
+        {isOpen ? (
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {group.themes.map((t) => (
+              <ThemeCard key={t.title} theme={t} />
+            ))}
+          </div>
+        ) : (
+          <CarouselRow
+            ariaLabel={group.label}
+            showDots={false}
+            itemClassName="w-[82%] sm:w-[46%] lg:w-[32%]"
+            items={group.themes.map((t) => (
+              <ThemeCard key={t.title} theme={t} />
+            ))}
+          />
+        )}
+      </div>
+
+      {group.themes.length > 3 && (
+        <div className="mt-3 flex justify-center">
+          <button
+            type="button"
+            onClick={onToggle}
+            aria-expanded={isOpen}
+            className="rounded-full border border-primary/40 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/10"
+          >
+            {isOpen ? "Ver menos −" : "Ver todos os temas +"}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function Schedule() {
-  const [openGroup, setOpenGroup] = useState<string | null>(THEME_GROUPS[0].id);
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
 
   return (
     <Section id="programacao" className="bg-sky-tint">
@@ -1465,39 +1521,19 @@ function Schedule() {
         </p>
       </div>
 
-      <div className="mt-10 space-y-8">
-        {THEME_GROUPS.map((group) => {
-          const isOpen = openGroup === group.id;
-          return (
-            <div key={group.id}>
-              <div className="flex items-center gap-3">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary sm:text-xs">
-                  {group.label}
-                </span>
-                <span className="h-px flex-1 bg-gradient-identity opacity-60" />
-                <button
-                  type="button"
-                  onClick={() => setOpenGroup(isOpen ? null : group.id)}
-                  aria-expanded={isOpen}
-                  className="rounded-full border border-primary/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/10 md:hidden"
-                >
-                  {isOpen ? "Fechar" : `Ver ${group.themes.length}`}
-                </button>
-              </div>
-
-              <div
-                className={`mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 ${
-                  isOpen ? "grid" : "hidden md:grid"
-                }`}
-              >
-                {group.themes.map((t) => (
-                  <ThemeCard key={t.title} theme={t} />
-                ))}
-              </div>
-            </div>
-          );
-        })}
+      <div className="mt-8 space-y-8">
+        {THEME_GROUPS.map((group) => (
+          <ThemeGroupBlock
+            key={group.id}
+            group={group}
+            isOpen={openGroup === group.id}
+            onToggle={() =>
+              setOpenGroup(openGroup === group.id ? null : group.id)
+            }
+          />
+        ))}
       </div>
+
 
       <div className="mx-auto mt-12 max-w-2xl rounded-2xl border border-border/60 bg-card p-6 text-center shadow-card sm:p-8">
         <p className="text-base font-semibold leading-relaxed text-foreground sm:text-lg">
