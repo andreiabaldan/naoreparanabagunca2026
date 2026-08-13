@@ -404,9 +404,15 @@ function Hero() {
           </span>
         </h1>
 
-        <p className="mx-auto mt-5 max-w-2xl text-balance text-xl font-semibold leading-snug text-foreground sm:text-2xl">
+        <p className="mx-auto mt-4 max-w-2xl text-balance font-display text-2xl font-semibold leading-tight text-foreground sm:text-3xl">
+          2 dias que mudam a forma como você vai viver os próximos anos da sua
+          vida.
+        </p>
+
+        <p className="mx-auto mt-4 max-w-2xl text-balance text-base font-medium leading-snug text-foreground/80 sm:text-lg">
           {EVENT.promise}
         </p>
+
 
         <p className="mx-auto mt-4 max-w-xl text-balance text-sm text-muted-foreground sm:text-base">
           Um fim de semana inteiro de experiências, conteúdos e aprendizados
