@@ -41,6 +41,8 @@ import nova4 from "@/assets/nova_4.jpg.asset.json";
 import nova5 from "@/assets/nova_5.jpg.asset.json";
 import nrnbVideo from "@/assets/nrnb-video.mp4.asset.json";
 import nrnbVideoPoster from "@/assets/nrnb-video-poster.jpg.asset.json";
+import depoimentoVideo from "@/assets/depoimento-1.mp4.asset.json";
+import depoimentoPoster from "@/assets/depoimento-1-poster.jpg.asset.json";
 
 /* ==================================================================
    CONFIGURAÇÃO EDITÁVEL — atualize aqui os dados reais do evento
