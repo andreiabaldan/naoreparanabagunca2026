@@ -19,6 +19,14 @@ import {
   Star,
   Play,
   MessageCircle,
+  Shirt,
+  Utensils,
+  BedDouble,
+  Ruler,
+  Flower2,
+  Brain,
+  Compass,
+  type LucideIcon,
 } from "lucide-react";
 import {
   Accordion,
