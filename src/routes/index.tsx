@@ -373,7 +373,7 @@ function TopBar() {
     <div className="bg-gradient-brand">
       <div className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-4 py-2.5 text-center">
         <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground sm:text-xs">
-          {EVENT.dateShort} · {EVENT.venue} · {LOT_LABEL} quase esgotado
+          1º LOTE QUASE ESGOTADO • GARANTA SEU INGRESSO PELO VALOR ATUAL
         </span>
       </div>
     </div>
