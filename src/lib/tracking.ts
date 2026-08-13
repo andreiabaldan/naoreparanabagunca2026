@@ -14,6 +14,9 @@ export type TrackEvent =
   | "ticket_platinum_click"
   | "sticky_cta_click"
   | "final_cta_click"
+  | "whatsapp_floating_click"
+  | "whatsapp_tickets_click"
+  | "testimonial_video_play"
   | "checkout_start";
 
 declare global {
