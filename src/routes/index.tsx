@@ -51,8 +51,7 @@ import depoimentoPoster from "@/assets/depoimento-1-poster.jpg.asset.json";
 const EVENT = {
   name: "Não Repara na Bagunça 2026",
   concept: "O encontro que muda tudo.",
-  promise:
-    "2 dias para deixar sua casa, sua rotina e sua vida mais leves e organizadas.",
+  promise: "Organize sua casa, sua rotina e sua vida para viver de forma mais leve, prática e possível.",
   date: "24 e 25 de outubro de 2026",
   dateShort: "24 e 25 de outubro",
   venue: "PIT - Parque Tecnológico de\u00a0São José dos Campos/SP",
