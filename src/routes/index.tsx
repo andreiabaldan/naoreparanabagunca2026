@@ -170,6 +170,7 @@ type Ticket = {
   benefits: string[];
   highlight?: string;
   event: "ticket_compromisso_click" | "ticket_vip_click" | "ticket_platinum_click";
+  checkout: string;
 };
 
 const TICKETS: Ticket[] = [
@@ -187,6 +188,7 @@ const TICKETS: Ticket[] = [
       "Acesso à feira “Não Repara na Bagunça”",
     ],
     event: "ticket_compromisso_click",
+    checkout: "https://payfast.greenn.com.br/168687?batch=13831_RugVFv",
   },
   {
     id: "vip",
@@ -206,6 +208,7 @@ const TICKETS: Ticket[] = [
       "Café e petit four",
     ],
     event: "ticket_vip_click",
+    checkout: "https://payfast.greenn.com.br/168694?batch=13835_tnl2FL",
   },
   {
     id: "platinum",
@@ -228,6 +231,7 @@ const TICKETS: Ticket[] = [
       "Um encontro ao vivo com a Suelen para tirar dúvidas no momento da prática",
     ],
     event: "ticket_platinum_click",
+    checkout: "https://payfast.greenn.com.br/168696?batch=13839_135ERC",
   },
 ];
 
@@ -851,7 +855,9 @@ function Tickets() {
             </ul>
 
             <a
-              href={EVENT.checkoutUrl}
+              href={t.checkout}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => {
                 track(t.event, { ticket: t.id });
                 track("checkout_start", { ticket: t.id });
