@@ -17,6 +17,8 @@ import {
   ArrowRight,
   Quote,
   Star,
+  Play,
+  MessageCircle,
 } from "lucide-react";
 import {
   Accordion,
@@ -739,6 +741,8 @@ function SocialProof() {
         </h2>
       </div>
 
+      <TestimonialVideo />
+
       <div className="mt-8 grid auto-rows-[130px] grid-cols-2 gap-3 sm:auto-rows-[190px] sm:grid-cols-4">
         {GALLERY.map((img, i) => (
           <div
@@ -776,6 +780,83 @@ function SocialProof() {
         ))}
       </div>
     </Section>
+  );
+}
+
+function TestimonialVideo() {
+  const [playing, setPlaying] = useState(false);
+
+  return (
+    <div className="mt-8 rounded-3xl border border-primary/25 bg-card p-5 shadow-card sm:p-7">
+      <p className="text-center text-balance font-display text-xl leading-snug sm:text-2xl">
+        Veja o que quem já viveu o Não Repara na Bagunça{" "}
+        <span className="italic text-gradient-brand">tem para contar.</span>
+      </p>
+
+      <div className="mx-auto mt-5 w-full max-w-[340px]">
+        <div className="relative aspect-[9/16] overflow-hidden rounded-2xl border border-border/60 bg-sky-tint">
+          {TESTIMONIAL_VIDEO ? (
+            playing ? (
+              <video
+                src={TESTIMONIAL_VIDEO.src}
+                poster={TESTIMONIAL_VIDEO.poster}
+                controls
+                autoPlay
+                playsInline
+                preload="metadata"
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <button
+                type="button"
+                onClick={() => {
+                  track("testimonial_video_play");
+                  setPlaying(true);
+                }}
+                className="group absolute inset-0 h-full w-full"
+                aria-label="Assistir depoimento em vídeo"
+              >
+                {TESTIMONIAL_VIDEO.poster && (
+                  <img
+                    src={TESTIMONIAL_VIDEO.poster}
+                    alt="Depoimento de participante do Não Repara na Bagunça"
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
+                )}
+                <span className="absolute inset-0 flex items-center justify-center bg-foreground/20 transition-colors group-hover:bg-foreground/30">
+                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-primary shadow-glow">
+                    <Play className="ml-1 h-7 w-7 text-primary-foreground" fill="currentColor" />
+                  </span>
+                </span>
+              </button>
+            )
+          ) : (
+            <div className="flex h-full w-full flex-col items-center justify-center gap-2 p-6 text-center text-xs uppercase tracking-[0.15em] text-muted-foreground">
+              <Play className="h-8 w-8 text-primary" />
+              [INSERIR VÍDEO DE DEPOIMENTO]
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function WhatsAppFloating() {
+  return (
+    <a
+      href={WHATSAPP_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => track("whatsapp_floating_click")}
+      title="Ficou com alguma dúvida? Fale com a gente."
+      aria-label="Ficou com alguma dúvida? Fale com a gente no WhatsApp"
+      className="group fixed bottom-24 right-4 z-40 inline-flex items-center gap-2 rounded-full border border-border bg-card/95 px-3.5 py-3 text-sm font-medium text-foreground/80 shadow-card backdrop-blur transition-colors hover:text-primary lg:bottom-6 lg:right-6"
+    >
+      <MessageCircle className="h-5 w-5 text-primary" />
+      <span className="hidden lg:inline">Ficou com alguma dúvida?</span>
+    </a>
   );
 }
 
@@ -884,6 +965,22 @@ function Tickets() {
       <p className="mt-6 text-center text-sm text-muted-foreground">
         Os valores mudam conforme os lotes avançam. Garanta agora o valor atual.
       </p>
+
+      <div className="mt-6 rounded-2xl border border-border/60 bg-card/60 p-5 text-center">
+        <p className="text-sm text-muted-foreground">
+          Ainda ficou com alguma dúvida sobre qual ingresso escolher?
+        </p>
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => track("whatsapp_tickets_click")}
+          className="mt-3 inline-flex items-center justify-center gap-2 rounded-full border border-primary/40 px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-magenta-soft"
+        >
+          <MessageCircle className="h-4 w-4" />
+          Falar com a Suelen no WhatsApp
+        </a>
+      </div>
     </Section>
   );
 }
@@ -1411,6 +1508,7 @@ function LandingPage() {
       <FinalCTA />
       <Footer />
       <StickyCTA />
+      <WhatsAppFloating />
     </main>
   );
 }
