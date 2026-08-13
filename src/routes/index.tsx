@@ -19,6 +19,14 @@ import {
   Star,
   Play,
   MessageCircle,
+  Shirt,
+  Utensils,
+  BedDouble,
+  Ruler,
+  Flower2,
+  Brain,
+  Compass,
+  type LucideIcon,
 } from "lucide-react";
 import {
   Accordion,
@@ -112,33 +120,100 @@ const SPEAKERS: Speaker[] = [
   },
 ];
 
-/* ---- Programação (editável) ---- */
-type Slot = { time: string; title: string; speaker?: string; highlight?: boolean };
+/* ---- Prévia da programação (editável) ----
+   A agenda oficial (dia, horário, palestrante) ainda não está fechada.
+   Estrutura modular: quando houver agenda, basta adicionar SCHEDULE (dias/slots)
+   e trocar <Schedule /> por um componente de programação completa.       */
+type Theme = { icon: LucideIcon; title: string; desc: string };
+type ThemeGroup = { id: string; label: string; themes: Theme[] };
 
-const SCHEDULE: { id: "d1" | "d2"; tab: string; hours: string; slots: Slot[] }[] = [
+const THEME_GROUPS: ThemeGroup[] = [
   {
-    id: "d1",
-    tab: "Sábado · 24 de outubro",
-    hours: "Das 09h às 18h30",
-    slots: [
-      { time: "[HORÁRIO]", title: "Abertura do Não Repara na Bagunça", speaker: "Suelen Gubeisse", highlight: true },
-      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
-      { time: "[HORÁRIO]", title: "[EXPERIÊNCIA PRÁTICA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
-      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]" },
-      { time: "[HORÁRIO]", title: "[ATIVAÇÃO / INTERVALO]", speaker: "[NOME DA MARCA]" },
-      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]" },
+    id: "casa",
+    label: "Casa e organização",
+    themes: [
+      {
+        icon: Home,
+        title: "Organização residencial",
+        desc: "Soluções para transformar a organização da casa em praticidade para a vida real.",
+      },
+      {
+        icon: Shirt,
+        title: "Guarda-roupa inteligente",
+        desc: "Mais funcionalidade, clareza e praticidade na hora de se vestir e organizar suas escolhas.",
+      },
+      {
+        icon: Sparkles,
+        title: "Técnicas modernas de limpeza",
+        desc: "Caminhos para tornar o cuidado com a casa mais prático e eficiente.",
+      },
+      {
+        icon: Utensils,
+        title: "Mesa posta e receber bem",
+        desc: "Como transformar momentos à mesa em experiências de cuidado, conexão e acolhimento.",
+      },
+      {
+        icon: BedDouble,
+        title: "Cama posta e sensação de acolhimento",
+        desc: "Pequenos cuidados capazes de transformar a experiência de chegar e estar em casa.",
+      },
+      {
+        icon: Ruler,
+        title: "Arquitetura e funcionalidade da casa",
+        desc: "Como os espaços podem funcionar melhor para facilitar a rotina e a vida.",
+      },
+      {
+        icon: Flower2,
+        title: "Perfumação do lar: aromas e sensações",
+        desc: "Como os aromas ajudam a construir a sensação de acolhimento e identidade dentro de casa.",
+      },
     ],
   },
   {
-    id: "d2",
-    tab: "Domingo · 25 de outubro",
-    hours: "Das 09h às 18h30",
-    slots: [
-      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
-      { time: "[HORÁRIO]", title: "[EXPERIÊNCIA PRÁTICA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
-      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
-      { time: "[HORÁRIO]", title: "[ATIVAÇÃO / INTERVALO]", speaker: "[NOME DA MARCA]" },
-      { time: "[HORÁRIO]", title: "Encerramento", speaker: "Suelen Gubeisse" },
+    id: "vida",
+    label: "Vida e rotina",
+    themes: [
+      {
+        icon: Wallet,
+        title: "Organização financeira",
+        desc: "Mais clareza e organização para cuidar melhor da vida financeira.",
+      },
+      {
+        icon: Activity,
+        title: "Saúde, bem-estar e qualidade de vida",
+        desc: "Organização também é criar espaço para cuidar de você.",
+      },
+      {
+        icon: Brain,
+        title: "Organizando a mente para organizar a vida",
+        desc: "Porque colocar a vida em ordem também começa pela forma como organizamos pensamentos e prioridades.",
+      },
+      {
+        icon: Clock,
+        title: "Rotina prática para mulheres reais",
+        desc: "Organização possível para quem tem responsabilidades, imprevistos e uma vida de verdade.",
+      },
+    ],
+  },
+  {
+    id: "voce",
+    label: "Você, suas escolhas e conexões",
+    themes: [
+      {
+        icon: Compass,
+        title: "Trilha do propósito",
+        desc: "Um convite para olhar para prioridades, sonhos e para aquilo que realmente importa.",
+      },
+      {
+        icon: Star,
+        title: "Imagem e estilo",
+        desc: "Organização, imagem e escolhas que ajudam você a expressar quem é e como deseja viver.",
+      },
+      {
+        icon: Users,
+        title: "O poder do ecossistema feminino",
+        desc: "Conexões, trocas e relações que fortalecem mulheres e abrem novas possibilidades.",
+      },
     ],
   },
 ];
@@ -1335,95 +1410,110 @@ function Speakers() {
   );
 }
 
+function ThemeCard({ theme }: { theme: Theme }) {
+  const Icon = theme.icon;
+  return (
+    <article className="group flex h-full gap-3 rounded-2xl border border-border/60 bg-card p-4 shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40 sm:p-5">
+      <span className="badge-icon h-10 w-10 shrink-0 rounded-xl">
+        <Icon className="h-5 w-5" />
+      </span>
+      <div>
+        <h3 className="text-sm font-semibold leading-snug text-foreground sm:text-base">
+          {theme.title}
+        </h3>
+        <p className="mt-1 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+          {theme.desc}
+        </p>
+      </div>
+    </article>
+  );
+}
+
 function Schedule() {
-  const [day, setDay] = useState<"d1" | "d2">("d1");
-  const [expanded, setExpanded] = useState(false);
-  const current = SCHEDULE.find((d) => d.id === day)!;
-  const visible = expanded
-    ? current.slots
-    : current.slots.filter((s) => s.highlight);
+  const [openGroup, setOpenGroup] = useState<string | null>(THEME_GROUPS[0].id);
 
   return (
     <Section id="programacao" className="bg-sky-tint">
       <div className="text-center">
-        <SectionEyebrow>Programação</SectionEyebrow>
+        <SectionEyebrow>Prévia da programação</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
-          Dois dias para organizar{" "}
+          Dois dias. Diferentes áreas da sua vida.{" "}
           <span className="italic text-gradient-brand">
-            diferentes áreas da sua vida.
+            Uma experiência para transformar a forma como você vive.
           </span>
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-balance text-sm text-muted-foreground sm:text-base">
-          Casa, rotina, finanças, saúde, bem-estar e muito mais em uma
-          experiência criada para você aprender, experimentar e sair pronta para
-          colocar em prática.
+          Confira alguns dos temas que vão fazer parte do Não Repara na Bagunça
+          2026.
         </p>
       </div>
 
-      <div className="mx-auto mt-7 flex max-w-lg gap-2 rounded-full border border-border/60 bg-card shadow-card p-1">
-        {SCHEDULE.map((d) => (
-          <button
-            key={d.id}
-            type="button"
-            onClick={() => {
-              setDay(d.id);
-              setExpanded(false);
-            }}
-            className={`flex-1 rounded-full px-3 py-2 text-[11px] font-semibold uppercase tracking-wide transition-colors sm:text-xs ${
-              day === d.id
-                ? "bg-gradient-brand text-primary-foreground"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            {d.tab}
-          </button>
-        ))}
+      <div className="mt-10 space-y-8">
+        {THEME_GROUPS.map((group) => {
+          const isOpen = openGroup === group.id;
+          return (
+            <div key={group.id}>
+              <div className="flex items-center gap-3">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary sm:text-xs">
+                  {group.label}
+                </span>
+                <span className="h-px flex-1 bg-gradient-identity opacity-60" />
+                <button
+                  type="button"
+                  onClick={() => setOpenGroup(isOpen ? null : group.id)}
+                  aria-expanded={isOpen}
+                  className="rounded-full border border-primary/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/10 md:hidden"
+                >
+                  {isOpen ? "Fechar" : `Ver ${group.themes.length}`}
+                </button>
+              </div>
+
+              <div
+                className={`mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 ${
+                  isOpen ? "grid" : "hidden md:grid"
+                }`}
+              >
+                {group.themes.map((t) => (
+                  <ThemeCard key={t.title} theme={t} />
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </div>
 
-      <p className="mt-4 text-center text-xs font-semibold uppercase tracking-wide text-primary">
-        {current.hours}
-      </p>
+      <div className="mx-auto mt-12 max-w-2xl rounded-2xl border border-border/60 bg-card p-6 text-center shadow-card sm:p-8">
+        <p className="text-base font-semibold leading-relaxed text-foreground sm:text-lg">
+          Da casa à rotina.
+          <br />
+          Das finanças ao bem-estar.
+          <br />
+          Da imagem ao propósito.
+        </p>
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+          Porque organizar não é sobre deixar tudo perfeito. É sobre construir
+          uma vida que funcione para você.
+        </p>
 
-      <ol className="mx-auto mt-6 max-w-2xl space-y-0">
-        {visible.map((slot, i) => (
-          <li key={`${slot.time}-${i}`} className="flex gap-4">
-            <div className="flex flex-col items-center">
-              <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-primary" />
-              {i < visible.length - 1 && (
-                <span className="w-px flex-1 bg-border/70" />
-              )}
-            </div>
-            <div className="pb-6">
-              <span className="text-xs font-semibold uppercase tracking-wide text-primary">
-                {slot.time}
-              </span>
-              <h3 className="mt-1 text-base font-semibold leading-snug text-foreground">
-                {slot.title}
-              </h3>
-              {slot.speaker && (
-                <p className="mt-0.5 text-sm text-muted-foreground">
-                  {slot.speaker}
-                </p>
-              )}
-            </div>
-          </li>
-        ))}
-      </ol>
-
-      {current.slots.length > visible.length && !expanded && (
-        <div className="text-center">
-          <button
-            type="button"
-            onClick={() => setExpanded(true)}
-            className="inline-flex items-center gap-2 rounded-full border border-primary/50 px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-foreground transition-colors hover:bg-primary/10"
-          >
-            Ver programação completa +
-          </button>
+        <div className="mt-6 rounded-xl bg-gradient-identity p-[1.5px]">
+          <div className="rounded-[calc(0.75rem-1.5px)] bg-card px-5 py-5">
+            <p className="text-balance font-display text-lg italic leading-snug text-gradient-brand sm:text-xl">
+              “Grandes transformações começam quando você se apaixona pelo
+              processo.”
+            </p>
+          </div>
         </div>
-      )}
+
+        <div className="mt-6 flex justify-center">
+          <CTAButton event="schedule_cta_click">
+            Quero viver esses 2 dias
+          </CTAButton>
+        </div>
+      </div>
 
       <p className="mt-6 text-center text-xs text-muted-foreground">
-        *Programação sujeita a alterações.
+        *Temas confirmados. Dias, horários e palestrantes serão divulgados em
+        breve.
       </p>
     </Section>
   );

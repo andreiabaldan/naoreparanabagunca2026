@@ -6,6 +6,7 @@ export type TrackEvent =
   | "page_view"
   | "hero_cta_click"
   | "benefits_cta_click"
+  | "schedule_cta_click"
   | "video_play"
   | "video_cta_click"
   | "ticket_section_view"
