@@ -587,19 +587,25 @@ function ForWhom() {
         </h2>
       </div>
 
-      <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-        {FOR_WHOM.map((item) => (
-          <li
-            key={item}
-            className="flex items-start gap-3 rounded-2xl border border-border/60 bg-card shadow-card p-4"
-          >
-            <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-            <span className="text-sm leading-relaxed text-foreground/90">
-              {item}
-            </span>
-          </li>
-        ))}
-      </ul>
+      <div className="mt-8">
+        <CarouselRow
+          ariaLabel="Para quem é o evento"
+          hint="← Deslize para ver se você se identifica →"
+          itemClassName="w-[82%] sm:w-[46%] lg:w-[32%]"
+          items={FOR_WHOM.map((item) => (
+            <div
+              key={item}
+              className="flex h-full items-start gap-3 rounded-2xl border border-border/60 bg-card p-4 shadow-card"
+            >
+              <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+              <span className="text-sm leading-relaxed text-foreground/90">
+                {item}
+              </span>
+            </div>
+          ))}
+        />
+      </div>
+
 
       <p className="mx-auto mt-8 max-w-2xl text-balance text-center text-base font-medium text-foreground sm:text-lg">
         Você não precisa sair do evento com uma vida perfeita. Precisa sair
