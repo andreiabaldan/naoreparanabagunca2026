@@ -1669,11 +1669,12 @@ function LandingPage() {
       <VideoStory />
       <ForWhom />
       <Benefits />
+      <Founder />
       <Speakers />
       <Schedule />
       <SocialProof />
       <Tickets />
-      <Founder />
+
       <Sponsors />
       <Venue />
 
