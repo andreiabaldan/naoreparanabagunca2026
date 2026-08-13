@@ -380,18 +380,55 @@ function TopBar() {
   );
 }
 
+function HeroBackgroundVideo() {
+  const isMobile = useIsMobile();
+  const [reduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const onChange = () => setReduced(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  if (reduced) {
+    return (
+      <img
+        src={heroLoopPoster.url}
+        alt="Mulheres reunidas no auditório do Não Repara na Bagunça"
+        fetchPriority="high"
+        className="absolute inset-0 h-full w-full object-cover opacity-40"
+      />
+    );
+  }
+
+  return (
+    <video
+      key={isMobile ? "m" : "d"}
+      src={isMobile ? heroLoopMobile.url : heroLoopDesktop.url}
+      poster={heroLoopPoster.url}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      aria-hidden="true"
+      tabIndex={-1}
+      className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-40"
+    />
+  );
+}
+
 function Hero() {
   return (
     <section className="relative overflow-hidden">
-      <img
-        src={heroBg}
-        alt="Mulheres reunidas no auditório do Não Repara na Bagunça"
-        fetchPriority="high"
-        className="absolute inset-0 h-full w-full object-cover opacity-30"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/88 to-background" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-identity opacity-[0.10]" />
+      <HeroBackgroundVideo />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/78 via-background/86 to-background" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-identity opacity-[0.14]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--background)_0%,_transparent_70%)] opacity-70" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1 bg-gradient-identity" />
+
 
 
       <div className="relative mx-auto max-w-3xl px-5 pb-14 pt-10 text-center sm:px-6 sm:pb-20 sm:pt-16">
