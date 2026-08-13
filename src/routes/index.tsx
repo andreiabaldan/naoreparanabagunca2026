@@ -1116,8 +1116,8 @@ function Tickets() {
 function Founder() {
   return (
     <Section>
-      <div className="grid items-center gap-8 md:grid-cols-[0.8fr_1fr]">
-        <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-b from-primary/15 to-background md:max-w-none">
+      <div className="grid items-center gap-6 md:grid-cols-[0.7fr_1fr] md:gap-8">
+        <div className="relative mx-auto w-full max-w-[260px] overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-b from-primary/15 to-background md:max-w-xs">
           <img
             src={suelenPhoto.url}
             alt="Suelen Gubeisse, idealizadora do Não Repara na Bagunça"
@@ -1129,31 +1129,25 @@ function Founder() {
         </div>
         <div>
           <SectionEyebrow>Idealizadora</SectionEyebrow>
-          <h2 className="mt-5 text-balance text-2xl leading-tight sm:text-3xl">
+          <h2 className="mt-4 text-balance text-2xl leading-tight sm:text-3xl">
             Quem criou o{" "}
             <span className="italic text-gradient-brand">
               Não Repara na Bagunça
             </span>
           </h2>
-          <div className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-            <p>
-              Suelen Gubeisse é Personal Organizer, apaixonada por organização e
-              acredita que uma casa organizada pode ser o começo de uma vida
-              muito mais leve.
-            </p>
-            <p>
-              Depois de anos entrando na casa de mulheres e vendo de perto como
-              a organização transforma muito mais do que armários, criou o Não
-              Repara na Bagunça.
-            </p>
-            <p className="font-medium text-foreground">
-              Um evento para mostrar, na prática, que organização não é sobre
-              ter uma casa perfeita. É sobre criar espaço para a vida que você
-              quer viver.
-            </p>
-          </div>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
+            Suelen Gubeisse é Personal Organizer. Depois de anos entrando na
+            casa de mulheres e vendo de perto como a organização transforma
+            muito mais do que armários, criou o Não Repara na Bagunça.
+          </p>
+          <p className="mt-3 text-sm font-medium leading-relaxed text-foreground sm:text-base">
+            Um evento para mostrar, na prática, que organização não é sobre ter
+            uma casa perfeita. É sobre criar espaço para a vida que você quer
+            viver.
+          </p>
         </div>
       </div>
+
     </Section>
   );
 }
