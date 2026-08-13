@@ -69,8 +69,11 @@ const EVENT = {
 
 export const WHATSAPP_URL = `https://wa.me/${EVENT.whatsappNumber}?text=${encodeURIComponent(EVENT.whatsappMessage)}`;
 
-/** Depoimento em vídeo (editável). Preencha a URL quando o arquivo for enviado. */
-const TESTIMONIAL_VIDEO: { src: string; poster?: string } | null = null;
+/** Depoimento em vídeo (editável). */
+const TESTIMONIAL_VIDEO: { src: string; poster?: string } | null = {
+  src: depoimentoVideo.url,
+  poster: depoimentoPoster.url,
+};
 
 /* ---- Palestrantes (editável). Não inventar nomes: use placeholders. ---- */
 type Speaker = {
