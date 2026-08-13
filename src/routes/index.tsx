@@ -90,35 +90,76 @@ const TESTIMONIAL_VIDEO: { src: string; poster?: string } | null = {
   poster: depoimentoPoster.url,
 };
 
-/* ---- Palestrantes (editável). Não inventar nomes: use placeholders. ---- */
+/* ---- Palestrantes (editável e modular) ----
+   Para adicionar um novo palestrante, basta acrescentar um objeto abaixo
+   com: photo, name, topic e description.                                */
 type Speaker = {
   name: string;
-  role: string;
-  benefit: string;
+  /** Tema da palestra */
+  topic: string;
+  /** Descrição curta revelada em "Saiba mais" */
+  description: string;
   photo?: string;
+  /** Selo opcional (ex.: idealizadora & anfitriã) */
+  badge?: string;
 };
 
 const SPEAKERS: Speaker[] = [
   {
     name: "Suelen Gubeisse",
-    role: "Personal Organizer · Idealizadora do NRNB",
-    benefit: "Vai ajudar você a começar a organizar a casa sem travar no meio.",
+    badge: "Idealizadora & anfitriã",
+    topic: "Técnicas modernas de limpeza • Aromatização do lar",
+    description:
+      "Anfitriã do Não Repara na Bagunça, ela conduz os conteúdos de técnicas modernas de limpeza e aromatização do lar.",
     photo: suelenPhoto.url,
   },
   {
-    name: "[NOME DO PALESTRANTE]",
-    role: "Especialista em [ÁREA]",
-    benefit: "Vai ajudar você a [BENEFÍCIO].",
+    name: "Douglas Lopes",
+    topic: "A Trilha do Propósito",
+    description:
+      "Descubra como encontrar direção para viver uma vida com mais propósito e realização.",
   },
   {
-    name: "[NOME DO PALESTRANTE]",
-    role: "Especialista em [ÁREA]",
-    benefit: "Vai ajudar você a [BENEFÍCIO].",
+    name: "Natália Rico",
+    topic: "A Força do Ecossistema",
+    description:
+      "Idealizadora do movimento Mulheres à Obra, compartilhará como o poder do ecossistema pode transformar vidas e fortalecer mulheres.",
   },
   {
-    name: "[NOME DO PALESTRANTE]",
-    role: "Especialista em [ÁREA]",
-    benefit: "Vai ajudar você a [BENEFÍCIO].",
+    name: "Fernanda Ardito",
+    topic: "Descomplicando a Mesa Posta",
+    description:
+      "Aprenda a fazer uma mesa posta simples, descomplicada, encantadora e feita com muito carinho.",
+  },
+  {
+    name: "Andréia Baldan",
+    topic: "Crescimento Inteligente",
+    description:
+      "Entenda como a desorganização impacta pessoas, equipes e empresas, e por onde começar a mudar essa realidade.",
+  },
+  {
+    name: "Paula Chiaradia",
+    topic: "Imagem que Comunica",
+    description:
+      "Antes de você falar, a sua imagem já contou uma história. Qual história ela está contando?",
+  },
+  {
+    name: "Michelle Sampaio",
+    topic: "O Poder da Comunicação",
+    description:
+      "Aprenda como uma comunicação clara e intencional pode transformar a maneira como você é percebida.",
+  },
+  {
+    name: "Stella Vilella",
+    topic: "Nosso Corpo é Nossa Primeira Casa",
+    description:
+      "Porque cuidar do seu corpo é o primeiro passo para viver com mais leveza e qualidade de vida.",
+  },
+  {
+    name: "Thaís Paraíso",
+    topic: "Imagem que Comunica",
+    description:
+      "Aprenda como o autocuidado pode resgatar sua confiança e valorizar a mulher que existe em você.",
   },
 ];
 
@@ -1364,58 +1405,104 @@ function StickyCTA() {
   );
 }
 
+function SpeakerCard({ speaker }: { speaker: Speaker }) {
+  const [open, setOpen] = useState(false);
+  const initials = speaker.name
+    .split(" ")
+    .map((p) => p[0])
+    .slice(0, 2)
+    .join("");
+
+  return (
+    <article className="flex h-full flex-col overflow-hidden rounded-3xl border border-border/60 bg-card shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40">
+      <div className="relative aspect-[4/5] w-full bg-sky-tint">
+        {speaker.photo ? (
+          <img
+            src={speaker.photo}
+            alt={`Foto de ${speaker.name}`}
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover object-top"
+          />
+        ) : (
+          <div className="flex h-full w-full flex-col items-center justify-center gap-2">
+            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 font-serif text-xl text-primary">
+              {initials}
+            </span>
+            <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+              Foto em breve
+            </span>
+          </div>
+        )}
+        {speaker.badge ? (
+          <span className="absolute left-3 top-3 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
+            {speaker.badge}
+          </span>
+        ) : null}
+      </div>
+
+      <div className="flex flex-1 flex-col p-4">
+        <h3 className="text-base font-semibold leading-tight text-foreground">
+          {speaker.name}
+        </h3>
+        <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-primary">
+          {speaker.topic}
+        </p>
+
+        {open ? (
+          <p className="mt-3 text-sm leading-snug text-muted-foreground">
+            {speaker.description}
+          </p>
+        ) : null}
+
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          className="mt-3 self-start text-[11px] font-bold uppercase tracking-widest text-primary transition-opacity hover:opacity-70"
+        >
+          {open ? "Fechar −" : "Saiba mais +"}
+        </button>
+      </div>
+    </article>
+  );
+}
+
 function Speakers() {
   return (
     <Section id="palestrantes">
       <div className="text-center">
         <SectionEyebrow>Palestrantes</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
-          Um encontro. Diferentes especialistas.{" "}
-          <span className="italic text-gradient-brand">
-            Uma vida mais organizada.
-          </span>
+          Quem você vai encontrar{" "}
+          <span className="italic text-gradient-brand">no NRNB 2026</span>
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-balance text-sm text-muted-foreground sm:text-base">
-          Conheça algumas das pessoas que vão subir ao palco do Não Repara na
-          Bagunça para compartilhar conhecimento, experiências e caminhos
-          práticos para uma vida mais leve e organizada.
+          Especialistas e convidados para ajudar você a olhar para diferentes
+          áreas da casa, da rotina e da vida.
         </p>
       </div>
 
-      <div className="-mx-5 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
-        {SPEAKERS.map((s, i) => (
-          <article
-            key={`${s.name}-${i}`}
-            className="w-[72%] shrink-0 snap-start overflow-hidden rounded-3xl border border-border/60 bg-card shadow-card sm:w-auto"
-          >
-            <div className="aspect-[4/5] w-full bg-sky-tint">
-              {s.photo ? (
-                <img
-                  src={s.photo}
-                  alt={`Foto de ${s.name}`}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-full w-full object-cover"
-                />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
-                  [FOTO]
-                </div>
-              )}
-            </div>
-            <div className="p-4">
-              <h3 className="text-base font-semibold leading-tight text-foreground">
-                {s.name}
-              </h3>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-primary">
-                {s.role}
-              </p>
-              <p className="mt-2 text-sm leading-snug text-muted-foreground">
-                {s.benefit}
-              </p>
-            </div>
-          </article>
-        ))}
+      <div className="mt-8">
+        <CarouselRow
+          ariaLabel="Palestrantes do NRNB 2026"
+          items={SPEAKERS.map((s) => (
+            <SpeakerCard key={s.name} speaker={s} />
+          ))}
+          itemClassName="w-[78%] sm:w-[45%] lg:w-[31%] xl:w-[23%]"
+          hint="Deslize para conhecer os palestrantes →"
+        />
+      </div>
+
+      <div className="mt-8 text-center">
+        <p className="mx-auto max-w-xl text-balance text-sm text-muted-foreground sm:text-base">
+          E ainda tem muito mais sendo preparado para esses dois dias.
+        </p>
+        <div className="mt-5 flex justify-center">
+          <CTAButton event="schedule_cta_click">
+            Quero viver essa experiência
+          </CTAButton>
+        </div>
       </div>
     </Section>
   );
