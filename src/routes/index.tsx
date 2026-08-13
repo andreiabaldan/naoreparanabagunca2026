@@ -1671,88 +1671,43 @@ function Schedule() {
 }
 
 function Sponsors() {
+  const sponsorWhatsAppUrl =
+    `https://wa.me/5512991402832?text=${encodeURIComponent("Olá, vim do site quero ser patrocinador")}`;
+
   return (
     <Section id="patrocinadores">
-      <div className="text-center">
-        <SectionEyebrow>Patrocinadores</SectionEyebrow>
-        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-3xl">
-          Marcas que acreditam em{" "}
-          <span className="italic text-gradient-brand">
-            uma vida mais organizada.
-          </span>
+      <div className="mx-auto max-w-3xl text-center">
+        <h2 className="text-balance text-2xl leading-tight sm:text-3xl">
+          Marcas que estarão com a gente em 2026
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-balance text-sm text-muted-foreground sm:text-base">
-          O Não Repara na Bagunça acontece ao lado de marcas que compartilham o
-          nosso propósito de tornar a casa, a rotina e a vida mais leves.
+          Os patrocinadores e parceiros desta edição serão apresentados em breve.
         </p>
+
+        <div className="mt-8 rounded-2xl border border-border/60 bg-sky-tint/30 p-6 sm:p-8">
+          <p className="text-base font-semibold text-foreground sm:text-lg">
+            Sua marca também pode fazer parte do Não Repara na Bagunça 2026.
+          </p>
+          <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
+            Quer conhecer as possibilidades de parceria e patrocínio do evento? Fale com a nossa equipe.
+          </p>
+          <a
+            href={sponsorWhatsAppUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => track("sponsor_whatsapp_click")}
+            className="mt-5 inline-flex items-center justify-center gap-2 rounded-full border-2 border-magenta px-6 py-3 text-sm font-semibold uppercase tracking-wider text-magenta transition hover:bg-magenta hover:text-white"
+          >
+            Quero saber mais sobre patrocínio
+          </a>
+        </div>
       </div>
 
-      {SPONSORS.map((group) => (
-        <div key={group.group} className="mt-8">
-          <p className="text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-            {group.group}
-          </p>
-          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-            {group.items.map((s, i) => (
-              <div
-                key={`${s.name}-${i}`}
-                className="flex h-20 items-center justify-center rounded-2xl border border-border/50 bg-card shadow-card px-3 text-center"
-              >
-                {s.logo ? (
-                  <img
-                    src={s.logo}
-                    alt={`Logo ${s.name}`}
-                    loading="lazy"
-                    decoding="async"
-                    className="max-h-10 w-auto opacity-80 grayscale transition hover:opacity-100 hover:grayscale-0"
-                  />
-                ) : (
-                  <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
-                    {s.name}
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
-
-      {ACTIVATIONS.length > 0 && (
-        <div className="mt-12">
-          <h3 className="text-center text-balance text-xl leading-tight sm:text-2xl">
-            Experiências que você vai{" "}
-            <span className="italic text-gradient-brand">encontrar por lá</span>
-          </h3>
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {ACTIVATIONS.map((a, i) => (
-              <article
-                key={`${a.title}-${i}`}
-                className="rounded-2xl border border-border/60 bg-card shadow-card p-5"
-              >
-                {a.logo ? (
-                  <img
-                    src={a.logo}
-                    alt={`Logo ${a.brand}`}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-8 w-auto"
-                  />
-                ) : (
-                  <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
-                    {a.brand}
-                  </span>
-                )}
-                <h4 className="mt-3 text-base font-semibold text-foreground">
-                  {a.title}
-                </h4>
-                <p className="mt-1 text-sm leading-snug text-muted-foreground">
-                  {a.description}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      )}
+      {/*
+        Grid de logos e experiências de marcas mantidos comentados temporariamente.
+        Para reativar, basta remover este bloco de comentário e assegurar que
+        SPONSORS e ACTIVATIONS tenham conteúdo real preenchido.
+      */}
     </Section>
   );
 }
