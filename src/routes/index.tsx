@@ -55,9 +55,9 @@ const EVENT = {
   city: "",
   address: "Estr. Dr. Altino Bondesan, 500 - Eugênio de Melo, São José dos Campos - SP, 12247-016",
   /** Horários (editáveis). Substitua pelos horários confirmados. */
-  hoursShort: "Das 09h às 17h",
-  hoursDay1: "Sábado, 24/10 · das 09h às 17h",
-  hoursDay2: "Domingo, 25/10 · das 09h às 17h",
+  hoursShort: "Das 09h às 18h30",
+  hoursDay1: "Sábado, 24/10 · das 09h às 18h30",
+  hoursDay2: "Domingo, 25/10 · das 09h às 18h30",
   /** URL do checkout. Troque pelo link real quando estiver configurado. */
   checkoutUrl: "#ingressos",
 };
@@ -101,7 +101,7 @@ const SCHEDULE: { id: "d1" | "d2"; tab: string; hours: string; slots: Slot[] }[]
   {
     id: "d1",
     tab: "Sábado · 24 de outubro",
-    hours: "Das 09h às 17h",
+    hours: "Das 09h às 18h30",
     slots: [
       { time: "[HORÁRIO]", title: "Abertura do Não Repara na Bagunça", speaker: "Suelen Gubeisse", highlight: true },
       { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
@@ -114,7 +114,7 @@ const SCHEDULE: { id: "d1" | "d2"; tab: string; hours: string; slots: Slot[] }[]
   {
     id: "d2",
     tab: "Domingo · 25 de outubro",
-    hours: "Das 09h às 17h",
+    hours: "Das 09h às 18h30",
     slots: [
       { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
       { time: "[HORÁRIO]", title: "[EXPERIÊNCIA PRÁTICA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
