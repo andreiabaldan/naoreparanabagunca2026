@@ -112,33 +112,100 @@ const SPEAKERS: Speaker[] = [
   },
 ];
 
-/* ---- Programação (editável) ---- */
-type Slot = { time: string; title: string; speaker?: string; highlight?: boolean };
+/* ---- Prévia da programação (editável) ----
+   A agenda oficial (dia, horário, palestrante) ainda não está fechada.
+   Estrutura modular: quando houver agenda, basta adicionar SCHEDULE (dias/slots)
+   e trocar <Schedule /> por um componente de programação completa.       */
+type Theme = { icon: LucideIcon; title: string; desc: string };
+type ThemeGroup = { id: string; label: string; themes: Theme[] };
 
-const SCHEDULE: { id: "d1" | "d2"; tab: string; hours: string; slots: Slot[] }[] = [
+const THEME_GROUPS: ThemeGroup[] = [
   {
-    id: "d1",
-    tab: "Sábado · 24 de outubro",
-    hours: "Das 09h às 18h30",
-    slots: [
-      { time: "[HORÁRIO]", title: "Abertura do Não Repara na Bagunça", speaker: "Suelen Gubeisse", highlight: true },
-      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
-      { time: "[HORÁRIO]", title: "[EXPERIÊNCIA PRÁTICA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
-      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]" },
-      { time: "[HORÁRIO]", title: "[ATIVAÇÃO / INTERVALO]", speaker: "[NOME DA MARCA]" },
-      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]" },
+    id: "casa",
+    label: "Casa e organização",
+    themes: [
+      {
+        icon: Home,
+        title: "Organização residencial",
+        desc: "Soluções para transformar a organização da casa em praticidade para a vida real.",
+      },
+      {
+        icon: Shirt,
+        title: "Guarda-roupa inteligente",
+        desc: "Mais funcionalidade, clareza e praticidade na hora de se vestir e organizar suas escolhas.",
+      },
+      {
+        icon: Sparkles,
+        title: "Técnicas modernas de limpeza",
+        desc: "Caminhos para tornar o cuidado com a casa mais prático e eficiente.",
+      },
+      {
+        icon: Utensils,
+        title: "Mesa posta e receber bem",
+        desc: "Como transformar momentos à mesa em experiências de cuidado, conexão e acolhimento.",
+      },
+      {
+        icon: BedDouble,
+        title: "Cama posta e sensação de acolhimento",
+        desc: "Pequenos cuidados capazes de transformar a experiência de chegar e estar em casa.",
+      },
+      {
+        icon: Ruler,
+        title: "Arquitetura e funcionalidade da casa",
+        desc: "Como os espaços podem funcionar melhor para facilitar a rotina e a vida.",
+      },
+      {
+        icon: Flower2,
+        title: "Perfumação do lar: aromas e sensações",
+        desc: "Como os aromas ajudam a construir a sensação de acolhimento e identidade dentro de casa.",
+      },
     ],
   },
   {
-    id: "d2",
-    tab: "Domingo · 25 de outubro",
-    hours: "Das 09h às 18h30",
-    slots: [
-      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
-      { time: "[HORÁRIO]", title: "[EXPERIÊNCIA PRÁTICA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
-      { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
-      { time: "[HORÁRIO]", title: "[ATIVAÇÃO / INTERVALO]", speaker: "[NOME DA MARCA]" },
-      { time: "[HORÁRIO]", title: "Encerramento", speaker: "Suelen Gubeisse" },
+    id: "vida",
+    label: "Vida e rotina",
+    themes: [
+      {
+        icon: Wallet,
+        title: "Organização financeira",
+        desc: "Mais clareza e organização para cuidar melhor da vida financeira.",
+      },
+      {
+        icon: Activity,
+        title: "Saúde, bem-estar e qualidade de vida",
+        desc: "Organização também é criar espaço para cuidar de você.",
+      },
+      {
+        icon: Brain,
+        title: "Organizando a mente para organizar a vida",
+        desc: "Porque colocar a vida em ordem também começa pela forma como organizamos pensamentos e prioridades.",
+      },
+      {
+        icon: Clock,
+        title: "Rotina prática para mulheres reais",
+        desc: "Organização possível para quem tem responsabilidades, imprevistos e uma vida de verdade.",
+      },
+    ],
+  },
+  {
+    id: "voce",
+    label: "Você, suas escolhas e conexões",
+    themes: [
+      {
+        icon: Compass,
+        title: "Trilha do propósito",
+        desc: "Um convite para olhar para prioridades, sonhos e para aquilo que realmente importa.",
+      },
+      {
+        icon: Star,
+        title: "Imagem e estilo",
+        desc: "Organização, imagem e escolhas que ajudam você a expressar quem é e como deseja viver.",
+      },
+      {
+        icon: Users,
+        title: "O poder do ecossistema feminino",
+        desc: "Conexões, trocas e relações que fortalecem mulheres e abrem novas possibilidades.",
+      },
     ],
   },
 ];
