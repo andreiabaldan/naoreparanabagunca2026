@@ -1431,40 +1431,39 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
     .join("");
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-3xl border border-border/60 bg-card shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40">
-      <div className="relative aspect-[4/5] w-full bg-sky-tint">
-        {speaker.photo ? (
-          <img
-            src={speaker.photo}
-            alt={`Foto de ${speaker.name}`}
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-cover object-top"
-          />
-        ) : (
-          <div className="flex h-full w-full flex-col items-center justify-center gap-2">
-            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 font-serif text-xl text-primary">
+    <article className="flex h-full flex-col items-center rounded-3xl border border-border/60 bg-card p-5 text-center shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40">
+      <div className="relative rounded-full bg-gradient-identity p-[3px]">
+        <div className="h-28 w-28 overflow-hidden rounded-full bg-sky-tint sm:h-32 sm:w-32">
+          {speaker.photo ? (
+            <img
+              src={speaker.photo}
+              alt={`Foto de ${speaker.name}`}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center font-serif text-2xl text-primary">
               {initials}
-            </span>
-            <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
-              Foto em breve
-            </span>
-          </div>
-        )}
-        {speaker.badge ? (
-          <span className="absolute left-3 top-3 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
-            {speaker.badge}
-          </span>
-        ) : null}
+            </div>
+          )}
+        </div>
       </div>
 
-      <div className="flex flex-1 flex-col p-4">
-        <h3 className="text-base font-semibold leading-tight text-foreground">
+      {speaker.badge ? (
+        <span className="mt-3 rounded-full bg-primary px-3 py-1 text-[9px] font-bold uppercase tracking-widest text-primary-foreground">
+          {speaker.badge}
+        </span>
+      ) : null}
+
+      <div className="flex flex-1 flex-col items-center">
+        <h3 className="mt-3 text-base font-semibold leading-tight text-foreground">
           {speaker.name}
         </h3>
         <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-primary">
           {speaker.topic}
         </p>
+
 
         {open ? (
           <p className="mt-3 text-sm leading-snug text-muted-foreground">
