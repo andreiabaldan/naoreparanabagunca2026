@@ -127,7 +127,7 @@ const SPEAKERS: Speaker[] = [
    Estrutura modular: quando houver agenda, basta adicionar SCHEDULE (dias/slots)
    e trocar <Schedule /> por um componente de programação completa.       */
 type Theme = { icon: LucideIcon; title: string; desc: string };
-type ThemeGroup = { id: string; label: string; themes: Theme[] };
+type ThemeGroup = { id: string; label: string; blurb: string; themes: Theme[] };
 
 const THEME_GROUPS: ThemeGroup[] = [
   {
