@@ -1504,7 +1504,7 @@ function Schedule() {
       <div className="text-center">
         <SectionEyebrow>Prévia da programação</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
-          Dois dias. Diferentes áreas da sua vida.{" "}
+          Dois dias.{" "}
           <span className="italic text-gradient-brand">
             Uma experiência para transformar a forma como você vive.
           </span>
