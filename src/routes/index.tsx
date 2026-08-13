@@ -27,8 +27,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { track } from "@/lib/tracking";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 import heroBg from "@/assets/hero-bg.jpg";
+import heroLoopDesktop from "@/assets/hero-loop-desktop.mp4.asset.json";
+import heroLoopMobile from "@/assets/hero-loop-mobile.mp4.asset.json";
+import heroLoopPoster from "@/assets/hero-loop-poster.jpg.asset.json";
 import logoNrnb from "@/assets/logo_nrnb.webp.asset.json";
 import suelenPhoto from "@/assets/suelen_fundo.png.asset.json";
 import event2 from "@/assets/event-2.jpg";
