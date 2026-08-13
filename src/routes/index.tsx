@@ -45,6 +45,15 @@ import heroLoopMobile from "@/assets/hero-loop-mobile.mp4.asset.json";
 import heroLoopPoster from "@/assets/hero-loop-poster.jpg.asset.json";
 import logoNrnb from "@/assets/logo_nrnb.webp.asset.json";
 import suelenPhoto from "@/assets/suelen_fundo.png.asset.json";
+import suelenAvatar from "@/assets/suelen-avatar.png.asset.json";
+import spDouglas from "@/assets/douglas-lopes.png.asset.json";
+import spNatalia from "@/assets/natalia-rico.png.asset.json";
+import spFernanda from "@/assets/fernanda-ardito.png.asset.json";
+import spAndreia from "@/assets/andreia-baldan.png.asset.json";
+import spPaula from "@/assets/paula-chiaradia.png.asset.json";
+import spMichelle from "@/assets/michelle-sampaio.png.asset.json";
+import spStella from "@/assets/stella-vilella.png.asset.json";
+import spThais from "@/assets/thais-paraiso.png.asset.json";
 import event2 from "@/assets/event-2.jpg";
 import event4 from "@/assets/event-4.jpg";
 import nrnb1 from "@/assets/dan_9014.jpg.asset.json";
@@ -111,55 +120,63 @@ const SPEAKERS: Speaker[] = [
     topic: "Técnicas modernas de limpeza • Aromatização do lar",
     description:
       "Anfitriã do Não Repara na Bagunça, ela conduz os conteúdos de técnicas modernas de limpeza e aromatização do lar.",
-    photo: suelenPhoto.url,
+    photo: suelenAvatar.url,
   },
   {
     name: "Douglas Lopes",
     topic: "A Trilha do Propósito",
     description:
       "Descubra como encontrar direção para viver uma vida com mais propósito e realização.",
+    photo: spDouglas.url,
   },
   {
     name: "Natália Rico",
     topic: "A Força do Ecossistema",
     description:
       "Idealizadora do movimento Mulheres à Obra, compartilhará como o poder do ecossistema pode transformar vidas e fortalecer mulheres.",
+    photo: spNatalia.url,
   },
   {
     name: "Fernanda Ardito",
     topic: "Descomplicando a Mesa Posta",
     description:
       "Aprenda a fazer uma mesa posta simples, descomplicada, encantadora e feita com muito carinho.",
+    photo: spFernanda.url,
   },
   {
     name: "Andréia Baldan",
     topic: "Crescimento Inteligente",
     description:
       "Entenda como a desorganização impacta pessoas, equipes e empresas, e por onde começar a mudar essa realidade.",
+    photo: spAndreia.url,
   },
   {
     name: "Paula Chiaradia",
     topic: "Imagem que Comunica",
     description:
       "Antes de você falar, a sua imagem já contou uma história. Qual história ela está contando?",
+    photo: spPaula.url,
   },
   {
     name: "Michelle Sampaio",
     topic: "O Poder da Comunicação",
     description:
       "Aprenda como uma comunicação clara e intencional pode transformar a maneira como você é percebida.",
+    photo: spMichelle.url,
   },
   {
     name: "Stella Vilella",
     topic: "Nosso Corpo é Nossa Primeira Casa",
     description:
       "Porque cuidar do seu corpo é o primeiro passo para viver com mais leveza e qualidade de vida.",
+    photo: spStella.url,
   },
   {
     name: "Thaís Paraíso",
     topic: "Imagem que Comunica",
     description:
       "Aprenda como o autocuidado pode resgatar sua confiança e valorizar a mulher que existe em você.",
+    photo: spThais.url,
   },
 ];
 
@@ -1414,40 +1431,39 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
     .join("");
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-3xl border border-border/60 bg-card shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40">
-      <div className="relative aspect-[4/5] w-full bg-sky-tint">
-        {speaker.photo ? (
-          <img
-            src={speaker.photo}
-            alt={`Foto de ${speaker.name}`}
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-cover object-top"
-          />
-        ) : (
-          <div className="flex h-full w-full flex-col items-center justify-center gap-2">
-            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 font-serif text-xl text-primary">
+    <article className="flex h-full flex-col items-center rounded-3xl border border-border/60 bg-card p-5 text-center shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40">
+      <div className="relative rounded-full bg-gradient-identity p-[3px]">
+        <div className="h-28 w-28 overflow-hidden rounded-full bg-sky-tint sm:h-32 sm:w-32">
+          {speaker.photo ? (
+            <img
+              src={speaker.photo}
+              alt={`Foto de ${speaker.name}`}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center font-serif text-2xl text-primary">
               {initials}
-            </span>
-            <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
-              Foto em breve
-            </span>
-          </div>
-        )}
-        {speaker.badge ? (
-          <span className="absolute left-3 top-3 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
-            {speaker.badge}
-          </span>
-        ) : null}
+            </div>
+          )}
+        </div>
       </div>
 
-      <div className="flex flex-1 flex-col p-4">
-        <h3 className="text-base font-semibold leading-tight text-foreground">
+      {speaker.badge ? (
+        <span className="mt-3 rounded-full bg-primary px-3 py-1 text-[9px] font-bold uppercase tracking-widest text-primary-foreground">
+          {speaker.badge}
+        </span>
+      ) : null}
+
+      <div className="flex flex-1 flex-col items-center">
+        <h3 className="mt-3 text-base font-semibold leading-tight text-foreground">
           {speaker.name}
         </h3>
         <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-primary">
           {speaker.topic}
         </p>
+
 
         {open ? (
           <p className="mt-3 text-sm leading-snug text-muted-foreground">
@@ -1459,8 +1475,9 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
-          className="mt-3 self-start text-[11px] font-bold uppercase tracking-widest text-primary transition-opacity hover:opacity-70"
+          className="mt-3 text-[11px] font-bold uppercase tracking-widest text-primary transition-opacity hover:opacity-70"
         >
+
           {open ? "Fechar −" : "Saiba mais +"}
         </button>
       </div>
