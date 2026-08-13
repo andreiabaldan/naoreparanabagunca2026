@@ -1475,8 +1475,9 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
-          className="mt-3 self-start text-[11px] font-bold uppercase tracking-widest text-primary transition-opacity hover:opacity-70"
+          className="mt-3 text-[11px] font-bold uppercase tracking-widest text-primary transition-opacity hover:opacity-70"
         >
+
           {open ? "Fechar −" : "Saiba mais +"}
         </button>
       </div>
