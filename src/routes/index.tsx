@@ -34,6 +34,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { CarouselRow } from "@/components/carousel-row";
+
 import { track } from "@/lib/tracking";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -125,12 +127,15 @@ const SPEAKERS: Speaker[] = [
    Estrutura modular: quando houver agenda, basta adicionar SCHEDULE (dias/slots)
    e trocar <Schedule /> por um componente de programação completa.       */
 type Theme = { icon: LucideIcon; title: string; desc: string };
-type ThemeGroup = { id: string; label: string; themes: Theme[] };
+type ThemeGroup = { id: string; label: string; blurb: string; themes: Theme[] };
 
 const THEME_GROUPS: ThemeGroup[] = [
   {
     id: "casa",
-    label: "Casa e organização",
+    label: "Casa & organização",
+    blurb:
+      "Ideias e soluções para tornar sua casa mais funcional, acolhedora e fácil de viver.",
+
     themes: [
       {
         icon: Home,
@@ -171,7 +176,10 @@ const THEME_GROUPS: ThemeGroup[] = [
   },
   {
     id: "vida",
-    label: "Vida e rotina",
+    label: "Vida & rotina",
+    blurb:
+      "Organização para cuidar melhor do seu tempo, das suas escolhas e de você.",
+
     themes: [
       {
         icon: Wallet,
@@ -197,7 +205,10 @@ const THEME_GROUPS: ThemeGroup[] = [
   },
   {
     id: "voce",
-    label: "Você, suas escolhas e conexões",
+    label: "Você, suas escolhas & conexões",
+    blurb:
+      "Porque organizar a vida também passa por quem você é, o que deseja e com quem escolhe caminhar.",
+
     themes: [
       {
         icon: Compass,
@@ -587,19 +598,25 @@ function ForWhom() {
         </h2>
       </div>
 
-      <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-        {FOR_WHOM.map((item) => (
-          <li
-            key={item}
-            className="flex items-start gap-3 rounded-2xl border border-border/60 bg-card shadow-card p-4"
-          >
-            <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-            <span className="text-sm leading-relaxed text-foreground/90">
-              {item}
-            </span>
-          </li>
-        ))}
-      </ul>
+      <div className="mt-8">
+        <CarouselRow
+          ariaLabel="Para quem é o evento"
+          hint="← Deslize para ver se você se identifica →"
+          itemClassName="w-[82%] sm:w-[46%] lg:w-[32%]"
+          items={FOR_WHOM.map((item) => (
+            <div
+              key={item}
+              className="flex h-full items-start gap-3 rounded-2xl border border-border/60 bg-card p-4 shadow-card"
+            >
+              <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+              <span className="text-sm leading-relaxed text-foreground/90">
+                {item}
+              </span>
+            </div>
+          ))}
+        />
+      </div>
+
 
       <p className="mx-auto mt-8 max-w-2xl text-balance text-center text-base font-medium text-foreground sm:text-lg">
         Você não precisa sair do evento com uma vida perfeita. Precisa sair
@@ -1099,8 +1116,8 @@ function Tickets() {
 function Founder() {
   return (
     <Section>
-      <div className="grid items-center gap-8 md:grid-cols-[0.8fr_1fr]">
-        <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-b from-primary/15 to-background md:max-w-none">
+      <div className="grid items-center gap-6 md:grid-cols-[0.7fr_1fr] md:gap-8">
+        <div className="relative mx-auto w-full max-w-[260px] overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-b from-primary/15 to-background md:max-w-xs">
           <img
             src={suelenPhoto.url}
             alt="Suelen Gubeisse, idealizadora do Não Repara na Bagunça"
@@ -1112,31 +1129,25 @@ function Founder() {
         </div>
         <div>
           <SectionEyebrow>Idealizadora</SectionEyebrow>
-          <h2 className="mt-5 text-balance text-2xl leading-tight sm:text-3xl">
+          <h2 className="mt-4 text-balance text-2xl leading-tight sm:text-3xl">
             Quem criou o{" "}
             <span className="italic text-gradient-brand">
               Não Repara na Bagunça
             </span>
           </h2>
-          <div className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-            <p>
-              Suelen Gubeisse é Personal Organizer, apaixonada por organização e
-              acredita que uma casa organizada pode ser o começo de uma vida
-              muito mais leve.
-            </p>
-            <p>
-              Depois de anos entrando na casa de mulheres e vendo de perto como
-              a organização transforma muito mais do que armários, criou o Não
-              Repara na Bagunça.
-            </p>
-            <p className="font-medium text-foreground">
-              Um evento para mostrar, na prática, que organização não é sobre
-              ter uma casa perfeita. É sobre criar espaço para a vida que você
-              quer viver.
-            </p>
-          </div>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
+            Suelen Gubeisse é Personal Organizer. Depois de anos entrando na
+            casa de mulheres e vendo de perto como a organização transforma
+            muito mais do que armários, criou o Não Repara na Bagunça.
+          </p>
+          <p className="mt-3 text-sm font-medium leading-relaxed text-foreground sm:text-base">
+            Um evento para mostrar, na prática, que organização não é sobre ter
+            uma casa perfeita. É sobre criar espaço para a vida que você quer
+            viver.
+          </p>
         </div>
       </div>
+
     </Section>
   );
 }
@@ -1413,15 +1424,15 @@ function Speakers() {
 function ThemeCard({ theme }: { theme: Theme }) {
   const Icon = theme.icon;
   return (
-    <article className="group flex h-full gap-3 rounded-2xl border border-border/60 bg-card p-4 shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40 sm:p-5">
-      <span className="badge-icon h-10 w-10 shrink-0 rounded-xl">
-        <Icon className="h-5 w-5" />
+    <article className="flex h-full items-start gap-3 rounded-2xl border border-border/60 bg-card p-4 shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40">
+      <span className="badge-icon h-9 w-9 shrink-0 rounded-xl">
+        <Icon className="h-4.5 w-4.5" />
       </span>
-      <div>
+      <div className="min-w-0">
         <h3 className="text-sm font-semibold leading-snug text-foreground sm:text-base">
           {theme.title}
         </h3>
-        <p className="mt-1 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+        <p className="mt-1 line-clamp-2 text-xs leading-snug text-muted-foreground">
           {theme.desc}
         </p>
       </div>
@@ -1429,8 +1440,64 @@ function ThemeCard({ theme }: { theme: Theme }) {
   );
 }
 
+function ThemeGroupBlock({
+  group,
+  isOpen,
+  onToggle,
+}: {
+  group: ThemeGroup;
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <div>
+      <div className="flex items-center gap-3">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary sm:text-xs">
+          {group.label}
+        </span>
+        <span className="h-px flex-1 bg-gradient-identity opacity-60" />
+      </div>
+      <p className="mt-2 max-w-2xl text-xs leading-relaxed text-muted-foreground sm:text-sm">
+        {group.blurb}
+      </p>
+
+      <div className="mt-4">
+        {isOpen ? (
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {group.themes.map((t) => (
+              <ThemeCard key={t.title} theme={t} />
+            ))}
+          </div>
+        ) : (
+          <CarouselRow
+            ariaLabel={group.label}
+            showDots={false}
+            itemClassName="w-[82%] sm:w-[46%] lg:w-[32%]"
+            items={group.themes.map((t) => (
+              <ThemeCard key={t.title} theme={t} />
+            ))}
+          />
+        )}
+      </div>
+
+      {group.themes.length > 3 && (
+        <div className="mt-3 flex justify-center">
+          <button
+            type="button"
+            onClick={onToggle}
+            aria-expanded={isOpen}
+            className="rounded-full border border-primary/40 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/10"
+          >
+            {isOpen ? "Ver menos −" : "Ver todos os temas +"}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function Schedule() {
-  const [openGroup, setOpenGroup] = useState<string | null>(THEME_GROUPS[0].id);
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
 
   return (
     <Section id="programacao" className="bg-sky-tint">
@@ -1448,39 +1515,19 @@ function Schedule() {
         </p>
       </div>
 
-      <div className="mt-10 space-y-8">
-        {THEME_GROUPS.map((group) => {
-          const isOpen = openGroup === group.id;
-          return (
-            <div key={group.id}>
-              <div className="flex items-center gap-3">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary sm:text-xs">
-                  {group.label}
-                </span>
-                <span className="h-px flex-1 bg-gradient-identity opacity-60" />
-                <button
-                  type="button"
-                  onClick={() => setOpenGroup(isOpen ? null : group.id)}
-                  aria-expanded={isOpen}
-                  className="rounded-full border border-primary/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/10 md:hidden"
-                >
-                  {isOpen ? "Fechar" : `Ver ${group.themes.length}`}
-                </button>
-              </div>
-
-              <div
-                className={`mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 ${
-                  isOpen ? "grid" : "hidden md:grid"
-                }`}
-              >
-                {group.themes.map((t) => (
-                  <ThemeCard key={t.title} theme={t} />
-                ))}
-              </div>
-            </div>
-          );
-        })}
+      <div className="mt-8 space-y-8">
+        {THEME_GROUPS.map((group) => (
+          <ThemeGroupBlock
+            key={group.id}
+            group={group}
+            isOpen={openGroup === group.id}
+            onToggle={() =>
+              setOpenGroup(openGroup === group.id ? null : group.id)
+            }
+          />
+        ))}
       </div>
+
 
       <div className="mx-auto mt-12 max-w-2xl rounded-2xl border border-border/60 bg-card p-6 text-center shadow-card sm:p-8">
         <p className="text-base font-semibold leading-relaxed text-foreground sm:text-lg">
@@ -1622,11 +1669,12 @@ function LandingPage() {
       <VideoStory />
       <ForWhom />
       <Benefits />
+      <Founder />
       <Speakers />
       <Schedule />
       <SocialProof />
       <Tickets />
-      <Founder />
+
       <Sponsors />
       <Venue />
 
