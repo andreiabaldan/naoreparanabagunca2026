@@ -205,7 +205,10 @@ const THEME_GROUPS: ThemeGroup[] = [
   },
   {
     id: "voce",
-    label: "Você, suas escolhas e conexões",
+    label: "Você, suas escolhas & conexões",
+    blurb:
+      "Porque organizar a vida também passa por quem você é, o que deseja e com quem escolhe caminhar.",
+
     themes: [
       {
         icon: Compass,
