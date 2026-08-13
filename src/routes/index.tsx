@@ -41,6 +41,8 @@ import nova4 from "@/assets/nova_4.jpg.asset.json";
 import nova5 from "@/assets/nova_5.jpg.asset.json";
 import nrnbVideo from "@/assets/nrnb-video.mp4.asset.json";
 import nrnbVideoPoster from "@/assets/nrnb-video-poster.jpg.asset.json";
+import depoimentoVideo from "@/assets/depoimento-1.mp4.asset.json";
+import depoimentoPoster from "@/assets/depoimento-1-poster.jpg.asset.json";
 
 /* ==================================================================
    CONFIGURAÇÃO EDITÁVEL — atualize aqui os dados reais do evento
@@ -69,8 +71,11 @@ const EVENT = {
 
 export const WHATSAPP_URL = `https://wa.me/${EVENT.whatsappNumber}?text=${encodeURIComponent(EVENT.whatsappMessage)}`;
 
-/** Depoimento em vídeo (editável). Preencha a URL quando o arquivo for enviado. */
-const TESTIMONIAL_VIDEO: { src: string; poster?: string } | null = null;
+/** Depoimento em vídeo (editável). */
+const TESTIMONIAL_VIDEO: { src: string; poster?: string } | null = {
+  src: depoimentoVideo.url,
+  poster: depoimentoPoster.url,
+};
 
 /* ---- Palestrantes (editável). Não inventar nomes: use placeholders. ---- */
 type Speaker = {
