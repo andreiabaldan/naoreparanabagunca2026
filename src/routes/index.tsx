@@ -123,18 +123,18 @@ const SPEAKERS: Speaker[] = [
     photo: suelenAvatar.url,
   },
   {
+    name: "Andréia Baldan",
+    topic: "Crescimento Inteligente",
+    description:
+      "Entenda como a desorganização impacta pessoas, equipes e empresas, e por onde começar a mudar essa realidade.",
+    photo: spAndreia.url,
+  },
+  {
     name: "Douglas Lopes",
     topic: "A Trilha do Propósito",
     description:
       "Descubra como encontrar direção para viver uma vida com mais propósito e realização.",
     photo: spDouglas.url,
-  },
-  {
-    name: "Natália Rico",
-    topic: "A Força do Ecossistema",
-    description:
-      "Idealizadora do movimento Mulheres à Obra, compartilhará como o poder do ecossistema pode transformar vidas e fortalecer mulheres.",
-    photo: spNatalia.url,
   },
   {
     name: "Fernanda Ardito",
@@ -144,11 +144,18 @@ const SPEAKERS: Speaker[] = [
     photo: spFernanda.url,
   },
   {
-    name: "Andréia Baldan",
-    topic: "Crescimento Inteligente",
+    name: "Michelle Sampaio",
+    topic: "O Poder da Comunicação",
     description:
-      "Entenda como a desorganização impacta pessoas, equipes e empresas, e por onde começar a mudar essa realidade.",
-    photo: spAndreia.url,
+      "Aprenda como uma comunicação clara e intencional pode transformar a maneira como você é percebida.",
+    photo: spMichelle.url,
+  },
+  {
+    name: "Natália Rico",
+    topic: "A Força do Ecossistema",
+    description:
+      "Idealizadora do movimento Mulheres à Obra, compartilhará como o poder do ecossistema pode transformar vidas e fortalecer mulheres.",
+    photo: spNatalia.url,
   },
   {
     name: "Paula Chiaradia",
@@ -156,13 +163,6 @@ const SPEAKERS: Speaker[] = [
     description:
       "Antes de você falar, a sua imagem já contou uma história. Qual história ela está contando?",
     photo: spPaula.url,
-  },
-  {
-    name: "Michelle Sampaio",
-    topic: "O Poder da Comunicação",
-    description:
-      "Aprenda como uma comunicação clara e intencional pode transformar a maneira como você é percebida.",
-    photo: spMichelle.url,
   },
   {
     name: "Stella Vilella",
