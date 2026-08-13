@@ -132,7 +132,10 @@ type ThemeGroup = { id: string; label: string; blurb: string; themes: Theme[] };
 const THEME_GROUPS: ThemeGroup[] = [
   {
     id: "casa",
-    label: "Casa e organização",
+    label: "Casa & organização",
+    blurb:
+      "Ideias e soluções para tornar sua casa mais funcional, acolhedora e fácil de viver.",
+
     themes: [
       {
         icon: Home,
