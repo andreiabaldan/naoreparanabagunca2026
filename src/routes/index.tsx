@@ -402,7 +402,7 @@ function HeroBackgroundVideo() {
         src={heroLoopPoster.url}
         alt="Mulheres reunidas no auditório do Não Repara na Bagunça"
         fetchPriority="high"
-        className="absolute inset-0 h-full w-full object-cover opacity-40"
+        className="absolute inset-0 h-full w-full object-cover opacity-50"
       />
     );
   }
@@ -419,7 +419,7 @@ function HeroBackgroundVideo() {
       preload="metadata"
       aria-hidden="true"
       tabIndex={-1}
-      className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-40"
+      className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-50"
     />
   );
 }
@@ -428,9 +428,9 @@ function Hero() {
   return (
     <section className="relative overflow-hidden">
       <HeroBackgroundVideo />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/78 via-background/86 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/72 via-background/82 to-background" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-identity opacity-[0.14]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--background)_0%,_transparent_70%)] opacity-70" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--background)_0%,_transparent_70%)] opacity-60" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1 bg-gradient-identity" />
 
 
