@@ -34,6 +34,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { CarouselRow } from "@/components/carousel-row";
+
 import { track } from "@/lib/tracking";
 import { useIsMobile } from "@/hooks/use-mobile";
 
