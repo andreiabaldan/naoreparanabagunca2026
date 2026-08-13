@@ -17,6 +17,8 @@ import {
   ArrowRight,
   Quote,
   Star,
+  Play,
+  MessageCircle,
 } from "lucide-react";
 import {
   Accordion,
@@ -55,12 +57,20 @@ const EVENT = {
   city: "",
   address: "Estr. Dr. Altino Bondesan, 500 - Eugênio de Melo, São José dos Campos - SP, 12247-016",
   /** Horários (editáveis). Substitua pelos horários confirmados. */
-  hoursShort: "Das 09h às 17h",
-  hoursDay1: "Sábado, 24/10 · das 09h às 17h",
-  hoursDay2: "Domingo, 25/10 · das 09h às 17h",
-  /** URL do checkout. Troque pelo link real quando estiver configurado. */
+  hoursShort: "Das 09h às 18h30",
+  hoursDay1: "Sábado, 24/10 · das 09h às 18h30",
+  hoursDay2: "Domingo, 25/10 · das 09h às 18h30",
+  /** CTAs genéricos levam para a seção de ingressos. */
   checkoutUrl: "#ingressos",
+  whatsappNumber: "5512991402832",
+  whatsappMessage:
+    'Olá, Suelen. Vim do site e quero tirar uma dúvida sobre o "Não Repara na Bagunça".',
 };
+
+export const WHATSAPP_URL = `https://wa.me/${EVENT.whatsappNumber}?text=${encodeURIComponent(EVENT.whatsappMessage)}`;
+
+/** Depoimento em vídeo (editável). Preencha a URL quando o arquivo for enviado. */
+const TESTIMONIAL_VIDEO: { src: string; poster?: string } | null = null;
 
 /* ---- Palestrantes (editável). Não inventar nomes: use placeholders. ---- */
 type Speaker = {
@@ -101,7 +111,7 @@ const SCHEDULE: { id: "d1" | "d2"; tab: string; hours: string; slots: Slot[] }[]
   {
     id: "d1",
     tab: "Sábado · 24 de outubro",
-    hours: "Das 09h às 17h",
+    hours: "Das 09h às 18h30",
     slots: [
       { time: "[HORÁRIO]", title: "Abertura do Não Repara na Bagunça", speaker: "Suelen Gubeisse", highlight: true },
       { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
@@ -114,7 +124,7 @@ const SCHEDULE: { id: "d1" | "d2"; tab: string; hours: string; slots: Slot[] }[]
   {
     id: "d2",
     tab: "Domingo · 25 de outubro",
-    hours: "Das 09h às 17h",
+    hours: "Das 09h às 18h30",
     slots: [
       { time: "[HORÁRIO]", title: "[TÍTULO DA PALESTRA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
       { time: "[HORÁRIO]", title: "[EXPERIÊNCIA PRÁTICA]", speaker: "[NOME DO PALESTRANTE]", highlight: true },
@@ -162,6 +172,7 @@ type Ticket = {
   benefits: string[];
   highlight?: string;
   event: "ticket_compromisso_click" | "ticket_vip_click" | "ticket_platinum_click";
+  checkout: string;
 };
 
 const TICKETS: Ticket[] = [
@@ -179,6 +190,7 @@ const TICKETS: Ticket[] = [
       "Acesso à feira “Não Repara na Bagunça”",
     ],
     event: "ticket_compromisso_click",
+    checkout: "https://payfast.greenn.com.br/168687?batch=13831_RugVFv",
   },
   {
     id: "vip",
@@ -198,6 +210,7 @@ const TICKETS: Ticket[] = [
       "Café e petit four",
     ],
     event: "ticket_vip_click",
+    checkout: "https://payfast.greenn.com.br/168694?batch=13835_tnl2FL",
   },
   {
     id: "platinum",
@@ -220,6 +233,7 @@ const TICKETS: Ticket[] = [
       "Um encontro ao vivo com a Suelen para tirar dúvidas no momento da prática",
     ],
     event: "ticket_platinum_click",
+    checkout: "https://payfast.greenn.com.br/168696?batch=13839_135ERC",
   },
 ];
 
@@ -392,9 +406,15 @@ function Hero() {
           </span>
         </h1>
 
-        <p className="mx-auto mt-5 max-w-2xl text-balance text-xl font-semibold leading-snug text-foreground sm:text-2xl">
+        <p className="mx-auto mt-4 max-w-2xl text-balance font-display text-2xl font-semibold leading-tight text-foreground sm:text-3xl">
+          2 dias que mudam a forma como você vai viver os próximos anos da sua
+          vida.
+        </p>
+
+        <p className="mx-auto mt-4 max-w-2xl text-balance text-base font-medium leading-snug text-foreground/80 sm:text-lg">
           {EVENT.promise}
         </p>
+
 
         <p className="mx-auto mt-4 max-w-xl text-balance text-sm text-muted-foreground sm:text-base">
           Um fim de semana inteiro de experiências, conteúdos e aprendizados
@@ -721,6 +741,8 @@ function SocialProof() {
         </h2>
       </div>
 
+      <TestimonialVideo />
+
       <div className="mt-8 grid auto-rows-[130px] grid-cols-2 gap-3 sm:auto-rows-[190px] sm:grid-cols-4">
         {GALLERY.map((img, i) => (
           <div
@@ -758,6 +780,83 @@ function SocialProof() {
         ))}
       </div>
     </Section>
+  );
+}
+
+function TestimonialVideo() {
+  const [playing, setPlaying] = useState(false);
+
+  return (
+    <div className="mt-8 rounded-3xl border border-primary/25 bg-card p-5 shadow-card sm:p-7">
+      <p className="text-center text-balance font-display text-xl leading-snug sm:text-2xl">
+        Veja o que quem já viveu o Não Repara na Bagunça{" "}
+        <span className="italic text-gradient-brand">tem para contar.</span>
+      </p>
+
+      <div className="mx-auto mt-5 w-full max-w-[340px]">
+        <div className="relative aspect-[9/16] overflow-hidden rounded-2xl border border-border/60 bg-sky-tint">
+          {TESTIMONIAL_VIDEO ? (
+            playing ? (
+              <video
+                src={TESTIMONIAL_VIDEO.src}
+                poster={TESTIMONIAL_VIDEO.poster}
+                controls
+                autoPlay
+                playsInline
+                preload="metadata"
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <button
+                type="button"
+                onClick={() => {
+                  track("testimonial_video_play");
+                  setPlaying(true);
+                }}
+                className="group absolute inset-0 h-full w-full"
+                aria-label="Assistir depoimento em vídeo"
+              >
+                {TESTIMONIAL_VIDEO.poster && (
+                  <img
+                    src={TESTIMONIAL_VIDEO.poster}
+                    alt="Depoimento de participante do Não Repara na Bagunça"
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
+                )}
+                <span className="absolute inset-0 flex items-center justify-center bg-foreground/20 transition-colors group-hover:bg-foreground/30">
+                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-primary shadow-glow">
+                    <Play className="ml-1 h-7 w-7 text-primary-foreground" fill="currentColor" />
+                  </span>
+                </span>
+              </button>
+            )
+          ) : (
+            <div className="flex h-full w-full flex-col items-center justify-center gap-2 p-6 text-center text-xs uppercase tracking-[0.15em] text-muted-foreground">
+              <Play className="h-8 w-8 text-primary" />
+              [INSERIR VÍDEO DE DEPOIMENTO]
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function WhatsAppFloating() {
+  return (
+    <a
+      href={WHATSAPP_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => track("whatsapp_floating_click")}
+      title="Ficou com alguma dúvida? Fale com a gente."
+      aria-label="Ficou com alguma dúvida? Fale com a gente no WhatsApp"
+      className="group fixed bottom-24 right-4 z-40 inline-flex items-center gap-2 rounded-full border border-border bg-card/95 px-3.5 py-3 text-sm font-medium text-foreground/80 shadow-card backdrop-blur transition-colors hover:text-primary lg:bottom-6 lg:right-6"
+    >
+      <MessageCircle className="h-5 w-5 text-primary" />
+      <span className="hidden lg:inline">Ficou com alguma dúvida?</span>
+    </a>
   );
 }
 
@@ -843,7 +942,9 @@ function Tickets() {
             </ul>
 
             <a
-              href={EVENT.checkoutUrl}
+              href={t.checkout}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => {
                 track(t.event, { ticket: t.id });
                 track("checkout_start", { ticket: t.id });
@@ -864,6 +965,22 @@ function Tickets() {
       <p className="mt-6 text-center text-sm text-muted-foreground">
         Os valores mudam conforme os lotes avançam. Garanta agora o valor atual.
       </p>
+
+      <div className="mt-6 rounded-2xl border border-border/60 bg-card/60 p-5 text-center">
+        <p className="text-sm text-muted-foreground">
+          Ainda ficou com alguma dúvida sobre qual ingresso escolher?
+        </p>
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => track("whatsapp_tickets_click")}
+          className="mt-3 inline-flex items-center justify-center gap-2 rounded-full border border-primary/40 px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-magenta-soft"
+        >
+          <MessageCircle className="h-4 w-4" />
+          Falar com a Suelen no WhatsApp
+        </a>
+      </div>
     </Section>
   );
 }
@@ -1391,6 +1508,7 @@ function LandingPage() {
       <FinalCTA />
       <Footer />
       <StickyCTA />
+      <WhatsAppFloating />
     </main>
   );
 }
