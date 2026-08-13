@@ -176,7 +176,10 @@ const THEME_GROUPS: ThemeGroup[] = [
   },
   {
     id: "vida",
-    label: "Vida e rotina",
+    label: "Vida & rotina",
+    blurb:
+      "Organização para cuidar melhor do seu tempo, das suas escolhas e de você.",
+
     themes: [
       {
         icon: Wallet,
