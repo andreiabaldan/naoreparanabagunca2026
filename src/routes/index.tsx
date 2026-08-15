@@ -537,7 +537,7 @@ const HERO_GUESTS = [
 
 function HeroComposition() {
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[380px] sm:max-w-[440px] lg:max-w-[540px]">
+    <div className="relative mx-auto aspect-square w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[540px]">
       {/* fundo orgânico suave */}
       <div className="absolute inset-[6%] rounded-full bg-gradient-identity opacity-25 blur-2xl" />
       <div className="absolute inset-[18%] rounded-full bg-sky-tint" />
@@ -582,7 +582,7 @@ function Hero() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[60%] bg-[radial-gradient(ellipse_at_top_right,_var(--sky-tint)_0%,_transparent_65%)]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1 bg-gradient-identity" />
 
-      <div className="relative mx-auto flex max-w-6xl flex-col gap-8 px-5 pb-12 pt-8 sm:px-6 sm:pb-16 sm:pt-12 lg:grid lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-12 lg:pb-20 lg:pt-16">
+      <div className="relative mx-auto flex max-w-6xl flex-col gap-8 px-5 pb-10 pt-6 sm:px-6 sm:pb-16 sm:pt-12 lg:grid lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-12 lg:pb-20 lg:pt-16">
         {/* Composição (primeiro no mobile, à direita no desktop) */}
         <div className="order-1 lg:order-2">
           <HeroComposition />
