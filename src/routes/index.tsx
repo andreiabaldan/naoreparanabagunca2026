@@ -37,12 +37,8 @@ import {
 import { CarouselRow } from "@/components/carousel-row";
 
 import { track } from "@/lib/tracking";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 import heroBg from "@/assets/hero-bg.jpg";
-import heroLoopDesktop from "@/assets/hero-loop-desktop.mp4.asset.json";
-import heroLoopMobile from "@/assets/hero-loop-mobile.mp4.asset.json";
-import heroLoopPoster from "@/assets/hero-loop-poster.jpg.asset.json";
 import logoNrnb from "@/assets/logo_nrnb.webp.asset.json";
 import suelenPhoto from "@/assets/suelen_fundo.png.asset.json";
 import suelenAvatar from "@/assets/suelen-avatar.png.asset.json";
@@ -476,7 +472,7 @@ function LotProgress({
     <div className="w-full">
       <div className="flex items-center justify-between gap-3">
         <span
-          className={`font-semibold text-primary ${compact ? "text-[11px]" : "text-xs"} uppercase tracking-wider`}
+          className={`font-semibold text-primary ${compact ? "text-xs" : "text-xs"} uppercase tracking-wider`}
         >
           {percent}% {label ?? "deste lote"} vendido
         </span>
@@ -520,7 +516,7 @@ function TopBar() {
   return (
     <div className="bg-gradient-brand">
       <div className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-4 py-2.5 text-center">
-        <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground sm:text-xs">
+        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground sm:text-xs">
           1º LOTE QUASE ESGOTADO • GARANTA SEU INGRESSO PELO VALOR ATUAL
         </span>
       </div>
@@ -528,111 +524,131 @@ function TopBar() {
   );
 }
 
-function HeroBackgroundVideo() {
-  const isMobile = useIsMobile();
-  const [reduced, setReduced] = useState(false);
+/** Composição do Hero: Suelen em destaque + palestrantes ao redor. */
+const HERO_GUESTS = [
+  { photo: spAndreia.url, name: "Andréia Baldan", pos: "left-0 top-[6%] w-[26%]" },
+  { photo: spDouglas.url, name: "Douglas Lopes", pos: "right-[2%] top-0 w-[24%]" },
+  { photo: spFernanda.url, name: "Fernanda Ardito", pos: "-left-[2%] top-[42%] w-[23%]" },
+  { photo: spMichelle.url, name: "Michelle Sampaio", pos: "right-0 top-[38%] w-[27%]" },
+  { photo: spNatalia.url, name: "Natália Rico", pos: "left-[10%] bottom-[2%] w-[22%]" },
+  { photo: spPaula.url, name: "Paula Chiaradia", pos: "right-[8%] bottom-0 w-[25%]" },
+  { photo: spStella.url, name: "Stella Vilella", pos: "left-[38%] -top-[2%] w-[19%]" },
+];
 
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mq.matches);
-    const onChange = () => setReduced(mq.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
-
-  if (reduced) {
-    return (
-      <img
-        src={heroLoopPoster.url}
-        alt="Mulheres reunidas no auditório do Não Repara na Bagunça"
-        fetchPriority="high"
-        className="absolute inset-0 h-full w-full object-cover opacity-50"
-      />
-    );
-  }
-
+function HeroComposition() {
   return (
-    <video
-      key={isMobile ? "m" : "d"}
-      src={isMobile ? heroLoopMobile.url : heroLoopDesktop.url}
-      poster={heroLoopPoster.url}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="metadata"
-      aria-hidden="true"
-      tabIndex={-1}
-      className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-50"
-    />
+    <div className="relative mx-auto aspect-square w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[540px]">
+      {/* fundo orgânico suave */}
+      <div className="absolute inset-[6%] rounded-full bg-gradient-identity opacity-25 blur-2xl" />
+      <div className="absolute inset-[18%] rounded-full bg-sky-tint" />
+
+      {/* Suelen em destaque */}
+      <div className="absolute left-1/2 top-1/2 w-[46%] -translate-x-1/2 -translate-y-1/2">
+        <div className="rounded-full bg-gradient-identity p-[3px] shadow-glow">
+          <img
+            src={suelenAvatar.url}
+            alt="Suelen Gubeisse, idealizadora do Não Repara na Bagunça"
+            width={480}
+            height={480}
+            fetchPriority="high"
+            decoding="async"
+            className="aspect-square w-full rounded-full bg-surface object-cover"
+          />
+        </div>
+      </div>
+
+      {/* Palestrantes ao redor */}
+      {HERO_GUESTS.map((g) => (
+        <div key={g.name} className={`absolute ${g.pos}`}>
+          <img
+            src={g.photo}
+            alt={g.name}
+            width={200}
+            height={200}
+            loading="lazy"
+            decoding="async"
+            className="aspect-square w-full rounded-full border-2 border-surface bg-surface object-cover shadow-card"
+          />
+        </div>
+      ))}
+    </div>
   );
 }
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <HeroBackgroundVideo />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/72 via-background/82 to-background" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-identity opacity-[0.14]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--background)_0%,_transparent_70%)] opacity-60" />
+    <section className="relative overflow-hidden bg-background">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-identity opacity-[0.10]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[60%] bg-[radial-gradient(ellipse_at_top_right,_var(--sky-tint)_0%,_transparent_65%)]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1 bg-gradient-identity" />
 
-
-
-      <div className="relative mx-auto max-w-3xl px-5 pb-14 pt-10 text-center sm:px-6 sm:pb-20 sm:pt-16">
-        <img
-          src={logoNrnb.url}
-          alt="Não Repara na Bagunça"
-          width={380}
-          height={135}
-          className="mx-auto w-[170px] max-w-full rounded-xl shadow-card sm:w-[240px]"
-        />
-
-        <h1 className="mt-5 text-balance text-4xl leading-[1.05] sm:text-6xl">
-          <span className="italic text-gradient-brand">
-            O encontro que muda tudo.
-          </span>
-        </h1>
-
-        <p className="mx-auto mt-4 max-w-2xl text-balance font-display text-2xl font-semibold leading-tight text-foreground sm:text-3xl">
-          2 dias que mudam a forma como você vai viver os próximos anos da sua
-          vida.
-        </p>
-
-        <p className="mx-auto mt-4 max-w-2xl text-balance text-base font-medium leading-snug text-foreground/80 sm:text-lg">
-          {EVENT.promise}
-        </p>
-
-        <div className="mt-6 flex flex-col items-center gap-1.5 text-sm text-foreground/75 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-5 sm:gap-y-1">
-          <span className="inline-flex items-center gap-2">
-            <Calendar className="h-4 w-4 text-primary" />
-            24 e 25 de outubro • 2026
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <Clock className="h-4 w-4 shrink-0 text-primary" />
-            Das 9h às 18h30
-          </span>
-          <span className="inline-flex items-center gap-2 text-center">
-            <MapPin className="h-4 w-4 shrink-0 text-primary" />
-            PIT — Parque Tecnológico de São José dos Campos/SP
-          </span>
+      <div className="relative mx-auto flex max-w-6xl flex-col gap-8 px-5 pb-10 pt-6 sm:px-6 sm:pb-16 sm:pt-12 lg:grid lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-12 lg:pb-20 lg:pt-16">
+        {/* Composição (primeiro no mobile, à direita no desktop) */}
+        <div className="order-1 lg:order-2">
+          <HeroComposition />
+          <p className="mt-4 text-center text-sm font-semibold uppercase tracking-[0.16em] text-primary">
+            Suelen Gubeisse + especialistas convidados
+          </p>
         </div>
 
-        <div className="mx-auto mt-8 max-w-md rounded-3xl border border-primary/40 bg-card p-5 shadow-glow backdrop-blur">
-          <CTAButton event="hero_cta_click" size="lg" className="w-full">
-            Quero garantir meu ingresso
-          </CTAButton>
-          <p className="mt-4 text-sm font-semibold text-foreground">
-            {LOT_LABEL} quase esgotado
+        {/* Conversão */}
+        <div className="order-2 text-center lg:order-1 lg:text-left">
+          <img
+            src={logoNrnb.url}
+            alt="Não Repara na Bagunça"
+            width={380}
+            height={135}
+            fetchPriority="high"
+            className="mx-auto w-[180px] max-w-full rounded-xl shadow-card sm:w-[230px] lg:mx-0"
+          />
+
+          <h1 className="mt-5 text-balance text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
+            <span className="italic text-gradient-brand">
+              O encontro que muda tudo.
+            </span>
+          </h1>
+
+          <p className="mx-auto mt-4 max-w-2xl text-balance font-display text-2xl font-semibold leading-snug text-foreground sm:text-3xl lg:mx-0">
+            2 dias que mudam a forma como você vai viver os próximos anos da sua
+            vida.
           </p>
-          <div className="mt-2">
-            <LotProgress percent={LOT_SOLD_PERCENT} label={`do ${LOT_LABEL}`} />
+
+          <p className="mx-auto mt-3 max-w-xl text-balance text-lg font-medium leading-relaxed text-foreground/85 lg:mx-0">
+            Casa, rotina e vida mais leves e organizadas.
+          </p>
+
+          <div className="mt-6 flex flex-col items-center gap-2 text-base font-medium text-foreground/85 lg:items-start">
+            <span className="inline-flex items-center gap-2">
+              <Calendar className="h-5 w-5 shrink-0 text-primary" />
+              24 e 25 de outubro de 2026
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <Clock className="h-5 w-5 shrink-0 text-primary" />
+              Das 9h às 18h30
+            </span>
+            <span className="inline-flex items-center gap-2 text-balance">
+              <MapPin className="h-5 w-5 shrink-0 text-primary" />
+              PIT — Parque Tecnológico de São José dos Campos/SP
+            </span>
+          </div>
+
+          <div className="mx-auto mt-7 max-w-md rounded-3xl border border-primary/40 bg-card p-5 shadow-glow lg:mx-0">
+            <CTAButton event="hero_cta_click" size="lg" className="w-full">
+              Quero garantir meu ingresso
+            </CTAButton>
+            <p className="mt-4 text-base font-semibold text-foreground">
+              {LOT_LABEL} quase esgotado
+            </p>
+            <div className="mt-2">
+              <LotProgress percent={LOT_SOLD_PERCENT} label={`do ${LOT_LABEL}`} />
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 }
+
 
 const FOR_WHOM = [
   "Você quer uma casa mais organizada, mas não sabe por onde começar.",
@@ -1089,7 +1105,7 @@ function Tickets() {
             }`}
           >
             {t.highlight && (
-              <span className="mb-3 self-start rounded-full bg-gradient-brand px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-primary-foreground">
+              <span className="mb-3 self-start rounded-full bg-gradient-brand px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] text-primary-foreground">
                 {t.highlight}
               </span>
             )}
@@ -1385,7 +1401,7 @@ function Footer() {
       <p className="mt-4 text-xs text-white/90">
         {EVENT.dateShort} de 2026 · {EVENT.venue}
       </p>
-      <p className="mt-6 text-xs text-white/70">
+      <p className="mt-6 text-xs text-white/85">
         © 2026 Não Repara na Bagunça. Todos os direitos reservados.
       </p>
     </footer>
@@ -1451,7 +1467,7 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
       </div>
 
       {speaker.badge ? (
-        <span className="mt-3 rounded-full bg-primary px-3 py-1 text-[9px] font-bold uppercase tracking-widest text-primary-foreground">
+        <span className="mt-3 rounded-full bg-primary px-3 py-1 text-xs font-bold uppercase tracking-widest text-primary-foreground">
           {speaker.badge}
         </span>
       ) : null}
@@ -1475,7 +1491,7 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
-          className="mt-3 text-[11px] font-bold uppercase tracking-widest text-primary transition-opacity hover:opacity-70"
+          className="mt-3 text-xs font-bold uppercase tracking-widest text-primary transition-opacity hover:opacity-70"
         >
 
           {open ? "Fechar −" : "Saiba mais +"}
@@ -1556,7 +1572,7 @@ function ThemeGroupBlock({
   return (
     <div>
       <div className="flex items-center gap-3">
-        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary sm:text-xs">
+        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary sm:text-xs">
           {group.label}
         </span>
         <span className="h-px flex-1 bg-gradient-identity opacity-60" />
@@ -1590,7 +1606,7 @@ function ThemeGroupBlock({
             type="button"
             onClick={onToggle}
             aria-expanded={isOpen}
-            className="rounded-full border border-primary/40 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/10"
+            className="rounded-full border border-primary/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/10"
           >
             {isOpen ? "Ver menos −" : "Ver todos os temas +"}
           </button>
