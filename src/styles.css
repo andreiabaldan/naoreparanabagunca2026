@@ -212,6 +212,7 @@
 .surface-rose,
 .surface-blue,
 .surface-dark {
+  color: var(--foreground);
   --card-foreground: var(--foreground);
   --popover-foreground: var(--foreground);
   --input: var(--border);
