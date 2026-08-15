@@ -1404,11 +1404,12 @@ function FinalCTA() {
 
         <div className="mx-auto mt-10 max-w-md">
           <p className="text-sm font-bold uppercase tracking-[0.14em] text-primary">
-            {LOT_LABEL} quase esgotado
+            {LOT_LABEL} quase esgotado · {LOT_SOLD_PERCENT}% vendido
           </p>
           <div className="mt-3">
-            <LotProgress percent={LOT_SOLD_PERCENT} label={`do ${LOT_LABEL}`} />
+            <LotProgress percent={LOT_SOLD_PERCENT} label="" hideLabel />
           </div>
+
           <div className="mt-8">
             <CTAButton event="final_cta_click" size="lg" className="w-full">
               Quero viver essa experiência
