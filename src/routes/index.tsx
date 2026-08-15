@@ -44,8 +44,9 @@ import { track } from "@/lib/tracking";
 
 import heroBg from "@/assets/hero-bg.jpg";
 import logoNrnb from "@/assets/logo_nrnb.webp.asset.json";
-import suelenPhoto from "@/assets/suelen_fundo.png.asset.json";
-import suelenAvatar from "@/assets/suelen-avatar.png.asset.json";
+import suelenPhoto from "@/assets/suelen-idealizadora.jpg.asset.json";
+import suelenAvatar from "@/assets/suelen-face-cut.png.asset.json";
+import suelenHeroCut from "@/assets/suelen-hero-cut.png.asset.json";
 import spDouglas from "@/assets/douglas-lopes.png.asset.json";
 import spNatalia from "@/assets/natalia-rico.png.asset.json";
 import spFernanda from "@/assets/fernanda-ardito.png.asset.json";
@@ -591,17 +592,19 @@ function HeroComposition() {
       <div className="absolute inset-x-[16%] bottom-0 top-[22%] rounded-[2.5rem] bg-sky-tint" />
 
       {/* Suelen protagonista */}
-      <div className="absolute bottom-0 left-1/2 w-[52%] -translate-x-1/2 sm:w-[50%]">
+      <div className="absolute bottom-0 left-1/2 w-[62%] -translate-x-1/2 sm:w-[58%]">
+        <div className="pointer-events-none absolute inset-x-[6%] bottom-[2%] top-[12%] rounded-[2.5rem] bg-[radial-gradient(ellipse_at_bottom,_rgba(156,3,105,0.18)_0%,_rgba(134,203,215,0.22)_55%,_transparent_75%)] blur-xl" />
         <img
-          src={suelenAvatar.url}
+          src={suelenHeroCut.url}
           alt="Suelen Gubeisse, idealizadora do Não Repara na Bagunça"
-          width={640}
-          height={640}
+          width={820}
+          height={1024}
           fetchPriority="high"
           decoding="async"
-          className="w-full object-contain drop-shadow-[0_18px_30px_rgba(23,20,26,0.22)]"
+          className="relative w-full object-contain drop-shadow-[0_22px_36px_rgba(23,20,26,0.24)]"
         />
       </div>
+
 
       {/* Especialistas em recortes sobrepostos */}
       {HERO_GUESTS.map((g) => (
@@ -1235,17 +1238,17 @@ function Tickets() {
 function Founder() {
   return (
     <Section>
-      <div className="grid items-center gap-6 md:grid-cols-[0.7fr_1fr] md:gap-8">
-        <div className="relative mx-auto w-full max-w-[260px] overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-b from-primary/15 to-background md:max-w-xs">
+      <div className="grid items-center gap-6 md:grid-cols-[1fr_1.1fr] md:gap-10">
+        <div className="relative w-full overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-b from-primary/10 to-background">
           <img
             src={suelenPhoto.url}
-            alt="Suelen Gubeisse, idealizadora do Não Repara na Bagunça"
+            alt="Suelen Gubeisse no ambiente do Não Repara na Bagunça, diante do painel com as marcas parceiras"
             loading="lazy"
             decoding="async"
-            className="aspect-[3/4] w-full object-cover object-center"
+            className="aspect-[16/10] w-full object-cover object-[55%_35%] sm:aspect-[4/3] md:aspect-[4/5]"
           />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/80 to-transparent" />
         </div>
+
         <div>
           <SectionEyebrow>Idealizadora</SectionEyebrow>
           <h2 className="mt-4 text-balance text-2xl leading-tight sm:text-3xl">
