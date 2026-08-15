@@ -314,8 +314,8 @@ const ACTIVATIONS: Activation[] = [];
 
 
 /** Percentual vendido do lote atual (editável). Use null se não houver dado real. */
-const LOT_SOLD_PERCENT: number | null = 87;
-const LOT_LABEL = "1º lote";
+const LOT_SOLD_PERCENT: number | null = 93;
+const LOT_LABEL = "1º LOTE";
 
 type Ticket = {
   id: "compromisso" | "vip" | "platinum";
