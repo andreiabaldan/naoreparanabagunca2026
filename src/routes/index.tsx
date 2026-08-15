@@ -466,21 +466,26 @@ function LotProgress({
   percent,
   label,
   compact = false,
+  hideLabel = false,
 }: {
   percent: number | null;
   label?: string;
   compact?: boolean;
+  hideLabel?: boolean;
 }) {
   if (percent === null) return null;
   return (
     <div className="w-full">
-      <div className="flex items-center justify-between gap-3">
-        <span
-          className={`font-semibold text-primary ${compact ? "text-xs" : "text-xs"} uppercase tracking-wider`}
-        >
-          {percent}% {label ?? "deste lote"} vendido
-        </span>
-      </div>
+      {!hideLabel && (
+        <div className="flex items-center justify-between gap-3">
+          <span
+            className={`font-semibold text-primary ${compact ? "text-xs" : "text-xs"} uppercase tracking-wider`}
+          >
+            {percent}% {label ?? "deste lote"} vendido
+          </span>
+        </div>
+      )}
+
       <div
         className="mt-2 h-2 w-full overflow-hidden rounded-full bg-sky/40"
         role="progressbar"
