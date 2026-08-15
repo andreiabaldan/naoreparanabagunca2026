@@ -603,7 +603,7 @@ function Hero() {
           {EVENT.promise}
         </p>
 
-        <div className="mt-6 flex flex-col items-center gap-1.5 text-sm text-foreground/75 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-5 sm:gap-y-1">
+        <div className="mt-6 flex flex-col items-center gap-1.5 text-sm text-foreground/85 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-5 sm:gap-y-1">
           <span className="inline-flex items-center gap-2">
             <Calendar className="h-4 w-4 text-primary" />
             24 e 25 de outubro • 2026
@@ -1385,7 +1385,7 @@ function Footer() {
       <p className="mt-4 text-xs text-white/90">
         {EVENT.dateShort} de 2026 · {EVENT.venue}
       </p>
-      <p className="mt-6 text-xs text-white/70">
+      <p className="mt-6 text-xs text-white/85">
         © 2026 Não Repara na Bagunça. Todos os direitos reservados.
       </p>
     </footer>
