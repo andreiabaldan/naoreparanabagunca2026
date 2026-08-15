@@ -603,7 +603,7 @@ function Hero() {
             width={380}
             height={135}
             fetchPriority="high"
-            className="mx-auto w-[180px] max-w-full rounded-xl shadow-card sm:w-[230px] lg:mx-0"
+            className="mx-auto w-[300px] max-w-full rounded-xl shadow-card sm:w-[380px] lg:mx-0 lg:w-[400px]"
           />
 
           <h1 className="mt-5 text-balance text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
