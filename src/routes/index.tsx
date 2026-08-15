@@ -486,7 +486,7 @@ function LotProgress({
           <span
             className={`font-semibold text-primary ${compact ? "text-xs" : "text-xs"} uppercase tracking-wider`}
           >
-            {percent}% {label ?? "deste lote"} vendido
+            {percent}% {label ?? "DESTE LOTE"} VENDIDO
           </span>
         </div>
       )}
