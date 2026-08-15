@@ -304,3 +304,47 @@
 .surface-blue .bg-gradient-brand {
   background: rgb(255 255 255 / 0.92);
 }
+
+/* -------- Hero: composição única (foto + fundo integrados) -------- */
+
+.hero-scene {
+  background:
+    radial-gradient(ellipse at 72% 45%, #b0197a 0%, transparent 58%),
+    linear-gradient(150deg, #6d0a44 0%, #9c0369 42%, #4a0a2c 100%);
+  color: #ffffff;
+  --foreground: #ffffff;
+  --muted-foreground: rgb(255 255 255 / 0.85);
+  --border: rgb(255 255 255 / 0.28);
+  --muted: rgb(255 255 255 / 0.16);
+  --primary: #ffffff;
+  --primary-foreground: #7c0353;
+}
+
+.hero-photo-desktop {
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.6) 22%, #000 46%),
+    linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%);
+  mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.6) 22%, #000 46%),
+    linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.hero-photo-mobile {
+  aspect-ratio: 4 / 3;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 16%,
+    #000 78%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 16%,
+    #000 78%,
+    transparent 100%
+  );
+}
