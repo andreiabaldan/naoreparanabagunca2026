@@ -592,17 +592,19 @@ function HeroComposition() {
       <div className="absolute inset-x-[16%] bottom-0 top-[22%] rounded-[2.5rem] bg-sky-tint" />
 
       {/* Suelen protagonista */}
-      <div className="absolute bottom-0 left-1/2 w-[52%] -translate-x-1/2 sm:w-[50%]">
+      <div className="absolute bottom-0 left-1/2 w-[62%] -translate-x-1/2 sm:w-[58%]">
+        <div className="pointer-events-none absolute inset-x-[6%] bottom-[2%] top-[12%] rounded-[2.5rem] bg-[radial-gradient(ellipse_at_bottom,_rgba(156,3,105,0.18)_0%,_rgba(134,203,215,0.22)_55%,_transparent_75%)] blur-xl" />
         <img
-          src={suelenAvatar.url}
+          src={suelenHeroCut.url}
           alt="Suelen Gubeisse, idealizadora do Não Repara na Bagunça"
-          width={640}
-          height={640}
+          width={820}
+          height={1024}
           fetchPriority="high"
           decoding="async"
-          className="w-full object-contain drop-shadow-[0_18px_30px_rgba(23,20,26,0.22)]"
+          className="relative w-full object-contain drop-shadow-[0_22px_36px_rgba(23,20,26,0.24)]"
         />
       </div>
+
 
       {/* Especialistas em recortes sobrepostos */}
       {HERO_GUESTS.map((g) => (
