@@ -1164,6 +1164,11 @@ function Tickets() {
               Quero este ingresso
               <ArrowRight className="h-4 w-4" />
             </a>
+
+            <p className="mt-3 flex items-center justify-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              <Lock className="h-3.5 w-3.5 text-primary" />
+              Compra segura
+            </p>
           </div>
         ))}
       </div>
