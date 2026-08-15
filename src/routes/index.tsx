@@ -1730,6 +1730,10 @@ const EVENT_PHOTOS = [
   { src: nova3.url, alt: "Apresentação musical ao vivo no palco do evento" },
   { src: nova2.url, alt: "Participantes registrando o conteúdo no auditório lotado" },
   { src: nova1.url, alt: "Participantes no espaço instagramável com as marcas parceiras" },
+  { src: palco1.url, alt: "Suelen Gubeisse palestrando sobre ambientes desorganizados" },
+  { src: palco2.url, alt: "Palestra da Dra. Stella Vilella para a plateia lotada" },
+  { src: palco3.url, alt: "Demonstração prática de dobras e organização de roupas no palco" },
+  { src: palco4.url, alt: "Aula de mesa posta e recepção em casa durante o evento" },
 ];
 
 function PhotoGallery() {
