@@ -643,47 +643,36 @@ function Hero() {
             className="mx-auto w-[300px] max-w-full rounded-xl shadow-card sm:w-[380px] lg:mx-0 lg:w-[400px]"
           />
 
-          <h1 className="mt-5 text-balance text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
+          <h1 className="mt-4 text-balance text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
             <span className="italic text-gradient-brand">
               O encontro que muda tudo.
             </span>
           </h1>
 
-          <p className="mx-auto mt-4 max-w-2xl text-balance font-display text-2xl font-semibold leading-snug text-foreground sm:text-3xl lg:mx-0">
-            2 dias que mudam a forma como você vai viver os próximos anos da sua
-            vida.
+          <p className="mx-auto mt-4 max-w-xl text-balance text-lg font-medium leading-relaxed text-foreground/90 sm:text-xl lg:mx-0">
+            2 dias para deixar sua casa, sua rotina e sua vida mais leves e
+            organizadas.
           </p>
 
-          <p className="mx-auto mt-3 max-w-xl text-balance text-lg font-medium leading-relaxed text-foreground/85 lg:mx-0">
-            Casa, rotina e vida mais leves e organizadas.
-          </p>
-
-          <div className="mt-6 flex flex-col items-center gap-2 text-base font-medium text-foreground/85 lg:items-start">
-            <span className="inline-flex items-center gap-2">
-              <Calendar className="h-5 w-5 shrink-0 text-primary" />
-              24 e 25 de outubro de 2026
+          <div className="mt-5 flex flex-col items-center gap-1 text-base font-semibold text-foreground/90 lg:items-start">
+            <span className="text-balance">
+              24 e 25 de outubro · São José dos Campos/SP
             </span>
-            <span className="inline-flex items-center gap-2">
-              <Clock className="h-5 w-5 shrink-0 text-primary" />
-              Das 9h às 18h30
-            </span>
-            <span className="inline-flex items-center gap-2 text-balance">
-              <MapPin className="h-5 w-5 shrink-0 text-primary" />
-              PIT — Parque Tecnológico de São José dos Campos/SP
-            </span>
+            <span className="font-medium text-foreground/80">9h às 18h30</span>
           </div>
 
-          <div className="mx-auto mt-7 max-w-md rounded-3xl border border-primary/40 bg-card p-5 shadow-glow lg:mx-0">
+          <div className="mx-auto mt-6 max-w-md lg:mx-0">
             <CTAButton event="hero_cta_click" size="lg" className="w-full">
               Quero garantir meu ingresso
             </CTAButton>
-            <p className="mt-4 text-base font-semibold text-foreground">
-              {LOT_LABEL} quase esgotado
-            </p>
-            <div className="mt-2">
-              <LotProgress percent={LOT_SOLD_PERCENT} label={`do ${LOT_LABEL}`} />
+            <div className="mt-4">
+              <LotProgress
+                percent={LOT_SOLD_PERCENT}
+                label={`vendido · ${LOT_LABEL} quase esgotado ·`}
+              />
             </div>
           </div>
+
         </div>
       </div>
     </section>
