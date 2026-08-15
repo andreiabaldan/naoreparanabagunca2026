@@ -206,3 +206,100 @@
   background-clip: text;
   color: transparent;
 }
+
+/* -------- Ritmo visual: fundos de seção -------- */
+
+.surface-rose,
+.surface-blue,
+.surface-dark {
+  --card-foreground: var(--foreground);
+  --popover-foreground: var(--foreground);
+  --input: var(--border);
+  --ring: var(--foreground);
+}
+
+.surface-rose {
+  background: linear-gradient(160deg, #b8067d 0%, #9c0369 55%, #7c0353 100%);
+  --background: #9c0369;
+  --foreground: #ffffff;
+  --muted-foreground: rgb(255 255 255 / 0.82);
+  --card: rgb(255 255 255 / 0.1);
+  --surface: rgb(255 255 255 / 0.1);
+  --surface-2: rgb(255 255 255 / 0.12);
+  --secondary: rgb(255 255 255 / 0.14);
+  --secondary-foreground: #ffffff;
+  --muted: rgb(255 255 255 / 0.12);
+  --border: rgb(255 255 255 / 0.26);
+  --primary: #ffffff;
+  --primary-foreground: #7c0353;
+  --magenta: #ffffff;
+  --magenta-soft: rgb(255 255 255 / 0.18);
+  --sky-tint: rgb(255 255 255 / 0.1);
+  --shadow-card: 0 10px 30px -16px rgb(0 0 0 / 0.5);
+  --shadow-glow: 0 16px 40px -18px rgb(0 0 0 / 0.45);
+}
+
+.surface-blue {
+  background: linear-gradient(160deg, #2b8395 0%, #1f6f7f 55%, #175a68 100%);
+  --background: #1f6f7f;
+  --foreground: #ffffff;
+  --muted-foreground: rgb(255 255 255 / 0.85);
+  --card: rgb(255 255 255 / 0.1);
+  --surface: rgb(255 255 255 / 0.1);
+  --surface-2: rgb(255 255 255 / 0.12);
+  --secondary: rgb(255 255 255 / 0.14);
+  --secondary-foreground: #ffffff;
+  --muted: rgb(255 255 255 / 0.12);
+  --border: rgb(255 255 255 / 0.26);
+  --primary: #ffffff;
+  --primary-foreground: #175a68;
+  --magenta: #ffffff;
+  --magenta-soft: rgb(255 255 255 / 0.18);
+  --sky-tint: rgb(255 255 255 / 0.1);
+  --shadow-card: 0 10px 30px -16px rgb(0 0 0 / 0.45);
+  --shadow-glow: 0 16px 40px -18px rgb(0 0 0 / 0.4);
+}
+
+.surface-dark {
+  background: linear-gradient(170deg, #17141a 0%, #100e13 60%, #17141a 100%);
+  --background: #17141a;
+  --foreground: #ffffff;
+  --muted-foreground: rgb(255 255 255 / 0.76);
+  --card: rgb(255 255 255 / 0.06);
+  --surface: rgb(255 255 255 / 0.06);
+  --surface-2: rgb(255 255 255 / 0.08);
+  --secondary: rgb(255 255 255 / 0.1);
+  --secondary-foreground: #ffffff;
+  --muted: rgb(255 255 255 / 0.08);
+  --border: rgb(255 255 255 / 0.16);
+  --primary: #c81a8c;
+  --primary-foreground: #ffffff;
+  --magenta: #e05fb2;
+  --magenta-soft: rgb(224 95 178 / 0.16);
+  --sky-tint: rgb(134 203 215 / 0.12);
+  --shadow-card: 0 14px 40px -20px rgb(0 0 0 / 0.8);
+}
+
+/* Gradientes de texto precisam de leitura clara sobre fundos coloridos */
+.surface-rose .text-gradient-brand,
+.surface-blue .text-gradient-brand,
+.surface-rose .text-gradient-identity,
+.surface-blue .text-gradient-identity {
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: #ffffff;
+}
+
+.surface-dark .text-gradient-brand,
+.surface-dark .text-gradient-identity {
+  background: linear-gradient(120deg, #86cbd7, #e79bc9 55%, #ff5cb8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.surface-rose .bg-gradient-brand,
+.surface-blue .bg-gradient-brand {
+  background: rgb(255 255 255 / 0.92);
+}
