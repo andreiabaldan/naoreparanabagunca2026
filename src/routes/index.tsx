@@ -43,10 +43,10 @@ import { CarouselRow } from "@/components/carousel-row";
 import { track } from "@/lib/tracking";
 
 import heroBg from "@/assets/hero-bg.jpg";
-import logoNrnb from "@/assets/logo_nrnb.webp.asset.json";
+import logoNrnb from "@/assets/logo-nrnb-alpha.png.asset.json";
 import suelenPhoto from "@/assets/suelen-idealizadora.jpg.asset.json";
 import suelenAvatar from "@/assets/suelen-face-cut.png.asset.json";
-import suelenHeroCut from "@/assets/suelen-hero-cut.png.asset.json";
+import heroComposicao from "@/assets/hero-composicao.jpg.asset.json";
 import spDouglas from "@/assets/douglas-cut.png.asset.json";
 import spNatalia from "@/assets/natalia-rico-busto.png.asset.json";
 import spFernanda from "@/assets/fernanda-ardito.png.asset.json";
@@ -538,154 +538,73 @@ function TopBar() {
   );
 }
 
-/** Composição editorial do Hero: Suelen protagonista + especialistas em recortes. */
-const HERO_GUESTS = [
-  {
-    photo: spAndreia.url,
-    name: "Andréia Baldan",
-    pos: "left-0 bottom-[6%] w-[30%] sm:w-[28%] -rotate-3",
-    hideOnMobile: false,
-  },
-  {
-    photo: spDouglas.url,
-    name: "Douglas Lopes",
-    pos: "right-0 bottom-[6%] w-[30%] sm:w-[28%] rotate-3",
-    hideOnMobile: false,
-  },
-  {
-    photo: spFernanda.url,
-    name: "Fernanda Ardito",
-    pos: "left-[13%] top-[8%] w-[24%] sm:w-[22%] -rotate-6",
-    hideOnMobile: false,
-  },
-  {
-    photo: spMichelle.url,
-    name: "Michelle Sampaio",
-    pos: "right-[13%] top-[8%] w-[24%] sm:w-[22%] rotate-6",
-    hideOnMobile: false,
-  },
-  {
-    photo: spNatalia.url,
-    name: "Natália Rico",
-    pos: "left-[2%] top-[38%] w-[21%] -rotate-2",
-    hideOnMobile: true,
-  },
-  {
-    photo: spPaula.url,
-    name: "Paula Chiaradia",
-    pos: "right-[2%] top-[38%] w-[21%] rotate-2",
-    hideOnMobile: true,
-  },
-  {
-    photo: spStella.url,
-    name: "Stella Vilella",
-    pos: "left-1/2 -translate-x-1/2 -top-[1%] w-[20%]",
-    hideOnMobile: true,
-  },
-];
-
-function HeroComposition() {
+function Hero() {
   return (
-    <div className="relative mx-auto aspect-[4/3] w-full max-w-[380px] sm:aspect-square sm:max-w-[460px] lg:max-w-[560px]">
-      {/* fundos suaves da marca */}
-      <div className="absolute inset-x-[8%] bottom-[4%] top-[10%] rounded-[3rem] bg-gradient-identity opacity-20 blur-2xl" />
-      <div className="absolute inset-x-[16%] bottom-0 top-[22%] rounded-[2.5rem] bg-sky-tint" />
+    <section className="hero-scene relative overflow-hidden">
+      {/* brilho lateral que integra texto e fotografia */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_18%_35%,_rgba(184,6,125,0.55)_0%,_transparent_60%)]" />
 
-      {/* Suelen protagonista */}
-      <div className="absolute bottom-0 left-1/2 w-[62%] -translate-x-1/2 sm:w-[58%]">
-        <div className="pointer-events-none absolute inset-x-[6%] bottom-[2%] top-[12%] rounded-[2.5rem] bg-[radial-gradient(ellipse_at_bottom,_rgba(156,3,105,0.18)_0%,_rgba(134,203,215,0.22)_55%,_transparent_75%)] blur-xl" />
+      {/* Fotografia — desktop: sangra à direita e avança para o centro */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block">
         <img
-          src={suelenHeroCut.url}
-          alt="Suelen Gubeisse, idealizadora do Não Repara na Bagunça"
-          width={820}
-          height={1024}
+          src={heroComposicao.url}
+          alt="Suelen Gubeisse e os especialistas convidados do Não Repara na Bagunça 2026"
           fetchPriority="high"
           decoding="async"
-          className="relative w-full object-contain drop-shadow-[0_22px_36px_rgba(23,20,26,0.24)]"
+          className="hero-photo-desktop h-full w-full object-cover object-[62%_center]"
         />
       </div>
 
-
-      {/* Especialistas em recortes sobrepostos */}
-      {HERO_GUESTS.map((g) => (
-        <div
-          key={g.name}
-          className={`absolute ${g.pos} ${g.hideOnMobile ? "hidden sm:block" : ""}`}
-        >
-          <img
-            src={g.photo}
-            alt={g.name}
-            width={260}
-            height={260}
-            loading="lazy"
-            decoding="async"
-            className="w-full object-contain drop-shadow-[0_12px_22px_rgba(23,20,26,0.18)]"
-          />
-        </div>
-      ))}
-    </div>
-  );
-}
-
-
-function Hero() {
-  return (
-    <section className="relative overflow-hidden bg-background">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-identity opacity-[0.10]" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[60%] bg-[radial-gradient(ellipse_at_top_right,_var(--sky-tint)_0%,_transparent_65%)]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1 bg-gradient-identity" />
-
-      <div className="relative mx-auto flex max-w-6xl flex-col gap-8 px-5 pb-10 pt-6 sm:px-6 sm:pb-16 sm:pt-12 lg:grid lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-12 lg:pb-20 lg:pt-16">
-        {/* Composição (primeiro no mobile, à direita no desktop) */}
-        <div className="order-1 lg:order-2">
-          <HeroComposition />
-          <p className="mt-4 text-center text-sm font-semibold uppercase tracking-[0.16em] text-primary">
-            Suelen Gubeisse + especialistas convidados
-          </p>
-        </div>
-
+      <div className="relative mx-auto flex max-w-6xl flex-col gap-6 px-5 pb-10 pt-7 sm:px-6 sm:pb-14 sm:pt-12 lg:grid lg:grid-cols-[1.02fr_1fr] lg:items-center lg:gap-10 lg:pb-24 lg:pt-20">
         {/* Conversão */}
         <div className="order-2 text-center lg:order-1 lg:text-left">
           <img
             src={logoNrnb.url}
             alt="Não Repara na Bagunça"
-            width={380}
-            height={135}
+            width={400}
+            height={137}
             fetchPriority="high"
-            className="mx-auto w-[300px] max-w-full rounded-xl shadow-card sm:w-[380px] lg:mx-0 lg:w-[400px]"
+            className="mx-auto w-[300px] max-w-full sm:w-[380px] lg:mx-0 lg:w-[420px]"
           />
 
-          <h1 className="mt-4 text-balance text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
-            <span className="italic text-gradient-brand">
-              O encontro que muda tudo.
-            </span>
+          <h1 className="mt-4 text-balance text-4xl leading-[1.05] text-white sm:text-5xl lg:text-6xl">
+            <span className="italic">O encontro que muda tudo.</span>
           </h1>
 
-          <p className="mx-auto mt-4 max-w-xl text-balance text-lg font-medium leading-relaxed text-foreground/90 sm:text-xl lg:mx-0">
+          <p className="mx-auto mt-4 max-w-xl text-balance text-lg font-medium leading-relaxed text-white/92 sm:text-xl lg:mx-0">
             2 dias para deixar sua casa, sua rotina e sua vida mais leves e
             organizadas.
           </p>
 
-          <div className="mt-5 flex flex-col items-center gap-1 text-base font-semibold text-foreground/90 lg:items-start">
+          <div className="mt-5 flex flex-col items-center gap-1 text-base font-semibold text-white lg:items-start">
             <span className="text-balance">
               24 e 25 de outubro · São José dos Campos/SP
             </span>
-            <span className="font-medium text-foreground/80">9h às 18h30</span>
+            <span className="font-medium text-[#86CBD7]">9h às 18h30</span>
           </div>
 
           <div className="mx-auto mt-6 max-w-md lg:mx-0">
-            <CTAButton event="hero_cta_click" size="lg" className="w-full">
+            <CTAButton event="hero_cta_click" size="lg" className="hero-cta w-full">
               Quero garantir meu ingresso
             </CTAButton>
             <div className="mt-4">
-              <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+              <p className="text-xs font-semibold uppercase tracking-wider text-[#86CBD7]">
                 {LOT_LABEL} quase esgotado · {LOT_SOLD_PERCENT}% vendido
               </p>
               <LotProgress percent={LOT_SOLD_PERCENT} label="" hideLabel />
             </div>
-
           </div>
+        </div>
 
+        {/* Fotografia — mobile/tablet: largura total, fundida ao fundo */}
+        <div className="order-1 -mx-5 sm:-mx-6 lg:hidden">
+          <img
+            src={heroComposicao.url}
+            alt="Suelen Gubeisse e os especialistas convidados do Não Repara na Bagunça 2026"
+            fetchPriority="high"
+            decoding="async"
+            className="hero-photo-mobile w-full object-cover object-[center_22%]"
+          />
         </div>
       </div>
     </section>
