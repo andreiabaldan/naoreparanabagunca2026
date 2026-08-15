@@ -26,6 +26,10 @@ import {
   Flower2,
   Brain,
   Compass,
+  Lock,
+  X,
+  ChevronLeft,
+  ChevronRight,
   type LucideIcon,
 } from "lucide-react";
 import {
