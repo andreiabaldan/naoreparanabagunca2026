@@ -1238,17 +1238,17 @@ function Tickets() {
 function Founder() {
   return (
     <Section>
-      <div className="grid items-center gap-6 md:grid-cols-[0.7fr_1fr] md:gap-8">
-        <div className="relative mx-auto w-full max-w-[260px] overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-b from-primary/15 to-background md:max-w-xs">
+      <div className="grid items-center gap-6 md:grid-cols-[1fr_1.1fr] md:gap-10">
+        <div className="relative w-full overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-b from-primary/10 to-background">
           <img
             src={suelenPhoto.url}
-            alt="Suelen Gubeisse, idealizadora do Não Repara na Bagunça"
+            alt="Suelen Gubeisse no ambiente do Não Repara na Bagunça, diante do painel com as marcas parceiras"
             loading="lazy"
             decoding="async"
-            className="aspect-[3/4] w-full object-cover object-center"
+            className="aspect-[16/10] w-full object-cover object-[55%_35%] sm:aspect-[4/3] md:aspect-[4/5]"
           />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/80 to-transparent" />
         </div>
+
         <div>
           <SectionEyebrow>Idealizadora</SectionEyebrow>
           <h2 className="mt-4 text-balance text-2xl leading-tight sm:text-3xl">
