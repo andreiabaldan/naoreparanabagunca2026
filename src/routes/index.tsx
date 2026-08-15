@@ -1939,6 +1939,7 @@ function LandingPage() {
       <Schedule />
       <SocialProof />
       <Tickets />
+      <PurchaseSafety />
 
       <Sponsors />
       <Venue />
