@@ -88,7 +88,7 @@ export function CarouselRow({
       </button>
 
       {hint && (
-        <p className="mt-3 text-center text-[11px] font-medium uppercase tracking-wide text-muted-foreground md:hidden">
+        <p className="mt-3 text-center text-xs font-medium uppercase tracking-wide text-muted-foreground md:hidden">
           {hint}
         </p>
       )}

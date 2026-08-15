@@ -476,7 +476,7 @@ function LotProgress({
     <div className="w-full">
       <div className="flex items-center justify-between gap-3">
         <span
-          className={`font-semibold text-primary ${compact ? "text-[11px]" : "text-xs"} uppercase tracking-wider`}
+          className={`font-semibold text-primary ${compact ? "text-xs" : "text-xs"} uppercase tracking-wider`}
         >
           {percent}% {label ?? "deste lote"} vendido
         </span>
@@ -520,7 +520,7 @@ function TopBar() {
   return (
     <div className="bg-gradient-brand">
       <div className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-4 py-2.5 text-center">
-        <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground sm:text-xs">
+        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground sm:text-xs">
           1º LOTE QUASE ESGOTADO • GARANTA SEU INGRESSO PELO VALOR ATUAL
         </span>
       </div>
@@ -1089,7 +1089,7 @@ function Tickets() {
             }`}
           >
             {t.highlight && (
-              <span className="mb-3 self-start rounded-full bg-gradient-brand px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-primary-foreground">
+              <span className="mb-3 self-start rounded-full bg-gradient-brand px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] text-primary-foreground">
                 {t.highlight}
               </span>
             )}
@@ -1451,7 +1451,7 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
       </div>
 
       {speaker.badge ? (
-        <span className="mt-3 rounded-full bg-primary px-3 py-1 text-[9px] font-bold uppercase tracking-widest text-primary-foreground">
+        <span className="mt-3 rounded-full bg-primary px-3 py-1 text-xs font-bold uppercase tracking-widest text-primary-foreground">
           {speaker.badge}
         </span>
       ) : null}
@@ -1475,7 +1475,7 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
-          className="mt-3 text-[11px] font-bold uppercase tracking-widest text-primary transition-opacity hover:opacity-70"
+          className="mt-3 text-xs font-bold uppercase tracking-widest text-primary transition-opacity hover:opacity-70"
         >
 
           {open ? "Fechar −" : "Saiba mais +"}
@@ -1556,7 +1556,7 @@ function ThemeGroupBlock({
   return (
     <div>
       <div className="flex items-center gap-3">
-        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary sm:text-xs">
+        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary sm:text-xs">
           {group.label}
         </span>
         <span className="h-px flex-1 bg-gradient-identity opacity-60" />
@@ -1590,7 +1590,7 @@ function ThemeGroupBlock({
             type="button"
             onClick={onToggle}
             aria-expanded={isOpen}
-            className="rounded-full border border-primary/40 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/10"
+            className="rounded-full border border-primary/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/10"
           >
             {isOpen ? "Ver menos −" : "Ver todos os temas +"}
           </button>
