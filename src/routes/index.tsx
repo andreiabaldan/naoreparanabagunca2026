@@ -1745,6 +1745,178 @@ function Sponsors() {
   );
 }
 
+/* -------------------- Galeria de fotos reais -------------------- */
+/* Somente fotografias reais das edições anteriores.
+   Ao receber as novas fotos, basta adicionar mais itens aqui. */
+const EVENT_PHOTOS = [
+  { src: nrnb1.url, alt: "Suelen Gubeisse no palco do Não Repara na Bagunça" },
+  { src: nova5.url, alt: "Plateia vibrando e aplaudindo durante o evento" },
+  { src: nova4.url, alt: "Palestra sobre organização de closet no palco" },
+  { src: nova3.url, alt: "Apresentação musical ao vivo no palco do evento" },
+  { src: nova2.url, alt: "Participantes registrando o conteúdo no auditório lotado" },
+  { src: nova1.url, alt: "Participantes no espaço instagramável com as marcas parceiras" },
+];
+
+function PhotoGallery() {
+  const [index, setIndex] = useState<number | null>(null);
+  const total = EVENT_PHOTOS.length;
+
+  const open = (i: number) => {
+    setIndex(i);
+    track("gallery_photo_open", { photo: i + 1 });
+  };
+  const move = (dir: 1 | -1) =>
+    setIndex((cur) => (cur === null ? cur : (cur + dir + total) % total));
+
+  useEffect(() => {
+    if (index === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIndex(null);
+      if (e.key === "ArrowRight") move(1);
+      if (e.key === "ArrowLeft") move(-1);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [index]);
+
+  return (
+    <Section id="galeria">
+      <div className="text-center">
+        <SectionEyebrow>Galeria</SectionEyebrow>
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
+          Um pouco do que{" "}
+          <span className="italic text-gradient-brand">você vai viver</span>
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-balance text-base text-muted-foreground">
+          Porque o Não Repara na Bagunça é muito mais do que assistir a
+          palestras. É viver dois dias de experiências, encontros, aprendizados
+          e conexão.
+        </p>
+      </div>
+
+      <div className="mt-8">
+        <CarouselRow
+          ariaLabel="Fotos das edições anteriores"
+          itemClassName="w-[85%] sm:w-[52%] lg:w-[38%]"
+          hint="Deslize para ver mais fotos →"
+          items={EVENT_PHOTOS.map((p, i) => (
+            <button
+              key={p.src}
+              type="button"
+              onClick={() => open(i)}
+              className="group block w-full overflow-hidden rounded-3xl border border-border/60 bg-card shadow-card"
+            >
+              <img
+                src={p.src}
+                alt={p.alt}
+                loading="lazy"
+                decoding="async"
+                className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </button>
+          ))}
+        />
+      </div>
+
+      <div className="mt-8 flex justify-center">
+        <CTAButton event="gallery_cta_click">
+          Quero viver essa experiência
+        </CTAButton>
+      </div>
+
+      {index !== null && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Foto ampliada"
+          className="fixed inset-0 z-[70] flex items-center justify-center bg-foreground/90 p-4"
+          onClick={() => setIndex(null)}
+        >
+          <button
+            type="button"
+            aria-label="Fechar"
+            onClick={() => setIndex(null)}
+            className="absolute right-4 top-4 rounded-full bg-background/90 p-2 text-foreground"
+          >
+            <X className="h-5 w-5" />
+          </button>
+
+          <button
+            type="button"
+            aria-label="Foto anterior"
+            onClick={(e) => {
+              e.stopPropagation();
+              move(-1);
+            }}
+            className="absolute left-3 rounded-full bg-background/90 p-2 text-foreground sm:left-6"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+
+          <figure
+            className="max-h-[85vh] w-full max-w-4xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={EVENT_PHOTOS[index]!.src}
+              alt={EVENT_PHOTOS[index]!.alt}
+              className="mx-auto max-h-[75vh] w-auto max-w-full rounded-2xl object-contain"
+            />
+            <figcaption className="mt-3 text-center text-sm text-background/80">
+              {EVENT_PHOTOS[index]!.alt} · {index + 1} / {total}
+            </figcaption>
+          </figure>
+
+          <button
+            type="button"
+            aria-label="Próxima foto"
+            onClick={(e) => {
+              e.stopPropagation();
+              move(1);
+            }}
+            className="absolute right-3 rounded-full bg-background/90 p-2 text-foreground sm:right-6"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
+        </div>
+      )}
+    </Section>
+  );
+}
+
+/* -------------------- Compre com tranquilidade --------------------
+   Componente pronto, porém OCULTO até recebermos a política oficial
+   de cancelamento/reembolso. Para ativar, preencha REFUND_POLICY. */
+const REFUND_POLICY: { intro: string; items: string[] } | null = null;
+
+function PurchaseSafety() {
+  if (!REFUND_POLICY) return null;
+
+  return (
+    <Section className="bg-sky-tint">
+      <div className="mx-auto max-w-2xl rounded-3xl border border-border/60 bg-card p-6 text-center shadow-card sm:p-8">
+        <span className="badge-icon mx-auto">
+          <Lock className="h-5 w-5" />
+        </span>
+        <h2 className="mt-4 text-balance text-2xl leading-tight sm:text-3xl">
+          Compre com tranquilidade
+        </h2>
+        <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+          {REFUND_POLICY.intro}
+        </p>
+        <ul className="mt-5 space-y-2.5 text-left">
+          {REFUND_POLICY.items.map((item) => (
+            <li key={item} className="flex items-start gap-2 text-sm">
+              <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+              <span className="text-foreground/90">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Section>
+  );
+}
+
 /* -------------------- Página -------------------- */
 
 
