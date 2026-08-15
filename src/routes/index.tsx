@@ -26,6 +26,10 @@ import {
   Flower2,
   Brain,
   Compass,
+  Lock,
+  X,
+  ChevronLeft,
+  ChevronRight,
   type LucideIcon,
 } from "lucide-react";
 import {
@@ -599,7 +603,7 @@ function Hero() {
             width={380}
             height={135}
             fetchPriority="high"
-            className="mx-auto w-[180px] max-w-full rounded-xl shadow-card sm:w-[230px] lg:mx-0"
+            className="mx-auto w-[300px] max-w-full rounded-xl shadow-card sm:w-[380px] lg:mx-0 lg:w-[400px]"
           />
 
           <h1 className="mt-5 text-balance text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
@@ -1160,6 +1164,11 @@ function Tickets() {
               Quero este ingresso
               <ArrowRight className="h-4 w-4" />
             </a>
+
+            <p className="mt-3 flex items-center justify-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              <Lock className="h-3.5 w-3.5 text-primary" />
+              Compra segura
+            </p>
           </div>
         ))}
       </div>
@@ -1543,19 +1552,31 @@ function Speakers() {
 
 function ThemeCard({ theme }: { theme: Theme }) {
   const Icon = theme.icon;
+  const [open, setOpen] = useState(false);
+
   return (
-    <article className="flex h-full items-start gap-3 rounded-2xl border border-border/60 bg-card p-4 shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40">
-      <span className="badge-icon h-9 w-9 shrink-0 rounded-xl">
-        <Icon className="h-4.5 w-4.5" />
+    <article className="flex h-full flex-col rounded-2xl border border-border/60 bg-card p-5 shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40 sm:p-6">
+      <span className="badge-icon h-11 w-11 shrink-0 rounded-xl">
+        <Icon className="h-5 w-5" />
       </span>
-      <div className="min-w-0">
-        <h3 className="text-sm font-semibold leading-snug text-foreground sm:text-base">
-          {theme.title}
-        </h3>
-        <p className="mt-1 line-clamp-2 text-xs leading-snug text-muted-foreground">
+      <h3 className="mt-4 text-balance font-display text-xl font-semibold leading-tight text-foreground sm:text-2xl">
+        {theme.title}
+      </h3>
+
+      {open && (
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
           {theme.desc}
         </p>
-      </div>
+      )}
+
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        className="mt-auto pt-4 text-left text-xs font-bold uppercase tracking-widest text-primary transition-opacity hover:opacity-70"
+      >
+        {open ? "Fechar −" : "Saiba mais +"}
+      </button>
     </article>
   );
 }
@@ -1592,7 +1613,8 @@ function ThemeGroupBlock({
           <CarouselRow
             ariaLabel={group.label}
             showDots={false}
-            itemClassName="w-[82%] sm:w-[46%] lg:w-[32%]"
+            hint="Deslize para descobrir os temas →"
+            itemClassName="w-[80%] sm:w-[46%] lg:w-[31%] xl:w-[24%]"
             items={group.themes.map((t) => (
               <ThemeCard key={t.title} theme={t} />
             ))}
@@ -1728,6 +1750,178 @@ function Sponsors() {
   );
 }
 
+/* -------------------- Galeria de fotos reais -------------------- */
+/* Somente fotografias reais das edições anteriores.
+   Ao receber as novas fotos, basta adicionar mais itens aqui. */
+const EVENT_PHOTOS = [
+  { src: nrnb1.url, alt: "Suelen Gubeisse no palco do Não Repara na Bagunça" },
+  { src: nova5.url, alt: "Plateia vibrando e aplaudindo durante o evento" },
+  { src: nova4.url, alt: "Palestra sobre organização de closet no palco" },
+  { src: nova3.url, alt: "Apresentação musical ao vivo no palco do evento" },
+  { src: nova2.url, alt: "Participantes registrando o conteúdo no auditório lotado" },
+  { src: nova1.url, alt: "Participantes no espaço instagramável com as marcas parceiras" },
+];
+
+function PhotoGallery() {
+  const [index, setIndex] = useState<number | null>(null);
+  const total = EVENT_PHOTOS.length;
+
+  const open = (i: number) => {
+    setIndex(i);
+    track("gallery_photo_open", { photo: i + 1 });
+  };
+  const move = (dir: 1 | -1) =>
+    setIndex((cur) => (cur === null ? cur : (cur + dir + total) % total));
+
+  useEffect(() => {
+    if (index === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIndex(null);
+      if (e.key === "ArrowRight") move(1);
+      if (e.key === "ArrowLeft") move(-1);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [index]);
+
+  return (
+    <Section id="galeria">
+      <div className="text-center">
+        <SectionEyebrow>Galeria</SectionEyebrow>
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
+          Um pouco do que{" "}
+          <span className="italic text-gradient-brand">você vai viver</span>
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-balance text-base text-muted-foreground">
+          Porque o Não Repara na Bagunça é muito mais do que assistir a
+          palestras. É viver dois dias de experiências, encontros, aprendizados
+          e conexão.
+        </p>
+      </div>
+
+      <div className="mt-8">
+        <CarouselRow
+          ariaLabel="Fotos das edições anteriores"
+          itemClassName="w-[85%] sm:w-[52%] lg:w-[38%]"
+          hint="Deslize para ver mais fotos →"
+          items={EVENT_PHOTOS.map((p, i) => (
+            <button
+              key={p.src}
+              type="button"
+              onClick={() => open(i)}
+              className="group block w-full overflow-hidden rounded-3xl border border-border/60 bg-card shadow-card"
+            >
+              <img
+                src={p.src}
+                alt={p.alt}
+                loading="lazy"
+                decoding="async"
+                className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </button>
+          ))}
+        />
+      </div>
+
+      <div className="mt-8 flex justify-center">
+        <CTAButton event="gallery_cta_click">
+          Quero viver essa experiência
+        </CTAButton>
+      </div>
+
+      {index !== null && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Foto ampliada"
+          className="fixed inset-0 z-[70] flex items-center justify-center bg-foreground/90 p-4"
+          onClick={() => setIndex(null)}
+        >
+          <button
+            type="button"
+            aria-label="Fechar"
+            onClick={() => setIndex(null)}
+            className="absolute right-4 top-4 rounded-full bg-background/90 p-2 text-foreground"
+          >
+            <X className="h-5 w-5" />
+          </button>
+
+          <button
+            type="button"
+            aria-label="Foto anterior"
+            onClick={(e) => {
+              e.stopPropagation();
+              move(-1);
+            }}
+            className="absolute left-3 rounded-full bg-background/90 p-2 text-foreground sm:left-6"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+
+          <figure
+            className="max-h-[85vh] w-full max-w-4xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={EVENT_PHOTOS[index]!.src}
+              alt={EVENT_PHOTOS[index]!.alt}
+              className="mx-auto max-h-[75vh] w-auto max-w-full rounded-2xl object-contain"
+            />
+            <figcaption className="mt-3 text-center text-sm text-background/80">
+              {EVENT_PHOTOS[index]!.alt} · {index + 1} / {total}
+            </figcaption>
+          </figure>
+
+          <button
+            type="button"
+            aria-label="Próxima foto"
+            onClick={(e) => {
+              e.stopPropagation();
+              move(1);
+            }}
+            className="absolute right-3 rounded-full bg-background/90 p-2 text-foreground sm:right-6"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
+        </div>
+      )}
+    </Section>
+  );
+}
+
+/* -------------------- Compre com tranquilidade --------------------
+   Componente pronto, porém OCULTO até recebermos a política oficial
+   de cancelamento/reembolso. Para ativar, preencha REFUND_POLICY. */
+const REFUND_POLICY: { intro: string; items: string[] } | null = null;
+
+function PurchaseSafety() {
+  if (!REFUND_POLICY) return null;
+
+  return (
+    <Section className="bg-sky-tint">
+      <div className="mx-auto max-w-2xl rounded-3xl border border-border/60 bg-card p-6 text-center shadow-card sm:p-8">
+        <span className="badge-icon mx-auto">
+          <Lock className="h-5 w-5" />
+        </span>
+        <h2 className="mt-4 text-balance text-2xl leading-tight sm:text-3xl">
+          Compre com tranquilidade
+        </h2>
+        <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+          {REFUND_POLICY.intro}
+        </p>
+        <ul className="mt-5 space-y-2.5 text-left">
+          {REFUND_POLICY.items.map((item) => (
+            <li key={item} className="flex items-start gap-2 text-sm">
+              <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+              <span className="text-foreground/90">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Section>
+  );
+}
+
 /* -------------------- Página -------------------- */
 
 
@@ -1742,6 +1936,7 @@ function LandingPage() {
       <Hero />
       <Experience />
       <VideoStory />
+      <PhotoGallery />
       <ForWhom />
       <Benefits />
       <Founder />
@@ -1749,6 +1944,7 @@ function LandingPage() {
       <Schedule />
       <SocialProof />
       <Tickets />
+      <PurchaseSafety />
 
       <Sponsors />
       <Venue />

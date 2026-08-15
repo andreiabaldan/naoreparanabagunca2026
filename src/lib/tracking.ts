@@ -19,7 +19,9 @@ export type TrackEvent =
   | "whatsapp_tickets_click"
   | "testimonial_video_play"
   | "checkout_start"
-  | "sponsor_whatsapp_click";
+  | "sponsor_whatsapp_click"
+  | "gallery_photo_open"
+  | "gallery_cta_click";
 
 declare global {
   interface Window {
