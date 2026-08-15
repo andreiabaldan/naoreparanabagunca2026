@@ -314,8 +314,8 @@ const ACTIVATIONS: Activation[] = [];
 
 
 /** Percentual vendido do lote atual (editável). Use null se não houver dado real. */
-const LOT_SOLD_PERCENT: number | null = 87;
-const LOT_LABEL = "1º lote";
+const LOT_SOLD_PERCENT: number | null = 93;
+const LOT_LABEL = "1º LOTE";
 
 type Ticket = {
   id: "compromisso" | "vip" | "platinum";
@@ -341,7 +341,7 @@ const TICKETS: Ticket[] = [
     fullPrice: "(valor cheio R$ 247,00)",
     lots: "Pré-lançamento - R$ 97,00 / 1º lote R$ 147,00 / 2º lote R$ 197,00 / 3º lote R$ 247,00",
     installments: "ou 12x de R$ 9,70 no cartão",
-    soldPercent: 87,
+    soldPercent: 93,
     benefits: [
       "Acesso aos 2 dias de evento",
       "Acesso à feira “Não Repara na Bagunça”",
@@ -357,7 +357,7 @@ const TICKETS: Ticket[] = [
     fullPrice: "(valor cheio R$ 297,00)",
     lots: "Pré-lançamento - R$ 147,00 / 1º lote R$ 197,00 / 2º lote R$ 247,00 / 3º lote R$ 297,00",
     installments: "ou 12x de R$ 14,70 no cartão",
-    soldPercent: 62,
+    soldPercent: 74,
     highlight: "Experiência recomendada",
     benefits: [
       "Acesso aos 2 dias de evento",
@@ -377,7 +377,7 @@ const TICKETS: Ticket[] = [
     fullPrice: "(valor cheio R$ 597,00)",
     lots: "Pré-lançamento - R$ 347,00 / 1º lote R$ 447,00 / 2º lote R$ 497,00 / 3º lote R$ 597,00",
     installments: "ou 12x de R$ 34,70 no cartão",
-    soldPercent: 41,
+    soldPercent: 52,
     highlight: "Experiência completa",
     benefits: [
       "Acesso aos 2 dias de evento",
@@ -486,7 +486,7 @@ function LotProgress({
           <span
             className={`font-semibold text-primary ${compact ? "text-xs" : "text-xs"} uppercase tracking-wider`}
           >
-            {percent}% {label ?? "deste lote"} vendido
+            {percent}% {label ?? "DESTE LOTE"} VENDIDO
           </span>
         </div>
       )}
