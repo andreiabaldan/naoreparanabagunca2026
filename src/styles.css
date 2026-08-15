@@ -281,6 +281,48 @@
   --shadow-card: 0 14px 40px -20px rgb(0 0 0 / 0.8);
 }
 
+/* Off-white com nuance rosada — respiro editorial (programação) */
+.surface-cream {
+  background: linear-gradient(180deg, #fffafc 0%, #fff5f9 55%, #fdf2f7 100%);
+}
+
+/* Vinho/grafite quase preto — momento de decisão (ingressos) */
+.surface-ink {
+  background: linear-gradient(170deg, #1c0b17 0%, #170811 55%, #1a0d16 100%);
+  --background: #170811;
+  --foreground: #ffffff;
+  --muted-foreground: rgb(255 255 255 / 0.78);
+  --card: rgb(255 255 255 / 0.06);
+  --surface: rgb(255 255 255 / 0.06);
+  --surface-2: rgb(255 255 255 / 0.08);
+  --secondary: rgb(255 255 255 / 0.12);
+  --secondary-foreground: #ffffff;
+  --muted: rgb(255 255 255 / 0.1);
+  --border: rgb(255 255 255 / 0.18);
+  --primary: #e05fb2;
+  --primary-foreground: #23091a;
+  --magenta: #e05fb2;
+  --magenta-soft: rgb(224 95 178 / 0.16);
+  --sky-tint: rgb(255 255 255 / 0.08);
+  --shadow-card: 0 18px 48px -22px rgb(0 0 0 / 0.75);
+}
+
+/* Cards claros sobre o fundo escuro dos ingressos */
+.surface-ink .card-light {
+  color: #1c0f18;
+  --card: #ffffff;
+  --foreground: #1c0f18;
+  --muted-foreground: #6b5a65;
+  --border: rgb(28 15 24 / 0.12);
+  --muted: rgb(28 15 24 / 0.06);
+  --primary: #9c0369;
+  --primary-foreground: #ffffff;
+  --magenta: #9c0369;
+  --magenta-soft: rgb(156 3 105 / 0.08);
+  --sky-tint: #fdf2f8;
+  --shadow-card: 0 20px 50px -28px rgb(0 0 0 / 0.55);
+}
+
 /* Gradientes de texto precisam de leitura clara sobre fundos coloridos */
 .surface-rose .text-gradient-brand,
 .surface-blue .text-gradient-brand,
@@ -295,6 +337,14 @@
 .surface-dark .text-gradient-brand,
 .surface-dark .text-gradient-identity {
   background: linear-gradient(120deg, #86cbd7, #e79bc9 55%, #ff5cb8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.surface-ink .text-gradient-brand,
+.surface-ink .text-gradient-identity {
+  background: linear-gradient(100deg, #ff5cb8, #e05fb2 60%, #ff86c9);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
