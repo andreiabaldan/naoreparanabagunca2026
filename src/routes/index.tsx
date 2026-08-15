@@ -1931,6 +1931,7 @@ function LandingPage() {
       <Hero />
       <Experience />
       <VideoStory />
+      <PhotoGallery />
       <ForWhom />
       <Benefits />
       <Founder />
