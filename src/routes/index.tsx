@@ -1506,29 +1506,34 @@ function ThemeCard({ theme }: { theme: Theme }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <article className="flex h-full flex-col rounded-2xl border border-border/60 bg-card p-5 shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40 sm:p-6">
-      <span className="badge-icon h-11 w-11 shrink-0 rounded-xl">
-        <Icon className="h-5 w-5" />
+    <button
+      type="button"
+      onClick={() => setOpen((v) => !v)}
+      aria-expanded={open}
+      className="group relative flex h-full w-full flex-col rounded-2xl border border-primary/12 bg-card/90 p-4 text-left transition-colors duration-300 hover:border-primary/35 hover:bg-card sm:p-5"
+    >
+      <span
+        aria-hidden
+        className={`absolute right-3 top-3 text-base font-light leading-none text-primary/50 transition-all group-hover:text-primary ${open ? "rotate-45" : ""}`}
+      >
+        +
       </span>
-      <h3 className="mt-4 text-balance font-display text-xl font-semibold leading-tight text-foreground sm:text-2xl">
-        {theme.title}
-      </h3>
+
+      <span className="flex items-center gap-3">
+        <span className="badge-icon h-9 w-9 shrink-0 rounded-xl">
+          <Icon className="h-4 w-4" />
+        </span>
+        <span className="text-balance pr-5 font-display text-lg font-semibold leading-tight text-foreground sm:text-xl">
+          {theme.title}
+        </span>
+      </span>
 
       {open && (
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+        <span className="mt-3 block text-sm leading-relaxed text-muted-foreground">
           {theme.desc}
-        </p>
+        </span>
       )}
-
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        className="mt-auto pt-4 text-left text-xs font-bold uppercase tracking-widest text-primary transition-opacity hover:opacity-70"
-      >
-        {open ? "Fechar −" : "Saiba mais +"}
-      </button>
-    </article>
+    </button>
   );
 }
 
@@ -1542,6 +1547,10 @@ function ThemeGroupBlock({ group }: { group: ThemeGroup }) {
         </h3>
         <span className="h-px flex-1 bg-gradient-identity opacity-60" />
       </div>
+
+      <p className="mt-2 max-w-2xl text-sm italic leading-relaxed text-muted-foreground sm:text-base">
+        {group.blurb}
+      </p>
 
       <div className="mt-4">
         <CarouselRow
@@ -1561,14 +1570,20 @@ function ThemeGroupBlock({ group }: { group: ThemeGroup }) {
 
 function Schedule() {
   return (
-    <Section id="programacao" className="bg-sky-tint">
+    <Section id="programacao" className="surface-cream">
       <div className="text-center">
         <SectionEyebrow>Prévia da programação</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-3xl leading-tight sm:text-4xl">
-          Dois dias para organizar{" "}
-          <span className="italic text-gradient-brand">da casa à vida.</span>
+          Tudo o que faz a sua vida{" "}
+          <span className="italic text-gradient-brand">funcionar melhor.</span>
         </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-balance text-base leading-relaxed text-muted-foreground sm:text-lg">
+          Da casa à rotina. Das <span className="text-primary">finanças</span> ao{" "}
+          <span className="text-primary">bem-estar</span>. Da imagem ao{" "}
+          <span className="text-primary">propósito</span>.
+        </p>
       </div>
+
 
       <div className="mt-8 space-y-10">
         {THEME_GROUPS.map((group) => (
