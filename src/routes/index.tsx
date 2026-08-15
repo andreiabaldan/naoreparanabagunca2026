@@ -1601,8 +1601,6 @@ function ThemeGroupBlock({ group }: { group: ThemeGroup }) {
 
 
 function Schedule() {
-  const [openGroup, setOpenGroup] = useState<string | null>(null);
-
   return (
     <Section id="programacao" className="bg-sky-tint">
       <div className="text-center">
@@ -1611,21 +1609,14 @@ function Schedule() {
           Dois dias para organizar{" "}
           <span className="italic text-gradient-brand">da casa à vida.</span>
         </h2>
-
       </div>
 
-      <div className="mt-8 space-y-8">
+      <div className="mt-8 space-y-10">
         {THEME_GROUPS.map((group) => (
-          <ThemeGroupBlock
-            key={group.id}
-            group={group}
-            isOpen={openGroup === group.id}
-            onToggle={() =>
-              setOpenGroup(openGroup === group.id ? null : group.id)
-            }
-          />
+          <ThemeGroupBlock key={group.id} group={group} />
         ))}
       </div>
+
 
 
       <div className="mx-auto mt-14 max-w-3xl px-2 text-center sm:mt-20">
