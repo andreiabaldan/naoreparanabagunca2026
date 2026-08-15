@@ -1045,10 +1045,10 @@ function Tickets() {
   }, []);
 
   return (
-    <Section id="ingressos" className="bg-sky-tint">
+    <Section id="ingressos" className="surface-ink">
       <div ref={ref} className="text-center">
         <SectionEyebrow>Ingressos</SectionEyebrow>
-        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight text-foreground sm:text-4xl">
           Escolha como você quer{" "}
           <span className="italic text-gradient-brand">
             viver essa experiência.
@@ -1060,12 +1060,13 @@ function Tickets() {
         {TICKETS.map((t) => (
           <div
             key={t.id}
-            className={`flex flex-col rounded-3xl border bg-card shadow-card p-5 ${
+            className={`card-light flex flex-col rounded-3xl border bg-card p-5 ${
               t.id === "vip"
-                ? "border-primary shadow-glow lg:-mt-3"
-                : "border-border/60"
+                ? "border-primary/70 shadow-[0_0_0_1px_rgba(156,3,105,0.25),0_24px_60px_-28px_rgba(156,3,105,0.55)] lg:-mt-3"
+                : "border-border shadow-card"
             }`}
           >
+
             {t.highlight && (
               <span className="mb-3 self-start rounded-full bg-gradient-brand px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] text-primary-foreground">
                 {t.highlight}
