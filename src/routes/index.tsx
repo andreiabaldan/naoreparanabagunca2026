@@ -528,56 +528,93 @@ function TopBar() {
   );
 }
 
-/** Composição do Hero: Suelen em destaque + palestrantes ao redor. */
+/** Composição editorial do Hero: Suelen protagonista + especialistas em recortes. */
 const HERO_GUESTS = [
-  { photo: spAndreia.url, name: "Andréia Baldan", pos: "left-0 top-[6%] w-[26%]" },
-  { photo: spDouglas.url, name: "Douglas Lopes", pos: "right-[2%] top-0 w-[24%]" },
-  { photo: spFernanda.url, name: "Fernanda Ardito", pos: "-left-[2%] top-[42%] w-[23%]" },
-  { photo: spMichelle.url, name: "Michelle Sampaio", pos: "right-0 top-[38%] w-[27%]" },
-  { photo: spNatalia.url, name: "Natália Rico", pos: "left-[10%] bottom-[2%] w-[22%]" },
-  { photo: spPaula.url, name: "Paula Chiaradia", pos: "right-[8%] bottom-0 w-[25%]" },
-  { photo: spStella.url, name: "Stella Vilella", pos: "left-[38%] -top-[2%] w-[19%]" },
+  {
+    photo: spAndreia.url,
+    name: "Andréia Baldan",
+    pos: "left-0 bottom-[6%] w-[30%] sm:w-[28%] -rotate-3",
+    hideOnMobile: false,
+  },
+  {
+    photo: spDouglas.url,
+    name: "Douglas Lopes",
+    pos: "right-0 bottom-[6%] w-[30%] sm:w-[28%] rotate-3",
+    hideOnMobile: false,
+  },
+  {
+    photo: spFernanda.url,
+    name: "Fernanda Ardito",
+    pos: "left-[13%] top-[8%] w-[24%] sm:w-[22%] -rotate-6",
+    hideOnMobile: false,
+  },
+  {
+    photo: spMichelle.url,
+    name: "Michelle Sampaio",
+    pos: "right-[13%] top-[8%] w-[24%] sm:w-[22%] rotate-6",
+    hideOnMobile: false,
+  },
+  {
+    photo: spNatalia.url,
+    name: "Natália Rico",
+    pos: "left-[2%] top-[38%] w-[21%] -rotate-2",
+    hideOnMobile: true,
+  },
+  {
+    photo: spPaula.url,
+    name: "Paula Chiaradia",
+    pos: "right-[2%] top-[38%] w-[21%] rotate-2",
+    hideOnMobile: true,
+  },
+  {
+    photo: spStella.url,
+    name: "Stella Vilella",
+    pos: "left-1/2 -translate-x-1/2 -top-[1%] w-[20%]",
+    hideOnMobile: true,
+  },
 ];
 
 function HeroComposition() {
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[540px]">
-      {/* fundo orgânico suave */}
-      <div className="absolute inset-[6%] rounded-full bg-gradient-identity opacity-25 blur-2xl" />
-      <div className="absolute inset-[18%] rounded-full bg-sky-tint" />
+    <div className="relative mx-auto aspect-[4/3] w-full max-w-[380px] sm:aspect-square sm:max-w-[460px] lg:max-w-[560px]">
+      {/* fundos suaves da marca */}
+      <div className="absolute inset-x-[8%] bottom-[4%] top-[10%] rounded-[3rem] bg-gradient-identity opacity-20 blur-2xl" />
+      <div className="absolute inset-x-[16%] bottom-0 top-[22%] rounded-[2.5rem] bg-sky-tint" />
 
-      {/* Suelen em destaque */}
-      <div className="absolute left-1/2 top-1/2 w-[46%] -translate-x-1/2 -translate-y-1/2">
-        <div className="rounded-full bg-gradient-identity p-[3px] shadow-glow">
-          <img
-            src={suelenAvatar.url}
-            alt="Suelen Gubeisse, idealizadora do Não Repara na Bagunça"
-            width={480}
-            height={480}
-            fetchPriority="high"
-            decoding="async"
-            className="aspect-square w-full rounded-full bg-surface object-cover"
-          />
-        </div>
+      {/* Suelen protagonista */}
+      <div className="absolute bottom-0 left-1/2 w-[52%] -translate-x-1/2 sm:w-[50%]">
+        <img
+          src={suelenAvatar.url}
+          alt="Suelen Gubeisse, idealizadora do Não Repara na Bagunça"
+          width={640}
+          height={640}
+          fetchPriority="high"
+          decoding="async"
+          className="w-full object-contain drop-shadow-[0_18px_30px_rgba(23,20,26,0.22)]"
+        />
       </div>
 
-      {/* Palestrantes ao redor */}
+      {/* Especialistas em recortes sobrepostos */}
       {HERO_GUESTS.map((g) => (
-        <div key={g.name} className={`absolute ${g.pos}`}>
+        <div
+          key={g.name}
+          className={`absolute ${g.pos} ${g.hideOnMobile ? "hidden sm:block" : ""}`}
+        >
           <img
             src={g.photo}
             alt={g.name}
-            width={200}
-            height={200}
+            width={260}
+            height={260}
             loading="lazy"
             decoding="async"
-            className="aspect-square w-full rounded-full border-2 border-surface bg-surface object-cover shadow-card"
+            className="w-full object-contain drop-shadow-[0_12px_22px_rgba(23,20,26,0.18)]"
           />
         </div>
       ))}
     </div>
   );
 }
+
 
 function Hero() {
   return (
