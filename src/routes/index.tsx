@@ -241,7 +241,7 @@ const THEME_GROUPS: ThemeGroup[] = [
     id: "vida",
     label: "Vida & rotina",
     blurb:
-      "Organização para cuidar melhor do seu tempo, das suas escolhas e de você.",
+      "Mais clareza para cuidar do seu tempo, da sua mente e das suas escolhas.",
 
     themes: [
       {
