@@ -778,7 +778,7 @@ const BENEFITS = [
 
 function Benefits() {
   return (
-    <Section>
+    <Section className="surface-blue">
       <div className="text-center">
         <SectionEyebrow>O que muda para você</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
@@ -828,7 +828,7 @@ const TERRITORIES = [
 
 function Experience() {
   return (
-    <Section className="bg-secondary/60">
+    <Section className="surface-rose">
       <div className="text-center">
         <SectionEyebrow>O que você vai viver</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
@@ -1384,7 +1384,7 @@ function FAQ() {
 
 function FinalCTA() {
   return (
-    <section className="relative overflow-hidden px-5 py-16 sm:px-6 sm:py-24">
+    <section className="surface-rose relative overflow-hidden px-5 py-16 sm:px-6 sm:py-24">
       <img
         src={event4}
         alt=""
@@ -1762,7 +1762,7 @@ function PhotoGallery() {
   }, [index]);
 
   return (
-    <Section id="galeria">
+    <Section id="galeria" className="surface-dark">
       <div className="text-center">
         <SectionEyebrow>Galeria</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
