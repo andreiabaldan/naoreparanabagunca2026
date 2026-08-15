@@ -1260,7 +1260,7 @@ const FAQS = [
   },
   {
     q: "O que está incluso no meu ingresso?",
-    a: "[INSERIR DESCRIÇÃO CONFIRMADA DO QUE ESTÁ INCLUSO EM CADA CATEGORIA]",
+    a: "Consulte na seção de ingresso os itens que compõem cada tipo de ingresso: compromisso, VIP e Platinum.",
   },
   {
     q: "Onde será realizado?",
@@ -1272,7 +1272,7 @@ const FAQS = [
   },
   {
     q: "Como recebo meu ingresso?",
-    a: "[INSERIR PROCEDIMENTO CONFIRMADO DE ENVIO DO INGRESSO]",
+    a: "O Ingresso é digital e será enviado no momento da sua compra na plataforma da Greenn e por e-mail.",
   },
 ];
 
