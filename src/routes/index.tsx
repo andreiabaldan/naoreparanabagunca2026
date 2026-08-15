@@ -584,7 +584,7 @@ function Hero() {
           </div>
 
           <div className="mx-auto mt-6 max-w-md lg:mx-0">
-            <CTAButton event="hero_cta_click" size="lg" className="w-full">
+            <CTAButton event="hero_cta_click" size="lg" className="hero-cta w-full">
               Quero garantir meu ingresso
             </CTAButton>
             <div className="mt-4">

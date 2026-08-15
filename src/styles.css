@@ -361,3 +361,9 @@
   background-clip: border-box;
   color: #ffffff;
 }
+
+.hero-cta {
+  background: #ffffff !important;
+  color: #7c0353 !important;
+  box-shadow: 0 18px 40px -18px rgb(0 0 0 / 0.55) !important;
+}
