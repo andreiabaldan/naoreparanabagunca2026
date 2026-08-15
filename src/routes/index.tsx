@@ -1114,10 +1114,10 @@ function Tickets() {
                 track(t.event, { ticket: t.id });
                 track("checkout_start", { ticket: t.id });
               }}
-              className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold uppercase tracking-wide transition-all active:scale-[0.99] ${
+              className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold uppercase tracking-wide transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.99] ${
                 t.id === "vip"
-                  ? "bg-gradient-brand text-primary-foreground shadow-glow hover:brightness-110"
-                  : "bg-primary text-primary-foreground hover:bg-plum"
+                  ? "bg-gradient-brand text-primary-foreground shadow-[0_14px_30px_-14px_rgba(156,3,105,0.75)] hover:brightness-110 hover:shadow-[0_18px_36px_-14px_rgba(156,3,105,0.85)]"
+                  : "bg-primary text-primary-foreground hover:bg-plum hover:shadow-[0_14px_30px_-16px_rgba(156,3,105,0.7)]"
               }`}
             >
               Quero este ingresso
@@ -1132,9 +1132,10 @@ function Tickets() {
         ))}
       </div>
 
-      <p className="mt-6 text-center text-sm text-muted-foreground">
+      <p className="mt-6 text-center text-sm text-foreground/80">
         Os valores mudam conforme os lotes avançam. Garanta agora o valor atual.
       </p>
+
 
       <div className="mt-6 rounded-2xl border border-border/60 bg-card/60 p-5 text-center">
         <p className="text-sm text-muted-foreground">
