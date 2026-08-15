@@ -1547,19 +1547,31 @@ function Speakers() {
 
 function ThemeCard({ theme }: { theme: Theme }) {
   const Icon = theme.icon;
+  const [open, setOpen] = useState(false);
+
   return (
-    <article className="flex h-full items-start gap-3 rounded-2xl border border-border/60 bg-card p-4 shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40">
-      <span className="badge-icon h-9 w-9 shrink-0 rounded-xl">
-        <Icon className="h-4.5 w-4.5" />
+    <article className="flex h-full flex-col rounded-2xl border border-border/60 bg-card p-5 shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40 sm:p-6">
+      <span className="badge-icon h-11 w-11 shrink-0 rounded-xl">
+        <Icon className="h-5 w-5" />
       </span>
-      <div className="min-w-0">
-        <h3 className="text-sm font-semibold leading-snug text-foreground sm:text-base">
-          {theme.title}
-        </h3>
-        <p className="mt-1 line-clamp-2 text-xs leading-snug text-muted-foreground">
+      <h3 className="mt-4 text-balance font-display text-xl font-semibold leading-tight text-foreground sm:text-2xl">
+        {theme.title}
+      </h3>
+
+      {open && (
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
           {theme.desc}
         </p>
-      </div>
+      )}
+
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        className="mt-auto pt-4 text-left text-xs font-bold uppercase tracking-widest text-primary transition-opacity hover:opacity-70"
+      >
+        {open ? "Fechar −" : "Saiba mais +"}
+      </button>
     </article>
   );
 }
