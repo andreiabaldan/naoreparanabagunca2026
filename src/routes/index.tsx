@@ -1356,42 +1356,34 @@ function FinalCTA() {
       <div className="absolute inset-0 bg-gradient-to-b from-background/88 via-background/92 to-background" />
 
       <div className="relative mx-auto max-w-2xl text-center">
-        <p className="text-balance text-lg text-muted-foreground sm:text-xl">
+        <p className="text-balance text-base text-muted-foreground sm:text-lg">
           Talvez você chegue pela vontade de organizar sua casa.
         </p>
-        <p className="mt-2 text-balance text-xl font-semibold sm:text-2xl">
+        <h2 className="mt-6 text-balance font-display text-3xl leading-tight sm:text-5xl">
           E descubra que organizar muda muito mais do que a casa.
-        </p>
-        <p className="mt-4 text-sm uppercase tracking-[0.2em] text-primary">
-          Sua rotina · Seu tempo · Suas prioridades · Seus planos · A forma como
-          você vive
-        </p>
-
-        <h2 className="mt-8 font-display text-3xl leading-tight sm:text-5xl">
-          Não Repara na Bagunça 2026
         </h2>
-        <p className="mt-2 text-2xl italic text-gradient-brand sm:text-3xl">
+        <p className="mt-5 text-2xl italic text-gradient-brand sm:text-3xl">
           O encontro que muda tudo.
         </p>
 
-        <p className="mt-5 text-sm text-foreground/85">
-          {EVENT.dateShort} · {EVENT.venue}
+        <p className="mt-8 text-base text-foreground/85">
+          24 e 25 de outubro · São José dos Campos/SP
         </p>
 
-        <div className="mx-auto mt-6 max-w-md">
-          <p className="text-sm font-semibold">{LOT_LABEL} quase esgotado.</p>
-          <div className="mt-2">
+        <div className="mx-auto mt-10 max-w-md">
+          <p className="text-sm font-bold uppercase tracking-[0.14em] text-primary">
+            {LOT_LABEL} quase esgotado
+          </p>
+          <div className="mt-3">
             <LotProgress percent={LOT_SOLD_PERCENT} label={`do ${LOT_LABEL}`} />
           </div>
-          <div className="mt-6">
+          <div className="mt-8">
             <CTAButton event="final_cta_click" size="lg" className="w-full">
               Quero viver essa experiência
             </CTAButton>
           </div>
-          <p className="mt-3 text-xs text-muted-foreground">
-            Garanta o valor atual antes da virada do lote.
-          </p>
         </div>
+
       </div>
     </section>
   );
@@ -1593,50 +1585,27 @@ function ThemeGroupBlock({
   return (
     <div>
       <div className="flex items-center gap-3">
-        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary sm:text-xs">
+        <h3 className="text-base font-semibold uppercase tracking-[0.14em] text-primary sm:text-lg">
           {group.label}
-        </span>
+        </h3>
         <span className="h-px flex-1 bg-gradient-identity opacity-60" />
       </div>
-      <p className="mt-2 max-w-2xl text-xs leading-relaxed text-muted-foreground sm:text-sm">
-        {group.blurb}
-      </p>
 
       <div className="mt-4">
-        {isOpen ? (
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {group.themes.map((t) => (
-              <ThemeCard key={t.title} theme={t} />
-            ))}
-          </div>
-        ) : (
-          <CarouselRow
-            ariaLabel={group.label}
-            showDots={false}
-            hint="Deslize para descobrir os temas →"
-            itemClassName="w-[80%] sm:w-[46%] lg:w-[31%] xl:w-[24%]"
-            items={group.themes.map((t) => (
-              <ThemeCard key={t.title} theme={t} />
-            ))}
-          />
-        )}
+        <CarouselRow
+          ariaLabel={group.label}
+          showDots={false}
+          hint="Deslize para ver mais →"
+          itemClassName="w-[80%] sm:w-[46%] lg:w-[31%] xl:w-[24%]"
+          items={group.themes.map((t) => (
+            <ThemeCard key={t.title} theme={t} />
+          ))}
+        />
       </div>
-
-      {group.themes.length > 3 && (
-        <div className="mt-3 flex justify-center">
-          <button
-            type="button"
-            onClick={onToggle}
-            aria-expanded={isOpen}
-            className="rounded-full border border-primary/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/10"
-          >
-            {isOpen ? "Ver menos −" : "Ver todos os temas +"}
-          </button>
-        </div>
-      )}
     </div>
   );
 }
+
 
 function Schedule() {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
@@ -1645,16 +1614,11 @@ function Schedule() {
     <Section id="programacao" className="bg-sky-tint">
       <div className="text-center">
         <SectionEyebrow>Prévia da programação</SectionEyebrow>
-        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
-          Dois dias.{" "}
-          <span className="italic text-gradient-brand">
-            Uma experiência para transformar a forma como você vive.
-          </span>
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-3xl leading-tight sm:text-4xl">
+          Dois dias para organizar{" "}
+          <span className="italic text-gradient-brand">da casa à vida.</span>
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-balance text-sm text-muted-foreground sm:text-base">
-          Confira alguns dos temas que vão fazer parte do Não Repara na Bagunça
-          2026.
-        </p>
+
       </div>
 
       <div className="mt-8 space-y-8">
@@ -1671,34 +1635,19 @@ function Schedule() {
       </div>
 
 
-      <div className="mx-auto mt-12 max-w-2xl rounded-2xl border border-border/60 bg-card p-6 text-center shadow-card sm:p-8">
-        <p className="text-base font-semibold leading-relaxed text-foreground sm:text-lg">
-          Da casa à rotina.
-          <br />
-          Das finanças ao bem-estar.
-          <br />
-          Da imagem ao propósito.
-        </p>
-        <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-          Porque organizar não é sobre deixar tudo perfeito. É sobre construir
-          uma vida que funcione para você.
+      <div className="mx-auto mt-14 max-w-3xl px-2 text-center sm:mt-20">
+        <p className="text-balance font-display text-2xl italic leading-snug text-primary sm:text-4xl">
+          “Grandes transformações começam quando você se apaixona pelo
+          processo.”
         </p>
 
-        <div className="mt-6 rounded-xl bg-gradient-identity p-[1.5px]">
-          <div className="rounded-[calc(0.75rem-1.5px)] bg-card px-5 py-5">
-            <p className="text-balance font-display text-lg italic leading-snug text-gradient-brand sm:text-xl">
-              “Grandes transformações começam quando você se apaixona pelo
-              processo.”
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-6 flex justify-center">
+        <div className="mt-10 flex justify-center sm:mt-12">
           <CTAButton event="schedule_cta_click">
             Quero viver esses 2 dias
           </CTAButton>
         </div>
       </div>
+
 
       <p className="mt-6 text-center text-xs text-muted-foreground">
         *Temas confirmados. Dias, horários e palestrantes serão divulgados em
