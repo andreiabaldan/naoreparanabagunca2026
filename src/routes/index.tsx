@@ -1608,7 +1608,8 @@ function ThemeGroupBlock({
           <CarouselRow
             ariaLabel={group.label}
             showDots={false}
-            itemClassName="w-[82%] sm:w-[46%] lg:w-[32%]"
+            hint="Deslize para descobrir os temas →"
+            itemClassName="w-[80%] sm:w-[46%] lg:w-[31%] xl:w-[24%]"
             items={group.themes.map((t) => (
               <ThemeCard key={t.title} theme={t} />
             ))}
