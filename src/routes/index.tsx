@@ -466,21 +466,26 @@ function LotProgress({
   percent,
   label,
   compact = false,
+  hideLabel = false,
 }: {
   percent: number | null;
   label?: string;
   compact?: boolean;
+  hideLabel?: boolean;
 }) {
   if (percent === null) return null;
   return (
     <div className="w-full">
-      <div className="flex items-center justify-between gap-3">
-        <span
-          className={`font-semibold text-primary ${compact ? "text-xs" : "text-xs"} uppercase tracking-wider`}
-        >
-          {percent}% {label ?? "deste lote"} vendido
-        </span>
-      </div>
+      {!hideLabel && (
+        <div className="flex items-center justify-between gap-3">
+          <span
+            className={`font-semibold text-primary ${compact ? "text-xs" : "text-xs"} uppercase tracking-wider`}
+          >
+            {percent}% {label ?? "deste lote"} vendido
+          </span>
+        </div>
+      )}
+
       <div
         className="mt-2 h-2 w-full overflow-hidden rounded-full bg-sky/40"
         role="progressbar"
@@ -528,56 +533,93 @@ function TopBar() {
   );
 }
 
-/** Composição do Hero: Suelen em destaque + palestrantes ao redor. */
+/** Composição editorial do Hero: Suelen protagonista + especialistas em recortes. */
 const HERO_GUESTS = [
-  { photo: spAndreia.url, name: "Andréia Baldan", pos: "left-0 top-[6%] w-[26%]" },
-  { photo: spDouglas.url, name: "Douglas Lopes", pos: "right-[2%] top-0 w-[24%]" },
-  { photo: spFernanda.url, name: "Fernanda Ardito", pos: "-left-[2%] top-[42%] w-[23%]" },
-  { photo: spMichelle.url, name: "Michelle Sampaio", pos: "right-0 top-[38%] w-[27%]" },
-  { photo: spNatalia.url, name: "Natália Rico", pos: "left-[10%] bottom-[2%] w-[22%]" },
-  { photo: spPaula.url, name: "Paula Chiaradia", pos: "right-[8%] bottom-0 w-[25%]" },
-  { photo: spStella.url, name: "Stella Vilella", pos: "left-[38%] -top-[2%] w-[19%]" },
+  {
+    photo: spAndreia.url,
+    name: "Andréia Baldan",
+    pos: "left-0 bottom-[6%] w-[30%] sm:w-[28%] -rotate-3",
+    hideOnMobile: false,
+  },
+  {
+    photo: spDouglas.url,
+    name: "Douglas Lopes",
+    pos: "right-0 bottom-[6%] w-[30%] sm:w-[28%] rotate-3",
+    hideOnMobile: false,
+  },
+  {
+    photo: spFernanda.url,
+    name: "Fernanda Ardito",
+    pos: "left-[13%] top-[8%] w-[24%] sm:w-[22%] -rotate-6",
+    hideOnMobile: false,
+  },
+  {
+    photo: spMichelle.url,
+    name: "Michelle Sampaio",
+    pos: "right-[13%] top-[8%] w-[24%] sm:w-[22%] rotate-6",
+    hideOnMobile: false,
+  },
+  {
+    photo: spNatalia.url,
+    name: "Natália Rico",
+    pos: "left-[2%] top-[38%] w-[21%] -rotate-2",
+    hideOnMobile: true,
+  },
+  {
+    photo: spPaula.url,
+    name: "Paula Chiaradia",
+    pos: "right-[2%] top-[38%] w-[21%] rotate-2",
+    hideOnMobile: true,
+  },
+  {
+    photo: spStella.url,
+    name: "Stella Vilella",
+    pos: "left-1/2 -translate-x-1/2 -top-[1%] w-[20%]",
+    hideOnMobile: true,
+  },
 ];
 
 function HeroComposition() {
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[540px]">
-      {/* fundo orgânico suave */}
-      <div className="absolute inset-[6%] rounded-full bg-gradient-identity opacity-25 blur-2xl" />
-      <div className="absolute inset-[18%] rounded-full bg-sky-tint" />
+    <div className="relative mx-auto aspect-[4/3] w-full max-w-[380px] sm:aspect-square sm:max-w-[460px] lg:max-w-[560px]">
+      {/* fundos suaves da marca */}
+      <div className="absolute inset-x-[8%] bottom-[4%] top-[10%] rounded-[3rem] bg-gradient-identity opacity-20 blur-2xl" />
+      <div className="absolute inset-x-[16%] bottom-0 top-[22%] rounded-[2.5rem] bg-sky-tint" />
 
-      {/* Suelen em destaque */}
-      <div className="absolute left-1/2 top-1/2 w-[46%] -translate-x-1/2 -translate-y-1/2">
-        <div className="rounded-full bg-gradient-identity p-[3px] shadow-glow">
-          <img
-            src={suelenAvatar.url}
-            alt="Suelen Gubeisse, idealizadora do Não Repara na Bagunça"
-            width={480}
-            height={480}
-            fetchPriority="high"
-            decoding="async"
-            className="aspect-square w-full rounded-full bg-surface object-cover"
-          />
-        </div>
+      {/* Suelen protagonista */}
+      <div className="absolute bottom-0 left-1/2 w-[52%] -translate-x-1/2 sm:w-[50%]">
+        <img
+          src={suelenAvatar.url}
+          alt="Suelen Gubeisse, idealizadora do Não Repara na Bagunça"
+          width={640}
+          height={640}
+          fetchPriority="high"
+          decoding="async"
+          className="w-full object-contain drop-shadow-[0_18px_30px_rgba(23,20,26,0.22)]"
+        />
       </div>
 
-      {/* Palestrantes ao redor */}
+      {/* Especialistas em recortes sobrepostos */}
       {HERO_GUESTS.map((g) => (
-        <div key={g.name} className={`absolute ${g.pos}`}>
+        <div
+          key={g.name}
+          className={`absolute ${g.pos} ${g.hideOnMobile ? "hidden sm:block" : ""}`}
+        >
           <img
             src={g.photo}
             alt={g.name}
-            width={200}
-            height={200}
+            width={260}
+            height={260}
             loading="lazy"
             decoding="async"
-            className="aspect-square w-full rounded-full border-2 border-surface bg-surface object-cover shadow-card"
+            className="w-full object-contain drop-shadow-[0_12px_22px_rgba(23,20,26,0.18)]"
           />
         </div>
       ))}
     </div>
   );
 }
+
 
 function Hero() {
   return (
@@ -606,47 +648,37 @@ function Hero() {
             className="mx-auto w-[300px] max-w-full rounded-xl shadow-card sm:w-[380px] lg:mx-0 lg:w-[400px]"
           />
 
-          <h1 className="mt-5 text-balance text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
+          <h1 className="mt-4 text-balance text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
             <span className="italic text-gradient-brand">
               O encontro que muda tudo.
             </span>
           </h1>
 
-          <p className="mx-auto mt-4 max-w-2xl text-balance font-display text-2xl font-semibold leading-snug text-foreground sm:text-3xl lg:mx-0">
-            2 dias que mudam a forma como você vai viver os próximos anos da sua
-            vida.
+          <p className="mx-auto mt-4 max-w-xl text-balance text-lg font-medium leading-relaxed text-foreground/90 sm:text-xl lg:mx-0">
+            2 dias para deixar sua casa, sua rotina e sua vida mais leves e
+            organizadas.
           </p>
 
-          <p className="mx-auto mt-3 max-w-xl text-balance text-lg font-medium leading-relaxed text-foreground/85 lg:mx-0">
-            Casa, rotina e vida mais leves e organizadas.
-          </p>
-
-          <div className="mt-6 flex flex-col items-center gap-2 text-base font-medium text-foreground/85 lg:items-start">
-            <span className="inline-flex items-center gap-2">
-              <Calendar className="h-5 w-5 shrink-0 text-primary" />
-              24 e 25 de outubro de 2026
+          <div className="mt-5 flex flex-col items-center gap-1 text-base font-semibold text-foreground/90 lg:items-start">
+            <span className="text-balance">
+              24 e 25 de outubro · São José dos Campos/SP
             </span>
-            <span className="inline-flex items-center gap-2">
-              <Clock className="h-5 w-5 shrink-0 text-primary" />
-              Das 9h às 18h30
-            </span>
-            <span className="inline-flex items-center gap-2 text-balance">
-              <MapPin className="h-5 w-5 shrink-0 text-primary" />
-              PIT — Parque Tecnológico de São José dos Campos/SP
-            </span>
+            <span className="font-medium text-foreground/80">9h às 18h30</span>
           </div>
 
-          <div className="mx-auto mt-7 max-w-md rounded-3xl border border-primary/40 bg-card p-5 shadow-glow lg:mx-0">
+          <div className="mx-auto mt-6 max-w-md lg:mx-0">
             <CTAButton event="hero_cta_click" size="lg" className="w-full">
               Quero garantir meu ingresso
             </CTAButton>
-            <p className="mt-4 text-base font-semibold text-foreground">
-              {LOT_LABEL} quase esgotado
-            </p>
-            <div className="mt-2">
-              <LotProgress percent={LOT_SOLD_PERCENT} label={`do ${LOT_LABEL}`} />
+            <div className="mt-4">
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+                {LOT_LABEL} quase esgotado · {LOT_SOLD_PERCENT}% vendido
+              </p>
+              <LotProgress percent={LOT_SOLD_PERCENT} label="" hideLabel />
             </div>
+
           </div>
+
         </div>
       </div>
     </section>
@@ -1356,42 +1388,35 @@ function FinalCTA() {
       <div className="absolute inset-0 bg-gradient-to-b from-background/88 via-background/92 to-background" />
 
       <div className="relative mx-auto max-w-2xl text-center">
-        <p className="text-balance text-lg text-muted-foreground sm:text-xl">
+        <p className="text-balance text-base text-muted-foreground sm:text-lg">
           Talvez você chegue pela vontade de organizar sua casa.
         </p>
-        <p className="mt-2 text-balance text-xl font-semibold sm:text-2xl">
+        <h2 className="mt-6 text-balance font-display text-3xl leading-tight sm:text-5xl">
           E descubra que organizar muda muito mais do que a casa.
-        </p>
-        <p className="mt-4 text-sm uppercase tracking-[0.2em] text-primary">
-          Sua rotina · Seu tempo · Suas prioridades · Seus planos · A forma como
-          você vive
-        </p>
-
-        <h2 className="mt-8 font-display text-3xl leading-tight sm:text-5xl">
-          Não Repara na Bagunça 2026
         </h2>
-        <p className="mt-2 text-2xl italic text-gradient-brand sm:text-3xl">
+        <p className="mt-5 text-2xl italic text-gradient-brand sm:text-3xl">
           O encontro que muda tudo.
         </p>
 
-        <p className="mt-5 text-sm text-foreground/85">
-          {EVENT.dateShort} · {EVENT.venue}
+        <p className="mt-8 text-base text-foreground/85">
+          24 e 25 de outubro · São José dos Campos/SP
         </p>
 
-        <div className="mx-auto mt-6 max-w-md">
-          <p className="text-sm font-semibold">{LOT_LABEL} quase esgotado.</p>
-          <div className="mt-2">
-            <LotProgress percent={LOT_SOLD_PERCENT} label={`do ${LOT_LABEL}`} />
+        <div className="mx-auto mt-10 max-w-md">
+          <p className="text-sm font-bold uppercase tracking-[0.14em] text-primary">
+            {LOT_LABEL} quase esgotado · {LOT_SOLD_PERCENT}% vendido
+          </p>
+          <div className="mt-3">
+            <LotProgress percent={LOT_SOLD_PERCENT} label="" hideLabel />
           </div>
-          <div className="mt-6">
+
+          <div className="mt-8">
             <CTAButton event="final_cta_click" size="lg" className="w-full">
               Quero viver essa experiência
             </CTAButton>
           </div>
-          <p className="mt-3 text-xs text-muted-foreground">
-            Garanta o valor atual antes da virada do lote.
-          </p>
         </div>
+
       </div>
     </section>
   );
@@ -1581,124 +1606,65 @@ function ThemeCard({ theme }: { theme: Theme }) {
   );
 }
 
-function ThemeGroupBlock({
-  group,
-  isOpen,
-  onToggle,
-}: {
-  group: ThemeGroup;
-  isOpen: boolean;
-  onToggle: () => void;
-}) {
+function ThemeGroupBlock({ group }: { group: ThemeGroup }) {
+
   return (
     <div>
       <div className="flex items-center gap-3">
-        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary sm:text-xs">
+        <h3 className="text-base font-semibold uppercase tracking-[0.14em] text-primary sm:text-lg">
           {group.label}
-        </span>
+        </h3>
         <span className="h-px flex-1 bg-gradient-identity opacity-60" />
       </div>
-      <p className="mt-2 max-w-2xl text-xs leading-relaxed text-muted-foreground sm:text-sm">
-        {group.blurb}
-      </p>
 
       <div className="mt-4">
-        {isOpen ? (
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {group.themes.map((t) => (
-              <ThemeCard key={t.title} theme={t} />
-            ))}
-          </div>
-        ) : (
-          <CarouselRow
-            ariaLabel={group.label}
-            showDots={false}
-            hint="Deslize para descobrir os temas →"
-            itemClassName="w-[80%] sm:w-[46%] lg:w-[31%] xl:w-[24%]"
-            items={group.themes.map((t) => (
-              <ThemeCard key={t.title} theme={t} />
-            ))}
-          />
-        )}
+        <CarouselRow
+          ariaLabel={group.label}
+          showDots={false}
+          hint="Deslize para ver mais →"
+          itemClassName="w-[80%] sm:w-[46%] lg:w-[31%] xl:w-[24%]"
+          items={group.themes.map((t) => (
+            <ThemeCard key={t.title} theme={t} />
+          ))}
+        />
       </div>
-
-      {group.themes.length > 3 && (
-        <div className="mt-3 flex justify-center">
-          <button
-            type="button"
-            onClick={onToggle}
-            aria-expanded={isOpen}
-            className="rounded-full border border-primary/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-primary/10"
-          >
-            {isOpen ? "Ver menos −" : "Ver todos os temas +"}
-          </button>
-        </div>
-      )}
     </div>
   );
 }
 
-function Schedule() {
-  const [openGroup, setOpenGroup] = useState<string | null>(null);
 
+function Schedule() {
   return (
     <Section id="programacao" className="bg-sky-tint">
       <div className="text-center">
         <SectionEyebrow>Prévia da programação</SectionEyebrow>
-        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
-          Dois dias.{" "}
-          <span className="italic text-gradient-brand">
-            Uma experiência para transformar a forma como você vive.
-          </span>
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-3xl leading-tight sm:text-4xl">
+          Dois dias para organizar{" "}
+          <span className="italic text-gradient-brand">da casa à vida.</span>
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-balance text-sm text-muted-foreground sm:text-base">
-          Confira alguns dos temas que vão fazer parte do Não Repara na Bagunça
-          2026.
-        </p>
       </div>
 
-      <div className="mt-8 space-y-8">
+      <div className="mt-8 space-y-10">
         {THEME_GROUPS.map((group) => (
-          <ThemeGroupBlock
-            key={group.id}
-            group={group}
-            isOpen={openGroup === group.id}
-            onToggle={() =>
-              setOpenGroup(openGroup === group.id ? null : group.id)
-            }
-          />
+          <ThemeGroupBlock key={group.id} group={group} />
         ))}
       </div>
 
 
-      <div className="mx-auto mt-12 max-w-2xl rounded-2xl border border-border/60 bg-card p-6 text-center shadow-card sm:p-8">
-        <p className="text-base font-semibold leading-relaxed text-foreground sm:text-lg">
-          Da casa à rotina.
-          <br />
-          Das finanças ao bem-estar.
-          <br />
-          Da imagem ao propósito.
-        </p>
-        <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-          Porque organizar não é sobre deixar tudo perfeito. É sobre construir
-          uma vida que funcione para você.
+
+      <div className="mx-auto mt-14 max-w-3xl px-2 text-center sm:mt-20">
+        <p className="text-balance font-display text-2xl italic leading-snug text-primary sm:text-4xl">
+          “Grandes transformações começam quando você se apaixona pelo
+          processo.”
         </p>
 
-        <div className="mt-6 rounded-xl bg-gradient-identity p-[1.5px]">
-          <div className="rounded-[calc(0.75rem-1.5px)] bg-card px-5 py-5">
-            <p className="text-balance font-display text-lg italic leading-snug text-gradient-brand sm:text-xl">
-              “Grandes transformações começam quando você se apaixona pelo
-              processo.”
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-6 flex justify-center">
+        <div className="mt-10 flex justify-center sm:mt-12">
           <CTAButton event="schedule_cta_click">
             Quero viver esses 2 dias
           </CTAButton>
         </div>
       </div>
+
 
       <p className="mt-6 text-center text-xs text-muted-foreground">
         *Temas confirmados. Dias, horários e palestrantes serão divulgados em
