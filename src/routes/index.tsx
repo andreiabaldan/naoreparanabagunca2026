@@ -44,8 +44,9 @@ import { track } from "@/lib/tracking";
 
 import heroBg from "@/assets/hero-bg.jpg";
 import logoNrnb from "@/assets/logo_nrnb.webp.asset.json";
-import suelenPhoto from "@/assets/suelen_fundo.png.asset.json";
-import suelenAvatar from "@/assets/suelen-avatar.png.asset.json";
+import suelenPhoto from "@/assets/suelen-idealizadora.jpg.asset.json";
+import suelenAvatar from "@/assets/suelen-face-cut.png.asset.json";
+import suelenHeroCut from "@/assets/suelen-hero-cut.png.asset.json";
 import spDouglas from "@/assets/douglas-lopes.png.asset.json";
 import spNatalia from "@/assets/natalia-rico.png.asset.json";
 import spFernanda from "@/assets/fernanda-ardito.png.asset.json";
