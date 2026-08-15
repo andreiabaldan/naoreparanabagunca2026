@@ -62,6 +62,10 @@ import nova2 from "@/assets/nova2.jpg.asset.json";
 import nova3 from "@/assets/nova_3.jpg.asset.json";
 import nova4 from "@/assets/nova_4.jpg.asset.json";
 import nova5 from "@/assets/nova_5.jpg.asset.json";
+import palco1 from "@/assets/dan_0359.jpg.asset.json";
+import palco2 from "@/assets/dan_0144.jpg.asset.json";
+import palco3 from "@/assets/dan_9870.jpg.asset.json";
+import palco4 from "@/assets/dan_9675.jpg.asset.json";
 import nrnbVideo from "@/assets/nrnb-video.mp4.asset.json";
 import nrnbVideoPoster from "@/assets/nrnb-video-poster.jpg.asset.json";
 import depoimentoVideo from "@/assets/depoimento-1.mp4.asset.json";
@@ -1726,6 +1730,10 @@ const EVENT_PHOTOS = [
   { src: nova3.url, alt: "Apresentação musical ao vivo no palco do evento" },
   { src: nova2.url, alt: "Participantes registrando o conteúdo no auditório lotado" },
   { src: nova1.url, alt: "Participantes no espaço instagramável com as marcas parceiras" },
+  { src: palco1.url, alt: "Suelen Gubeisse palestrando sobre ambientes desorganizados" },
+  { src: palco2.url, alt: "Palestra da Dra. Stella Vilella para a plateia lotada" },
+  { src: palco3.url, alt: "Demonstração prática de dobras e organização de roupas no palco" },
+  { src: palco4.url, alt: "Aula de mesa posta e recepção em casa durante o evento" },
 ];
 
 function PhotoGallery() {
