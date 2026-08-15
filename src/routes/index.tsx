@@ -1573,15 +1573,8 @@ function ThemeCard({ theme }: { theme: Theme }) {
   );
 }
 
-function ThemeGroupBlock({
-  group,
-  isOpen,
-  onToggle,
-}: {
-  group: ThemeGroup;
-  isOpen: boolean;
-  onToggle: () => void;
-}) {
+function ThemeGroupBlock({ group }: { group: ThemeGroup }) {
+
   return (
     <div>
       <div className="flex items-center gap-3">
