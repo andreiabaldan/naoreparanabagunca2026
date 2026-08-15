@@ -197,7 +197,7 @@ const THEME_GROUPS: ThemeGroup[] = [
     id: "casa",
     label: "Casa & organização",
     blurb:
-      "Ideias e soluções para tornar sua casa mais funcional, acolhedora e fácil de viver.",
+      "Uma casa mais funcional, bonita e gostosa de viver.",
 
     themes: [
       {
