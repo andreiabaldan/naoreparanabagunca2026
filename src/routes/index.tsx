@@ -977,7 +977,7 @@ const TESTIMONIALS = [
 
 function SocialProof() {
   return (
-    <Section className="bg-sky-tint">
+    <Section>
       <div className="text-center">
         <SectionEyebrow>Prova social</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
