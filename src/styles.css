@@ -348,3 +348,16 @@
     transparent 100%
   );
 }
+
+.hero-scene .bg-gradient-brand {
+  background: #ffffff;
+  color: #7c0353;
+}
+
+.hero-scene .text-gradient-brand,
+.hero-scene .text-gradient-identity {
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: #ffffff;
+}
