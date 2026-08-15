@@ -666,11 +666,12 @@ function Hero() {
               Quero garantir meu ingresso
             </CTAButton>
             <div className="mt-4">
-              <LotProgress
-                percent={LOT_SOLD_PERCENT}
-                label={`vendido · ${LOT_LABEL} quase esgotado ·`}
-              />
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+                {LOT_LABEL} quase esgotado · {LOT_SOLD_PERCENT}% vendido
+              </p>
+              <LotProgress percent={LOT_SOLD_PERCENT} label="" hideLabel />
             </div>
+
           </div>
 
         </div>
