@@ -614,10 +614,10 @@ function Hero() {
           <img
             src={logoNrnb.url}
             alt="Não Repara na Bagunça"
-            width={400}
-            height={137}
+            width={546}
+            height={187}
             fetchPriority="high"
-            className="mx-auto hidden w-[300px] max-w-full sm:w-[380px] lg:mx-0 lg:block lg:w-[420px]"
+            className="mx-auto hidden w-[300px] max-w-full sm:w-[380px] lg:mx-0 lg:block lg:w-[546px]"
           />
 
           <h1 className="mt-4 text-balance text-4xl leading-[1.05] text-white sm:text-5xl lg:text-6xl">
