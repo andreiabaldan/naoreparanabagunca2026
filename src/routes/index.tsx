@@ -573,7 +573,7 @@ function Hero() {
           alt="Suelen Gubeisse e os especialistas convidados do Não Repara na Bagunça 2026"
           fetchPriority="high"
           decoding="async"
-          className="hero-photo-desktop h-full w-full object-cover object-[62%_center]"
+          className="hero-photo-desktop h-full w-full object-contain object-center"
         />
       </div>
 
