@@ -586,7 +586,7 @@ function Hero() {
             width={400}
             height={137}
             fetchPriority="high"
-            className="w-[260px] max-w-full sm:w-[340px]"
+            className="w-[312px] max-w-full sm:w-[408px]"
           />
         </div>
 
