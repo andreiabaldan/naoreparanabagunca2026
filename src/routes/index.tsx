@@ -567,13 +567,13 @@ function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_18%_35%,_rgba(184,6,125,0.55)_0%,_transparent_60%)]" />
 
       {/* Fotografia — desktop: sangra à direita e avança para o centro */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block">
+      <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[62%] bg-[#9c0369] lg:block">
         <img
           src={heroComposicao.url}
           alt="Suelen Gubeisse e os especialistas convidados do Não Repara na Bagunça 2026"
           fetchPriority="high"
           decoding="async"
-          className="hero-photo-desktop h-full w-full object-cover object-[62%_center]"
+          className="hero-photo-desktop h-full w-full object-contain object-center"
         />
       </div>
 
