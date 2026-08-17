@@ -317,13 +317,16 @@ const ACTIVATIONS: Activation[] = [];
 const LOT_SOLD_PERCENT: number | null = 93;
 const LOT_LABEL = "1º LOTE";
 
+type LotStep = { label: string; value: string };
+
 type Ticket = {
   id: "compromisso" | "vip" | "platinum";
   name: string;
   desire: string;
   price: string;
-  fullPrice: string;
-  lots: string;
+  nextLotPrice: string;
+  lotLabel: string;
+  lotSteps: LotStep[];
   installments: string;
   soldPercent: number | null;
   benefits: string[];
@@ -337,9 +340,15 @@ const TICKETS: Ticket[] = [
     id: "compromisso",
     name: "Compromisso",
     desire: "Quero participar.",
-    price: "R$ 97,00",
-    fullPrice: "(valor cheio R$ 247,00)",
-    lots: "Pré-lançamento - R$ 97,00 / 1º lote R$ 147,00 / 2º lote R$ 197,00 / 3º lote R$ 247,00",
+    price: "97,00",
+    nextLotPrice: "R$ 247,00",
+    lotLabel: "1º lote",
+    lotSteps: [
+      { label: "1º lote (atual)", value: "R$ 97,00" },
+      { label: "2º lote", value: "R$ 147,00" },
+      { label: "3º lote", value: "R$ 197,00" },
+      { label: "Valor cheio", value: "R$ 247,00" },
+    ],
     installments: "ou 12x de R$ 9,70 no cartão",
     soldPercent: 93,
     benefits: [
@@ -353,9 +362,15 @@ const TICKETS: Ticket[] = [
     id: "vip",
     name: "VIP",
     desire: "Quero viver melhor essa experiência.",
-    price: "R$ 147,00",
-    fullPrice: "(valor cheio R$ 297,00)",
-    lots: "Pré-lançamento - R$ 147,00 / 1º lote R$ 197,00 / 2º lote R$ 247,00 / 3º lote R$ 297,00",
+    price: "147,00",
+    nextLotPrice: "R$ 297,00",
+    lotLabel: "1º lote",
+    lotSteps: [
+      { label: "1º lote (atual)", value: "R$ 147,00" },
+      { label: "2º lote", value: "R$ 197,00" },
+      { label: "3º lote", value: "R$ 247,00" },
+      { label: "Valor cheio", value: "R$ 297,00" },
+    ],
     installments: "ou 12x de R$ 14,70 no cartão",
     soldPercent: 74,
     highlight: "Experiência recomendada",
@@ -373,9 +388,15 @@ const TICKETS: Ticket[] = [
     id: "platinum",
     name: "Platinum",
     desire: "Quero viver tudo o que o NRNB pode oferecer.",
-    price: "R$ 347,00",
-    fullPrice: "(valor cheio R$ 597,00)",
-    lots: "Pré-lançamento - R$ 347,00 / 1º lote R$ 447,00 / 2º lote R$ 497,00 / 3º lote R$ 597,00",
+    price: "347,00",
+    nextLotPrice: "R$ 597,00",
+    lotLabel: "1º lote",
+    lotSteps: [
+      { label: "1º lote (atual)", value: "R$ 347,00" },
+      { label: "2º lote", value: "R$ 447,00" },
+      { label: "3º lote", value: "R$ 497,00" },
+      { label: "Valor cheio", value: "R$ 597,00" },
+    ],
     installments: "ou 12x de R$ 34,70 no cartão",
     soldPercent: 52,
     highlight: "Experiência completa",
@@ -393,6 +414,7 @@ const TICKETS: Ticket[] = [
     checkout: "https://payfast.greenn.com.br/168696?batch=13839_135ERC",
   },
 ];
+
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
