@@ -341,7 +341,7 @@ const TICKETS: Ticket[] = [
     name: "Compromisso",
     desire: "Quero participar.",
     price: "97,00",
-    nextLotPrice: "R$ 247,00",
+    nextLotPrice: "R$ 147,00",
     lotLabel: "1º lote",
     lotSteps: [
       { label: "1º lote (atual)", value: "R$ 97,00" },
@@ -363,7 +363,7 @@ const TICKETS: Ticket[] = [
     name: "VIP",
     desire: "Quero viver melhor essa experiência.",
     price: "147,00",
-    nextLotPrice: "R$ 297,00",
+    nextLotPrice: "R$ 197,00",
     lotLabel: "1º lote",
     lotSteps: [
       { label: "1º lote (atual)", value: "R$ 147,00" },
@@ -389,7 +389,7 @@ const TICKETS: Ticket[] = [
     name: "Platinum",
     desire: "Quero viver tudo o que o NRNB pode oferecer.",
     price: "347,00",
-    nextLotPrice: "R$ 597,00",
+    nextLotPrice: "R$ 447,00",
     lotLabel: "1º lote",
     lotSteps: [
       { label: "1º lote (atual)", value: "R$ 347,00" },
