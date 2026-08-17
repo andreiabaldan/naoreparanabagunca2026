@@ -567,13 +567,13 @@ function Hero() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_18%_35%,_rgba(184,6,125,0.55)_0%,_transparent_60%)]" />
 
       {/* Fotografia — desktop: sangra à direita e avança para o centro */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[62%] bg-[#9c0369] lg:block">
+      <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block">
         <img
           src={heroComposicao.url}
           alt="Suelen Gubeisse e os especialistas convidados do Não Repara na Bagunça 2026"
           fetchPriority="high"
           decoding="async"
-          className="hero-photo-desktop h-full w-full object-contain object-center"
+          className="hero-photo-desktop h-full w-full object-cover object-[62%_center]"
         />
       </div>
 
@@ -591,18 +591,18 @@ function Hero() {
         </div>
 
         {/* Fotografia — mobile/tablet: largura total, fundida ao fundo */}
-        <div className="order-2 -mx-5 bg-[#9c0369] sm:-mx-6 lg:hidden">
+        <div className="order-2 -mx-5 sm:-mx-6 lg:hidden">
           <img
             src={heroComposicao.url}
             alt="Suelen Gubeisse e os especialistas convidados do Não Repara na Bagunça 2026"
             fetchPriority="high"
             decoding="async"
-            className="hero-photo-mobile w-full object-contain object-center"
+            className="hero-photo-mobile w-full object-cover object-[center_28%]"
             style={{
               WebkitMaskImage:
-                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.95) 6%, #000 12%, #000 88%, rgba(0,0,0,0.95) 94%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%)",
+                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.95) 6%, #000 12%, #000 88%, rgba(0,0,0,0.95) 94%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 16%, #000 78%, transparent 100%)",
               maskImage:
-                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.95) 6%, #000 12%, #000 88%, rgba(0,0,0,0.95) 94%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%)",
+                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.95) 6%, #000 12%, #000 88%, rgba(0,0,0,0.95) 94%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 16%, #000 78%, transparent 100%)",
               WebkitMaskComposite: "source-in",
               maskComposite: "intersect",
             }}

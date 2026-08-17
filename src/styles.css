@@ -372,25 +372,29 @@
 
 .hero-photo-desktop {
   -webkit-mask-image:
-    linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%);
+    linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.6) 22%, #000 46%),
+    linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%);
   mask-image:
-    linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%);
+    linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.6) 22%, #000 46%),
+    linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
 }
 
 .hero-photo-mobile {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   -webkit-mask-image: linear-gradient(
     to bottom,
     transparent 0%,
-    #000 10%,
-    #000 90%,
+    #000 16%,
+    #000 78%,
     transparent 100%
   );
   mask-image: linear-gradient(
     to bottom,
     transparent 0%,
-    #000 10%,
-    #000 90%,
+    #000 16%,
+    #000 78%,
     transparent 100%
   );
 }
