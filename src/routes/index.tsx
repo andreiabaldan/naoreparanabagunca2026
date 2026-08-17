@@ -577,16 +577,47 @@ function Hero() {
         />
       </div>
 
-      <div className="relative mx-auto flex max-w-6xl flex-col gap-6 px-5 pb-10 pt-7 sm:px-6 sm:pb-14 sm:pt-12 lg:grid lg:grid-cols-[1.02fr_1fr] lg:items-center lg:gap-10 lg:pb-24 lg:pt-20">
-        {/* Conversão */}
-        <div className="order-2 text-center lg:order-1 lg:text-left">
+      <div className="relative mx-auto flex max-w-6xl flex-col px-5 pb-10 pt-6 sm:px-6 sm:pb-14 sm:pt-10 lg:grid lg:grid-cols-[1.02fr_1fr] lg:items-center lg:gap-10 lg:pb-24 lg:pt-20">
+        {/* Logo — mobile only: marca antes da fotografia */}
+        <div className="order-1 mb-5 flex justify-center lg:hidden">
           <img
             src={logoNrnb.url}
             alt="Não Repara na Bagunça"
             width={400}
             height={137}
             fetchPriority="high"
-            className="mx-auto w-[300px] max-w-full sm:w-[380px] lg:mx-0 lg:w-[420px]"
+            className="w-[260px] max-w-full sm:w-[340px]"
+          />
+        </div>
+
+        {/* Fotografia — mobile/tablet: largura total, fundida ao fundo */}
+        <div className="order-2 -mx-5 sm:-mx-6 lg:hidden">
+          <img
+            src={heroComposicao.url}
+            alt="Suelen Gubeisse e os especialistas convidados do Não Repara na Bagunça 2026"
+            fetchPriority="high"
+            decoding="async"
+            className="hero-photo-mobile w-full object-cover object-[center_28%]"
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.95) 6%, #000 12%, #000 88%, rgba(0,0,0,0.95) 94%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 16%, #000 78%, transparent 100%)",
+              maskImage:
+                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.95) 6%, #000 12%, #000 88%, rgba(0,0,0,0.95) 94%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 16%, #000 78%, transparent 100%)",
+              WebkitMaskComposite: "source-in",
+              maskComposite: "intersect",
+            }}
+          />
+        </div>
+
+        {/* Conversão */}
+        <div className="order-3 text-center lg:order-1 lg:text-left">
+          <img
+            src={logoNrnb.url}
+            alt="Não Repara na Bagunça"
+            width={400}
+            height={137}
+            fetchPriority="high"
+            className="mx-auto hidden w-[300px] max-w-full sm:w-[380px] lg:mx-0 lg:block lg:w-[420px]"
           />
 
           <h1 className="mt-4 text-balance text-4xl leading-[1.05] text-white sm:text-5xl lg:text-6xl">
@@ -617,21 +648,11 @@ function Hero() {
             </div>
           </div>
         </div>
-
-        {/* Fotografia — mobile/tablet: largura total, fundida ao fundo */}
-        <div className="order-1 -mx-5 sm:-mx-6 lg:hidden">
-          <img
-            src={heroComposicao.url}
-            alt="Suelen Gubeisse e os especialistas convidados do Não Repara na Bagunça 2026"
-            fetchPriority="high"
-            decoding="async"
-            className="hero-photo-mobile w-full object-cover object-[center_22%]"
-          />
-        </div>
       </div>
     </section>
   );
 }
+
 
 
 const FOR_WHOM = [
