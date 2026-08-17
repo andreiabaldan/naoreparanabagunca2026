@@ -382,7 +382,7 @@
 }
 
 .hero-photo-mobile {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1920 / 1101;
   -webkit-mask-image: linear-gradient(
     to bottom,
     transparent 0%,
