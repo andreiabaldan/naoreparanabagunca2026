@@ -578,20 +578,8 @@ function Hero() {
       </div>
 
       <div className="relative mx-auto flex max-w-6xl flex-col px-5 pb-10 pt-6 sm:px-6 sm:pb-14 sm:pt-10 lg:grid lg:grid-cols-[1.02fr_1fr] lg:items-center lg:gap-10 lg:pb-24 lg:pt-20">
-        {/* Logo — mobile only: marca antes da fotografia */}
-        <div className="order-1 mb-5 flex justify-center lg:hidden">
-          <img
-            src={logoNrnb.url}
-            alt="Não Repara na Bagunça"
-            width={400}
-            height={137}
-            fetchPriority="high"
-            className="w-[312px] max-w-full sm:w-[408px]"
-          />
-        </div>
-
         {/* Fotografia — mobile/tablet: largura total, fundida ao fundo */}
-        <div className="order-2 -mx-5 sm:-mx-6 lg:hidden">
+        <div className="order-1 -mx-5 sm:-mx-6 lg:hidden">
           <img
             src={heroComposicao.url}
             alt="Suelen Gubeisse e os especialistas convidados do Não Repara na Bagunça 2026"
@@ -610,7 +598,19 @@ function Hero() {
         </div>
 
         {/* Conversão */}
-        <div className="order-3 text-center lg:order-1 lg:text-left">
+        <div className="order-2 text-center lg:order-1 lg:text-left">
+          {/* Logo — mobile only: abaixo da fotografia */}
+          <div className="mb-5 flex justify-center lg:hidden">
+            <img
+              src={logoNrnb.url}
+              alt="Não Repara na Bagunça"
+              width={400}
+              height={137}
+              fetchPriority="high"
+              className="w-[312px] max-w-full sm:w-[408px]"
+            />
+          </div>
+
           <img
             src={logoNrnb.url}
             alt="Não Repara na Bagunça"
