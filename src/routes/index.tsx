@@ -46,7 +46,7 @@ import heroBg from "@/assets/hero-bg.jpg";
 import logoNrnb from "@/assets/logo-nrnb-alpha.png.asset.json";
 import suelenPhoto from "@/assets/suelen-idealizadora.jpg.asset.json";
 import suelenAvatar from "@/assets/suelen-face-cut.png.asset.json";
-import heroComposicao from "@/assets/hero-composicao-nova.jpeg.asset.json";
+import heroComposicao from "@/assets/novo-hero-190826.png.asset.json";
 import spDouglas from "@/assets/douglas-cut.png.asset.json";
 import spNatalia from "@/assets/natalia-rico-busto.png.asset.json";
 import spFernanda from "@/assets/fernanda-ardito.png.asset.json";
