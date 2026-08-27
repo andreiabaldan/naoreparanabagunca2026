@@ -1240,6 +1240,41 @@ function Tickets() {
   );
 }
 
+function PersonalOrganizerCourse() {
+  const courseWhatsAppUrl =
+    `https://wa.me/5512991402832?text=${encodeURIComponent("Olá, Suelen! Vim do site e quero saber mais sobre a turma de formação de Personal Organizer.")}`;
+
+  return (
+    <Section id="formacao" className="surface-cream">
+      <div className="mx-auto max-w-3xl text-center">
+        <SectionEyebrow>Formação</SectionEyebrow>
+        <h2 className="mt-5 text-balance text-2xl leading-tight sm:text-4xl">
+          Além de ter uma vida organizada, você quer se tornar uma{" "}
+          <span className="italic text-gradient-brand">Personal Organizer?</span>
+        </h2>
+        <p className="mx-auto mt-5 max-w-2xl text-balance text-base leading-relaxed text-muted-foreground sm:text-lg">
+          Teremos uma turma de formação. Envie uma mensagem pelo WhatsApp para ter mais informações.
+        </p>
+
+        <a
+          href={courseWhatsAppUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => track("personal_organizer_whatsapp_click")}
+          className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-base font-bold uppercase tracking-wide text-primary-foreground shadow-glow transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 active:scale-[0.99]"
+        >
+          <MessageCircle className="h-5 w-5" />
+          Quero mais informações no WhatsApp
+        </a>
+
+        <p className="mt-4 text-sm text-muted-foreground">
+          Responderemos com todos os detalhes da turma.
+        </p>
+      </div>
+    </Section>
+  );
+}
+
 function Founder() {
   return (
     <Section>
