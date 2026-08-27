@@ -1976,6 +1976,7 @@ function LandingPage() {
       <Schedule />
       <SocialProof />
       <Tickets />
+      <PersonalOrganizerCourse />
       <PurchaseSafety />
 
       <Sponsors />
