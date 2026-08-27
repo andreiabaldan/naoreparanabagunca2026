@@ -1059,9 +1059,9 @@ function WhatsAppFloating() {
       onClick={() => track("whatsapp_floating_click")}
       title="Ficou com alguma dúvida? Fale com a gente."
       aria-label="Ficou com alguma dúvida? Fale com a gente no WhatsApp"
-      className="group fixed bottom-24 right-4 z-40 inline-flex items-center gap-2 rounded-full border border-border bg-card/95 px-3.5 py-3 text-sm font-medium text-foreground/80 shadow-card backdrop-blur transition-colors hover:text-primary lg:bottom-6 lg:right-6"
+      className="group fixed bottom-24 right-4 z-40 inline-flex items-center gap-2 rounded-full bg-whatsapp px-3.5 py-3 text-sm font-medium text-white shadow-card backdrop-blur transition-all hover:brightness-110 lg:bottom-6 lg:right-6"
     >
-      <MessageCircle className="h-5 w-5 text-primary" />
+      <MessageCircle className="h-5 w-5" />
       <span className="hidden lg:inline">Ficou com alguma dúvida?</span>
     </a>
   );
@@ -1230,7 +1230,7 @@ function Tickets() {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => track("whatsapp_tickets_click")}
-          className="mt-3 inline-flex items-center justify-center gap-2 rounded-full border border-primary/40 px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-primary transition-colors hover:bg-magenta-soft"
+          className="mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-white transition-all hover:brightness-110"
         >
           <MessageCircle className="h-4 w-4" />
           Falar com a Suelen no WhatsApp
@@ -1261,7 +1261,7 @@ function PersonalOrganizerCourse() {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => track("personal_organizer_whatsapp_click")}
-          className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-8 py-4 text-base font-bold uppercase tracking-wide text-primary-foreground shadow-glow transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 active:scale-[0.99]"
+          className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp px-8 py-4 text-base font-bold uppercase tracking-wide text-white shadow-glow transition-all duration-300 hover:-translate-y-0.5 hover:brightness-110 active:scale-[0.99]"
         >
           <MessageCircle className="h-5 w-5" />
           Quero mais informações no WhatsApp
@@ -1762,7 +1762,7 @@ function Sponsors() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track("sponsor_whatsapp_click")}
-            className="mt-5 inline-flex items-center justify-center gap-2 rounded-full border-2 border-magenta px-6 py-3 text-sm font-semibold uppercase tracking-wider text-magenta transition hover:bg-magenta hover:text-white"
+            className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-all hover:brightness-110"
           >
             Quero saber mais sobre patrocínio
           </a>
