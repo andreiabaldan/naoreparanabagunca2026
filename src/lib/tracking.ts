@@ -22,7 +22,14 @@ export type TrackEvent =
   | "sponsor_whatsapp_click"
   | "gallery_photo_open"
   | "gallery_cta_click"
-  | "personal_organizer_whatsapp_click";
+  | "personal_organizer_whatsapp_click"
+  | "editorial_page_view"
+  | "editorial_scroll_depth"
+  | "editorial_tickets_click"
+  | "editorial_sticky_click"
+  | "editorial_final_cta_click"
+  | "editorial_video_play"
+  | "editorial_video_complete";
 
 declare global {
   interface Window {
