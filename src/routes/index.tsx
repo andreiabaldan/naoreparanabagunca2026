@@ -314,8 +314,8 @@ const ACTIVATIONS: Activation[] = [];
 
 
 /** Percentual vendido do lote atual (editável). Use null se não houver dado real. */
-const LOT_SOLD_PERCENT: number | null = 93;
-const LOT_LABEL = "1º LOTE";
+const LOT_SOLD_PERCENT: number | null = 34;
+const LOT_LABEL = "2º LOTE";
 
 type LotStep = { label: string; value: string };
 
@@ -330,6 +330,7 @@ type Ticket = {
   installments: string;
   soldPercent: number | null;
   benefits: string[];
+  includesFrom?: string;
   highlight?: string;
   event: "ticket_compromisso_click" | "ticket_vip_click" | "ticket_platinum_click";
   checkout: string;
@@ -344,13 +345,13 @@ const TICKETS: Ticket[] = [
     nextLotPrice: "R$ 247,00",
     lotLabel: "2º LOTE",
     lotSteps: [
-      { label: "1º lote (atual)", value: "R$ 97,00" },
+      { label: "1º lote", value: "R$ 97,00" },
       { label: "2º lote", value: "R$ 147,00" },
       { label: "3º lote", value: "R$ 197,00" },
       { label: "Valor cheio", value: "R$ 247,00" },
     ],
     installments: "ou 12x de R$ 14,70 no cartão",
-    soldPercent: 93,
+    soldPercent: 34,
     benefits: [
       "Acesso aos 2 dias de evento",
       "Acesso à feira “Não Repara na Bagunça”",
@@ -366,17 +367,16 @@ const TICKETS: Ticket[] = [
     nextLotPrice: "R$ 297,00",
     lotLabel: "2º LOTE",
     lotSteps: [
-      { label: "1º lote (atual)", value: "R$ 147,00" },
+      { label: "1º lote", value: "R$ 147,00" },
       { label: "2º lote", value: "R$ 197,00" },
       { label: "3º lote", value: "R$ 247,00" },
       { label: "Valor cheio", value: "R$ 297,00" },
     ],
     installments: "ou 12x de R$ 19,70 no cartão",
-    soldPercent: 74,
+    soldPercent: 25,
     highlight: "Experiência recomendada",
+    includesFrom: "TUDO DO INGRESSO COMPROMISSO +",
     benefits: [
-      "Acesso aos 2 dias de evento",
-      "Acesso à feira “Não Repara na Bagunça”",
       "Assentos em áreas mais à frente da plateia",
       "Acesso à área VIP exclusiva",
       "Café e petit four",
@@ -392,21 +392,18 @@ const TICKETS: Ticket[] = [
     nextLotPrice: "R$ 597,00",
     lotLabel: "2º LOTE",
     lotSteps: [
-      { label: "1º lote (atual)", value: "R$ 347,00" },
+      { label: "1º lote", value: "R$ 347,00" },
       { label: "2º lote", value: "R$ 447,00" },
       { label: "3º lote", value: "R$ 497,00" },
       { label: "Valor cheio", value: "R$ 597,00" },
     ],
     installments: "ou 12x de R$ 44,70 no cartão",
-    soldPercent: 52,
+    soldPercent: 70,
     highlight: "Experiência completa",
+    includesFrom: "TUDO DO INGRESSO VIP +",
     benefits: [
-      "Acesso aos 2 dias de evento",
       "Sacola com brindes exclusivos",
-      "Acesso à feira “Não Repara na Bagunça”",
       "Assentos nas primeiras fileiras (1ª e 2ª fileira — melhor localização da plateia)",
-      "Acesso à área VIP exclusiva",
-      "Café e petit four",
       "Curso online completo de organização da casa toda por 1 ano",
       "Um encontro ao vivo com a Suelen para tirar dúvidas no momento da prática",
     ],
