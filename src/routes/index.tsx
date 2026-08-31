@@ -1155,7 +1155,13 @@ function Tickets() {
               <span className="h-px flex-1 bg-primary/15" />
             </div>
 
-            <ul className="mt-5 flex-1 space-y-2.5 text-left">
+            {t.includesFrom && (
+              <p className="mt-4 rounded-xl bg-primary/10 px-3 py-2 text-center text-xs font-bold uppercase tracking-wider text-primary">
+                {t.includesFrom}
+              </p>
+            )}
+
+            <ul className={`flex-1 space-y-2.5 text-left ${t.includesFrom ? "mt-3" : "mt-5"}`}>
               {t.benefits.map((b) => (
                 <li key={b} className="flex items-start gap-2 text-sm">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
