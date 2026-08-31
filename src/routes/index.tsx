@@ -639,7 +639,7 @@ function Hero() {
             </CTAButton>
             <div className="mt-4">
               <p className="text-xs font-semibold uppercase tracking-wider text-[#86CBD7]">
-                {LOT_LABEL} quase esgotado · {LOT_SOLD_PERCENT}% vendido
+                {LOT_LABEL} LIBERADO · {LOT_SOLD_PERCENT}% VENDIDO
               </p>
               <LotProgress percent={LOT_SOLD_PERCENT} label="" hideLabel />
             </div>
