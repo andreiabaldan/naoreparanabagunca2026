@@ -341,7 +341,7 @@ const TICKETS: Ticket[] = [
     name: "Compromisso",
     desire: "Quero participar.",
     price: "147,00",
-    nextLotPrice: "R$ 197,00",
+    nextLotPrice: "R$ 247,00",
     lotLabel: "2º LOTE",
     lotSteps: [
       { label: "1º lote (atual)", value: "R$ 97,00" },
@@ -363,7 +363,7 @@ const TICKETS: Ticket[] = [
     name: "VIP",
     desire: "Quero viver melhor essa experiência.",
     price: "197,00",
-    nextLotPrice: "R$ 247,00",
+    nextLotPrice: "R$ 297,00",
     lotLabel: "2º LOTE",
     lotSteps: [
       { label: "1º lote (atual)", value: "R$ 147,00" },
@@ -389,7 +389,7 @@ const TICKETS: Ticket[] = [
     name: "Platinum",
     desire: "Quero viver tudo o que o NRNB pode oferecer.",
     price: "447,00",
-    nextLotPrice: "R$ 497,00",
+    nextLotPrice: "R$ 597,00",
     lotLabel: "2º LOTE",
     lotSteps: [
       { label: "1º lote (atual)", value: "R$ 347,00" },
@@ -407,7 +407,7 @@ const TICKETS: Ticket[] = [
       "Assentos nas primeiras fileiras (1ª e 2ª fileira — melhor localização da plateia)",
       "Acesso à área VIP exclusiva",
       "Café e petit four",
-      "Curso completo de organização com Suelen Gubeisse",
+      "Curso online completo de organização da casa toda por 1 ano",
       "Um encontro ao vivo com a Suelen para tirar dúvidas no momento da prática",
     ],
     event: "ticket_platinum_click",
@@ -1132,7 +1132,8 @@ function Tickets() {
                 />
               </span>
               <span className="ml-2 hidden max-w-[7rem] font-script text-lg leading-tight text-primary sm:block">
-                valor do próximo lote
+                &nbsp;economize<br />
+                {t.id === "platinum" ? "R$ 150" : "R$ 100"}
               </span>
             </div>
 
