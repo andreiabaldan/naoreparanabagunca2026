@@ -1457,7 +1457,7 @@ function FinalCTA() {
 
         <div className="mx-auto mt-10 max-w-md">
           <p className="text-sm font-bold uppercase tracking-[0.14em] text-primary">
-            {LOT_LABEL} quase esgotado · {LOT_SOLD_PERCENT}% vendido
+            2º LOTE LIBERADO<br />34% VENDIDO&nbsp;·&nbsp;GARANTA O SEU
           </p>
           <div className="mt-3">
             <LotProgress percent={LOT_SOLD_PERCENT} label="" hideLabel />
