@@ -1200,7 +1200,7 @@ function Tickets() {
                     key={s.label}
                     className={`flex items-center justify-between text-xs ${
                       i === 0
-                        ? "font-semibold text-primary"
+                        ? "font-semibold text-primary/80 line-through decoration-primary/60 decoration-2"
                         : "text-muted-foreground"
                     }`}
                   >
