@@ -631,7 +631,7 @@ function StickyCTA() {
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border/60 bg-background/95 px-4 py-3 backdrop-blur lg:hidden">
       <div className="flex items-center gap-3">
         <div className="min-w-0 flex-1">
-          <p className="text-[0.7rem] font-semibold uppercase tracking-wider text-primary">
+          <p className="text-[0.7rem] font-semibold uppercase tracking-wider text-gold">
             2 por 1 acaba em
           </p>
           <div className="text-foreground">
