@@ -226,7 +226,7 @@ function CountdownBlock({ compact = false }: { compact?: boolean }) {
 
   if (compact) {
     return (
-      <span className="font-display tabular-nums text-base font-semibold">
+      <span className="font-display tabular-nums text-base font-semibold text-gold">
         {hours}:{minutes}:{seconds}
       </span>
     );
@@ -237,12 +237,12 @@ function CountdownBlock({ compact = false }: { compact?: boolean }) {
       {boxes.map((b) => (
         <div
           key={b.l}
-          className="min-w-[74px] rounded-2xl border border-white/25 bg-white/12 px-3 py-2 text-center backdrop-blur-sm"
+          className="min-w-[74px] rounded-2xl border border-gold/30 bg-gold/12 px-3 py-2 text-center backdrop-blur-sm"
         >
-          <div className="font-display tabular-nums text-3xl leading-none text-white">
+          <div className="font-display tabular-nums text-3xl leading-none text-gold">
             {b.v}
           </div>
-          <div className="mt-1 text-[0.7rem] uppercase tracking-[0.16em] text-white/75">
+          <div className="mt-1 text-[0.7rem] uppercase tracking-[0.16em] text-gold/80">
             {b.l}
           </div>
         </div>
