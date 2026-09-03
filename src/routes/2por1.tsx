@@ -335,7 +335,7 @@ function Hero() {
             />
           </div>
 
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white">
+          <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold">
             <Sparkles className="h-3.5 w-3.5" />
             Campanha 2 por 1
           </span>
@@ -351,7 +351,7 @@ function Hero() {
           </p>
 
           <div className="mt-6">
-            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#86CBD7]">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold">
               Esta oferta expira em
             </p>
             <CountdownBlock />
