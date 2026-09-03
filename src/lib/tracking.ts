@@ -29,7 +29,14 @@ export type TrackEvent =
   | "editorial_sticky_click"
   | "editorial_final_cta_click"
   | "editorial_video_play"
-  | "editorial_video_complete";
+  | "editorial_video_complete"
+  | "twofor1_page_view"
+  | "twofor1_hero_cta_click"
+  | "twofor1_ticket_click"
+  | "twofor1_sticky_click"
+  | "twofor1_timer_expired"
+  | "twofor1_whatsapp_click";
+
 
 declare global {
   interface Window {
