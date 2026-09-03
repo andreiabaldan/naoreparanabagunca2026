@@ -342,7 +342,7 @@ function Hero() {
 
           <h1 className="mt-4 text-balance text-4xl leading-[1.05] text-white sm:text-5xl">
             Compre seu ingresso hoje e{" "}
-            <span className="italic">ganhe +1 para uma acompanhante.</span>
+            <span className="italic text-gold">ganhe +1 para uma acompanhante.</span>
           </h1>
 
           <p className="mx-auto mt-4 max-w-xl text-balance text-lg font-medium leading-relaxed text-white/92 lg:mx-0">
