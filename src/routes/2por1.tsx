@@ -226,7 +226,7 @@ function CountdownBlock({ compact = false }: { compact?: boolean }) {
 
   if (compact) {
     return (
-      <span className="font-display tabular-nums text-base font-semibold">
+      <span className="font-display tabular-nums text-base font-semibold text-gold">
         {hours}:{minutes}:{seconds}
       </span>
     );
@@ -237,12 +237,12 @@ function CountdownBlock({ compact = false }: { compact?: boolean }) {
       {boxes.map((b) => (
         <div
           key={b.l}
-          className="min-w-[74px] rounded-2xl border border-white/25 bg-white/12 px-3 py-2 text-center backdrop-blur-sm"
+          className="min-w-[74px] rounded-2xl border border-gold/30 bg-gold/12 px-3 py-2 text-center backdrop-blur-sm"
         >
-          <div className="font-display tabular-nums text-3xl leading-none text-white">
+          <div className="font-display tabular-nums text-3xl leading-none text-gold">
             {b.v}
           </div>
-          <div className="mt-1 text-[0.7rem] uppercase tracking-[0.16em] text-white/75">
+          <div className="mt-1 text-[0.7rem] uppercase tracking-[0.16em] text-gold/80">
             {b.l}
           </div>
         </div>
@@ -335,7 +335,7 @@ function Hero() {
             />
           </div>
 
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white">
+          <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold">
             <Sparkles className="h-3.5 w-3.5" />
             Campanha 2 por 1
           </span>
@@ -351,7 +351,7 @@ function Hero() {
           </p>
 
           <div className="mt-6">
-            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#86CBD7]">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold">
               Esta oferta expira em
             </p>
             <CountdownBlock />
@@ -418,7 +418,7 @@ function Tickets() {
   return (
     <Section id="ingressos" className="surface-ink">
       <div className="text-center">
-        <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-white">
+        <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold">
           <Gift className="h-3.5 w-3.5" />
           Cada ingresso vale por dois
         </span>
@@ -426,8 +426,8 @@ function Tickets() {
           Escolha seu ingresso e{" "}
           <span className="italic text-gradient-brand">leve alguém com você.</span>
         </h2>
-        <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white">
-          <Clock className="h-4 w-4" />
+        <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-gold/15 px-4 py-2 text-sm font-semibold text-gold">
+          <Clock className="h-4 w-4 text-gold" />
           Oferta encerra em <CountdownBlock compact />
         </div>
       </div>
@@ -447,8 +447,8 @@ function Tickets() {
               )}
             </div>
 
-            <div className="mt-4 inline-flex items-center gap-2 self-start rounded-full bg-gradient-brand px-3 py-1.5 text-[0.7rem] font-bold uppercase tracking-wider text-primary-foreground">
-              <Users className="h-3.5 w-3.5" />
+            <div className="mt-4 inline-flex items-center gap-2 self-start rounded-full bg-gold px-3 py-1.5 text-[0.7rem] font-bold uppercase tracking-wider text-[#1c0f18]">
+              <Users className="h-3.5 w-3.5 text-[#1c0f18]" />
               2 ingressos pelo preço de 1
             </div>
 
@@ -459,9 +459,9 @@ function Tickets() {
             </div>
 
             <div className="mt-5 flex items-center gap-3">
-              <span className="h-px flex-1 bg-primary/15" />
-              <Heart className="h-4 w-4 fill-primary/40 text-primary/40" />
-              <span className="h-px flex-1 bg-primary/15" />
+              <span className="h-px flex-1 bg-gold/25" />
+              <Heart className="h-4 w-4 fill-gold/40 text-gold/40" />
+              <span className="h-px flex-1 bg-gold/25" />
             </div>
 
             {t.includesFrom && (
@@ -477,8 +477,8 @@ function Tickets() {
                   <span className="text-foreground/90">{b}</span>
                 </li>
               ))}
-              <li className="flex items-start gap-2 text-sm font-semibold text-primary">
-                <Gift className="mt-0.5 h-4 w-4 shrink-0" />
+              <li className="flex items-start gap-2 text-sm font-semibold text-gold">
+                <Gift className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                 <span>+1 ingresso da mesma categoria para sua acompanhante</span>
               </li>
             </ul>
@@ -631,7 +631,7 @@ function StickyCTA() {
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border/60 bg-background/95 px-4 py-3 backdrop-blur lg:hidden">
       <div className="flex items-center gap-3">
         <div className="min-w-0 flex-1">
-          <p className="text-[0.7rem] font-semibold uppercase tracking-wider text-primary">
+          <p className="text-[0.7rem] font-semibold uppercase tracking-wider text-gold">
             2 por 1 acaba em
           </p>
           <div className="text-foreground">

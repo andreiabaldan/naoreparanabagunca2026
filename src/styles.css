@@ -57,6 +57,7 @@
   --color-sky-soft: var(--sky-soft);
   --color-sky-tint: var(--sky-tint);
   --color-whatsapp: #25d366;
+  --color-gold: var(--gold);
 }
 
 :root {
@@ -79,6 +80,8 @@
   --sky: #86cbd7;
   --sky-soft: rgb(134 203 215 / 0.18);
   --sky-tint: #eef8fa;
+
+  --gold: #f5c542;
 
   --primary: #9c0369;
   --primary-foreground: #ffffff;
