@@ -40,7 +40,6 @@ export type TrackEvent =
 
 declare global {
   interface Window {
-    dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
     fbq?: (...args: unknown[]) => void;
   }
@@ -50,7 +49,6 @@ export function track(event: TrackEvent, params: Record<string, unknown> = {}) {
   if (typeof window === "undefined") return;
   const payload = { event, ...params };
 
-  window.dataLayer?.push(payload);
   window.gtag?.("event", event, params);
   window.fbq?.("trackCustom", event, params);
 
