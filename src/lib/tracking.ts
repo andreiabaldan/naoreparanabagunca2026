@@ -42,6 +42,7 @@ declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
     fbq?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
   }
 }
 
@@ -51,6 +52,7 @@ export function track(event: TrackEvent, params: Record<string, unknown> = {}) {
 
   window.gtag?.("event", event, params);
   window.fbq?.("trackCustom", event, params);
+  window.dataLayer?.push({ event, ...params });
 
   if (import.meta.env.DEV) console.debug("[track]", event, params);
 }
