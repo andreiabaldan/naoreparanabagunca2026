@@ -1,6 +1,6 @@
 /**
  * Camada única de tracking.
- * Pronta para Meta Pixel / GA4 / GTM — basta os scripts existirem na página.
+ * Pronta para GA4 / GTM — basta os scripts existirem na página.
  */
 export type TrackEvent =
   | "page_view"
@@ -41,17 +41,14 @@ export type TrackEvent =
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
-    fbq?: (...args: unknown[]) => void;
     dataLayer?: unknown[];
   }
 }
 
 export function track(event: TrackEvent, params: Record<string, unknown> = {}) {
   if (typeof window === "undefined") return;
-  const payload = { event, ...params };
 
   window.gtag?.("event", event, params);
-  window.fbq?.("trackCustom", event, params);
   window.dataLayer?.push({ event, ...params });
 
   if (import.meta.env.DEV) console.debug("[track]", event, params);
