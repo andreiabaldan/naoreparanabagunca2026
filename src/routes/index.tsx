@@ -357,7 +357,7 @@ const TICKETS: Ticket[] = [
       "Acesso à feira “Não Repara na Bagunça”",
     ],
     event: "ticket_compromisso_click",
-    checkout: "https://payfast.greenn.com.br/168687?batch=13831_RugVFv",
+    checkout: "https://payfast.greenn.com.br/168687?batch=17042_y49MyT",
   },
   {
     id: "vip",
@@ -382,7 +382,7 @@ const TICKETS: Ticket[] = [
       "Café e petit four",
     ],
     event: "ticket_vip_click",
-    checkout: "https://payfast.greenn.com.br/168694?batch=13835_tnl2FL",
+    checkout: "https://payfast.greenn.com.br/168687?batch=17042_mqGZ6S",
   },
   {
     id: "platinum",
@@ -408,7 +408,7 @@ const TICKETS: Ticket[] = [
       "Um encontro ao vivo com a Suelen para tirar dúvidas no momento da prática",
     ],
     event: "ticket_platinum_click",
-    checkout: "https://payfast.greenn.com.br/168696?batch=13839_135ERC",
+    checkout: "https://payfast.greenn.com.br/168687?batch=17042_TMB3di",
   },
 ];
 
