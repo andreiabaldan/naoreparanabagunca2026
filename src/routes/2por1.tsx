@@ -65,7 +65,7 @@ const TICKETS: Ticket[] = [
       "Acesso aos 2 dias de evento",
       "Acesso à feira “Não Repara na Bagunça”",
     ],
-    checkout: "https://payfast.greenn.com.br/168687?batch=13831_RugVFv",
+    checkout: "https://payfast.greenn.com.br/168687?batch=17042_y49MyT",
   },
   {
     id: "vip",
@@ -79,7 +79,7 @@ const TICKETS: Ticket[] = [
       "Acesso à área VIP exclusiva",
       "Café e petit four",
     ],
-    checkout: "https://payfast.greenn.com.br/168694?batch=13835_tnl2FL",
+    checkout: "https://payfast.greenn.com.br/168687?batch=17042_mqGZ6S",
   },
   {
     id: "platinum",
@@ -94,7 +94,7 @@ const TICKETS: Ticket[] = [
       "Curso online completo de organização da casa toda por 1 ano",
       "Um encontro ao vivo com a Suelen para tirar dúvidas",
     ],
-    checkout: "https://payfast.greenn.com.br/168696?batch=13839_135ERC",
+    checkout: "https://payfast.greenn.com.br/168687?batch=17042_TMB3di",
   },
 ];
 
