@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as Nrnb2026RouteImport } from './routes/nrnb2026'
 import { Route as EspecialRouteImport } from './routes/especial'
 import { Route as R2por1RouteImport } from './routes/2por1'
 import { Route as IndexRouteImport } from './routes/index'
 
+const Nrnb2026Route = Nrnb2026RouteImport.update({
+  id: '/nrnb2026',
+  path: '/nrnb2026',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EspecialRoute = EspecialRouteImport.update({
   id: '/especial',
   path: '/especial',
@@ -33,34 +39,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/2por1': typeof R2por1Route
   '/especial': typeof EspecialRoute
+  '/nrnb2026': typeof Nrnb2026Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/2por1': typeof R2por1Route
   '/especial': typeof EspecialRoute
+  '/nrnb2026': typeof Nrnb2026Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/2por1': typeof R2por1Route
   '/especial': typeof EspecialRoute
+  '/nrnb2026': typeof Nrnb2026Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/2por1' | '/especial'
+  fullPaths: '/' | '/2por1' | '/especial' | '/nrnb2026'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/2por1' | '/especial'
-  id: '__root__' | '/' | '/2por1' | '/especial'
+  to: '/' | '/2por1' | '/especial' | '/nrnb2026'
+  id: '__root__' | '/' | '/2por1' | '/especial' | '/nrnb2026'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   R2por1Route: typeof R2por1Route
   EspecialRoute: typeof EspecialRoute
+  Nrnb2026Route: typeof Nrnb2026Route
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/nrnb2026': {
+      id: '/nrnb2026'
+      path: '/nrnb2026'
+      fullPath: '/nrnb2026'
+      preLoaderRoute: typeof Nrnb2026RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/especial': {
       id: '/especial'
       path: '/especial'
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R2por1Route: R2por1Route,
   EspecialRoute: EspecialRoute,
+  Nrnb2026Route: Nrnb2026Route,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

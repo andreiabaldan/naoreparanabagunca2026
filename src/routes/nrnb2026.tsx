@@ -413,7 +413,7 @@ const TICKETS: Ticket[] = [
 ];
 
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/nrnb2026")({
   component: LandingPage,
   head: () => ({
     meta: [
@@ -1963,7 +1963,7 @@ function PurchaseSafety() {
 /* -------------------- Página -------------------- */
 
 
-export function LandingPage() {
+function LandingPage() {
   useEffect(() => {
     track("page_view");
   }, []);
