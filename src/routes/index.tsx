@@ -353,6 +353,7 @@ const TICKETS: Ticket[] = [
     installments: "ou 12x de R$ 14,70 no cartão",
     soldPercent: 34,
     benefits: [
+      "Você não sai só inspirada. Sai com o passo a passo pra aplicar essa semana.",
       "Acesso aos 2 dias de evento",
       "Acesso à feira “Não Repara na Bagunça”",
     ],
@@ -617,13 +618,15 @@ function Hero() {
             className="mx-auto hidden w-[300px] max-w-full sm:w-[380px] lg:mx-0 lg:block lg:w-[546px]"
           />
 
-          <h1 className="mt-4 text-balance text-4xl leading-[1.05] text-white sm:text-5xl lg:text-6xl">
-            <span className="italic">O encontro que muda tudo.</span>
+          <h1 className="mt-4 text-balance text-3xl leading-[1.08] text-white sm:text-5xl lg:text-6xl">
+            <span className="italic">
+              O cesto de roupa que nunca esvazia tem solução. E você aprende em 2 dias.
+            </span>
           </h1>
 
           <p className="mx-auto mt-4 max-w-xl text-balance text-lg font-medium leading-relaxed text-white/92 sm:text-xl lg:mx-0">
-            2 dias para deixar sua casa, sua rotina e sua vida mais leves e
-            organizadas.
+            Não é falta de disciplina. É falta de um jeito que funcione na sua
+            rotina de verdade, e é isso que ninguém te ensina.
           </p>
 
           <div className="mt-5 flex flex-col items-center gap-1 text-base font-semibold text-white lg:items-start">
@@ -635,7 +638,7 @@ function Hero() {
 
           <div className="mx-auto mt-6 max-w-md lg:mx-0">
             <CTAButton event="hero_cta_click" size="lg" className="hero-cta w-full">
-              Quero garantir meu ingresso
+              Quero aprender a manter minha casa em ordem
             </CTAButton>
             <div className="mt-4">
               <p className="text-xs font-semibold uppercase tracking-wider text-[#86CBD7]">
@@ -650,16 +653,90 @@ function Hero() {
   );
 }
 
+const EVERYDAY_STRUGGLES = [
+  "Você lava, dobra e guarda roupa todo dia, e ainda sobra um cesto que parece nunca esvaziar.",
+  "Chega cansada do trabalho e ainda precisa dar um jeito na casa, na semana em que a faxineira não vai.",
+  "Abre o guarda-roupa pequeno, sem prateleira, e não sabe mais onde colocar o que já tem.",
+  "Olha pro armário da cozinha e pensa: esse armário não me ajuda em nada.",
+];
+
+function PainRecognition() {
+  return (
+    <Section className="bg-background">
+      <div className="text-center">
+        <SectionEyebrow>Isso acontece com você?</SectionEyebrow>
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
+          Parece que você organiza, organiza…{" "}
+          <span className="italic text-gradient-brand">e nunca termina?</span>
+        </h2>
+      </div>
+
+      <div className="mx-auto mt-8 grid max-w-4xl gap-3 sm:grid-cols-2">
+        {EVERYDAY_STRUGGLES.map((item) => (
+          <div
+            key={item}
+            className="flex items-start gap-3 rounded-2xl border border-border/60 bg-card p-4 shadow-card"
+          >
+            <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+            <p className="text-sm leading-relaxed text-foreground/90">{item}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function BeliefShift() {
+  return (
+    <section className="surface-rose px-5 py-12 sm:px-6 sm:py-16">
+      <div className="mx-auto max-w-4xl text-center">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-foreground/80">
+          Não é disciplina. É técnica.
+        </p>
+        <h2 className="mx-auto mt-4 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
+          A diferença entre quem organiza a casa uma vez e quem mantém em ordem
+          pra sempre não é disciplina. É técnica.
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+          Você já tentou de tudo. Não foi falta de esforço. Foi tentar sozinha,
+          sem um jeito que aguentasse sua rotina de verdade.
+        </p>
+        <p className="mx-auto mt-5 max-w-64 text-base font-semibold leading-relaxed text-foreground sm:max-w-2xl sm:text-lg">
+          Organização não é um dom que você tem ou não tem. É técnica, e técnica
+          se aprende.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function PracticalMethod() {
+  return (
+    <Section className="bg-sky-tint">
+      <div className="mx-auto max-w-4xl text-center">
+        <SectionEyebrow>Na prática</SectionEyebrow>
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
+          Não é mais um cronograma pronto para você tentar seguir.
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+          Isso não é mais um cronograma pronto de internet pra você tentar
+          encaixar na sua rotina. É técnica aplicada na prática, com o que você
+          já tem em casa.
+        </p>
+        <p className="mx-auto mt-5 max-w-2xl text-lg font-semibold text-primary sm:text-xl">
+          Você sai sabendo, porque já fez, não porque ouviu.
+        </p>
+      </div>
+    </Section>
+  );
+}
+
 
 
 const FOR_WHOM = [
-  "Você quer uma casa mais organizada, mas não sabe por onde começar.",
-  "Sente que sua rotina vive no modo “apagar incêndios”.",
-  "Quer aprender formas práticas de ganhar tempo no dia a dia.",
-  "Quer cuidar melhor da sua casa, do seu dinheiro e de você.",
-  "Adora organização, decoração, casa e soluções que facilitam a vida.",
-  "Sente que precisa organizar prioridades e tirar alguns planos do papel.",
-  "Quer uma rotina que funcione melhor para você e para sua família.",
+  "Você organiza toda semana e, em poucos dias, tudo volta como estava.",
+  "Você já comprou organizador bonito achando que ia resolver, e continuou sem saber onde guardar o que já tinha.",
+  "Você mudou de casa (ou nem precisou) e ainda não conseguiu se sentir em casa ali dentro.",
 ];
 
 function ForWhom() {
@@ -668,9 +745,7 @@ function ForWhom() {
       <div className="text-center">
         <SectionEyebrow>Para quem é</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
-          Se você sente que colocar a vida em ordem faria tudo ficar um pouco
-          mais leve, <span className="italic text-gradient-brand">esse fim
-          de semana é para você.</span>
+          Esse encontro é para você que…
         </h2>
       </div>
 
@@ -705,8 +780,8 @@ function ForWhom() {
 const BENEFITS = [
   {
     icon: Home,
-    title: "Casa mais funcional",
-    text: "Soluções práticas para organizar ambientes e fazer sua casa trabalhar a seu favor.",
+    title: "Você para de recomeçar do zero toda semana.",
+    text: "Sai sabendo manter o que organizou, não só organizar de novo.",
   },
   {
     icon: Sparkles,
@@ -1304,14 +1379,12 @@ function Founder() {
             </span>
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Suelen Gubeisse é Personal Organizer. Depois de anos entrando na
-            casa de mulheres e vendo de perto como a organização transforma
-            muito mais do que armários, criou o Não Repara na Bagunça.
+            Depois de anos entrando na casa de centenas de mulheres, com pouco
+            espaço, pouco tempo e rotina puxada, não em casas de revista, Suelen
+            reuniu o que realmente funciona neste encontro de 2 dias.
           </p>
           <p className="mt-3 text-sm font-medium leading-relaxed text-foreground sm:text-base">
-            Um evento para mostrar, na prática, que organização não é sobre ter
-            uma casa perfeita. É sobre criar espaço para a vida que você quer
-            viver.
+            Não em casas de revista. Em casas reais.
           </p>
         </div>
       </div>
@@ -1373,7 +1446,7 @@ function Venue() {
 const FAQS = [
   {
     q: "Preciso entender de organização para participar?",
-    a: "Não. O evento é feito para qualquer mulher que queira deixar a casa, a rotina e a vida mais organizadas — do zero ou não.",
+    a: "Não. A maioria de quem vem nunca estudou organização, só quer parar de recomeçar do zero toda semana. Você aprende fazendo, não decorando teoria.",
   },
   {
     q: "É só para Personal Organizers?",
@@ -1972,6 +2045,9 @@ export function LandingPage() {
     <main className="min-h-screen bg-background pb-20 lg:pb-0">
       <TopBar />
       <Hero />
+      <PainRecognition />
+      <BeliefShift />
+      <PracticalMethod />
       <Experience />
       <VideoStory />
       <PhotoGallery />
