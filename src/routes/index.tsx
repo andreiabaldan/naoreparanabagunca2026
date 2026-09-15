@@ -620,7 +620,7 @@ function Hero() {
 
           <h1 className="mt-4 text-balance text-3xl leading-[1.08] text-white sm:text-5xl lg:text-6xl">
             <span className="italic">
-              O cesto de roupa que nunca esvazia tem solução. E você aprende em 2 dias.
+              Você organiza, organiza… e parece que nunca consegue colocar a casa e a vida em ordem?
             </span>
           </h1>
 
@@ -1381,7 +1381,8 @@ function Founder() {
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
             Depois de anos entrando na casa de centenas de mulheres, com pouco
             espaço, pouco tempo e rotina puxada, não em casas de revista, Suelen
-            reuniu o que realmente funciona neste encontro de 2 dias.
+            Gubeisse, personal organizer especialista em residências, reuniu o que
+            realmente funciona neste encontro de 2 dias.
           </p>
           <p className="mt-3 text-sm font-medium leading-relaxed text-foreground sm:text-base">
             Não em casas de revista. Em casas reais.
