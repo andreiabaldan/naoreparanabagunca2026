@@ -620,7 +620,7 @@ function Hero() {
 
           <h1 className="mt-4 text-balance text-3xl leading-[1.08] text-white sm:text-5xl lg:text-6xl">
             <span className="italic">
-              Você organiza, organiza… e parece que nunca consegue colocar a casa e a vida em ordem?
+              Bate consegue colocar a casa e a vida em ordem?
             </span>
           </h1>
 
