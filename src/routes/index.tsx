@@ -623,13 +623,13 @@ function Hero() {
 
           <h1 className="mt-4 text-balance text-3xl leading-[1.08] text-white sm:text-5xl lg:text-6xl">
             <span className="italic">
-              Você vive tentando colocar a casa em ordem, mas nunca consegue?
+              Você cuida de tudo. Mas sente que nunca consegue dar conta da casa?
             </span>
           </h1>
 
           <p className="mx-auto mt-4 max-w-xl text-balance text-lg font-medium leading-relaxed text-white/92 sm:text-xl lg:mx-0">
-            Não é falta de disciplina. Em 2 dias, aprenda técnicas que funcionam
-            na sua casa e na sua rotina de verdade.
+            Não é falta de disciplina. Aprenda em 2 dias um jeito mais prático de
+            organizar a casa e a rotina, que funcione na sua vida de verdade.
           </p>
 
           <div className="mt-5 flex flex-col items-center gap-1 text-base font-semibold text-white lg:items-start">
