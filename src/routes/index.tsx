@@ -1169,6 +1169,10 @@ function Tickets() {
             viver essa experiência.
           </span>
         </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-balance text-sm leading-relaxed text-muted-foreground sm:text-base">
+          Você não sai só inspirada. Sai com o passo a passo pra aplicar na mesma
+          semana.
+        </p>
       </div>
 
       <div className="mt-8 grid items-start gap-5 lg:grid-cols-3">
