@@ -1963,7 +1963,7 @@ function PurchaseSafety() {
 /* -------------------- Página -------------------- */
 
 
-function LandingPage() {
+export function LandingPage() {
   useEffect(() => {
     track("page_view");
   }, []);
