@@ -641,7 +641,7 @@ function Hero() {
 
           <div className="mx-auto mt-6 max-w-md lg:mx-0">
             <CTAButton event="hero_cta_click" size="lg" className="hero-cta w-full">
-              QUERO APRENDER COMO
+              QUERO UMA ROTINA MAIS LEVE
             </CTAButton>
             <div className="mt-4">
               <p className="text-xs font-semibold uppercase tracking-wider text-[#86CBD7]">
