@@ -332,6 +332,7 @@ type Ticket = {
   benefits: string[];
   includesFrom?: string;
   highlight?: string;
+  ctaLabel?: string;
   event: "ticket_compromisso_click" | "ticket_vip_click" | "ticket_platinum_click";
   checkout: string;
 };
@@ -376,6 +377,7 @@ const TICKETS: Ticket[] = [
     installments: "ou 12x de R$ 19,70 no cartão",
     soldPercent: 25,
     highlight: "Experiência recomendada",
+    ctaLabel: "QUERO O VIP",
     includesFrom: "TUDO DO INGRESSO COMPROMISSO +",
     benefits: [
       "Assentos em áreas mais à frente da plateia",
@@ -401,6 +403,7 @@ const TICKETS: Ticket[] = [
     installments: "ou 12x de R$ 44,70 no cartão",
     soldPercent: 70,
     highlight: "Experiência completa",
+    ctaLabel: "QUERO O PLATINUM",
     includesFrom: "TUDO DO INGRESSO VIP +",
     benefits: [
       "Sacola com brindes exclusivos",
@@ -620,13 +623,14 @@ function Hero() {
 
           <h1 className="mt-4 text-balance text-3xl leading-[1.08] text-white sm:text-5xl lg:text-6xl">
             <span className="italic">
-              Bate consegue colocar a casa e a vida em ordem?
+              Você vive tentando colocar a casa e a vida em ordem, mas nunca
+              consegue manter?
             </span>
           </h1>
 
           <p className="mx-auto mt-4 max-w-xl text-balance text-lg font-medium leading-relaxed text-white/92 sm:text-xl lg:mx-0">
-            Não é falta de disciplina. É falta de um jeito que funcione na sua
-            rotina de verdade, e é isso que ninguém te ensina.
+            Não é falta de disciplina. Em 2 dias, você aprende técnicas práticas
+            que funcionam na sua casa, na sua rotina e na vida real.
           </p>
 
           <div className="mt-5 flex flex-col items-center gap-1 text-base font-semibold text-white lg:items-start">
@@ -638,7 +642,7 @@ function Hero() {
 
           <div className="mx-auto mt-6 max-w-md lg:mx-0">
             <CTAButton event="hero_cta_click" size="lg" className="hero-cta w-full">
-              Quero aprender a manter minha casa em ordem
+              QUERO APRENDER A FAZER DIFERENTE
             </CTAButton>
             <div className="mt-4">
               <p className="text-xs font-semibold uppercase tracking-wider text-[#86CBD7]">
@@ -1263,7 +1267,7 @@ function Tickets() {
                   : "bg-primary text-primary-foreground hover:bg-plum hover:shadow-[0_14px_30px_-16px_rgba(156,3,105,0.7)]"
               }`}
             >
-              Quero este ingresso
+              {t.ctaLabel ?? "Quero este ingresso"}
               <ArrowRight className="h-4 w-4" />
             </a>
 
