@@ -623,14 +623,13 @@ function Hero() {
 
           <h1 className="mt-4 text-balance text-3xl leading-[1.08] text-white sm:text-5xl lg:text-6xl">
             <span className="italic">
-              Você vive tentando colocar a casa e a vida em ordem, mas nunca
-              consegue manter?
+              Você vive tentando colocar a casa em ordem, mas nunca consegue?
             </span>
           </h1>
 
           <p className="mx-auto mt-4 max-w-xl text-balance text-lg font-medium leading-relaxed text-white/92 sm:text-xl lg:mx-0">
-            Não é falta de disciplina. Em 2 dias, você aprende técnicas práticas
-            que funcionam na sua casa, na sua rotina e na vida real.
+            Não é falta de disciplina. Em 2 dias, aprenda técnicas que funcionam
+            na sua casa e na sua rotina de verdade.
           </p>
 
           <div className="mt-5 flex flex-col items-center gap-1 text-base font-semibold text-white lg:items-start">
@@ -642,7 +641,7 @@ function Hero() {
 
           <div className="mx-auto mt-6 max-w-md lg:mx-0">
             <CTAButton event="hero_cta_click" size="lg" className="hero-cta w-full">
-              QUERO APRENDER A FAZER DIFERENTE
+              QUERO APRENDER COMO
             </CTAButton>
             <div className="mt-4">
               <p className="text-xs font-semibold uppercase tracking-wider text-[#86CBD7]">
