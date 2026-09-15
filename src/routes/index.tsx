@@ -701,7 +701,7 @@ function BeliefShift() {
           Você já tentou de tudo. Não foi falta de esforço. Foi tentar sozinha,
           sem um jeito que aguentasse sua rotina de verdade.
         </p>
-        <p className="mx-auto mt-5 max-w-2xl text-base font-semibold leading-relaxed text-foreground sm:text-lg">
+        <p className="mx-auto mt-5 max-w-64 text-base font-semibold leading-relaxed text-foreground sm:max-w-2xl sm:text-lg">
           Organização não é um dom que você tem ou não tem. É técnica, e técnica
           se aprende.
         </p>
