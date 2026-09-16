@@ -553,7 +553,7 @@ function TopBar() {
   return (
     <div className="bg-foreground">
       <div className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-4 py-2.5 text-center">
-        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground sm:text-xs">
+        <span className="whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.14em] text-primary-foreground sm:text-xs sm:tracking-[0.18em]">
           2º LOTE LIBERADO • GARANTA O SEU ANTES QUE ACABE
         </span>
       </div>
