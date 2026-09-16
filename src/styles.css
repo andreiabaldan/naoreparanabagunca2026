@@ -58,6 +58,8 @@
   --color-sky-tint: var(--sky-tint);
   --color-whatsapp: #25d366;
   --color-gold: var(--gold);
+  --color-cta-dark: var(--cta-dark);
+  --color-cta-magenta: var(--cta-magenta);
 }
 
 :root {
@@ -82,6 +84,8 @@
   --sky-tint: #eef8fa;
 
   --gold: #f5c542;
+  --cta-dark: #17141a;
+  --cta-magenta: #9c0369;
 
   --primary: #9c0369;
   --primary-foreground: #ffffff;
@@ -416,8 +420,33 @@
   color: #ffffff;
 }
 
-.hero-cta {
-  background: #ffffff !important;
-  color: #7c0353 !important;
-  box-shadow: 0 18px 40px -18px rgb(0 0 0 / 0.55) !important;
+.nrnb2026-2-page .cta-primary,
+.nrnb2026-2-page .ticket-cta {
+  background: var(--cta-magenta);
+  color: #ffffff;
+}
+
+.nrnb2026-2-page .hero-scene .cta-primary,
+.nrnb2026-2-page .surface-rose .cta-primary {
+  background: var(--cta-dark);
+  color: #ffffff;
+  box-shadow: 0 18px 40px -18px rgb(0 0 0 / 0.62);
+}
+
+.nrnb2026-2-page .cta-primary:hover,
+.nrnb2026-2-page .ticket-cta:hover {
+  filter: brightness(1.12);
+  box-shadow: 0 18px 36px -16px rgb(156 3 105 / 0.65);
+}
+
+.nrnb2026-2-page .hero-scene .cta-primary:hover,
+.nrnb2026-2-page .surface-rose .cta-primary:hover {
+  filter: brightness(1.25);
+  box-shadow: 0 20px 40px -16px rgb(0 0 0 / 0.72);
+}
+
+.nrnb2026-2-page .cta-primary:focus-visible,
+.nrnb2026-2-page .ticket-cta:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
 }

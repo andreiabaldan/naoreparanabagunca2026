@@ -473,7 +473,7 @@ function CTAButton({
         track(event);
         goToTickets();
       }}
-      className={`group inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-brand font-semibold uppercase tracking-wide text-primary-foreground shadow-glow transition-all hover:brightness-110 active:scale-[0.99] sm:w-auto ${sizes[size]} ${className}`}
+      className={`cta-primary group inline-flex w-full items-center justify-center gap-2 rounded-full font-semibold uppercase tracking-wide shadow-glow transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40 sm:w-auto ${sizes[size]} ${className}`}
     >
       <span>{children}</span>
       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -551,9 +551,9 @@ function Section({
 
 function TopBar() {
   return (
-    <div className="bg-gradient-brand">
+    <div className="bg-foreground">
       <div className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-4 py-2.5 text-center">
-        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground sm:text-xs">
+        <span className="whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.14em] text-primary-foreground sm:text-xs sm:tracking-[0.18em]">
           2º LOTE LIBERADO • GARANTA O SEU ANTES QUE ACABE
         </span>
       </div>
@@ -1039,6 +1039,39 @@ function VideoStory() {
   );
 }
 
+function SuelenVideoPlaceholder() {
+  return (
+    <Section className="surface-dark">
+      <div className="text-center">
+        <SectionEyebrow>Com a Suelen</SectionEyebrow>
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
+          Deixa a Suelen te contar o que preparou para esses dois dias.
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-balance text-sm leading-relaxed text-muted-foreground sm:text-base">
+          Dê o play e entenda por que o Não Repara na Bagunça vai muito além de organizar a casa.
+        </p>
+      </div>
+
+      <div className="mx-auto mt-8 flex aspect-video w-full max-w-3xl items-center justify-center rounded-2xl border border-border bg-card/70 shadow-card">
+        <div className="flex flex-col items-center gap-3 px-5 text-center text-muted-foreground">
+          <span className="flex h-14 w-14 items-center justify-center rounded-full border border-border bg-surface">
+            <Play className="ml-1 h-6 w-6 text-primary" aria-hidden />
+          </span>
+          <span className="text-xs font-semibold uppercase tracking-[0.16em]">
+            Vídeo em breve
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-8 flex justify-center">
+        <CTAButton event="video_cta_click" size="lg">
+          QUERO VIVER ESSES 2 DIAS
+        </CTAButton>
+      </div>
+    </Section>
+  );
+}
+
 
 
 const GALLERY = [
@@ -1328,11 +1361,7 @@ function Tickets() {
                 track(t.event, { ticket: t.id });
                 track("checkout_start", { ticket: t.id });
               }}
-              className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold uppercase tracking-wide transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.99] ${
-                t.id === "vip"
-                  ? "bg-gradient-brand text-primary-foreground shadow-[0_14px_30px_-14px_rgba(156,3,105,0.75)] hover:brightness-110 hover:shadow-[0_18px_36px_-14px_rgba(156,3,105,0.85)]"
-                  : "bg-primary text-primary-foreground hover:bg-plum hover:shadow-[0_14px_30px_-16px_rgba(156,3,105,0.7)]"
-              }`}
+               className="ticket-cta mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold uppercase tracking-wide transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40"
             >
               {t.ctaLabel ?? "Quero este ingresso"}
               <ArrowRight className="h-4 w-4" />
@@ -1665,7 +1694,7 @@ function StickyCTA() {
           track("sticky_cta_click");
           goToTickets();
         }}
-        className="w-full rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-primary-foreground shadow-glow"
+        className="cta-primary w-full rounded-full px-6 py-3.5 text-sm font-bold uppercase tracking-wide shadow-glow transition-all duration-300 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40"
       >
         Garantir ingresso
       </button>
@@ -1682,16 +1711,16 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
     .join("");
 
   return (
-    <article className="flex h-full flex-col items-center rounded-3xl border border-border/60 bg-card p-5 text-center shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40">
-      <div className="relative rounded-full bg-gradient-identity p-[3px]">
-        <div className="h-28 w-28 overflow-hidden rounded-full bg-sky-tint sm:h-32 sm:w-32">
+    <article className="flex h-full flex-col items-center rounded-3xl border border-border/60 bg-card p-5 text-center shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40 sm:p-6">
+      <div className="relative w-full overflow-hidden rounded-2xl bg-sky-tint">
+        <div className="aspect-[4/3] w-full overflow-hidden bg-sky-tint">
           {speaker.photo ? (
             <img
               src={speaker.photo}
               alt={`Foto de ${speaker.name}`}
               loading="lazy"
               decoding="async"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-contain object-bottom"
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center font-serif text-2xl text-primary">
@@ -1726,7 +1755,7 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
-          className="mt-3 text-xs font-bold uppercase tracking-widest text-primary transition-opacity hover:opacity-70"
+           className="mt-3 text-xs font-bold uppercase tracking-widest text-primary transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
         >
 
           {open ? "Fechar −" : "Saiba mais +"}
@@ -1757,8 +1786,8 @@ function Speakers() {
           items={SPEAKERS.map((s) => (
             <SpeakerCard key={s.name} speaker={s} />
           ))}
-          itemClassName="w-[78%] sm:w-[45%] lg:w-[31%] xl:w-[23%]"
-          hint="Deslize para conhecer os palestrantes →"
+          itemClassName="w-[88%] sm:w-[46%] lg:w-[32%]"
+          hint="Deslize para conhecer →"
         />
       </div>
 
@@ -2117,21 +2146,22 @@ export function LandingPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-background pb-20 lg:pb-0">
+    <main className="nrnb2026-2-page min-h-screen bg-background pb-20 lg:pb-0">
       <TopBar />
       <Hero />
       <AuthorityStrip />
       <PainRecognition />
       <BeliefShift />
+      <PhotoGallery />
       <PracticalMethod />
       <Experience />
       <ForWhom />
       <Benefits />
+      <VideoStory />
+      <SuelenVideoPlaceholder />
       <Founder />
       <Speakers />
       <Schedule />
-      <VideoStory />
-      <PhotoGallery />
       <SocialProof />
       <OfferTransition />
       <Tickets />
