@@ -8,3 +8,5 @@
 - [x] Ampliar o line-up de palestrantes sem alterar conteúdo
 - [x] Uniformizar o contraste e os estados dos CTAs principais
 - [x] Validar desktop e mobile, carrosséis, fotos, CTAs e links
+- [ ] Simplificar a comunicação de lotes nos cards da página principal
+- [ ] Validar os três cards no desktop e mobile, preservando preços, links e tracking
