@@ -1694,7 +1694,7 @@ function StickyCTA() {
           track("sticky_cta_click");
           goToTickets();
         }}
-        className="w-full rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-primary-foreground shadow-glow"
+        className="cta-primary w-full rounded-full px-6 py-3.5 text-sm font-bold uppercase tracking-wide shadow-glow transition-all duration-300 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40"
       >
         Garantir ingresso
       </button>
