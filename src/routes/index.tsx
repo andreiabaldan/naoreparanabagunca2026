@@ -317,16 +317,12 @@ const ACTIVATIONS: Activation[] = [];
 const LOT_SOLD_PERCENT: number | null = 34;
 const LOT_LABEL = "2º LOTE";
 
-type LotStep = { label: string; value: string };
-
 type Ticket = {
   id: "compromisso" | "vip" | "platinum";
   name: string;
   desire: string;
   price: string;
-  nextLotPrice: string;
   lotLabel: string;
-  lotSteps: LotStep[];
   installments: string;
   soldPercent: number | null;
   benefits: string[];
@@ -343,14 +339,7 @@ const TICKETS: Ticket[] = [
     name: "Compromisso",
     desire: "Quero participar.",
     price: "147,00",
-    nextLotPrice: "R$ 247,00",
     lotLabel: "2º LOTE",
-    lotSteps: [
-      { label: "1º lote", value: "R$ 97,00" },
-      { label: "2º lote", value: "R$ 147,00" },
-      { label: "3º lote", value: "R$ 197,00" },
-      { label: "Valor cheio", value: "R$ 247,00" },
-    ],
     installments: "ou 12x de R$ 14,70 no cartão",
     soldPercent: 34,
     benefits: [
@@ -366,14 +355,7 @@ const TICKETS: Ticket[] = [
     name: "VIP",
     desire: "Quero viver melhor essa experiência.",
     price: "197,00",
-    nextLotPrice: "R$ 297,00",
     lotLabel: "2º LOTE",
-    lotSteps: [
-      { label: "1º lote", value: "R$ 147,00" },
-      { label: "2º lote", value: "R$ 197,00" },
-      { label: "3º lote", value: "R$ 247,00" },
-      { label: "Valor cheio", value: "R$ 297,00" },
-    ],
     installments: "ou 12x de R$ 19,70 no cartão",
     soldPercent: 25,
     highlight: "Experiência recomendada",
@@ -392,14 +374,7 @@ const TICKETS: Ticket[] = [
     name: "Platinum",
     desire: "Quero viver tudo o que o NRNB pode oferecer.",
     price: "447,00",
-    nextLotPrice: "R$ 597,00",
     lotLabel: "2º LOTE",
-    lotSteps: [
-      { label: "1º lote", value: "R$ 347,00" },
-      { label: "2º lote", value: "R$ 447,00" },
-      { label: "3º lote", value: "R$ 497,00" },
-      { label: "Valor cheio", value: "R$ 597,00" },
-    ],
     installments: "ou 12x de R$ 44,70 no cartão",
     soldPercent: 70,
     highlight: "Experiência completa",
@@ -1201,22 +1176,7 @@ function Tickets() {
               “{t.desire}”
             </p>
 
-            {/* valor do próximo lote riscado + nota manuscrita */}
-            <div className="relative mt-6 flex items-center justify-center">
-              <span className="relative inline-block font-display text-3xl text-muted-foreground/70 sm:text-4xl">
-                {t.nextLotPrice}
-                <span
-                  aria-hidden
-                  className="absolute left-[-6%] top-1/2 h-[3px] w-[112%] -translate-y-1/2 -rotate-6 rounded-full bg-primary"
-                />
-              </span>
-              <span className="ml-2 hidden max-w-[7rem] font-script text-lg leading-tight text-primary sm:block">
-                &nbsp;economize<br />
-                {t.id === "platinum" ? "R$ 150" : "R$ 100"}
-              </span>
-            </div>
-
-            <span className="mx-auto mt-5 rounded-full bg-primary px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-primary-foreground">
+            <span className="mx-auto mt-6 rounded-full bg-primary px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-primary-foreground">
               {t.lotLabel}
             </span>
 
@@ -1275,29 +1235,24 @@ function Tickets() {
               Compra segura
             </p>
 
-            {/* escada de lotes */}
+            {/* resumo do lote atual */}
             <div className="mt-5 rounded-2xl bg-sky-tint p-3 text-left">
-              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                Próximos lotes
-              </p>
-              <ul className="mt-2 space-y-1">
-                {t.lotSteps.map((s, i) => (
-                  <li
-                    key={s.label}
-                    className={`flex items-center justify-between text-xs ${
-                      i === 0
-                        ? "text-muted-foreground line-through decoration-primary/60 decoration-2"
-                        : i === 1
-                          ? "font-semibold text-primary"
-                          : "text-muted-foreground"
-                    }`}
-                  >
-                    <span>{s.label}</span>
-                    <span>{s.value}</span>
-                  </li>
-                ))}
-              </ul>
-              <LotProgress percent={t.soldPercent} compact />
+              <div className="flex items-end justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    Lote atual
+                  </p>
+                  <p className="mt-0.5 text-sm font-bold uppercase tracking-wide text-primary">
+                    {t.lotLabel}
+                  </p>
+                </div>
+                <p className="pb-0.5 text-right text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  Próximo lote em breve
+                </p>
+              </div>
+              <div className="mt-3">
+                <LotProgress percent={t.soldPercent} label="DO LOTE 2" compact />
+              </div>
             </div>
           </div>
         ))}
