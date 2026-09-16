@@ -629,7 +629,7 @@ function Hero() {
 
           <p className="mx-auto mt-4 max-w-xl text-balance text-lg font-medium leading-relaxed text-white/92 sm:text-xl lg:mx-0">
             Em 2 dias, aprenda técnicas práticas para organizar sua casa de um
-            jeito que funcione na sua rotina — e que você consiga manter.
+            jeito que funcione na sua rotina, e que você consiga manter.
           </p>
 
           <div className="mt-5 flex flex-col items-center gap-1 text-base font-semibold text-white lg:items-start">
@@ -744,7 +744,7 @@ function PracticalMethod() {
           à realidade da sua família.
         </p>
         <p className="mx-auto mt-5 max-w-2xl text-lg font-semibold text-primary sm:text-xl">
-          Você sai sabendo o que fazer — e como adaptar o que aprendeu à sua vida de verdade.
+          Você sai sabendo o que fazer, e como adaptar o que aprendeu à sua vida de verdade.
         </p>
       </div>
     </Section>
@@ -1455,8 +1455,8 @@ function Founder() {
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
             Depois de anos entrando na casa de centenas de mulheres, com
-            diferentes espaços, rotinas e desafios, Suelen reuniu neste encontro
-            o que realmente funciona na vida real.
+            diferentes espaços, rotinas e desafios, Suelen Gubeisse reuniu neste
+            encontro o que realmente funciona na vida real.
           </p>
           <p className="mt-3 text-sm font-medium leading-relaxed text-foreground sm:text-base">
             Não em casas de revista. Em casas reais.
