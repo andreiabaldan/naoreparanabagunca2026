@@ -16,4 +16,4 @@
 - [x] Aplicar os ajustes de CRO, conteúdo e ordem solicitados na página principal
 - [x] Validar preços, ofertas, carrosséis, ordem das seções e integrações no desktop e mobile
 - [x] Consolidar as quatro participações da Suelen em um único card especial no line-up
-- [ ] Validar o card da Suelen e o carrossel de palestrantes no desktop e mobile
+- [x] Validar o card da Suelen e o carrossel de palestrantes no desktop e mobile
