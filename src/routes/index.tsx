@@ -628,8 +628,9 @@ function Hero() {
           </h1>
 
           <p className="mx-auto mt-4 max-w-xl text-balance text-lg font-medium leading-relaxed text-white/92 sm:text-xl lg:mx-0">
-            Em 2 dias, aprenda técnicas práticas para organizar sua casa de um
-            jeito que funcione na sua rotina, e que você consiga manter.
+            Não é falta de disciplina. Em 2 dias, aprenda técnicas práticas para
+            organizar sua casa de um jeito que funcione na sua rotina, e que você
+            consiga manter.
           </p>
 
           <div className="mt-5 flex flex-col items-center gap-1 text-base font-semibold text-white lg:items-start">
@@ -889,7 +890,7 @@ function Experience() {
       <div className="text-center">
         <SectionEyebrow>Aprendizado prático</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
-          O que você vai aprender — <span className="italic text-gradient-brand">e levar para casa</span>
+          O que você vai aprender&nbsp;<span className="italic text-gradient-brand">e levar para casa</span>
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-balance text-sm text-muted-foreground sm:text-base">
           Você não vai apenas assistir a palestras. Vai sair com conhecimentos
