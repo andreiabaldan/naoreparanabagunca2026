@@ -662,7 +662,7 @@ function AuthorityStrip() {
       <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-xs font-bold uppercase tracking-[0.14em] text-foreground sm:text-sm">
         <span>4ª edição</span>
         <span className="text-primary" aria-hidden>•</span>
-        <span>500 mulheres na última edição</span>
+        <span>1000 MULHERES NESTA EDIÇÃO</span>
         <span className="text-primary" aria-hidden>•</span>
         <span>2 dias de experiência</span>
       </div>
@@ -687,8 +687,8 @@ function PainRecognition() {
           Parece que a casa <span className="italic text-gradient-brand">nunca termina?</span>
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-balance text-sm leading-relaxed text-muted-foreground sm:text-base">
-          Você organiza, limpa, guarda, tenta criar uma rotina… e poucos dias
-          depois parece que precisa começar tudo de novo.
+          Você, ou sua funcionária do lar, organiza, limpa, guarda, tenta criar
+          uma rotina… e poucos dias depois parece que precisa começar tudo de novo.
         </p>
       </div>
 
@@ -723,7 +723,7 @@ function BeliefShift() {
           para o seu espaço, seu tempo e sua rotina.
         </p>
         <p className="mx-auto mt-5 max-w-64 text-base font-semibold leading-relaxed text-foreground sm:max-w-2xl sm:text-lg">
-          Organização não é dom. É técnica — e técnica se aprende.
+          Organização não é dom. É técnica, e técnica se aprende.
         </p>
       </div>
     </section>
