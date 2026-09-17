@@ -1132,7 +1132,7 @@ function SocialProof() {
             <img
               src={img.src}
               alt={img.alt}
-              loading={speaker.featured ? "eager" : "lazy"}
+              loading="lazy"
               decoding="async"
               className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
             />
@@ -1710,7 +1710,7 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
             <img
               src={speaker.photo}
               alt={`Foto de ${speaker.name}`}
-              loading="lazy"
+              loading={speaker.featured ? "eager" : "lazy"}
               decoding="async"
               className="h-full w-full object-contain object-bottom"
             />
