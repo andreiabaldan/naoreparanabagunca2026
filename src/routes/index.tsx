@@ -111,45 +111,30 @@ type Speaker = {
   name: string;
   /** Tema da palestra */
   topic: string;
+  /** Lista compacta de conteúdos para participações especiais */
+  topics?: string[];
   /** Descrição curta revelada em "Saiba mais" */
   description: string;
   photo?: string;
   /** Selo opcional (ex.: idealizadora & anfitriã) */
   badge?: string;
+  featured?: boolean;
 };
 
 const SPEAKERS: Speaker[] = [
   {
     name: "Suelen Gubeisse",
     badge: "Idealizadora & anfitriã",
-    topic: "Técnicas Modernas de Limpeza Doméstica",
-    description:
-      "Conteúdo 1 de 4: técnicas modernas para tornar o cuidado com a casa mais prático e eficiente.",
+    topic: "4 conteúdos com Suelen durante o NRNB",
+    topics: [
+      "Técnicas Modernas de Limpeza Doméstica",
+      "Aromatização do Lar",
+      "Organização de Guarda-Roupas",
+      "Cama Posta",
+    ],
+    description: "Quatro encontros práticos conduzidos pela idealizadora e anfitriã do NRNB.",
     photo: suelenAvatar.url,
-  },
-  {
-    name: "Suelen Gubeisse",
-    badge: "Idealizadora & anfitriã",
-    topic: "Aromatização do Lar",
-    description:
-      "Conteúdo 2 de 4: como os aromas ajudam a construir acolhimento e identidade dentro de casa.",
-    photo: suelenAvatar.url,
-  },
-  {
-    name: "Suelen Gubeisse",
-    badge: "Idealizadora & anfitriã",
-    topic: "Organização de Guarda-Roupas",
-    description:
-      "Conteúdo 3 de 4: técnicas para tornar o guarda-roupa mais organizado, funcional e prático.",
-    photo: suelenAvatar.url,
-  },
-  {
-    name: "Suelen Gubeisse",
-    badge: "Idealizadora & anfitriã",
-    topic: "Cama Posta",
-    description:
-      "Conteúdo 4 de 4: cuidados que transformam a experiência de chegar e estar em casa.",
-    photo: suelenAvatar.url,
+    featured: true,
   },
   {
     name: "Andréia Baldan",
@@ -1718,14 +1703,14 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
     .join("");
 
   return (
-    <article className="flex h-full flex-col items-center rounded-3xl border border-border/60 bg-card p-5 text-center shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40 sm:p-6">
+    <article className={`flex h-full flex-col items-center rounded-3xl border bg-card p-5 text-center shadow-card transition-all hover:-translate-y-0.5 sm:p-6 ${speaker.featured ? "border-primary/60 ring-1 ring-primary/15 hover:border-primary" : "border-border/60 hover:border-primary/40"}`}>
       <div className="relative w-full overflow-hidden rounded-2xl bg-sky-tint">
-        <div className="aspect-[4/3] w-full overflow-hidden bg-sky-tint">
+        <div className={`w-full overflow-hidden bg-sky-tint ${speaker.featured ? "aspect-[5/4]" : "aspect-[4/3]"}`}>
           {speaker.photo ? (
             <img
               src={speaker.photo}
               alt={`Foto de ${speaker.name}`}
-              loading="lazy"
+              loading={speaker.featured ? "eager" : "lazy"}
               decoding="async"
               className="h-full w-full object-contain object-bottom"
             />
@@ -1737,36 +1722,45 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
         </div>
       </div>
 
-      {speaker.badge ? (
-        <span className="mt-3 rounded-full bg-primary px-3 py-1 text-xs font-bold uppercase tracking-widest text-primary-foreground">
-          {speaker.badge}
-        </span>
-      ) : null}
-
       <div className="flex flex-1 flex-col items-center">
         <h3 className="mt-3 text-base font-semibold leading-tight text-foreground">
           {speaker.name}
         </h3>
+
+        {speaker.badge ? (
+          <span className="mt-2 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
+            {speaker.badge}
+          </span>
+        ) : null}
+
         <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-primary">
           {speaker.topic}
         </p>
 
-
-        {open ? (
+        {speaker.topics ? (
+          <ul className="mt-3 grid w-full grid-cols-2 gap-1.5 text-left">
+            {speaker.topics.map((topic) => (
+              <li key={topic} className="flex min-h-10 items-center rounded-lg border border-primary/15 bg-magenta-soft px-2.5 py-2 text-[11px] font-medium leading-tight text-foreground">
+                {topic}
+              </li>
+            ))}
+          </ul>
+        ) : open ? (
           <p className="mt-3 text-sm leading-snug text-muted-foreground">
             {speaker.description}
           </p>
         ) : null}
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-           className="mt-3 text-xs font-bold uppercase tracking-widest text-primary transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
-        >
-
-          {open ? "Fechar −" : "Saiba mais +"}
-        </button>
+        {!speaker.topics ? (
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            className="mt-3 text-xs font-bold uppercase tracking-widest text-primary transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+          >
+            {open ? "Fechar −" : "Saiba mais +"}
+          </button>
+        ) : null}
       </div>
     </article>
   );
@@ -1794,6 +1788,9 @@ function Speakers() {
             <SpeakerCard key={`${s.name}-${s.topic}`} speaker={s} />
           ))}
           itemClassName="w-[88%] sm:w-[46%] lg:w-[32%]"
+          itemClassNames={SPEAKERS.map((s) =>
+            s.featured ? "w-[88%] sm:w-[58%] lg:w-[42%]" : "w-[88%] sm:w-[46%] lg:w-[32%]",
+          )}
           hint="Deslize para conhecer →"
         />
       </div>

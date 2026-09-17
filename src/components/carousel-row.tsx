@@ -5,6 +5,7 @@ type CarouselRowProps = {
   items: ReactNode[];
   /** largura de cada card (mobile mostra 1 + parte do próximo) */
   itemClassName?: string;
+  itemClassNames?: string[];
   hint?: string;
   showDots?: boolean;
   ariaLabel?: string;
@@ -13,6 +14,7 @@ type CarouselRowProps = {
 export function CarouselRow({
   items,
   itemClassName = "w-[82%] sm:w-[46%] lg:w-[32%]",
+  itemClassNames,
   hint,
   showDots = true,
   ariaLabel,
@@ -61,7 +63,7 @@ export function CarouselRow({
         className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:px-0"
       >
         {items.map((item, i) => (
-          <div key={i} className={`shrink-0 snap-start ${itemClassName}`}>
+          <div key={i} className={`shrink-0 snap-start ${itemClassNames?.[i] ?? itemClassName}`}>
             {item}
           </div>
         ))}
