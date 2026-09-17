@@ -39,6 +39,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { CarouselRow } from "@/components/carousel-row";
+import { ConversionPopups } from "@/components/conversion-popups";
 
 import { track } from "@/lib/tracking";
 
@@ -2032,6 +2033,7 @@ export function LandingPage() {
       <Footer />
       <StickyCTA />
       <WhatsAppFloating />
+      <ConversionPopups whatsappNumber={EVENT.whatsappNumber} />
     </main>
   );
 }
