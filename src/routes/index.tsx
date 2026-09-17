@@ -122,9 +122,33 @@ const SPEAKERS: Speaker[] = [
   {
     name: "Suelen Gubeisse",
     badge: "Idealizadora & anfitriã",
-    topic: "Técnicas modernas de limpeza • Aromatização do lar",
+    topic: "Técnicas Modernas de Limpeza Doméstica",
     description:
-      "Anfitriã do Não Repara na Bagunça, ela conduz os conteúdos de técnicas modernas de limpeza e aromatização do lar.",
+      "Conteúdo 1 de 4: técnicas modernas para tornar o cuidado com a casa mais prático e eficiente.",
+    photo: suelenAvatar.url,
+  },
+  {
+    name: "Suelen Gubeisse",
+    badge: "Idealizadora & anfitriã",
+    topic: "Aromatização do Lar",
+    description:
+      "Conteúdo 2 de 4: como os aromas ajudam a construir acolhimento e identidade dentro de casa.",
+    photo: suelenAvatar.url,
+  },
+  {
+    name: "Suelen Gubeisse",
+    badge: "Idealizadora & anfitriã",
+    topic: "Organização de Guarda-Roupas",
+    description:
+      "Conteúdo 3 de 4: técnicas para tornar o guarda-roupa mais organizado, funcional e prático.",
+    photo: suelenAvatar.url,
+  },
+  {
+    name: "Suelen Gubeisse",
+    badge: "Idealizadora & anfitriã",
+    topic: "Cama Posta",
+    description:
+      "Conteúdo 4 de 4: cuidados que transformam a experiência de chegar e estar em casa.",
     photo: suelenAvatar.url,
   },
   {
@@ -207,12 +231,12 @@ const THEME_GROUPS: ThemeGroup[] = [
       },
       {
         icon: Shirt,
-        title: "Guarda-roupa inteligente",
+        title: "Organização de Guarda-Roupas",
         desc: "Mais funcionalidade, clareza e praticidade na hora de se vestir e organizar suas escolhas.",
       },
       {
         icon: Sparkles,
-        title: "Técnicas modernas de limpeza",
+        title: "Técnicas Modernas de Limpeza Doméstica",
         desc: "Caminhos para tornar o cuidado com a casa mais prático e eficiente.",
       },
       {
@@ -222,7 +246,7 @@ const THEME_GROUPS: ThemeGroup[] = [
       },
       {
         icon: BedDouble,
-        title: "Cama posta e sensação de acolhimento",
+        title: "Cama Posta",
         desc: "Pequenos cuidados capazes de transformar a experiência de chegar e estar em casa.",
       },
       {
@@ -232,7 +256,7 @@ const THEME_GROUPS: ThemeGroup[] = [
       },
       {
         icon: Flower2,
-        title: "Perfumação do lar: aromas e sensações",
+        title: "Aromatização do Lar",
         desc: "Como os aromas ajudam a construir a sensação de acolhimento e identidade dentro de casa.",
       },
     ],
@@ -328,6 +352,7 @@ type Ticket = {
   lotLabel: string;
   lotSteps: LotStep[];
   installments: string;
+  installmentPrice: string;
   soldPercent: number | null;
   benefits: string[];
   includesFrom?: string;
@@ -351,7 +376,8 @@ const TICKETS: Ticket[] = [
       { label: "3º lote", value: "R$ 197,00" },
       { label: "Valor cheio", value: "R$ 247,00" },
     ],
-    installments: "ou 12x de R$ 14,70 no cartão",
+    installments: "12x de R$ 14,70 no cartão",
+    installmentPrice: "14,70",
     soldPercent: 34,
     benefits: [
       "Você não sai só inspirada. Sai sabendo o que começar a aplicar na sua casa e na sua rotina.",
@@ -374,7 +400,8 @@ const TICKETS: Ticket[] = [
       { label: "3º lote", value: "R$ 247,00" },
       { label: "Valor cheio", value: "R$ 297,00" },
     ],
-    installments: "ou 12x de R$ 19,70 no cartão",
+    installments: "12x de R$ 19,70 no cartão",
+    installmentPrice: "19,70",
     soldPercent: 25,
     highlight: "Experiência recomendada",
     ctaLabel: "QUERO O VIP",
@@ -400,7 +427,8 @@ const TICKETS: Ticket[] = [
       { label: "3º lote", value: "R$ 497,00" },
       { label: "Valor cheio", value: "R$ 597,00" },
     ],
-    installments: "ou 12x de R$ 44,70 no cartão",
+    installments: "12x de R$ 44,70 no cartão",
+    installmentPrice: "44,70",
     soldPercent: 70,
     highlight: "Experiência completa",
     ctaLabel: "QUERO O PLATINUM",
@@ -737,15 +765,17 @@ function PracticalMethod() {
       <div className="mx-auto max-w-4xl text-center">
         <SectionEyebrow>Na prática</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
-          Sua vida não cabe em um cronograma pronto da internet.
+          Não é mais um cronograma pronto para você tentar seguir.
         </h2>
+        <div className="mx-auto mt-5 inline-flex flex-col rounded-xl border border-primary/20 bg-card px-5 py-3 shadow-card">
+          <span className="text-xs font-bold uppercase tracking-[0.18em] text-primary">Método</span>
+          <span className="mt-1 font-display text-lg font-semibold text-foreground">7 Passos da Organização</span>
+        </div>
         <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-          Por isso, no Não Repara na Bagunça você não aprende uma rotina
-          “perfeita”. Aprende técnicas que pode adaptar à sua casa, ao seu tempo e
-          à realidade da sua família.
+          Isso não é mais um cronograma pronto da internet para você tentar encaixar na sua rotina. No evento, você vai conhecer os 7 Passos da Organização e aprender técnicas aplicadas na prática, com soluções que façam sentido para a sua casa e para a sua rotina.
         </p>
         <p className="mx-auto mt-5 max-w-2xl text-lg font-semibold text-primary sm:text-xl">
-          Você sai sabendo o que fazer, e como adaptar o que aprendeu à sua vida de verdade.
+          Você sai sabendo, porque já fez — não porque apenas ouviu.
         </p>
       </div>
     </Section>
@@ -761,6 +791,8 @@ const FOR_WHOM = [
   "Precisa conciliar casa, trabalho, família e tempo para você.",
   "Quer formas mais práticas de fazer sua casa funcionar a favor da sua rotina.",
   "Quer uma vida mais leve sem buscar uma casa perfeita.",
+  "Tem uma funcionária do lar e sente que, mesmo assim, a casa continua bagunçada.",
+  "É funcionária do lar e quer aprender novas técnicas para melhorar e valorizar ainda mais o seu trabalho.",
 ];
 
 function ForWhom() {
@@ -886,7 +918,7 @@ const TERRITORIES = [
 
 function Experience() {
   return (
-    <Section className="surface-rose">
+    <Section className="surface-dark">
       <div className="text-center">
         <SectionEyebrow>Aprendizado prático</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
@@ -902,7 +934,7 @@ function Experience() {
         {TERRITORIES.map(({ icon: Icon, label, text }) => (
           <div
             key={label}
-            className="flex flex-col items-center gap-3 rounded-2xl border border-border/60 bg-card shadow-card px-3 py-6 text-center"
+            className="flex flex-col items-center gap-3 rounded-2xl border border-primary/25 bg-magenta-soft shadow-card px-3 py-6 text-center"
           >
             <Icon className="h-6 w-6 text-primary" />
             <span className="text-xs font-semibold uppercase leading-snug tracking-wide text-foreground/90">
@@ -923,7 +955,7 @@ function Experience() {
             ["POSSÍVEL", "Sem depender de uma rotina perfeita."],
             ["REALISTA", "Pensada para casas, espaços e rotinas de verdade."],
           ].map(([title, text]) => (
-            <div key={title} className="rounded-2xl border border-border/60 bg-card p-4 shadow-card">
+            <div key={title} className="rounded-2xl border border-primary/25 bg-magenta-soft p-4 shadow-card">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">{title}</p>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p>
             </div>
@@ -1073,6 +1105,33 @@ function SuelenVideoPlaceholder() {
   );
 }
 
+function CompactOffer({
+  headline,
+  cta,
+  variant,
+}: {
+  headline: string;
+  cta: string;
+  variant: "light" | "rose";
+}) {
+  return (
+    <section className={variant === "rose" ? "surface-rose px-5 py-10 sm:px-6" : "bg-sky-tint px-5 py-10 sm:px-6"}>
+      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
+        <div>
+          <h2 className="text-balance text-2xl leading-tight sm:text-3xl">{headline}</h2>
+          <p className="mt-2 text-sm font-semibold text-muted-foreground">Ingressos a partir de</p>
+          <p className="mt-1 flex items-baseline justify-center gap-2 md:justify-start">
+            <span className="text-sm font-semibold text-foreground">12x de</span>
+            <span className="font-display text-4xl font-semibold text-primary">R$ 14,70</span>
+          </p>
+          <p className="mt-1 text-sm text-muted-foreground">ou R$ 147 à vista</p>
+        </div>
+        <CTAButton event="gallery_cta_click" size="lg">{cta}</CTAButton>
+      </div>
+    </section>
+  );
+}
+
 
 
 const GALLERY = [
@@ -1154,9 +1213,12 @@ function OfferTransition() {
         <p className="mt-4 text-sm font-semibold text-foreground sm:text-base">
           24 e 25 de outubro · São José dos Campos/SP
         </p>
-        <p className="mt-2 text-base font-bold text-primary sm:text-lg">
-          Ingressos a partir de R$ 147,00
+        <p className="mt-5 text-base font-semibold text-foreground">Ingressos a partir de</p>
+        <p className="mt-1 flex items-baseline justify-center gap-2">
+          <span className="text-base font-semibold text-foreground">12x de</span>
+          <span className="font-display text-5xl font-semibold leading-none text-primary sm:text-6xl">R$ 14,70</span>
         </p>
+        <p className="mt-2 text-sm text-muted-foreground">ou R$ 147 à vista</p>
         <div className="mt-6 flex justify-center">
           <CTAButton event="gallery_cta_click" size="lg">
             QUERO GARANTIR MEU INGRESSO
@@ -1322,15 +1384,12 @@ function Tickets() {
               {t.lotLabel}
             </span>
 
-            <p className="mt-3 flex items-baseline justify-center gap-1 font-display font-semibold text-primary">
+            <p className="mt-4 text-sm font-semibold text-muted-foreground">12x de</p>
+            <p className="mt-1 flex items-baseline justify-center gap-1 font-display font-semibold text-primary">
               <span className="text-2xl sm:text-3xl">R$</span>
-              <span className="text-5xl leading-none sm:text-6xl">
-                {t.price}
-              </span>
+              <span className="text-5xl leading-none sm:text-6xl">{t.installmentPrice}</span>
             </p>
-            <p className="mt-2 text-xs text-muted-foreground">
-              {t.installments}
-            </p>
+            <p className="mt-2 text-sm text-muted-foreground">ou R$ {t.price} à vista</p>
 
             {/* divisor com coração */}
             <div className="mt-5 flex items-center gap-3">
@@ -1785,7 +1844,7 @@ function Speakers() {
         <CarouselRow
           ariaLabel="Palestrantes do NRNB 2026"
           items={SPEAKERS.map((s) => (
-            <SpeakerCard key={s.name} speaker={s} />
+            <SpeakerCard key={`${s.name}-${s.topic}`} speaker={s} />
           ))}
           itemClassName="w-[88%] sm:w-[46%] lg:w-[32%]"
           hint="Deslize para conhecer →"
@@ -2154,12 +2213,21 @@ export function LandingPage() {
       <PainRecognition />
       <BeliefShift />
       <PhotoGallery />
+      <CompactOffer
+        headline="Em outubro, seu lugar pode ser aqui."
+        cta="QUERO VIVER ESSA EXPERIÊNCIA"
+        variant="light"
+      />
       <PracticalMethod />
       <Experience />
       <ForWhom />
-      <Benefits />
       <VideoStory />
-      <SuelenVideoPlaceholder />
+      <CompactOffer
+        headline="Viva esses 2 dias com a gente."
+        cta="QUERO GARANTIR MEU INGRESSO"
+        variant="rose"
+      />
+      {false && <SuelenVideoPlaceholder />}
       <Founder />
       <Speakers />
       <Schedule />
@@ -2167,6 +2235,7 @@ export function LandingPage() {
       <OfferTransition />
       <Tickets />
       <PersonalOrganizerCourse />
+      <Benefits />
       <PurchaseSafety />
 
       <Sponsors />
