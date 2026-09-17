@@ -775,7 +775,7 @@ function PracticalMethod() {
           Isso não é mais um cronograma pronto da internet para você tentar encaixar na sua rotina. No evento, você vai conhecer os 7 Passos da Organização e aprender técnicas aplicadas na prática, com soluções que façam sentido para a sua casa e para a sua rotina.
         </p>
         <p className="mx-auto mt-5 max-w-2xl text-lg font-semibold text-primary sm:text-xl">
-          Você sai sabendo, porque já fez — não porque apenas ouviu.
+          Você sai sabendo porque já fez, não porque apenas ouviu.
         </p>
       </div>
     </Section>
