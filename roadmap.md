@@ -17,3 +17,5 @@
 - [x] Validar preços, ofertas, carrosséis, ordem das seções e integrações no desktop e mobile
 - [x] Consolidar as quatro participações da Suelen em um único card especial no line-up
 - [x] Validar o card da Suelen e o carrossel de palestrantes no desktop e mobile
+- [ ] Melhorar somente a diagramação dos textos do Hero no desktop
+- [ ] Validar o Hero em 1366, 1440, 1600 e 1920 px sem alterar o mobile
