@@ -200,7 +200,7 @@ export function ConversionPopups({ whatsappNumber }: { whatsappNumber: string })
           <DialogDescription className="mt-4 text-base leading-relaxed text-muted-foreground">
             Se ficou com alguma dúvida sobre o evento, ingressos ou qual experiência escolher, fale com a nossa equipe pelo WhatsApp.
           </DialogDescription>
-          <Button asChild size="lg" className="mt-6 h-auto min-h-12 w-full rounded-full px-5 py-3 font-bold uppercase">
+          <Button asChild size="lg" className="mt-6 h-auto min-h-12 w-full whitespace-normal rounded-full px-4 py-3 text-center text-xs font-bold uppercase leading-tight sm:px-5 sm:text-sm">
             <a
               href={helpUrl}
               target="_blank"
@@ -214,11 +214,9 @@ export function ConversionPopups({ whatsappNumber }: { whatsappNumber: string })
               <MessageCircle /> Falar com a equipe no WhatsApp
             </a>
           </Button>
-          <DialogClose asChild>
-            <Button variant="ghost" className="mt-2 w-full text-muted-foreground" onClick={() => closePopup("continue")}>
-              Continuar conhecendo o evento
-            </Button>
-          </DialogClose>
+          <Button variant="ghost" className="mt-2 h-auto min-h-10 w-full whitespace-normal text-muted-foreground" onClick={() => closePopup("continue")}>
+            Continuar conhecendo o evento
+          </Button>
         </DialogContent>
       </Dialog>
 
@@ -236,21 +234,19 @@ export function ConversionPopups({ whatsappNumber }: { whatsappNumber: string })
                   Assistir ao guia agora
                 </a>
               </Button>
-              <DialogClose asChild>
-                <Button variant="ghost" className="mt-2 w-full text-muted-foreground" onClick={() => closePopup("continue")}>
-                  Continuar conhecendo o evento
-                </Button>
-              </DialogClose>
+              <Button variant="ghost" className="mt-2 w-full text-muted-foreground" onClick={() => closePopup("continue")}>
+                Continuar conhecendo o evento
+              </Button>
             </div>
           ) : (
             <div className="grid md:grid-cols-[0.8fr_1.2fr]">
-              <div className="order-2 flex min-h-36 items-center justify-center border-t border-border bg-sky-tint p-5 md:order-1 md:min-h-[480px] md:border-r md:border-t-0">
+              <div className="order-2 flex min-h-28 items-center justify-center border-y border-border bg-sky-tint p-4 md:order-1 md:row-span-2 md:min-h-[480px] md:border-y-0 md:border-r md:p-5">
                 <div className="flex max-w-48 flex-col items-center text-center text-primary">
-                  <BookOpen className="h-10 w-10" />
+                  <BookOpen className="h-8 w-8 md:h-10 md:w-10" />
                   <span className="mt-3 text-xs font-semibold uppercase tracking-[0.18em]">Espaço para a capa do guia</span>
                 </div>
               </div>
-              <div className="order-1 p-6 sm:p-8 md:order-2">
+              <div className="order-1 px-6 pb-5 pt-6 sm:px-8 sm:pt-8 md:order-2 md:pb-0">
                 <span className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Um presente para você</span>
                 <DialogTitle className="mt-3 text-balance font-display text-3xl font-medium leading-tight text-foreground">
                   Ainda não vá. Leve uma rotina mais leve com você.
@@ -258,7 +254,9 @@ export function ConversionPopups({ whatsappNumber }: { whatsappNumber: string })
                 <DialogDescription className="mt-4 text-base leading-relaxed text-muted-foreground">
                   Deixe seu contato e receba gratuitamente o Guia Prático da Rotina Noturna: uma rotina de 15 minutos para ajudar a deixar a casa em ordem antes de dormir.
                 </DialogDescription>
-                <form className="mt-6 space-y-4" onSubmit={submit} noValidate>
+              </div>
+              <div className="order-3 px-6 pb-6 pt-5 sm:px-8 sm:pb-8 md:order-3 md:pt-5">
+                <form className="space-y-4" onSubmit={submit} noValidate>
                   <div className="space-y-1.5">
                     <Label htmlFor="guide-name">Nome</Label>
                     <Input id="guide-name" name="name" autoComplete="name" value={name} onChange={(e) => { setName(e.target.value); setStatus("idle"); }} className="h-11 bg-background" required />
@@ -272,11 +270,9 @@ export function ConversionPopups({ whatsappNumber }: { whatsappNumber: string })
                     {status === "sending" ? "Enviando..." : "Quero receber o guia gratuito"}
                   </Button>
                 </form>
-                <DialogClose asChild>
-                  <Button variant="ghost" className="mt-2 w-full text-muted-foreground" onClick={() => closePopup("continue")}>
-                    Prefiro continuar sem o guia
-                  </Button>
-                </DialogClose>
+                <Button variant="ghost" className="mt-2 h-auto min-h-10 w-full whitespace-normal text-muted-foreground" onClick={() => closePopup("continue")}>
+                  Prefiro continuar sem o guia
+                </Button>
               </div>
             </div>
           )}
