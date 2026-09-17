@@ -121,21 +121,14 @@ type Speaker = {
   featured?: boolean;
 };
 
+const SUELEN_TOPICS = [
+  "Técnicas Modernas de Limpeza Doméstica",
+  "Aromatização do Lar",
+  "Organização de Guarda-Roupas",
+  "Cama Posta",
+];
+
 const SPEAKERS: Speaker[] = [
-  {
-    name: "Suelen Gubeisse",
-    badge: "Idealizadora & anfitriã",
-    topic: "4 conteúdos com Suelen durante o NRNB",
-    topics: [
-      "Técnicas Modernas de Limpeza Doméstica",
-      "Aromatização do Lar",
-      "Organização de Guarda-Roupas",
-      "Cama Posta",
-    ],
-    description: "Quatro encontros práticos conduzidos pela idealizadora e anfitriã do NRNB.",
-    photo: suelenAvatar.url,
-    featured: true,
-  },
   {
     name: "Andréia Baldan",
     topic: "Crescimento Inteligente",
@@ -1781,16 +1774,58 @@ function Speakers() {
         </p>
       </div>
 
+      <div className="mt-8 overflow-hidden rounded-3xl border border-primary/25 bg-magenta-soft sm:grid sm:grid-cols-[42%_58%]">
+        <div className="relative min-h-[360px] overflow-hidden bg-sky-tint sm:min-h-[500px]">
+          <img
+            src={suelenAvatar.url}
+            alt="Suelen Gubeisse, idealizadora e anfitriã do Não Repara na Bagunça"
+            loading="eager"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-contain object-bottom"
+          />
+        </div>
+
+        <div className="flex flex-col justify-center px-6 py-8 sm:px-10 sm:py-10 lg:px-12">
+          <span className="w-fit rounded-full bg-primary px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-primary-foreground sm:text-xs">
+            Idealizadora &amp; anfitriã
+          </span>
+          <h3 className="mt-4 font-serif text-3xl leading-tight text-foreground sm:text-4xl lg:text-5xl">
+            Suelen Gubeisse
+          </h3>
+          <p className="mt-4 max-w-xl text-balance text-base font-medium leading-relaxed text-foreground sm:text-lg">
+            Além de conduzir o NRNB, Suelen traz 4 conteúdos práticos durante os dois dias.
+          </p>
+
+          <div className="mt-6 grid grid-cols-2 gap-2.5 sm:gap-3">
+            {SUELEN_TOPICS.map((topic) => (
+              <div
+                key={topic}
+                className="flex min-h-20 items-center rounded-xl border border-primary/20 bg-card px-3 py-3 text-sm font-semibold leading-snug text-foreground shadow-sm sm:min-h-24 sm:px-4 sm:text-base"
+              >
+                {topic}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-12 text-center sm:mt-16">
+        <SectionEyebrow>Convidados &amp; especialistas</SectionEyebrow>
+        <h3 className="mx-auto mt-4 max-w-3xl text-balance font-serif text-2xl leading-tight text-foreground sm:text-4xl">
+          Quem estará com a Suelen no NRNB 2026
+        </h3>
+        <p className="mx-auto mt-3 max-w-2xl text-balance text-sm text-muted-foreground sm:text-base">
+          Especialistas e convidados para trazer novos olhares para a casa, a rotina e a vida.
+        </p>
+      </div>
+
       <div className="mt-8">
         <CarouselRow
-          ariaLabel="Palestrantes do NRNB 2026"
+          ariaLabel="Convidados e especialistas do NRNB 2026"
           items={SPEAKERS.map((s) => (
             <SpeakerCard key={`${s.name}-${s.topic}`} speaker={s} />
           ))}
           itemClassName="w-[88%] sm:w-[46%] lg:w-[32%]"
-          itemClassNames={SPEAKERS.map((s) =>
-            s.featured ? "w-[88%] sm:w-[58%] lg:w-[42%]" : "w-[88%] sm:w-[46%] lg:w-[32%]",
-          )}
           hint="Deslize para conhecer →"
         />
       </div>
