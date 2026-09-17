@@ -602,14 +602,13 @@ function Hero() {
 
           <h1 className="mt-4 text-balance text-3xl leading-[1.08] text-white sm:text-5xl lg:text-6xl">
             <span className="italic">
-              Uma casa organizada para uma rotina mais leve.
+              Transforme sua casa em um lar organizado e acolhedor e deixe sua rotina muito mais leve!
             </span>
           </h1>
 
           <p className="mx-auto mt-4 max-w-xl text-balance text-lg font-medium leading-relaxed text-white/92 sm:text-xl lg:mx-0">
-            Não é falta de disciplina. Em 2 dias, aprenda técnicas práticas para
-            organizar sua casa de um jeito que funcione na sua rotina, e que você
-            consiga manter.
+            Em 2 dias, aprenda os 7 Passos da Organização e técnicas práticas que
+            funcionam na sua rotina de verdade.
           </p>
 
           <div className="mt-5 flex flex-col items-center gap-1 text-base font-semibold text-white lg:items-start">
