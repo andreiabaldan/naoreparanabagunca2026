@@ -35,7 +35,17 @@ export type TrackEvent =
   | "twofor1_ticket_click"
   | "twofor1_sticky_click"
   | "twofor1_timer_expired"
-  | "twofor1_whatsapp_click";
+  | "twofor1_whatsapp_click"
+  | "nrnb_help_popup_view"
+  | "nrnb_help_popup_close"
+  | "nrnb_help_popup_continue"
+  | "nrnb_help_popup_whatsapp_click"
+  | "nrnb_exit_popup_view"
+  | "nrnb_exit_popup_close"
+  | "nrnb_exit_popup_continue"
+  | "nrnb_exit_popup_submit"
+  | "nrnb_exit_popup_success"
+  | "nrnb_guide_access_click";
 
 
 declare global {
