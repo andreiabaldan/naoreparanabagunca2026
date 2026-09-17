@@ -10,6 +10,6 @@
 - [x] Validar desktop e mobile, carrosséis, fotos, CTAs e links
 - [x] Simplificar a comunicação de lotes nos cards da página principal
 - [x] Validar os três cards no desktop e mobile, preservando preços, links e tracking
-- [ ] Implementar os dois pop-ups de conversão somente na página principal
+- [x] Implementar os dois pop-ups de conversão somente na página principal
 - [x] Criar e conectar a Planilha Google de contatos do guia
-- [ ] Validar gatilhos, formulário, registro, mensuração e experiência desktop/mobile
+- [x] Validar gatilhos, formulário, registro, mensuração e experiência desktop/mobile
