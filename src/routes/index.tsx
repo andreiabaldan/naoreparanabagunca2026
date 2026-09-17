@@ -557,7 +557,7 @@ function Hero() {
         />
       </div>
 
-      <div className="relative mx-auto flex max-w-6xl flex-col px-5 pb-10 pt-6 sm:px-6 sm:pb-14 sm:pt-10 lg:grid lg:grid-cols-[1.02fr_1fr] lg:items-center lg:gap-10 lg:pb-24 lg:pt-20">
+      <div className="relative mx-auto flex max-w-6xl flex-col px-5 pb-10 pt-6 sm:px-6 sm:pb-14 sm:pt-10 lg:grid lg:max-w-7xl lg:grid-cols-[42%_minmax(0,1fr)] lg:items-center lg:gap-4 lg:pb-20 lg:pt-16 xl:grid-cols-[44%_minmax(0,1fr)] xl:gap-6">
         {/* Fotografia — mobile/tablet: largura total, fundida ao fundo */}
         <div className="order-1 -mx-5 sm:-mx-6 lg:hidden">
           <img
@@ -578,7 +578,7 @@ function Hero() {
         </div>
 
         {/* Conversão */}
-        <div className="order-2 text-center lg:order-1 lg:text-left">
+        <div className="order-2 text-center lg:order-1 lg:min-w-0 lg:text-left">
           {/* Logo — mobile only: abaixo da fotografia */}
           <div className="mb-5 flex justify-center lg:hidden">
             <img
@@ -600,29 +600,28 @@ function Hero() {
             className="mx-auto hidden w-[300px] max-w-full sm:w-[380px] lg:mx-0 lg:block lg:w-[546px]"
           />
 
-          <h1 className="mt-4 text-balance text-3xl leading-[1.08] text-white sm:text-5xl lg:text-6xl">
+          <h1 className="mt-4 text-balance text-3xl leading-[1.08] text-white sm:text-5xl lg:mt-3 lg:max-w-[610px] lg:text-[3.15rem] lg:leading-[1.01] xl:text-[3.35rem]">
             <span className="italic">
               Transforme sua casa em um lar organizado e acolhedor e deixe sua rotina muito mais leve!
             </span>
           </h1>
 
-          <p className="mx-auto mt-4 max-w-xl text-balance text-lg font-medium leading-relaxed text-white/92 sm:text-xl lg:mx-0">
-            Em 2 dias, aprenda os 7 Passos da Organização e técnicas práticas que
-            funcionam na sua rotina de verdade.
+          <p className="mx-auto mt-4 max-w-xl text-balance text-lg font-medium leading-relaxed text-white/92 sm:text-xl lg:mx-0 lg:mt-3 lg:max-w-[600px] lg:leading-[1.5]">
+            Em 2 dias, aprenda os <strong className="font-medium lg:font-bold">7 Passos da Organização</strong> e técnicas práticas que funcionam na sua rotina de verdade.
           </p>
 
-          <div className="mt-5 flex flex-col items-center gap-1 text-base font-semibold text-white lg:items-start">
+          <div className="mt-5 flex flex-col items-center gap-1 text-base font-semibold text-white lg:mt-4 lg:items-start">
             <span className="text-balance">
               24 e 25 de outubro · São José dos Campos/SP
             </span>
             <span className="font-medium text-[#86CBD7]">9h às 18h30</span>
           </div>
 
-          <div className="mx-auto mt-6 max-w-md lg:mx-0">
+          <div className="mx-auto mt-6 max-w-md lg:mx-0 lg:mt-5">
             <CTAButton event="hero_cta_click" size="lg" className="hero-cta w-full">
               QUERO APRENDER COMO
             </CTAButton>
-            <div className="mt-4">
+            <div className="mt-4 lg:mt-3">
               <p className="text-xs font-semibold uppercase tracking-wider text-[#86CBD7]">
                 {LOT_LABEL} LIBERADO · {LOT_SOLD_PERCENT}% VENDIDO
               </p>
