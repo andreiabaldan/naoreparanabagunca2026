@@ -39,7 +39,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { CarouselRow } from "@/components/carousel-row";
-import { ConversionPopups } from "@/components/conversion-popups";
 
 import { track } from "@/lib/tracking";
 
@@ -318,12 +317,16 @@ const ACTIVATIONS: Activation[] = [];
 const LOT_SOLD_PERCENT: number | null = 34;
 const LOT_LABEL = "2º LOTE";
 
+type LotStep = { label: string; value: string };
+
 type Ticket = {
   id: "compromisso" | "vip" | "platinum";
   name: string;
   desire: string;
   price: string;
+  nextLotPrice: string;
   lotLabel: string;
+  lotSteps: LotStep[];
   installments: string;
   soldPercent: number | null;
   benefits: string[];
@@ -340,11 +343,18 @@ const TICKETS: Ticket[] = [
     name: "Compromisso",
     desire: "Quero participar.",
     price: "147,00",
+    nextLotPrice: "R$ 247,00",
     lotLabel: "2º LOTE",
+    lotSteps: [
+      { label: "1º lote", value: "R$ 97,00" },
+      { label: "2º lote", value: "R$ 147,00" },
+      { label: "3º lote", value: "R$ 197,00" },
+      { label: "Valor cheio", value: "R$ 247,00" },
+    ],
     installments: "ou 12x de R$ 14,70 no cartão",
     soldPercent: 34,
     benefits: [
-      "Você não sai só inspirada. Sai com o passo a passo pra aplicar essa semana.",
+      "Você não sai só inspirada. Sai sabendo o que começar a aplicar na sua casa e na sua rotina.",
       "Acesso aos 2 dias de evento",
       "Acesso à feira “Não Repara na Bagunça”",
     ],
@@ -356,7 +366,14 @@ const TICKETS: Ticket[] = [
     name: "VIP",
     desire: "Quero viver melhor essa experiência.",
     price: "197,00",
+    nextLotPrice: "R$ 297,00",
     lotLabel: "2º LOTE",
+    lotSteps: [
+      { label: "1º lote", value: "R$ 147,00" },
+      { label: "2º lote", value: "R$ 197,00" },
+      { label: "3º lote", value: "R$ 247,00" },
+      { label: "Valor cheio", value: "R$ 297,00" },
+    ],
     installments: "ou 12x de R$ 19,70 no cartão",
     soldPercent: 25,
     highlight: "Experiência recomendada",
@@ -375,7 +392,14 @@ const TICKETS: Ticket[] = [
     name: "Platinum",
     desire: "Quero viver tudo o que o NRNB pode oferecer.",
     price: "447,00",
+    nextLotPrice: "R$ 597,00",
     lotLabel: "2º LOTE",
+    lotSteps: [
+      { label: "1º lote", value: "R$ 347,00" },
+      { label: "2º lote", value: "R$ 447,00" },
+      { label: "3º lote", value: "R$ 497,00" },
+      { label: "Valor cheio", value: "R$ 597,00" },
+    ],
     installments: "ou 12x de R$ 44,70 no cartão",
     soldPercent: 70,
     highlight: "Experiência completa",
@@ -449,7 +473,7 @@ function CTAButton({
         track(event);
         goToTickets();
       }}
-      className={`group inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-brand font-semibold uppercase tracking-wide text-primary-foreground shadow-glow transition-all hover:brightness-110 active:scale-[0.99] sm:w-auto ${sizes[size]} ${className}`}
+      className={`cta-primary group inline-flex w-full items-center justify-center gap-2 rounded-full font-semibold uppercase tracking-wide shadow-glow transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40 sm:w-auto ${sizes[size]} ${className}`}
     >
       <span>{children}</span>
       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -527,9 +551,9 @@ function Section({
 
 function TopBar() {
   return (
-    <div className="bg-gradient-brand">
+    <div className="bg-foreground">
       <div className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-4 py-2.5 text-center">
-        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground sm:text-xs">
+        <span className="whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.14em] text-primary-foreground sm:text-xs sm:tracking-[0.18em]">
           2º LOTE LIBERADO • GARANTA O SEU ANTES QUE ACABE
         </span>
       </div>
@@ -599,13 +623,13 @@ function Hero() {
 
           <h1 className="mt-4 text-balance text-3xl leading-[1.08] text-white sm:text-5xl lg:text-6xl">
             <span className="italic">
-              Você cuida de tudo. Mas sente que nunca consegue dar conta da casa?
+              Uma casa organizada para uma rotina mais leve.
             </span>
           </h1>
 
           <p className="mx-auto mt-4 max-w-xl text-balance text-lg font-medium leading-relaxed text-white/92 sm:text-xl lg:mx-0">
-            Não é falta de disciplina. Aprenda em 2 dias um jeito mais prático de
-            organizar a casa e a rotina, que funcione na sua vida de verdade.
+            Em 2 dias, aprenda técnicas práticas para organizar sua casa de um
+            jeito que funcione na sua rotina, e que você consiga manter.
           </p>
 
           <div className="mt-5 flex flex-col items-center gap-1 text-base font-semibold text-white lg:items-start">
@@ -617,7 +641,7 @@ function Hero() {
 
           <div className="mx-auto mt-6 max-w-md lg:mx-0">
             <CTAButton event="hero_cta_click" size="lg" className="hero-cta w-full">
-              QUERO UMA ROTINA MAIS LEVE
+              QUERO APRENDER COMO
             </CTAButton>
             <div className="mt-4">
               <p className="text-xs font-semibold uppercase tracking-wider text-[#86CBD7]">
@@ -632,11 +656,26 @@ function Hero() {
   );
 }
 
+function AuthorityStrip() {
+  return (
+    <div className="border-b border-border/60 bg-card px-5 py-4 sm:px-6">
+      <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-xs font-bold uppercase tracking-[0.14em] text-foreground sm:text-sm">
+        <span>4ª edição</span>
+        <span className="text-primary" aria-hidden>•</span>
+        <span>1000 MULHERES NESTA EDIÇÃO</span>
+        <span className="text-primary" aria-hidden>•</span>
+        <span>2 dias de experiência</span>
+      </div>
+    </div>
+  );
+}
+
 const EVERYDAY_STRUGGLES = [
-  "Você lava, dobra e guarda roupa todo dia, e ainda sobra um cesto que parece nunca esvaziar.",
-  "Chega cansada do trabalho e ainda precisa dar um jeito na casa, na semana em que a faxineira não vai.",
-  "Abre o guarda-roupa pequeno, sem prateleira, e não sabe mais onde colocar o que já tem.",
-  "Olha pro armário da cozinha e pensa: esse armário não me ajuda em nada.",
+  "O cesto de roupa esvazia e logo está cheio novamente.",
+  "O guarda-roupa nunca parece funcionar para o espaço que você tem.",
+  "Você monta um cronograma e ele não sobrevive à primeira semana corrida.",
+  "Trabalho, filhos, compromissos e casa disputam o mesmo tempo.",
+  "Você olha para alguns ambientes e simplesmente não sabe por onde começar.",
 ];
 
 function PainRecognition() {
@@ -645,9 +684,12 @@ function PainRecognition() {
       <div className="text-center">
         <SectionEyebrow>Isso acontece com você?</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
-          Parece que você organiza, organiza…{" "}
-          <span className="italic text-gradient-brand">e nunca termina?</span>
+          Parece que a casa <span className="italic text-gradient-brand">nunca termina?</span>
         </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-balance text-sm leading-relaxed text-muted-foreground sm:text-base">
+          Você, ou sua funcionária do lar, organiza, limpa, guarda, tenta criar
+          uma rotina… e poucos dias depois parece que precisa começar tudo de novo.
+        </p>
       </div>
 
       <div className="mx-auto mt-8 grid max-w-4xl gap-3 sm:grid-cols-2">
@@ -670,19 +712,18 @@ function BeliefShift() {
     <section className="surface-rose px-5 py-12 sm:px-6 sm:py-16">
       <div className="mx-auto max-w-4xl text-center">
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-foreground/80">
-          Não é disciplina. É técnica.
+          Casas reais. Rotinas reais. Técnicas possíveis.
         </p>
         <h2 className="mx-auto mt-4 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
-          A diferença entre quem organiza a casa uma vez e quem mantém em ordem
-          pra sempre não é disciplina. É técnica.
+          Sua casa não precisa ser perfeita. Precisa funcionar para a vida que você tem.
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-          Você já tentou de tudo. Não foi falta de esforço. Foi tentar sozinha,
-          sem um jeito que aguentasse sua rotina de verdade.
+          Você não precisa de mais um cronograma impossível de seguir ou de uma
+          casa cheia de organizadores. Precisa aprender técnicas que façam sentido
+          para o seu espaço, seu tempo e sua rotina.
         </p>
         <p className="mx-auto mt-5 max-w-64 text-base font-semibold leading-relaxed text-foreground sm:max-w-2xl sm:text-lg">
-          Organização não é um dom que você tem ou não tem. É técnica, e técnica
-          se aprende.
+          Organização não é dom. É técnica, e técnica se aprende.
         </p>
       </div>
     </section>
@@ -695,15 +736,15 @@ function PracticalMethod() {
       <div className="mx-auto max-w-4xl text-center">
         <SectionEyebrow>Na prática</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
-          Não é mais um cronograma pronto para você tentar seguir.
+          Sua vida não cabe em um cronograma pronto da internet.
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-          Isso não é mais um cronograma pronto de internet pra você tentar
-          encaixar na sua rotina. É técnica aplicada na prática, com o que você
-          já tem em casa.
+          Por isso, no Não Repara na Bagunça você não aprende uma rotina
+          “perfeita”. Aprende técnicas que pode adaptar à sua casa, ao seu tempo e
+          à realidade da sua família.
         </p>
         <p className="mx-auto mt-5 max-w-2xl text-lg font-semibold text-primary sm:text-xl">
-          Você sai sabendo, porque já fez, não porque ouviu.
+          Você sai sabendo o que fazer, e como adaptar o que aprendeu à sua vida de verdade.
         </p>
       </div>
     </Section>
@@ -713,9 +754,12 @@ function PracticalMethod() {
 
 
 const FOR_WHOM = [
-  "Você organiza toda semana e, em poucos dias, tudo volta como estava.",
-  "Você já comprou organizador bonito achando que ia resolver, e continuou sem saber onde guardar o que já tinha.",
-  "Você mudou de casa (ou nem precisou) e ainda não conseguiu se sentir em casa ali dentro.",
+  "Organiza a casa e poucos dias depois sente que precisa começar tudo de novo.",
+  "Já tentou seguir métodos prontos, mas eles não funcionaram na sua rotina.",
+  "Quer uma casa organizada, mas não sabe por onde começar ou como manter.",
+  "Precisa conciliar casa, trabalho, família e tempo para você.",
+  "Quer formas mais práticas de fazer sua casa funcionar a favor da sua rotina.",
+  "Quer uma vida mais leve sem buscar uma casa perfeita.",
 ];
 
 function ForWhom() {
@@ -764,18 +808,18 @@ const BENEFITS = [
   },
   {
     icon: Sparkles,
-    title: "Rotina mais leve",
-    text: "Maneiras de reduzir o improviso e tornar seus dias mais simples.",
+    title: "Você mantém o que organizou",
+    text: "Sai sabendo manter o que colocou em ordem, não só organizar de novo.",
   },
   {
     icon: Clock,
-    title: "Mais tempo para você",
-    text: "Organização é gastar menos energia procurando, decidindo e refazendo.",
+    title: "Mais clareza na rotina",
+    text: "Entende o que precisa ser feito e como encaixar isso no seu dia a dia.",
   },
   {
     icon: Wallet,
-    title: "Finanças mais organizadas",
-    text: "Caminhos para colocar o dinheiro em ordem e decidir com mais clareza.",
+    title: "Uma casa que apoia sua vida",
+    text: "Começa a enxergar a casa como apoio, não como mais uma fonte de tarefas.",
   },
   {
     icon: ListChecks,
@@ -821,7 +865,7 @@ function Benefits() {
 
       <div className="mt-8 flex justify-center">
         <CTAButton event="benefits_cta_click" size="lg">
-          Eu quero viver esses 2 dias
+          QUERO UMA ROTINA MAIS LEVE
         </CTAButton>
       </div>
     </Section>
@@ -829,35 +873,32 @@ function Benefits() {
 }
 
 const TERRITORIES = [
-  { icon: Home, label: "Organização da casa" },
-  { icon: Clock, label: "Rotina e produtividade" },
-  { icon: Wallet, label: "Finanças" },
-  { icon: Activity, label: "Saúde e bem-estar" },
-  { icon: ListChecks, label: "Organização pessoal" },
-  { icon: Sparkles, label: "Experiências práticas" },
-  { icon: ShoppingBag, label: "Soluções e produtos" },
-  { icon: Users, label: "Conexão com outras mulheres" },
+  { icon: Home, label: "Organização da casa", text: "Técnicas para fazer os ambientes funcionarem melhor para a sua rotina." },
+  { icon: ShoppingBag, label: "Guarda-roupa", text: "Como organizar melhor o que você já tem e tornar o espaço mais funcional." },
+  { icon: Sparkles, label: "Limpeza", text: "Técnicas modernas para simplificar os cuidados com a casa." },
+  { icon: Clock, label: "Rotina", text: "Formas práticas de reduzir improviso e tornar o dia a dia mais leve." },
+  { icon: Wallet, label: "Finanças", text: "Organização financeira aplicada à vida real." },
+  { icon: Activity, label: "Saúde e bem-estar", text: "Como organização, rotina e autocuidado se conectam." },
+  { icon: Users, label: "Imagem e estilo", text: "Escolhas mais conscientes e práticas para o dia a dia." },
+  { icon: ListChecks, label: "Propósito e organização pessoal", text: "Como colocar prioridades, planos e escolhas em ordem." },
 ];
 
 function Experience() {
   return (
     <Section className="surface-rose">
       <div className="text-center">
-        <SectionEyebrow>O que você vai viver</SectionEyebrow>
+        <SectionEyebrow>Aprendizado prático</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
-          Não é um fim de semana para ficar sentada{" "}
-          <span className="italic text-gradient-brand">
-            apenas ouvindo palestras.
-          </span>
+          O que você vai aprender — <span className="italic text-gradient-brand">e levar para casa</span>
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-balance text-sm text-muted-foreground sm:text-base">
-          É para aprender, experimentar, se inspirar e voltar para casa querendo
-          colocar tudo em prática.
+          Você não vai apenas assistir a palestras. Vai sair com conhecimentos
+          aplicáveis à sua casa, à sua rotina e às suas escolhas.
         </p>
       </div>
 
       <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        {TERRITORIES.map(({ icon: Icon, label }) => (
+        {TERRITORIES.map(({ icon: Icon, label, text }) => (
           <div
             key={label}
             className="flex flex-col items-center gap-3 rounded-2xl border border-border/60 bg-card shadow-card px-3 py-6 text-center"
@@ -866,8 +907,36 @@ function Experience() {
             <span className="text-xs font-semibold uppercase leading-snug tracking-wide text-foreground/90">
               {label}
             </span>
+            <span className="text-xs leading-relaxed text-muted-foreground">{text}</span>
           </div>
         ))}
+      </div>
+
+      <div className="mx-auto mt-10 max-w-4xl border-t border-primary/15 pt-8 text-center">
+        <h3 className="text-balance font-display text-2xl font-semibold sm:text-3xl">
+          Organização que cabe na vida real.
+        </h3>
+        <div className="mt-6 grid gap-3 sm:grid-cols-3">
+          {[
+            ["PRÁTICA", "Técnicas que você consegue aplicar."],
+            ["POSSÍVEL", "Sem depender de uma rotina perfeita."],
+            ["REALISTA", "Pensada para casas, espaços e rotinas de verdade."],
+          ].map(([title, text]) => (
+            <div key={title} className="rounded-2xl border border-border/60 bg-card p-4 shadow-card">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">{title}</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mx-auto mt-5 max-w-2xl text-sm font-medium text-foreground sm:text-base">
+          Aprenda primeiro a fazer sua casa funcionar melhor com o que você já tem.
+        </p>
+      </div>
+
+      <div className="mt-8 flex justify-center">
+        <CTAButton event="benefits_cta_click" size="lg">
+          QUERO UMA ROTINA MAIS LEVE
+        </CTAButton>
       </div>
     </Section>
   );
@@ -970,6 +1039,39 @@ function VideoStory() {
   );
 }
 
+function SuelenVideoPlaceholder() {
+  return (
+    <Section className="surface-dark">
+      <div className="text-center">
+        <SectionEyebrow>Com a Suelen</SectionEyebrow>
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
+          Deixa a Suelen te contar o que preparou para esses dois dias.
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-balance text-sm leading-relaxed text-muted-foreground sm:text-base">
+          Dê o play e entenda por que o Não Repara na Bagunça vai muito além de organizar a casa.
+        </p>
+      </div>
+
+      <div className="mx-auto mt-8 flex aspect-video w-full max-w-3xl items-center justify-center rounded-2xl border border-border bg-card/70 shadow-card">
+        <div className="flex flex-col items-center gap-3 px-5 text-center text-muted-foreground">
+          <span className="flex h-14 w-14 items-center justify-center rounded-full border border-border bg-surface">
+            <Play className="ml-1 h-6 w-6 text-primary" aria-hidden />
+          </span>
+          <span className="text-xs font-semibold uppercase tracking-[0.16em]">
+            Vídeo em breve
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-8 flex justify-center">
+        <CTAButton event="video_cta_click" size="lg">
+          QUERO VIVER ESSES 2 DIAS
+        </CTAButton>
+      </div>
+    </Section>
+  );
+}
+
 
 
 const GALLERY = [
@@ -994,8 +1096,8 @@ function SocialProof() {
       <div className="text-center">
         <SectionEyebrow>Prova social</SectionEyebrow>
         <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight sm:text-4xl">
-          Quem vive o Não Repara na Bagunça{" "}
-          <span className="italic text-gradient-brand">entende.</span>
+          Veja como foi a última edição e o que quem participou{" "}
+          <span className="italic text-gradient-brand">está dizendo.</span>
         </h2>
       </div>
 
@@ -1038,6 +1140,29 @@ function SocialProof() {
         ))}
       </div>
     </Section>
+  );
+}
+
+function OfferTransition() {
+  return (
+    <section className="surface-rose px-5 py-10 sm:px-6 sm:py-12">
+      <div className="mx-auto max-w-3xl text-center">
+        <h2 className="text-balance text-2xl leading-tight sm:text-4xl">
+          Agora é a sua vez de viver essa experiência.
+        </h2>
+        <p className="mt-4 text-sm font-semibold text-foreground sm:text-base">
+          24 e 25 de outubro · São José dos Campos/SP
+        </p>
+        <p className="mt-2 text-base font-bold text-primary sm:text-lg">
+          Ingressos a partir de R$ 147,00
+        </p>
+        <div className="mt-6 flex justify-center">
+          <CTAButton event="gallery_cta_click" size="lg">
+            QUERO GARANTIR MEU INGRESSO
+          </CTAButton>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -1177,7 +1302,22 @@ function Tickets() {
               “{t.desire}”
             </p>
 
-            <span className="mx-auto mt-6 rounded-full bg-primary px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-primary-foreground">
+            {/* valor do próximo lote riscado + nota manuscrita */}
+            <div className="relative mt-6 flex items-center justify-center">
+              <span className="relative inline-block font-display text-3xl text-muted-foreground/70 sm:text-4xl">
+                {t.nextLotPrice}
+                <span
+                  aria-hidden
+                  className="absolute left-[-6%] top-1/2 h-[3px] w-[112%] -translate-y-1/2 -rotate-6 rounded-full bg-primary"
+                />
+              </span>
+              <span className="ml-2 hidden max-w-[7rem] font-script text-lg leading-tight text-primary sm:block">
+                &nbsp;economize<br />
+                {t.id === "platinum" ? "R$ 150" : "R$ 100"}
+              </span>
+            </div>
+
+            <span className="mx-auto mt-5 rounded-full bg-primary px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-primary-foreground">
               {t.lotLabel}
             </span>
 
@@ -1221,11 +1361,7 @@ function Tickets() {
                 track(t.event, { ticket: t.id });
                 track("checkout_start", { ticket: t.id });
               }}
-              className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold uppercase tracking-wide transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.99] ${
-                t.id === "vip"
-                  ? "bg-gradient-brand text-primary-foreground shadow-[0_14px_30px_-14px_rgba(156,3,105,0.75)] hover:brightness-110 hover:shadow-[0_18px_36px_-14px_rgba(156,3,105,0.85)]"
-                  : "bg-primary text-primary-foreground hover:bg-plum hover:shadow-[0_14px_30px_-16px_rgba(156,3,105,0.7)]"
-              }`}
+               className="ticket-cta mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold uppercase tracking-wide transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40"
             >
               {t.ctaLabel ?? "Quero este ingresso"}
               <ArrowRight className="h-4 w-4" />
@@ -1236,24 +1372,29 @@ function Tickets() {
               Compra segura
             </p>
 
-            {/* resumo do lote atual */}
+            {/* escada de lotes */}
             <div className="mt-5 rounded-2xl bg-sky-tint p-3 text-left">
-              <div className="flex items-end justify-between gap-3">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                    Lote atual
-                  </p>
-                  <p className="mt-0.5 text-sm font-bold uppercase tracking-wide text-primary">
-                    {t.lotLabel}
-                  </p>
-                </div>
-                <p className="pb-0.5 text-right text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                  Próximo lote em breve
-                </p>
-              </div>
-              <div className="mt-3">
-                <LotProgress percent={t.soldPercent} label="DO LOTE 2" compact />
-              </div>
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                Próximos lotes
+              </p>
+              <ul className="mt-2 space-y-1">
+                {t.lotSteps.map((s, i) => (
+                  <li
+                    key={s.label}
+                    className={`flex items-center justify-between text-xs ${
+                      i === 0
+                        ? "text-muted-foreground line-through decoration-primary/60 decoration-2"
+                        : i === 1
+                          ? "font-semibold text-primary"
+                          : "text-muted-foreground"
+                    }`}
+                  >
+                    <span>{s.label}</span>
+                    <span>{s.value}</span>
+                  </li>
+                ))}
+              </ul>
+              <LotProgress percent={t.soldPercent} compact />
             </div>
           </div>
         ))}
@@ -1342,10 +1483,9 @@ function Founder() {
             </span>
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Depois de anos entrando na casa de centenas de mulheres, com pouco
-            espaço, pouco tempo e rotina puxada, não em casas de revista, Suelen
-            Gubeisse, personal organizer especialista em residências, reuniu o que
-            realmente funciona neste encontro de 2 dias.
+            Depois de anos entrando na casa de centenas de mulheres, com
+            diferentes espaços, rotinas e desafios, Suelen Gubeisse reuniu neste
+            encontro o que realmente funciona na vida real.
           </p>
           <p className="mt-3 text-sm font-medium leading-relaxed text-foreground sm:text-base">
             Não em casas de revista. Em casas reais.
@@ -1410,7 +1550,7 @@ function Venue() {
 const FAQS = [
   {
     q: "Preciso entender de organização para participar?",
-    a: "Não. A maioria de quem vem nunca estudou organização, só quer parar de recomeçar do zero toda semana. Você aprende fazendo, não decorando teoria.",
+    a: "Não. Você não precisa ter experiência ou conhecimento prévio. O evento foi pensado para mulheres que querem aprender formas mais práticas de organizar a casa e a rotina e parar de recomeçar do zero.",
   },
   {
     q: "É só para Personal Organizers?",
@@ -1554,7 +1694,7 @@ function StickyCTA() {
           track("sticky_cta_click");
           goToTickets();
         }}
-        className="w-full rounded-full bg-gradient-brand px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-primary-foreground shadow-glow"
+        className="cta-primary w-full rounded-full px-6 py-3.5 text-sm font-bold uppercase tracking-wide shadow-glow transition-all duration-300 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40"
       >
         Garantir ingresso
       </button>
@@ -1571,16 +1711,16 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
     .join("");
 
   return (
-    <article className="flex h-full flex-col items-center rounded-3xl border border-border/60 bg-card p-5 text-center shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40">
-      <div className="relative rounded-full bg-gradient-identity p-[3px]">
-        <div className="h-28 w-28 overflow-hidden rounded-full bg-sky-tint sm:h-32 sm:w-32">
+    <article className="flex h-full flex-col items-center rounded-3xl border border-border/60 bg-card p-5 text-center shadow-card transition-all hover:-translate-y-0.5 hover:border-primary/40 sm:p-6">
+      <div className="relative w-full overflow-hidden rounded-2xl bg-sky-tint">
+        <div className="aspect-[4/3] w-full overflow-hidden bg-sky-tint">
           {speaker.photo ? (
             <img
               src={speaker.photo}
               alt={`Foto de ${speaker.name}`}
               loading="lazy"
               decoding="async"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-contain object-bottom"
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center font-serif text-2xl text-primary">
@@ -1615,7 +1755,7 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
-          className="mt-3 text-xs font-bold uppercase tracking-widest text-primary transition-opacity hover:opacity-70"
+           className="mt-3 text-xs font-bold uppercase tracking-widest text-primary transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
         >
 
           {open ? "Fechar −" : "Saiba mais +"}
@@ -1646,8 +1786,8 @@ function Speakers() {
           items={SPEAKERS.map((s) => (
             <SpeakerCard key={s.name} speaker={s} />
           ))}
-          itemClassName="w-[78%] sm:w-[45%] lg:w-[31%] xl:w-[23%]"
-          hint="Deslize para conhecer os palestrantes →"
+          itemClassName="w-[88%] sm:w-[46%] lg:w-[32%]"
+          hint="Deslize para conhecer →"
         />
       </div>
 
@@ -2006,21 +2146,24 @@ export function LandingPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-background pb-20 lg:pb-0">
+    <main className="nrnb2026-2-page min-h-screen bg-background pb-20 lg:pb-0">
       <TopBar />
       <Hero />
+      <AuthorityStrip />
       <PainRecognition />
       <BeliefShift />
+      <PhotoGallery />
       <PracticalMethod />
       <Experience />
-      <VideoStory />
-      <PhotoGallery />
       <ForWhom />
       <Benefits />
+      <VideoStory />
+      <SuelenVideoPlaceholder />
       <Founder />
       <Speakers />
       <Schedule />
       <SocialProof />
+      <OfferTransition />
       <Tickets />
       <PersonalOrganizerCourse />
       <PurchaseSafety />
@@ -2033,7 +2176,6 @@ export function LandingPage() {
       <Footer />
       <StickyCTA />
       <WhatsAppFloating />
-      <ConversionPopups whatsappNumber={EVENT.whatsappNumber} />
     </main>
   );
 }
