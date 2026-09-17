@@ -1132,7 +1132,7 @@ function SocialProof() {
             <img
               src={img.src}
               alt={img.alt}
-              loading="lazy"
+              loading={speaker.featured ? "eager" : "lazy"}
               decoding="async"
               className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
             />
