@@ -13,3 +13,5 @@
 - [x] Implementar os dois pop-ups de conversão somente na página principal
 - [x] Criar e conectar a Planilha Google de contatos do guia
 - [x] Validar gatilhos, formulário, registro, mensuração e experiência desktop/mobile
+- [ ] Aplicar os ajustes de CRO, conteúdo e ordem solicitados na página principal
+- [ ] Validar preços, ofertas, carrosséis, ordem das seções e integrações no desktop e mobile
