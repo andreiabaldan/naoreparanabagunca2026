@@ -607,7 +607,7 @@ function Hero() {
           </h1>
 
           <p className="mx-auto mt-4 max-w-xl text-balance text-lg font-medium leading-relaxed text-white/92 sm:text-xl lg:mx-0 lg:mt-3 lg:max-w-[600px] lg:leading-[1.5]">
-            Em 2 dias, aprenda os <strong className="font-bold">7 Passos da Organização</strong> e técnicas práticas que funcionam na sua rotina de verdade.
+            Em 2 dias, aprenda os <strong className="font-medium lg:font-bold">7 Passos da Organização</strong> e técnicas práticas que funcionam na sua rotina de verdade.
           </p>
 
           <div className="mt-5 flex flex-col items-center gap-1 text-base font-semibold text-white lg:mt-4 lg:items-start">
