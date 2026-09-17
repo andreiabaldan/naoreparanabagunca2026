@@ -1788,6 +1788,9 @@ function Speakers() {
             <SpeakerCard key={`${s.name}-${s.topic}`} speaker={s} />
           ))}
           itemClassName="w-[88%] sm:w-[46%] lg:w-[32%]"
+          itemClassNames={SPEAKERS.map((s) =>
+            s.featured ? "w-[88%] sm:w-[58%] lg:w-[42%]" : "w-[88%] sm:w-[46%] lg:w-[32%]",
+          )}
           hint="Deslize para conhecer →"
         />
       </div>
