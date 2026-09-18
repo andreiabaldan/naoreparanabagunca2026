@@ -356,6 +356,10 @@ type Ticket = {
   benefits: string[];
   includesFrom?: string;
   highlight?: string;
+  promotionLabel?: string;
+  promotionCopy?: string;
+  priceComparison?: string;
+  isTwoForOne?: boolean;
   ctaLabel?: string;
   event: "ticket_compromisso_click" | "ticket_vip_click" | "ticket_platinum_click";
   checkout: string;
@@ -371,13 +375,17 @@ const TICKETS: Ticket[] = [
     installments: "12x de R$ 14,70 no cartão",
     installmentPrice: "15,11",
     soldPercent: 34,
+    promotionLabel: "OFERTA 2 POR 1",
+    promotionCopy: "COMPRE 1 E GANHE +1",
+    isTwoForOne: true,
+    ctaLabel: "QUERO O 2 POR 1",
     benefits: [
       "Você não sai só inspirada. Sai sabendo o que começar a aplicar na sua casa e na sua rotina.",
       "Acesso aos 2 dias de evento",
       "Acesso à feira “Não Repara na Bagunça”",
     ],
     event: "ticket_compromisso_click",
-    checkout: "https://payfast.greenn.com.br/168687?batch=17042_y49MyT",
+    checkout: "https://payfast.greenn.com.br/pre-checkout/xa37xct",
   },
   {
     id: "vip",
@@ -389,7 +397,11 @@ const TICKETS: Ticket[] = [
     installmentPrice: "20,25",
     soldPercent: 25,
     highlight: "Experiência recomendada",
-    ctaLabel: "QUERO O VIP",
+    promotionLabel: "2 POR 1 + EXPERIÊNCIA VIP",
+    promotionCopy: "COMPRE 1 E GANHE +1",
+    priceComparison: "+ R$ 50 em relação ao Compromisso",
+    isTwoForOne: true,
+    ctaLabel: "QUERO O VIP 2 POR 1",
     includesFrom: "TUDO DO INGRESSO COMPROMISSO +",
     benefits: [
       "Assentos em áreas mais à frente da plateia",
@@ -397,7 +409,7 @@ const TICKETS: Ticket[] = [
       "Café e petit four",
     ],
     event: "ticket_vip_click",
-    checkout: "https://payfast.greenn.com.br/168687?batch=17042_mqGZ6S",
+    checkout: "https://payfast.greenn.com.br/pre-checkout/xa37xct",
   },
   {
     id: "platinum",
@@ -708,7 +720,7 @@ function Countdown() {
 
 function OfferLink({ children, event, placement, className = "" }: { children: React.ReactNode; event: Parameters<typeof track>[0]; placement: string; className?: string }) {
   return (
-    <a href={TWO_FOR_ONE_CHECKOUT} onClick={(e) => { e.preventDefault(); goToCheckout(event, placement); }} className={`cta-primary inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-4 text-sm font-bold uppercase tracking-wide shadow-glow transition-all hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40 sm:w-auto ${className}`}>
+    <a suppressHydrationWarning href={TWO_FOR_ONE_CHECKOUT} onClick={(e) => { e.preventDefault(); goToCheckout(event, placement); }} className={`cta-primary inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-4 text-sm font-bold uppercase tracking-wide shadow-glow transition-all hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40 sm:w-auto ${className}`}>
       {children}<ArrowRight className="h-4 w-4" />
     </a>
   );
@@ -1349,6 +1361,7 @@ function TestimonialVideo() {
 function WhatsAppFloating() {
   return (
     <a
+      suppressHydrationWarning
       href={`https://wa.me/${EVENT.whatsappNumber}?text=${encodeURIComponent("Olá! Estou na página da oferta 2 por 1 do Não Repara na Bagunça e gostaria de tirar uma dúvida.")}`}
       target="_blank"
       rel="noopener noreferrer"
@@ -1381,19 +1394,109 @@ function Tickets() {
 
   return (
     <Section id="ingressos" className="surface-ink">
-      <div ref={ref} className="mx-auto max-w-3xl text-center">
+      <div ref={ref} className="text-center">
         <SectionEyebrow>Seu acesso 2 por 1</SectionEyebrow>
-        <h2 className="mt-5 text-balance text-3xl leading-tight text-foreground sm:text-5xl">Compre 1 ingresso e ganhe +1.</h2>
-        <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">Viva os dois dias do Não Repara na Bagunça 2026 ao lado de alguém especial.</p>
-        <div className="mx-auto mt-8 max-w-xl rounded-lg border border-primary/30 bg-card p-6 shadow-card sm:p-9">
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-primary">OFERTA ESPECIAL • 2 POR 1</p>
-          <p className="mt-5 font-display text-3xl font-semibold text-foreground sm:text-4xl">E você ganha +1 ingresso</p>
-          <p className="mt-3 text-sm text-muted-foreground">24 e 25 de outubro de 2026 · São José dos Campos/SP</p>
-          <Countdown />
-          <div className="mt-7"><OfferLink event="nrnb_2for1_offer_click" placement="checkout" className="w-full">QUERO GARANTIR MEU 2 POR 1</OfferLink></div>
-          <p className="mt-4 flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground"><Lock className="h-4 w-4 text-primary" /> Compra segura</p>
-        </div>
-        <a href={`https://wa.me/${EVENT.whatsappNumber}?text=${encodeURIComponent("Olá! Estou na página da oferta 2 por 1 do Não Repara na Bagunça e gostaria de tirar uma dúvida.")}`} target="_blank" rel="noopener noreferrer" onClick={() => track("nrnb_2for1_whatsapp_click", { placement: "checkout" })} className="mt-6 inline-flex items-center gap-2 rounded-full bg-whatsapp px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110"><MessageCircle className="h-4 w-4" /> Tirar uma dúvida no WhatsApp</a>
+        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-3xl leading-tight text-foreground sm:text-5xl">Escolha como você quer viver essa experiência.</h2>
+        <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">Compromisso e VIP participam da oferta: você compra 1 ingresso e ganha +1.</p>
+      </div>
+
+      <div className="mt-8 grid items-start gap-5 lg:grid-cols-3">
+        {TICKETS.map((ticket) => (
+          <div
+            key={ticket.id}
+            className={`card-light flex flex-col rounded-[2rem] border bg-card p-6 text-center sm:p-8 ${
+              ticket.id === "vip"
+                ? "border-primary/70 shadow-[0_0_0_1px_rgba(156,3,105,0.25),0_24px_60px_-28px_rgba(156,3,105,0.55)] lg:-mt-3"
+                : "border-border shadow-card"
+            }`}
+          >
+            {ticket.promotionLabel ? (
+              <span className="mx-auto mb-4 rounded-full bg-gradient-brand px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-primary-foreground">
+                {ticket.promotionLabel}
+              </span>
+            ) : ticket.highlight ? (
+              <span className="mx-auto mb-4 rounded-full bg-gradient-brand px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] text-primary-foreground">
+                {ticket.highlight}
+              </span>
+            ) : null}
+
+            <h3 className="font-display text-3xl font-semibold sm:text-4xl">{ticket.name}</h3>
+            <p className="mt-1 text-sm italic text-muted-foreground">“{ticket.desire}”</p>
+
+            <p className="mt-6 text-sm font-semibold text-muted-foreground">12x de</p>
+            <p className="mt-1 flex items-baseline justify-center gap-1 font-display font-semibold text-primary">
+              <span className="text-2xl sm:text-3xl">R$</span>
+              <span className="text-5xl leading-none sm:text-6xl">{ticket.installmentPrice}</span>
+            </p>
+            <p className="mt-2 text-sm text-muted-foreground">ou R$ {ticket.price} à vista</p>
+
+            {ticket.promotionCopy && (
+              <p className="mt-5 rounded-xl bg-primary/10 px-3 py-2 text-sm font-black uppercase tracking-[0.12em] text-primary">
+                {ticket.promotionCopy}
+              </p>
+            )}
+            {ticket.priceComparison && (
+              <p className="mt-3 text-sm font-bold text-foreground">{ticket.priceComparison}</p>
+            )}
+
+            <div className="mt-5 flex flex-col items-center">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Lote atual</span>
+              <span className="mt-2 rounded-full bg-primary px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-primary-foreground">{ticket.lotLabel}</span>
+            </div>
+
+            <div className="mt-5 rounded-2xl bg-sky-tint p-3 text-left">
+              <p className="text-center text-xs font-semibold uppercase tracking-wide text-muted-foreground">Próximo lote em breve</p>
+              <div className="mt-3"><LotProgress percent={ticket.soldPercent} label="DO LOTE 2" compact /></div>
+            </div>
+
+            <div className="mt-5 flex items-center gap-3">
+              <span className="h-px flex-1 bg-primary/15" />
+              <Heart className="h-4 w-4 fill-primary/40 text-primary/40" />
+              <span className="h-px flex-1 bg-primary/15" />
+            </div>
+
+            <p className="mt-4 text-xs font-bold uppercase tracking-wider text-primary">
+              {ticket.includesFrom ?? "O QUE ESTÁ INCLUÍDO"}
+            </p>
+            <ul className="mt-3 flex-1 space-y-2.5 text-left">
+              {ticket.benefits.map((benefit) => (
+                <li key={benefit} className="flex items-start gap-2 text-sm">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                  <span className="text-foreground/90">{benefit}</span>
+                </li>
+              ))}
+            </ul>
+
+            {ticket.isTwoForOne ? (
+              <OfferLink event="nrnb_2for1_offer_click" placement={`ticket_${ticket.id}`} className="mt-6 w-full">
+                {ticket.ctaLabel}
+              </OfferLink>
+            ) : (
+              <a
+                href={ticket.checkout}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  track(ticket.event, { ticket: ticket.id, campaign: "2por1" });
+                  track("checkout_start", { ticket: ticket.id, campaign: "2por1" });
+                }}
+                className="ticket-cta mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold uppercase tracking-wide transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40"
+              >
+                {ticket.ctaLabel}
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            )}
+
+            <p className="mt-3 flex items-center justify-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              <Lock className="h-3.5 w-3.5 text-primary" /> Compra segura
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <p className="mt-6 text-center text-sm text-foreground/80">Os valores mudam conforme os lotes avançam. Garanta agora o valor atual.</p>
+      <div className="text-center">
+        <a suppressHydrationWarning href={`https://wa.me/${EVENT.whatsappNumber}?text=${encodeURIComponent("Olá! Estou na página da oferta 2 por 1 do Não Repara na Bagunça e gostaria de tirar uma dúvida.")}`} target="_blank" rel="noopener noreferrer" onClick={() => track("nrnb_2for1_whatsapp_click", { placement: "checkout" })} className="mt-6 inline-flex items-center gap-2 rounded-full bg-whatsapp px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110"><MessageCircle className="h-4 w-4" /> Tirar uma dúvida no WhatsApp</a>
       </div>
     </Section>
   );
@@ -1416,6 +1519,7 @@ function PersonalOrganizerCourse() {
         </p>
 
         <a
+          suppressHydrationWarning
           href={courseWhatsAppUrl}
           target="_blank"
           rel="noopener noreferrer"
@@ -1960,6 +2064,7 @@ function Sponsors() {
             Quer conhecer as possibilidades de parceria e patrocínio do evento? Fale com a nossa equipe.
           </p>
           <a
+            suppressHydrationWarning
             href={sponsorWhatsAppUrl}
             target="_blank"
             rel="noopener noreferrer"
