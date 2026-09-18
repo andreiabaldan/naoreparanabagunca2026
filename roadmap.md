@@ -24,5 +24,5 @@
 - [x] Duplicar a página principal em /2por1
 - [x] Aplicar oferta, contador, checkout e CTAs
 - [x] Adaptar pop-ups, tracking e SEO
-- [ ] Validar desktop, mobile e integridade da homepage
+- [x] Validar desktop, mobile e integridade da homepage
 
