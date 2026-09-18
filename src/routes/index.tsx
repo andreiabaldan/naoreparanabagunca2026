@@ -602,7 +602,7 @@ function Hero() {
 
           <h1 className="mt-4 text-balance text-3xl leading-[1.08] text-white sm:text-5xl lg:mt-3 lg:max-w-[610px] lg:text-[3.15rem] lg:leading-[1.01] xl:text-[3.35rem]">
             <span className="italic">
-              Transforme sua casa em um lar organizado e acolhedor e deixe sua rotina muito mais leve!
+              Transforme sua casa em um lar <strong className="font-bold">organizado e acolhedor</strong> e deixe sua rotina <strong className="font-bold">muito mais leve!</strong>
             </span>
           </h1>
 
