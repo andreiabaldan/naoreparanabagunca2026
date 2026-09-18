@@ -58,6 +58,7 @@
   --color-sky-tint: var(--sky-tint);
   --color-whatsapp: #25d366;
   --color-gold: var(--gold);
+  --color-champagne: var(--champagne);
   --color-cta-dark: var(--cta-dark);
   --color-cta-magenta: var(--cta-magenta);
 }
@@ -84,6 +85,7 @@
   --sky-tint: #eef8fa;
 
   --gold: #f5c542;
+  --champagne: #f6d77a;
   --cta-dark: #17141a;
   --cta-magenta: #9c0369;
 
