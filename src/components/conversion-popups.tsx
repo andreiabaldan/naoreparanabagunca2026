@@ -20,6 +20,8 @@ const CONVERTED = "nrnb-popup-converted";
 const GUIDE_URL = "https://www.youtube.com/shorts/1ybCY7NmHUI";
 const HELP_MESSAGE =
   "Olá! Estou no site do Não Repara na Bagunça e gostaria de tirar uma dúvida sobre o evento.";
+const TWO_FOR_ONE_HELP_MESSAGE =
+  "Olá! Estou na página da oferta 2 por 1 do Não Repara na Bagunça e gostaria de tirar uma dúvida.";
 
 type Popup = "help" | "exit" | null;
 type Utms = Record<"utm_source" | "utm_medium" | "utm_campaign" | "utm_content" | "utm_term", string>;
@@ -51,7 +53,13 @@ function formatWhatsApp(value: string) {
   return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
 }
 
-export function ConversionPopups({ whatsappNumber }: { whatsappNumber: string }) {
+export function ConversionPopups({
+  whatsappNumber,
+  campaign = "event",
+}: {
+  whatsappNumber: string;
+  campaign?: "event" | "2for1";
+}) {
   const [popup, setPopup] = useState<Popup>(null);
   const [name, setName] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
@@ -185,7 +193,8 @@ export function ConversionPopups({ whatsappNumber }: { whatsappNumber: string })
     }
   };
 
-  const helpUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(HELP_MESSAGE)}`;
+  const isTwoForOne = campaign === "2for1";
+  const helpUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(isTwoForOne ? TWO_FOR_ONE_HELP_MESSAGE : HELP_MESSAGE)}`;
 
   return (
     <>
@@ -195,10 +204,10 @@ export function ConversionPopups({ whatsappNumber }: { whatsappNumber: string })
             <MessageCircle className="h-6 w-6" />
           </div>
           <DialogTitle className="mt-5 text-balance font-display text-2xl font-medium leading-tight text-foreground sm:text-3xl">
-            Precisa de ajuda para participar do Não Repara na Bagunça?
+            {isTwoForOne ? "Ficou com alguma dúvida sobre o 2 por 1?" : "Precisa de ajuda para participar do Não Repara na Bagunça?"}
           </DialogTitle>
           <DialogDescription className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Se ficou com alguma dúvida sobre o evento, ingressos ou qual experiência escolher, fale com a nossa equipe pelo WhatsApp.
+            {isTwoForOne ? "Fale com a nossa equipe e tire suas dúvidas sobre a oferta e o evento." : "Se ficou com alguma dúvida sobre o evento, ingressos ou qual experiência escolher, fale com a nossa equipe pelo WhatsApp."}
           </DialogDescription>
           <Button asChild size="lg" className="mt-6 h-auto min-h-12 w-full whitespace-normal rounded-full px-4 py-3 text-center text-xs font-bold uppercase leading-tight sm:px-5 sm:text-sm">
             <a
@@ -209,9 +218,10 @@ export function ConversionPopups({ whatsappNumber }: { whatsappNumber: string })
                 sessionStorage.setItem(CONVERTED, "1");
                 sessionStorage.setItem(HELP_SEEN, "1");
                 track("nrnb_help_popup_whatsapp_click");
+                if (isTwoForOne) track("nrnb_2for1_whatsapp_click", { placement: "help_popup" });
               }}
             >
-              <MessageCircle /> Falar com a equipe no WhatsApp
+              <MessageCircle /> {isTwoForOne ? "FALAR NO WHATSAPP" : "Falar com a equipe no WhatsApp"}
             </a>
           </Button>
           <Button variant="ghost" className="mt-2 h-auto min-h-10 w-full whitespace-normal text-muted-foreground" onClick={() => closePopup("continue")}>
