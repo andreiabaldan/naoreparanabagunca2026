@@ -720,7 +720,7 @@ function Countdown() {
 
 function OfferLink({ children, event, placement, className = "" }: { children: React.ReactNode; event: Parameters<typeof track>[0]; placement: string; className?: string }) {
   return (
-    <a href={TWO_FOR_ONE_CHECKOUT} onClick={(e) => { e.preventDefault(); goToCheckout(event, placement); }} className={`cta-primary inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-4 text-sm font-bold uppercase tracking-wide shadow-glow transition-all hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40 sm:w-auto ${className}`}>
+    <a suppressHydrationWarning href={TWO_FOR_ONE_CHECKOUT} onClick={(e) => { e.preventDefault(); goToCheckout(event, placement); }} className={`cta-primary inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-4 text-sm font-bold uppercase tracking-wide shadow-glow transition-all hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40 sm:w-auto ${className}`}>
       {children}<ArrowRight className="h-4 w-4" />
     </a>
   );
@@ -1361,6 +1361,7 @@ function TestimonialVideo() {
 function WhatsAppFloating() {
   return (
     <a
+      suppressHydrationWarning
       href={`https://wa.me/${EVENT.whatsappNumber}?text=${encodeURIComponent("Olá! Estou na página da oferta 2 por 1 do Não Repara na Bagunça e gostaria de tirar uma dúvida.")}`}
       target="_blank"
       rel="noopener noreferrer"
@@ -1518,6 +1519,7 @@ function PersonalOrganizerCourse() {
         </p>
 
         <a
+          suppressHydrationWarning
           href={courseWhatsAppUrl}
           target="_blank"
           rel="noopener noreferrer"
@@ -2062,6 +2064,7 @@ function Sponsors() {
             Quer conhecer as possibilidades de parceria e patrocínio do evento? Fale com a nossa equipe.
           </p>
           <a
+            suppressHydrationWarning
             href={sponsorWhatsAppUrl}
             target="_blank"
             rel="noopener noreferrer"
