@@ -1383,7 +1383,7 @@ function Tickets() {
     <Section id="ingressos" className="surface-ink">
       <div ref={ref} className="mx-auto max-w-3xl text-center">
         <SectionEyebrow>Seu acesso 2 por 1</SectionEyebrow>
-        <h2 className="mt-5 text-balance text-3xl leading-tight text-primary-foreground sm:text-5xl">Compre 1 ingresso e ganhe +1.</h2>
+        <h2 className="mt-5 text-balance text-3xl leading-tight text-foreground sm:text-5xl">Compre 1 ingresso e ganhe +1.</h2>
         <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">Viva os dois dias do Não Repara na Bagunça 2026 ao lado de alguém especial.</p>
         <div className="mx-auto mt-8 max-w-xl rounded-lg border border-primary/30 bg-card p-6 shadow-card sm:p-9">
           <p className="text-xs font-black uppercase tracking-[0.18em] text-primary">OFERTA ESPECIAL • 2 POR 1</p>
