@@ -430,7 +430,7 @@ const TICKETS: Ticket[] = [
       "Um encontro ao vivo com a Suelen para tirar dúvidas no momento da prática",
     ],
     event: "ticket_platinum_click",
-    checkout: "https://payfast.greenn.com.br/pre-checkout/xa37xct",
+    checkout: "https://payfast.greenn.com.br/168687?batch=17042_TMB3di&utm_source=organic&utm_campaign=&utm_medium=&utm_content=&utm_term=",
   },
 ];
 
