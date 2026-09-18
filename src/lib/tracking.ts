@@ -45,7 +45,14 @@ export type TrackEvent =
   | "nrnb_exit_popup_continue"
   | "nrnb_exit_popup_submit"
   | "nrnb_exit_popup_success"
-  | "nrnb_guide_access_click";
+  | "nrnb_guide_access_click"
+  | "nrnb_2for1_page_view"
+  | "nrnb_2for1_hero_click"
+  | "nrnb_2for1_gallery_click"
+  | "nrnb_2for1_experience_click"
+  | "nrnb_2for1_offer_click"
+  | "nrnb_2for1_whatsapp_click"
+  | "nrnb_2for1_timer_expired";
 
 
 declare global {

@@ -19,3 +19,10 @@
 - [x] Validar o card da Suelen e o carrossel de palestrantes no desktop e mobile
 - [x] Melhorar somente a diagramação dos textos do Hero no desktop
 - [x] Validar o Hero em 1366, 1440, 1600 e 1920 px sem alterar o mobile
+## Landing page 2 por 1
+- [x] Confirmar checkout exclusivo e regra de prazo
+- [ ] Duplicar a página principal em /2por1
+- [ ] Aplicar oferta, contador, checkout e CTAs
+- [ ] Adaptar pop-ups, tracking e SEO
+- [ ] Validar desktop, mobile e integridade da homepage
+
