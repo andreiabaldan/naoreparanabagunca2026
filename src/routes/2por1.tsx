@@ -79,7 +79,7 @@ import depoimentoPoster from "@/assets/depoimento-1-poster.jpg.asset.json";
 
 const EVENT = {
   name: "Não Repara na Bagunça 2026",
-  concept: "Compre 1 ingresso e ganhe +1.",
+  concept: "Compre 1 ingresso Compromisso ou VIP e ganhe +1.",
   promise: "Organize sua casa, sua rotina e sua vida para viver de forma mais leve, prática e possível.",
   date: "24 e 25 de outubro de 2026",
   dateShort: "24 e 25 de outubro",
@@ -99,6 +99,8 @@ const EVENT = {
 
 export const WHATSAPP_URL = `https://wa.me/${EVENT.whatsappNumber}?text=${encodeURIComponent(EVENT.whatsappMessage)}`;
 const TWO_FOR_ONE_CHECKOUT = "https://payfast.greenn.com.br/pre-checkout/xa37xct";
+/** Ative somente quando houver uma data/hora absoluta e oficialmente confirmada. */
+const REAL_OFFER_END_AT: string | null = null;
 
 function checkoutWithUtms() {
   if (typeof window === "undefined") return TWO_FOR_ONE_CHECKOUT;
@@ -397,7 +399,7 @@ const TICKETS: Ticket[] = [
     installmentPrice: "20,25",
     soldPercent: 25,
     highlight: "Experiência recomendada",
-    promotionLabel: "2 POR 1 + EXPERIÊNCIA VIP",
+    promotionLabel: "2 POR 1 + BENEFÍCIOS VIP",
     promotionCopy: "COMPRE 1 E GANHE +1",
     priceComparison: "+ R$ 50 em relação ao Compromisso",
     isTwoForOne: true,
@@ -443,7 +445,7 @@ export const Route = createFileRoute("/2por1")({
       {
         name: "description",
         content:
-          "Compre 1 ingresso e ganhe +1 para viver o Não Repara na Bagunça 2026 acompanhada. 24 e 25 de outubro, em São José dos Campos/SP.",
+          "Compre 1 ingresso Compromisso ou VIP e ganhe +1 para viver o Não Repara na Bagunça 2026 acompanhada. 24 e 25 de outubro, em São José dos Campos/SP.",
       },
       {
         property: "og:title",
@@ -452,7 +454,7 @@ export const Route = createFileRoute("/2por1")({
       {
         property: "og:description",
         content:
-          "Compre 1 ingresso e ganhe +1 para viver dois dias de organização, experiências e conexão no NRNB 2026.",
+          "Compre 1 ingresso Compromisso ou VIP e ganhe +1 para viver dois dias de organização, experiências e conexão no NRNB 2026.",
       },
       { property: "og:type", content: "website" },
       { name: "robots", content: "noindex, follow" },
@@ -570,7 +572,7 @@ function TopBar() {
     <div className="bg-foreground">
       <div className="mx-auto flex max-w-6xl items-center justify-center px-3 py-2.5 text-center text-primary-foreground">
         <span className="whitespace-nowrap text-[9px] font-semibold uppercase tracking-[0.08em] sm:text-xs sm:tracking-[0.16em]">
-          OFERTA ESPECIAL <strong className="font-black">2 POR 1</strong> • COMPRE 1 INGRESSO E GANHE +1
+          <strong className="font-black">2 POR 1</strong> NO COMPROMISSO E VIP
         </span>
       </div>
     </div>
@@ -647,7 +649,7 @@ function Hero() {
             OFERTA ESPECIAL • 2 POR 1
           </div>
           <p className="mx-auto mt-3 max-w-xl text-balance text-base font-semibold leading-relaxed text-sky-highlight sm:text-lg lg:mx-0 lg:max-w-[600px]">
-            Venha viver esses 2 dias com alguém especial: compre 1 ingresso e ganhe +1.
+            Venha viver esses 2 dias com alguém especial: compre 1 ingresso <strong className="font-black">Compromisso ou VIP</strong> e <strong className="font-black">ganhe +1</strong>.
           </p>
           <p className="mx-auto mt-3 max-w-xl text-balance text-base font-medium leading-relaxed text-white/92 sm:text-lg lg:mx-0 lg:max-w-[600px] lg:leading-[1.5]">
             Em 2 dias, aprenda os <strong className="font-medium lg:font-bold">7 Passos da Organização</strong> e técnicas práticas que funcionam na sua rotina de verdade.
@@ -666,9 +668,10 @@ function Hero() {
             </CTAButton>
             <div className="mt-4 lg:mt-3">
               <p className="text-xs font-semibold uppercase tracking-wider text-sky-highlight">
-                COMPRE 1 <span className="px-1" aria-hidden>+</span> GANHE +1
+                CONDIÇÃO ESPECIAL DESTA CAMPANHA
               </p>
             </div>
+            <RealOfferCountdown endsAt={REAL_OFFER_END_AT} />
           </div>
         </div>
       </div>
@@ -676,26 +679,21 @@ function Hero() {
   );
 }
 
-function Countdown() {
-  const [seconds, setSeconds] = useState(4 * 60 * 60);
-  const expired = useRef(false);
+function RealOfferCountdown({ endsAt }: { endsAt: string | null }) {
+  const calculateSeconds = () => endsAt ? Math.max(0, Math.floor((new Date(endsAt).getTime() - Date.now()) / 1000)) : 0;
+  const [seconds, setSeconds] = useState(calculateSeconds);
 
   useEffect(() => {
+    if (!endsAt) return;
     const timer = window.setInterval(() => {
-      setSeconds((value) => {
-        if (value <= 1) {
-          window.clearInterval(timer);
-          if (!expired.current) {
-            expired.current = true;
-            track("nrnb_2for1_timer_expired");
-          }
-          return 0;
-        }
-        return value - 1;
-      });
+      const remaining = calculateSeconds();
+      setSeconds(remaining);
+      if (remaining === 0) window.clearInterval(timer);
     }, 1000);
     return () => window.clearInterval(timer);
-  }, []);
+  }, [endsAt]);
+
+  if (!endsAt || seconds <= 0) return null;
 
   const parts = [
     ["HORAS", Math.floor(seconds / 3600)],
@@ -704,8 +702,8 @@ function Countdown() {
   ] as const;
 
   return (
-    <div className="mt-5" aria-label="Contador de quatro horas">
-      <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Sua condição permanece disponível nesta visita por</p>
+    <div className="mt-5" aria-label="Tempo restante da oferta">
+      <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Esta condição termina em</p>
       <div className="mt-3 flex justify-center gap-2">
         {parts.map(([label, value]) => (
           <div key={label} className="min-w-16 rounded-lg border border-primary/20 bg-card px-3 py-2 text-center shadow-card">
@@ -732,7 +730,8 @@ function FirstOfferStrip() {
       <div className="mx-auto max-w-4xl text-center">
         <p className="font-display text-2xl font-semibold sm:text-3xl">Porque uma experiência assim fica ainda melhor quando é compartilhada.</p>
         <p className="mt-3 text-sm text-muted-foreground sm:text-base">Você garante o seu ingresso e leva alguém com você.</p>
-        <p className="mt-4 text-lg font-black uppercase tracking-[0.16em] text-primary">COMPRE 1 • GANHE +1</p>
+        <p className="mt-4 text-lg font-black uppercase tracking-[0.16em] text-primary">2 POR 1 NO COMPROMISSO E VIP</p>
+        <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Oferta válida para ingressos Compromisso e VIP.</p>
         <div className="mt-6"><CTAButton event="nrnb_2for1_offer_click">QUERO APROVEITAR</CTAButton></div>
       </div>
     </section>
@@ -744,8 +743,9 @@ function GalleryOffer() {
     <section className="bg-sky-tint px-5 py-12 sm:px-6">
       <div className="mx-auto max-w-4xl text-center">
         <h2 className="text-balance text-2xl leading-tight sm:text-4xl">Já imaginou viver tudo isso acompanhada?</h2>
-        <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">Com a oferta 2 por 1, você garante seu ingresso e pode viver essa experiência ao lado de alguém especial.</p>
+        <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">Com a oferta 2 por 1, você garante seu ingresso Compromisso ou VIP e pode viver essa experiência ao lado de alguém especial.</p>
         <div className="mx-auto mt-5 max-w-md rounded-lg border border-primary/25 bg-card px-5 py-4 font-bold text-primary shadow-card">1 INGRESSO COMPRADO + 1 INGRESSO</div>
+        <p className="mt-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Oferta válida para ingressos Compromisso e VIP.</p>
         <div className="mt-6"><CTAButton event="nrnb_2for1_gallery_click">QUERO IR ACOMPANHADA</CTAButton></div>
       </div>
     </section>
@@ -758,7 +758,8 @@ function ExperienceOffer() {
       <div className="mx-auto max-w-4xl text-center">
         <h2 className="text-balance text-2xl leading-tight sm:text-4xl">Essa experiência não precisa ser só sua.</h2>
         <p className="mt-3 text-lg font-semibold text-foreground">Escolha quem você quer levar com você.</p>
-        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">Na oferta 2 por 1, você compra seu ingresso e ganha +1 para compartilhar os dois dias do NRNB.</p>
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">Na oferta 2 por 1, você compra seu ingresso Compromisso ou VIP e ganha +1 para compartilhar os dois dias do NRNB.</p>
+        <p className="mt-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Oferta válida para ingressos Compromisso e VIP.</p>
         <div className="mt-6"><CTAButton event="nrnb_2for1_experience_click">QUERO MEU 2 POR 1</CTAButton></div>
       </div>
     </section>
@@ -1289,7 +1290,7 @@ function OfferTransition() {
       <div className="mx-auto max-w-4xl text-center">
         <SectionEyebrow>Oferta especial</SectionEyebrow>
         <h2 className="mt-5 text-balance text-3xl leading-tight sm:text-5xl">2 dias. 2 pessoas. 1 ingresso.</h2>
-        <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">Garanta seu ingresso para o Não Repara na Bagunça 2026 e ganhe +1 para viver essa experiência acompanhada.</p>
+        <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">Garanta seu ingresso Compromisso ou VIP para o Não Repara na Bagunça 2026 e ganhe +1 para viver essa experiência acompanhada.</p>
         <div className="mx-auto mt-8 grid max-w-3xl items-center gap-3 sm:grid-cols-[1fr_auto_1fr_auto_1fr]">
           {["VOCÊ", "+", "QUEM VOCÊ ESCOLHER", "=", "2 DIAS DE NRNB"].map((item, index) => index % 2 === 0 ? <div key={item} className="rounded-lg border border-primary/25 bg-card px-4 py-5 text-sm font-black uppercase tracking-wider text-primary shadow-card">{item}</div> : <span key={item} className="font-display text-3xl font-semibold text-foreground">{item}</span>)}
         </div>
@@ -1703,7 +1704,7 @@ function FinalCTA() {
           Leve alguém especial para viver essa transformação com você.
         </h2>
         <p className="mt-5 text-2xl italic text-gradient-brand sm:text-3xl">
-          Compre 1 ingresso e ganhe +1.
+          Compre 1 ingresso Compromisso ou VIP e ganhe +1.
         </p>
 
         <p className="mt-8 text-base text-foreground/85">
@@ -1765,7 +1766,7 @@ function StickyCTA() {
         className="cta-primary w-full rounded-full px-6 py-3.5 text-sm font-bold uppercase tracking-wide shadow-glow transition-all duration-300 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40"
       >
         <span className="block">QUERO O 2 POR 1</span>
-        <span className="mt-0.5 block text-[10px] font-semibold normal-case tracking-normal opacity-90">Compre 1 • Ganhe +1</span>
+        <span className="mt-0.5 block text-[10px] font-semibold normal-case tracking-normal opacity-90">Compromisso ou VIP • Ganhe +1</span>
       </button>
     </div>
   );

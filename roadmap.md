@@ -33,7 +33,7 @@
 - [x] Validar conteúdo, preços, links, desktop e mobile
 
 ## Clareza comercial em /2por1
-- [ ] Ajustar Hero e menções promocionais para Compromisso e VIP
-- [ ] Remover o contador fictício e preparar prazo absoluto desativado
-- [ ] Preservar cards, preços, benefícios e links atuais
-- [ ] Validar desktop, mobile e integridade da homepage
+- [x] Ajustar Hero e menções promocionais para Compromisso e VIP
+- [x] Remover o contador fictício e preparar prazo absoluto desativado
+- [x] Preservar cards, preços, benefícios e links atuais
+- [x] Validar desktop, mobile e integridade da homepage
