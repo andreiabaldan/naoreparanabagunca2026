@@ -31,3 +31,9 @@
 - [x] Atualizar os três cards com benefícios e comparação da página principal
 - [x] Aplicar a promoção somente em Compromisso e VIP
 - [x] Validar conteúdo, preços, links, desktop e mobile
+
+## Clareza comercial em /2por1
+- [ ] Ajustar Hero e menções promocionais para Compromisso e VIP
+- [ ] Remover o contador fictício e preparar prazo absoluto desativado
+- [ ] Preservar cards, preços, benefícios e links atuais
+- [ ] Validar desktop, mobile e integridade da homepage
