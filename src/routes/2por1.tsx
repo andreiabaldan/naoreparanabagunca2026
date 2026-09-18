@@ -79,7 +79,7 @@ import depoimentoPoster from "@/assets/depoimento-1-poster.jpg.asset.json";
 
 const EVENT = {
   name: "Não Repara na Bagunça 2026",
-  concept: "O encontro que muda tudo.",
+  concept: "Compre 1 ingresso e ganhe +1.",
   promise: "Organize sua casa, sua rotina e sua vida para viver de forma mais leve, prática e possível.",
   date: "24 e 25 de outubro de 2026",
   dateShort: "24 e 25 de outubro",
@@ -98,6 +98,30 @@ const EVENT = {
 };
 
 export const WHATSAPP_URL = `https://wa.me/${EVENT.whatsappNumber}?text=${encodeURIComponent(EVENT.whatsappMessage)}`;
+const TWO_FOR_ONE_CHECKOUT = "https://payfast.greenn.com.br/pre-checkout/xa37xct";
+
+function checkoutWithUtms() {
+  if (typeof window === "undefined") return TWO_FOR_ONE_CHECKOUT;
+  const checkout = new URL(TWO_FOR_ONE_CHECKOUT);
+  const current = new URLSearchParams(window.location.search);
+  const storedValue = sessionStorage.getItem("nrnb-session-utms");
+  let stored: Record<string, string> = {};
+  try {
+    stored = storedValue ? JSON.parse(storedValue) as Record<string, string> : {};
+  } catch {
+    stored = {};
+  }
+  ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach((key) => {
+    const value = current.get(key) ?? stored[key];
+    if (value) checkout.searchParams.set(key, value);
+  });
+  return checkout.toString();
+}
+
+function goToCheckout(event: Parameters<typeof track>[0], placement: string) {
+  track(event, { placement, campaign: "2por1" });
+  window.location.assign(checkoutWithUtms());
+}
 
 /** Depoimento em vídeo (editável). */
 const TESTIMONIAL_VIDEO: { src: string; poster?: string } | null = {
@@ -533,9 +557,9 @@ function Section({
 function TopBar() {
   return (
     <div className="bg-foreground">
-      <div className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-4 py-2.5 text-center">
-        <span className="whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.14em] text-primary-foreground sm:text-xs sm:tracking-[0.18em]">
-          2º LOTE LIBERADO • GARANTA O SEU ANTES QUE ACABE
+      <div className="mx-auto flex max-w-6xl items-center justify-center px-3 py-2.5 text-center text-primary-foreground">
+        <span className="whitespace-nowrap text-[9px] font-semibold uppercase tracking-[0.08em] sm:text-xs sm:tracking-[0.16em]">
+          OFERTA ESPECIAL <strong className="font-black">2 POR 1</strong> • COMPRE 1 INGRESSO E GANHE +1
         </span>
       </div>
     </div>
@@ -608,7 +632,13 @@ function Hero() {
             </span>
           </h1>
 
-          <p className="mx-auto mt-4 max-w-xl text-balance text-lg font-medium leading-relaxed text-white/92 sm:text-xl lg:mx-0 lg:mt-3 lg:max-w-[600px] lg:leading-[1.5]">
+          <div className="mx-auto mt-4 flex max-w-max items-center rounded-full border border-white/40 bg-foreground/85 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-primary-foreground lg:mx-0 lg:mt-3">
+            OFERTA ESPECIAL • 2 POR 1
+          </div>
+          <p className="mx-auto mt-3 max-w-xl text-balance text-base font-semibold leading-relaxed text-white sm:text-lg lg:mx-0 lg:max-w-[600px]">
+            Venha viver esses 2 dias com alguém especial: compre 1 ingresso e ganhe +1.
+          </p>
+          <p className="mx-auto mt-3 max-w-xl text-balance text-base font-medium leading-relaxed text-white/92 sm:text-lg lg:mx-0 lg:max-w-[600px] lg:leading-[1.5]">
             Em 2 dias, aprenda os <strong className="font-medium lg:font-bold">7 Passos da Organização</strong> e técnicas práticas que funcionam na sua rotina de verdade.
           </p>
 
@@ -620,17 +650,105 @@ function Hero() {
           </div>
 
           <div className="mx-auto mt-6 max-w-md lg:mx-0 lg:mt-5">
-            <CTAButton event="hero_cta_click" size="lg" className="hero-cta w-full">
-              QUERO APRENDER COMO
+            <CTAButton event="nrnb_2for1_hero_click" size="lg" className="hero-cta w-full">
+              QUERO APROVEITAR O 2 POR 1
             </CTAButton>
             <div className="mt-4 lg:mt-3">
-              <p className="text-xs font-semibold uppercase tracking-wider text-[#86CBD7]">
-                {LOT_LABEL} LIBERADO · {LOT_SOLD_PERCENT}% VENDIDO
+              <p className="text-xs font-semibold uppercase tracking-wider text-sky-highlight">
+                COMPRE 1 <span className="px-1" aria-hidden>+</span> GANHE +1
               </p>
-              <LotProgress percent={LOT_SOLD_PERCENT} label="" hideLabel />
             </div>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function Countdown() {
+  const [seconds, setSeconds] = useState(4 * 60 * 60);
+  const expired = useRef(false);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setSeconds((value) => {
+        if (value <= 1) {
+          window.clearInterval(timer);
+          if (!expired.current) {
+            expired.current = true;
+            track("nrnb_2for1_timer_expired");
+          }
+          return 0;
+        }
+        return value - 1;
+      });
+    }, 1000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const parts = [
+    ["HORAS", Math.floor(seconds / 3600)],
+    ["MIN", Math.floor((seconds % 3600) / 60)],
+    ["SEG", seconds % 60],
+  ] as const;
+
+  return (
+    <div className="mt-5" aria-label="Contador de quatro horas">
+      <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Sua condição permanece disponível nesta visita por</p>
+      <div className="mt-3 flex justify-center gap-2">
+        {parts.map(([label, value]) => (
+          <div key={label} className="min-w-16 rounded-lg border border-primary/20 bg-card px-3 py-2 text-center shadow-card">
+            <span className="block font-display text-2xl font-semibold leading-none text-primary">{String(value).padStart(2, "0")}</span>
+            <span className="mt-1 block text-[10px] font-bold uppercase tracking-wider text-muted-foreground">{label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function OfferLink({ children, event, placement, className = "" }: { children: React.ReactNode; event: Parameters<typeof track>[0]; placement: string; className?: string }) {
+  return (
+    <a href={TWO_FOR_ONE_CHECKOUT} onClick={(e) => { e.preventDefault(); goToCheckout(event, placement); }} className={`cta-primary inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-4 text-sm font-bold uppercase tracking-wide shadow-glow transition-all hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40 sm:w-auto ${className}`}>
+      {children}<ArrowRight className="h-4 w-4" />
+    </a>
+  );
+}
+
+function FirstOfferStrip() {
+  return (
+    <section className="surface-rose px-5 py-10 sm:px-6">
+      <div className="mx-auto max-w-4xl text-center">
+        <p className="font-display text-2xl font-semibold sm:text-3xl">Porque uma experiência assim fica ainda melhor quando é compartilhada.</p>
+        <p className="mt-3 text-sm text-muted-foreground sm:text-base">Você garante o seu ingresso e leva alguém com você.</p>
+        <p className="mt-4 text-lg font-black uppercase tracking-[0.16em] text-primary">COMPRE 1 • GANHE +1</p>
+        <div className="mt-6"><CTAButton event="nrnb_2for1_offer_click">QUERO APROVEITAR</CTAButton></div>
+      </div>
+    </section>
+  );
+}
+
+function GalleryOffer() {
+  return (
+    <section className="bg-sky-tint px-5 py-12 sm:px-6">
+      <div className="mx-auto max-w-4xl text-center">
+        <h2 className="text-balance text-2xl leading-tight sm:text-4xl">Já imaginou viver tudo isso acompanhada?</h2>
+        <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">Com a oferta 2 por 1, você garante seu ingresso e pode viver essa experiência ao lado de alguém especial.</p>
+        <div className="mx-auto mt-5 max-w-md rounded-lg border border-primary/25 bg-card px-5 py-4 font-bold text-primary shadow-card">1 INGRESSO COMPRADO + 1 INGRESSO</div>
+        <div className="mt-6"><CTAButton event="nrnb_2for1_gallery_click">QUERO IR ACOMPANHADA</CTAButton></div>
+      </div>
+    </section>
+  );
+}
+
+function ExperienceOffer() {
+  return (
+    <section className="surface-dark px-5 py-12 sm:px-6">
+      <div className="mx-auto max-w-4xl text-center">
+        <h2 className="text-balance text-2xl leading-tight sm:text-4xl">Essa experiência não precisa ser só sua.</h2>
+        <p className="mt-3 text-lg font-semibold text-foreground">Escolha quem você quer levar com você.</p>
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">Na oferta 2 por 1, você compra seu ingresso e ganha +1 para compartilhar os dois dias do NRNB.</p>
+        <div className="mt-6"><CTAButton event="nrnb_2for1_experience_click">QUERO MEU 2 POR 1</CTAButton></div>
       </div>
     </section>
   );
@@ -1156,24 +1274,13 @@ function SocialProof() {
 
 function OfferTransition() {
   return (
-    <section className="surface-rose px-5 py-10 sm:px-6 sm:py-12">
-      <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-balance text-2xl leading-tight sm:text-4xl">
-          Agora é a sua vez de viver essa experiência.
-        </h2>
-        <p className="mt-4 text-sm font-semibold text-foreground sm:text-base">
-          24 e 25 de outubro · São José dos Campos/SP
-        </p>
-        <p className="mt-5 text-base font-semibold text-foreground">Ingressos a partir de</p>
-        <p className="mt-1 flex items-baseline justify-center gap-2">
-          <span className="text-base font-semibold text-foreground">12x de</span>
-          <span className="font-display text-5xl font-semibold leading-none text-primary sm:text-6xl">R$ 14,70</span>
-        </p>
-        <p className="mt-2 text-sm text-muted-foreground">ou R$ 147 à vista</p>
-        <div className="mt-6 flex justify-center">
-          <CTAButton event="gallery_cta_click" size="lg">
-            QUERO GARANTIR MEU INGRESSO
-          </CTAButton>
+    <section className="surface-rose px-5 py-14 sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-4xl text-center">
+        <SectionEyebrow>Oferta especial</SectionEyebrow>
+        <h2 className="mt-5 text-balance text-3xl leading-tight sm:text-5xl">2 dias. 2 pessoas. 1 ingresso.</h2>
+        <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">Garanta seu ingresso para o Não Repara na Bagunça 2026 e ganhe +1 para viver essa experiência acompanhada.</p>
+        <div className="mx-auto mt-8 grid max-w-3xl items-center gap-3 sm:grid-cols-[1fr_auto_1fr_auto_1fr]">
+          {["VOCÊ", "+", "QUEM VOCÊ ESCOLHER", "=", "2 DIAS DE NRNB"].map((item, index) => index % 2 === 0 ? <div key={item} className="rounded-lg border border-primary/25 bg-card px-4 py-5 text-sm font-black uppercase tracking-wider text-primary shadow-card">{item}</div> : <span key={item} className="font-display text-3xl font-semibold text-foreground">{item}</span>)}
         </div>
       </div>
     </section>
@@ -1243,10 +1350,10 @@ function TestimonialVideo() {
 function WhatsAppFloating() {
   return (
     <a
-      href={WHATSAPP_URL}
+      href={`https://wa.me/${EVENT.whatsappNumber}?text=${encodeURIComponent("Olá! Estou na página da oferta 2 por 1 do Não Repara na Bagunça e gostaria de tirar uma dúvida.")}`}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => track("whatsapp_floating_click")}
+      onClick={() => track("nrnb_2for1_whatsapp_click", { placement: "floating" })}
       title="Ficou com alguma dúvida? Fale com a gente."
       aria-label="Ficou com alguma dúvida? Fale com a gente no WhatsApp"
       className="group fixed bottom-24 right-4 z-40 inline-flex items-center gap-2 rounded-full bg-whatsapp px-3.5 py-3 text-sm font-medium text-white shadow-card backdrop-blur transition-all hover:brightness-110 lg:bottom-6 lg:right-6"
@@ -1260,151 +1367,34 @@ function WhatsAppFloating() {
 function Tickets() {
   const ref = useRef<HTMLDivElement>(null);
   const seen = useRef(false);
-
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const obs = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting && !seen.current) {
-          seen.current = true;
-          track("ticket_section_view");
-        }
-      },
-      { threshold: 0.25 },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0]?.isIntersecting && !seen.current) {
+        seen.current = true;
+        track("ticket_section_view", { campaign: "2por1" });
+      }
+    }, { threshold: 0.25 });
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   return (
     <Section id="ingressos" className="surface-ink">
-      <div ref={ref} className="text-center">
-        <SectionEyebrow>Ingressos</SectionEyebrow>
-        <h2 className="mx-auto mt-5 max-w-3xl text-balance text-2xl leading-tight text-foreground sm:text-4xl">
-          Escolha como você quer{" "}
-          <span className="italic text-gradient-brand">
-            viver essa experiência.
-          </span>
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-balance text-sm leading-relaxed text-muted-foreground sm:text-base">
-          Você não sai só inspirada. Sai com o passo a passo pra aplicar na mesma
-          semana.
-        </p>
-      </div>
-
-      <div className="mt-8 grid items-start gap-5 lg:grid-cols-3">
-        {TICKETS.map((t) => (
-          <div
-            key={t.id}
-            className={`card-light flex flex-col rounded-[2rem] border bg-card p-6 text-center sm:p-8 ${
-              t.id === "vip"
-                ? "border-primary/70 shadow-[0_0_0_1px_rgba(156,3,105,0.25),0_24px_60px_-28px_rgba(156,3,105,0.55)] lg:-mt-3"
-                : "border-border shadow-card"
-            }`}
-          >
-            {t.highlight && (
-              <span className="mx-auto mb-4 rounded-full bg-gradient-brand px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] text-primary-foreground">
-                {t.highlight}
-              </span>
-            )}
-
-            <h3 className="font-display text-3xl font-semibold sm:text-4xl">
-              {t.name}
-            </h3>
-            <p className="mt-1 text-sm italic text-muted-foreground">
-              “{t.desire}”
-            </p>
-
-            <div className="mt-6 flex flex-col items-center">
-              <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                Lote atual
-              </span>
-              <span className="mt-2 rounded-full bg-primary px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-primary-foreground">
-                {t.lotLabel}
-              </span>
-            </div>
-
-            <p className="mt-4 text-sm font-semibold text-muted-foreground">12x de</p>
-            <p className="mt-1 flex items-baseline justify-center gap-1 font-display font-semibold text-primary">
-              <span className="text-2xl sm:text-3xl">R$</span>
-              <span className="text-5xl leading-none sm:text-6xl">{t.installmentPrice}</span>
-            </p>
-            <p className="mt-2 text-sm text-muted-foreground">ou R$ {t.price} à vista</p>
-
-            {/* divisor com coração */}
-            <div className="mt-5 flex items-center gap-3">
-              <span className="h-px flex-1 bg-primary/15" />
-              <Heart className="h-4 w-4 fill-primary/40 text-primary/40" />
-              <span className="h-px flex-1 bg-primary/15" />
-            </div>
-
-            {t.includesFrom && (
-              <p className="mt-4 rounded-xl bg-primary/10 px-3 py-2 text-center text-xs font-bold uppercase tracking-wider text-primary">
-                {t.includesFrom}
-              </p>
-            )}
-
-            <ul className={`flex-1 space-y-2.5 text-left ${t.includesFrom ? "mt-3" : "mt-5"}`}>
-              {t.benefits.map((b) => (
-                <li key={b} className="flex items-start gap-2 text-sm">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <span className="text-foreground/90">{b}</span>
-                </li>
-              ))}
-            </ul>
-
-            <a
-              href={t.checkout}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => {
-                track(t.event, { ticket: t.id });
-                track("checkout_start", { ticket: t.id });
-              }}
-               className="ticket-cta mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold uppercase tracking-wide transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40"
-            >
-              {t.ctaLabel ?? "Quero este ingresso"}
-              <ArrowRight className="h-4 w-4" />
-            </a>
-
-            <p className="mt-3 flex items-center justify-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              <Lock className="h-3.5 w-3.5 text-primary" />
-              Compra segura
-            </p>
-
-            <div className="mt-5 rounded-2xl bg-sky-tint p-3 text-left">
-              <p className="text-center text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                Próximo lote em breve
-              </p>
-              <div className="mt-3">
-                <LotProgress percent={t.soldPercent} label="DO LOTE 2" compact />
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-
-      <p className="mt-6 text-center text-sm text-foreground/80">
-        Os valores mudam conforme os lotes avançam. Garanta agora o valor atual.
-      </p>
-
-
-      <div className="mt-6 rounded-2xl border border-border/60 bg-card/60 p-5 text-center">
-        <p className="text-sm text-muted-foreground">
-          Ainda ficou com alguma dúvida sobre qual ingresso escolher?
-        </p>
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => track("whatsapp_tickets_click")}
-          className="mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-white transition-all hover:brightness-110"
-        >
-          <MessageCircle className="h-4 w-4" />
-          Falar com a Suelen no WhatsApp
-        </a>
+      <div ref={ref} className="mx-auto max-w-3xl text-center">
+        <SectionEyebrow>Seu acesso 2 por 1</SectionEyebrow>
+        <h2 className="mt-5 text-balance text-3xl leading-tight sm:text-5xl">Compre 1 ingresso e ganhe +1.</h2>
+        <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">Viva os dois dias do Não Repara na Bagunça 2026 ao lado de alguém especial.</p>
+        <div className="mx-auto mt-8 max-w-xl rounded-lg border border-primary/30 bg-card p-6 shadow-card sm:p-9">
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-primary">OFERTA ESPECIAL • 2 POR 1</p>
+          <p className="mt-5 font-display text-3xl font-semibold text-foreground sm:text-4xl">E você ganha +1 ingresso</p>
+          <p className="mt-3 text-sm text-muted-foreground">24 e 25 de outubro de 2026 · São José dos Campos/SP</p>
+          <Countdown />
+          <div className="mt-7"><OfferLink event="nrnb_2for1_offer_click" placement="checkout" className="w-full">QUERO GARANTIR MEU 2 POR 1</OfferLink></div>
+          <p className="mt-4 flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground"><Lock className="h-4 w-4 text-primary" /> Compra segura</p>
+        </div>
+        <a href={`https://wa.me/${EVENT.whatsappNumber}?text=${encodeURIComponent("Olá! Estou na página da oferta 2 por 1 do Não Repara na Bagunça e gostaria de tirar uma dúvida.")}`} target="_blank" rel="noopener noreferrer" onClick={() => track("nrnb_2for1_whatsapp_click", { placement: "checkout" })} className="mt-6 inline-flex items-center gap-2 rounded-full bg-whatsapp px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110"><MessageCircle className="h-4 w-4" /> Tirar uma dúvida no WhatsApp</a>
       </div>
     </Section>
   );
@@ -1604,13 +1594,13 @@ function FinalCTA() {
 
       <div className="relative mx-auto max-w-2xl text-center">
         <p className="text-balance text-base text-muted-foreground sm:text-lg">
-          Talvez você chegue pela vontade de organizar sua casa.
+          Elas já viveram o NRNB. Agora é a vez de vocês.
         </p>
         <h2 className="mt-6 text-balance font-display text-3xl leading-tight sm:text-5xl">
-          E descubra que organizar muda muito mais do que a casa.
+          Leve alguém especial para viver essa transformação com você.
         </h2>
         <p className="mt-5 text-2xl italic text-gradient-brand sm:text-3xl">
-          O encontro que muda tudo.
+          Compre 1 ingresso e ganhe +1.
         </p>
 
         <p className="mt-8 text-base text-foreground/85">
@@ -1618,17 +1608,8 @@ function FinalCTA() {
         </p>
 
         <div className="mx-auto mt-10 max-w-md">
-          <p className="text-sm font-bold uppercase tracking-[0.14em] text-primary">
-             2º LOTE LIBERADO<br />34% VENDIDO&nbsp;·&nbsp;GARANTA JÁ O SEU
-          </p>
-          <div className="mt-3">
-            <LotProgress percent={LOT_SOLD_PERCENT} label="" hideLabel />
-          </div>
-
           <div className="mt-8">
-            <CTAButton event="final_cta_click" size="lg" className="w-full">
-              Quero viver essa experiência
-            </CTAButton>
+            <OfferLink event="nrnb_2for1_offer_click" placement="final" className="w-full">QUERO O 2 POR 1</OfferLink>
           </div>
         </div>
 
@@ -1676,12 +1657,13 @@ function StickyCTA() {
       <button
         type="button"
         onClick={() => {
-          track("sticky_cta_click");
+          track("nrnb_2for1_offer_click", { placement: "sticky" });
           goToTickets();
         }}
         className="cta-primary w-full rounded-full px-6 py-3.5 text-sm font-bold uppercase tracking-wide shadow-glow transition-all duration-300 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40"
       >
-        Garantir ingresso
+        <span className="block">QUERO O 2 POR 1</span>
+        <span className="mt-0.5 block text-[10px] font-semibold normal-case tracking-normal opacity-90">Compre 1 • Ganhe +1</span>
       </button>
     </div>
   );
@@ -2078,8 +2060,8 @@ function PhotoGallery() {
       </div>
 
       <div className="mt-8 flex justify-center">
-        <CTAButton event="gallery_cta_click">
-          Quero viver essa experiência
+        <CTAButton event="nrnb_2for1_gallery_click">
+          QUERO IR ACOMPANHADA
         </CTAButton>
       </div>
 
@@ -2181,31 +2163,24 @@ function PurchaseSafety() {
 
 export function LandingPage() {
   useEffect(() => {
-    track("page_view");
+    track("nrnb_2for1_page_view", { page: "/2por1" });
   }, []);
 
   return (
-    <main className="nrnb2026-2-page min-h-screen bg-background pb-20 lg:pb-0">
+    <main className="nrnb2026-2-page twoforone-page min-h-screen bg-background pb-20 lg:pb-0">
       <TopBar />
       <Hero />
       <AuthorityStrip />
+      <FirstOfferStrip />
       <PainRecognition />
       <BeliefShift />
       <PhotoGallery />
-      <CompactOffer
-        headline="Em outubro, seu lugar pode ser aqui."
-        cta="QUERO VIVER ESSA EXPERIÊNCIA"
-        variant="light"
-      />
+      <GalleryOffer />
       <PracticalMethod />
       <Experience />
       <ForWhom />
       <VideoStory />
-      <CompactOffer
-        headline="Viva esses 2 dias com a gente."
-        cta="QUERO GARANTIR MEU INGRESSO"
-        variant="rose"
-      />
+      <ExperienceOffer />
       {false && <SuelenVideoPlaceholder />}
       <Founder />
       <Speakers />
@@ -2225,6 +2200,7 @@ export function LandingPage() {
       <Footer />
       <StickyCTA />
       <WhatsAppFloating />
+      <ConversionPopups whatsappNumber={EVENT.whatsappNumber} campaign="2for1" />
     </main>
   );
 }
