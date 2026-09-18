@@ -634,7 +634,7 @@ function Hero() {
           <div className="mx-auto mt-4 flex max-w-max items-center rounded-full border border-white/40 bg-foreground/85 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-primary-foreground lg:mx-0 lg:mt-3">
             OFERTA ESPECIAL • 2 POR 1
           </div>
-          <p className="mx-auto mt-3 max-w-xl text-balance text-base font-semibold leading-relaxed text-white sm:text-lg lg:mx-0 lg:max-w-[600px]">
+          <p className="mx-auto mt-3 max-w-xl text-balance text-base font-semibold leading-relaxed text-sky-highlight sm:text-lg lg:mx-0 lg:max-w-[600px]">
             Venha viver esses 2 dias com alguém especial: compre 1 ingresso e ganhe +1.
           </p>
           <p className="mx-auto mt-3 max-w-xl text-balance text-base font-medium leading-relaxed text-white/92 sm:text-lg lg:mx-0 lg:max-w-[600px] lg:leading-[1.5]">
