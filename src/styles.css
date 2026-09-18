@@ -54,6 +54,7 @@
   --color-magenta-soft: var(--magenta-soft);
   --color-plum: var(--plum);
   --color-sky: var(--sky);
+  --color-sky-highlight: var(--sky-highlight);
   --color-sky-soft: var(--sky-soft);
   --color-sky-tint: var(--sky-tint);
   --color-whatsapp: #25d366;
@@ -81,6 +82,7 @@
   --plum: #7c0353;
 
   --sky: #86cbd7;
+  --sky-highlight: #a9e1e8;
   --sky-soft: rgb(134 203 215 / 0.18);
   --sky-tint: #eef8fa;
 
