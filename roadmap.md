@@ -26,3 +26,8 @@
 - [x] Adaptar pop-ups, tracking e SEO
 - [x] Validar desktop, mobile e integridade da homepage
 
+
+## Ingressos completos em /2por1
+- [ ] Atualizar os três cards com benefícios e comparação da página principal
+- [ ] Aplicar a promoção somente em Compromisso e VIP
+- [ ] Validar conteúdo, preços, links, desktop e mobile
