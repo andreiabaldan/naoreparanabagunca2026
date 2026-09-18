@@ -475,8 +475,7 @@ function CTAButton({
     <button
       type="button"
       onClick={() => {
-        track(event);
-        goToTickets();
+        goToCheckout(event, "campaign_cta");
       }}
       className={`cta-primary group inline-flex w-full items-center justify-center gap-2 rounded-full font-semibold uppercase tracking-wide shadow-glow transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40 sm:w-auto ${sizes[size]} ${className}`}
     >
@@ -1657,8 +1656,7 @@ function StickyCTA() {
       <button
         type="button"
         onClick={() => {
-          track("nrnb_2for1_offer_click", { placement: "sticky" });
-          goToTickets();
+          goToCheckout("nrnb_2for1_offer_click", "sticky");
         }}
         className="cta-primary w-full rounded-full px-6 py-3.5 text-sm font-bold uppercase tracking-wide shadow-glow transition-all duration-300 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40"
       >
