@@ -401,7 +401,7 @@ const TICKETS: Ticket[] = [
     highlight: "Experiência recomendada",
     promotionLabel: "2 POR 1 + BENEFÍCIOS VIP",
     promotionCopy: "COMPRE 1 E GANHE +1",
-    priceComparison: "+ R$ 50 em relação ao Compromisso",
+    priceComparison: "\n",
     isTwoForOne: true,
     ctaLabel: "QUERO O VIP 2 POR 1",
     includesFrom: "TUDO DO INGRESSO COMPROMISSO +",
@@ -744,7 +744,7 @@ function GalleryOffer() {
       <div className="mx-auto max-w-4xl text-center">
         <h2 className="text-balance text-2xl leading-tight sm:text-4xl">Já imaginou viver tudo isso acompanhada?</h2>
         <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">Com a oferta 2 por 1, você garante seu ingresso Compromisso ou VIP e pode viver essa experiência ao lado de alguém especial.</p>
-        <div className="mx-auto mt-5 max-w-md rounded-lg border border-primary/25 bg-card px-5 py-4 font-bold text-primary shadow-card">1 INGRESSO COMPRADO + 1 INGRESSO</div>
+        <div className="mx-auto mt-5 max-w-md rounded-lg border border-primary/25 bg-card px-5 py-4 font-bold text-primary shadow-card">1 INGRESSO COMPRADO + 1 INGRESSO GRÁTIS</div>
         <p className="mt-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Oferta válida para ingressos Compromisso e VIP.</p>
         <div className="mt-6"><CTAButton event="nrnb_2for1_gallery_click">QUERO IR ACOMPANHADA</CTAButton></div>
       </div>
@@ -758,7 +758,7 @@ function ExperienceOffer() {
       <div className="mx-auto max-w-4xl text-center">
         <h2 className="text-balance text-2xl leading-tight sm:text-4xl">Essa experiência não precisa ser só sua.</h2>
         <p className="mt-3 text-lg font-semibold text-foreground">Escolha quem você quer levar com você.</p>
-        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">Na oferta 2 por 1, você compra seu ingresso Compromisso ou VIP e ganha +1 para compartilhar os dois dias do NRNB.</p>
+        <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">Na oferta 2 por 1, você compra seu ingresso e ganha +1 para compartilhar os dois dias do NRNB.</p>
         <p className="mt-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Oferta válida para ingressos Compromisso e VIP.</p>
         <div className="mt-6"><CTAButton event="nrnb_2for1_experience_click">QUERO MEU 2 POR 1</CTAButton></div>
       </div>
@@ -853,10 +853,10 @@ function PracticalMethod() {
           <span className="mt-1 font-display text-lg font-semibold text-foreground">7 Passos da Organização</span>
         </div>
         <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-          Isso não é mais um cronograma pronto da internet para você tentar encaixar na sua rotina. No evento, você vai conhecer os 7 Passos da Organização e aprender técnicas aplicadas na prática, com soluções que façam sentido para a sua casa e para a sua rotina.
+          No evento, você vai aprender técnicas aplicadas na prática, com soluções que façam sentido para a sua casa e para a sua rotina.
         </p>
         <p className="mx-auto mt-5 max-w-2xl text-lg font-semibold text-primary sm:text-xl">
-          Você sai sabendo porque já fez, não porque apenas ouviu.
+          {"\n"}
         </p>
       </div>
     </Section>
