@@ -44,5 +44,5 @@
 - [x] Validar desktop, mobile, CTAs, checkouts, UTMs e tracking
 - [x] Confirmar que a página principal permaneceu intacta
 - [x] Transformar a faixa preta em ticker contínuo e acessível
-- [ ] Reorganizar o Hero com promessa, serviço, preço inicial e CTA
-- [ ] Validar o novo Hero no desktop e celular sem alterar os ingressos
+- [x] Reorganizar o Hero com promessa, serviço, preço inicial e CTA
+- [x] Validar o novo Hero no desktop e celular sem alterar os ingressos
