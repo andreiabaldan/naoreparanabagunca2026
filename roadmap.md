@@ -37,3 +37,9 @@
 - [x] Remover o contador fictício e preparar prazo absoluto desativado
 - [x] Preservar cards, preços, benefícios e links atuais
 - [x] Validar desktop, mobile e integridade da homepage
+
+
+## Nova LP curta /nrnb2026-participe
+- [x] Criar rota independente conforme briefing aprovado
+- [ ] Validar desktop, mobile, CTAs, checkouts, UTMs e tracking
+- [ ] Confirmar que a página principal permaneceu intacta
