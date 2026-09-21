@@ -1241,6 +1241,7 @@ function TestimonialVideo() {
 function WhatsAppFloating() {
   return (
     <a
+      suppressHydrationWarning
       href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
@@ -1353,6 +1354,7 @@ function Tickets() {
             </ul>
 
             <a
+              suppressHydrationWarning
               href={t.checkout}
               target="_blank"
               rel="noopener noreferrer"
@@ -1394,6 +1396,7 @@ function Tickets() {
           Ainda ficou com alguma dúvida sobre qual ingresso escolher?
         </p>
         <a
+          suppressHydrationWarning
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
@@ -1425,6 +1428,7 @@ function PersonalOrganizerCourse() {
         </p>
 
         <a
+          suppressHydrationWarning
           href={courseWhatsAppUrl}
           target="_blank"
           rel="noopener noreferrer"

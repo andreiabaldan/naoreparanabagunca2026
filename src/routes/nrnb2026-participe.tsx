@@ -202,31 +202,31 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 
 function Hero() {
   return (
-    <section className="hero-scene relative min-h-[calc(100svh-38px)] overflow-hidden lg:min-h-[680px]">
+    <section className="hero-scene relative overflow-hidden lg:min-h-[680px]">
       <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[60%] lg:block">
         <img src={heroComposicao.url} alt="Suelen Gubeisse e convidados do Não Repara na Bagunça 2026" fetchPriority="high" className="hero-photo-desktop h-full w-full object-contain object-center" />
       </div>
       <div className="relative mx-auto flex max-w-7xl flex-col px-5 pb-10 pt-6 sm:px-6 lg:grid lg:min-h-[680px] lg:grid-cols-[44%_1fr] lg:items-center lg:py-12">
-        <div className="order-1 -mx-5 sm:-mx-6 lg:hidden">
-          <img src={heroComposicao.url} alt="Suelen Gubeisse e convidados do Não Repara na Bagunça 2026" fetchPriority="high" className="hero-photo-mobile w-full object-contain object-center" />
+        <div className="order-1 -mx-5 h-[235px] sm:-mx-6 sm:h-[300px] lg:hidden">
+          <img src={heroComposicao.url} alt="Suelen Gubeisse e convidados do Não Repara na Bagunça 2026" fetchPriority="high" className="hero-photo-mobile h-full w-full object-contain object-center" />
         </div>
         <div className="order-2 text-center lg:order-1 lg:text-left">
-          <img src={logoNrnb.url} alt="Não Repara na Bagunça" width={546} height={187} className="mx-auto w-[260px] lg:mx-0 lg:w-[360px]" />
-          <p className="mt-4 text-xs font-bold uppercase tracking-[0.14em] text-sky-highlight">2 DIAS • EXPERIÊNCIA PRÁTICA • 7 PASSOS DA ORGANIZAÇÃO</p>
-          <h1 className="mt-4 text-balance text-4xl italic leading-[1.05] text-primary-foreground sm:text-5xl lg:max-w-[620px] lg:text-6xl">
+          <img src={logoNrnb.url} alt="Não Repara na Bagunça" width={546} height={187} className="mx-auto w-[190px] sm:w-[250px] lg:mx-0 lg:w-[360px]" />
+          <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.12em] text-sky-highlight sm:mt-4 sm:text-xs sm:tracking-[0.14em]">2 DIAS • EXPERIÊNCIA PRÁTICA • 7 PASSOS DA ORGANIZAÇÃO</p>
+          <h1 className="mt-3 text-balance text-[2rem] italic leading-[1.05] text-foreground sm:mt-4 sm:text-5xl lg:max-w-[620px] lg:text-6xl">
             Organize sua casa. Simplifique sua rotina. Viva com mais leveza.
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-balance text-base font-medium leading-relaxed text-primary-foreground/90 sm:text-lg lg:mx-0">
+          <p className="mx-auto mt-3 max-w-xl text-balance text-sm font-medium leading-relaxed text-muted-foreground sm:mt-4 sm:text-lg lg:mx-0">
             Em 2 dias, aprenda os <strong>7 Passos da Organização</strong> e técnicas práticas para fazer sua casa funcionar melhor — sem depender de rotinas impossíveis de manter.
           </p>
-          <div className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm font-semibold text-primary-foreground lg:justify-start">
+          <div className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-1.5 text-xs font-semibold text-foreground sm:mt-5 sm:gap-x-5 sm:gap-y-2 sm:text-sm lg:justify-start">
             <span className="flex items-center gap-2"><Calendar className="h-4 w-4 text-sky-highlight" />24 e 25 de outubro</span>
             <span className="flex items-center gap-2"><Clock className="h-4 w-4 text-sky-highlight" />9h às 18h30</span>
             <span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-sky-highlight" />PIT • São José dos Campos/SP</span>
           </div>
-          <div className="mx-auto mt-6 max-w-md lg:mx-0">
+          <div className="mx-auto mt-5 max-w-md lg:mx-0 lg:mt-6">
             <TrackedCTA event="hero_cta_click" className="w-full">QUERO PARTICIPAR</TrackedCTA>
-            <p className="mt-3 text-sm font-semibold text-primary-foreground">Ingressos a partir de 12x de R$ 15,11</p>
+            <p className="mt-2 text-xs font-semibold text-foreground sm:mt-3 sm:text-sm">Ingressos a partir de 12x de R$ 15,11</p>
           </div>
         </div>
       </div>
