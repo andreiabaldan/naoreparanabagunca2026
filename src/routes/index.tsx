@@ -1071,7 +1071,7 @@ function CompactOffer({
           <p className="mt-2 text-sm font-semibold text-muted-foreground">Ingressos a partir de</p>
           <p className="mt-1 flex items-baseline justify-center gap-2 md:justify-start">
             <span className="text-sm font-semibold text-foreground">12x de</span>
-            <span className="font-display text-4xl font-semibold text-primary">R$ 14,70</span>
+            <span className="font-display text-4xl font-semibold text-primary">R$ 15,11</span>
           </p>
           <p className="mt-1 text-sm text-muted-foreground">ou R$ 147 à vista</p>
         </div>
@@ -1165,7 +1165,7 @@ function OfferTransition() {
         <p className="mt-5 text-base font-semibold text-foreground">Ingressos a partir de</p>
         <p className="mt-1 flex items-baseline justify-center gap-2">
           <span className="text-base font-semibold text-foreground">12x de</span>
-          <span className="font-display text-5xl font-semibold leading-none text-primary sm:text-6xl">R$ 14,70</span>
+          <span className="font-display text-5xl font-semibold leading-none text-primary sm:text-6xl">R$ 15,11</span>
         </p>
         <p className="mt-2 text-sm text-muted-foreground">ou R$ 147 à vista</p>
         <div className="mt-6 flex justify-center">
