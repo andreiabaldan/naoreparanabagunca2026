@@ -43,3 +43,4 @@
 - [x] Criar rota independente conforme briefing aprovado
 - [x] Validar desktop, mobile, CTAs, checkouts, UTMs e tracking
 - [x] Confirmar que a página principal permaneceu intacta
+- [x] Transformar a faixa preta em ticker contínuo e acessível

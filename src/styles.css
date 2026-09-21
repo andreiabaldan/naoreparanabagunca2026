@@ -449,6 +449,97 @@
   box-shadow: 0 20px 40px -16px rgb(0 0 0 / 0.72);
 }
 
+/* Faixa contínua da landing page curta */
+@keyframes nrnb-top-ticker-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.nrnb-top-ticker {
+  display: flex;
+  min-height: 2.375rem;
+  width: 100%;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.nrnb-top-ticker-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: nrnb-top-ticker-scroll 26s linear infinite;
+}
+
+.nrnb-top-ticker-group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.nrnb-top-ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rem;
+  padding-left: 2rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.nrnb-top-ticker-separator {
+  font-size: 0.625rem;
+  font-weight: 400;
+}
+
+.nrnb-top-ticker-static {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .nrnb-top-ticker-item {
+    gap: 2.5rem;
+    padding-left: 2.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+  }
+}
+
+@media (max-width: 639px) {
+  .nrnb-top-ticker-track {
+    animation-duration: 30s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nrnb-top-ticker {
+    justify-content: center;
+    padding-inline: 1rem;
+  }
+
+  .nrnb-top-ticker-track {
+    display: none;
+  }
+
+  .nrnb-top-ticker-static {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
 .nrnb2026-2-page .cta-primary:focus-visible,
 .nrnb2026-2-page .ticket-cta:focus-visible {
   outline: 3px solid #ffffff;
