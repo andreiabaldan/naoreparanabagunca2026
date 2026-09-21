@@ -226,31 +226,53 @@ function TopTicker() {
 
 function Hero() {
   return (
-    <section className="hero-scene relative overflow-hidden lg:min-h-[680px]">
+    <section className="hero-scene relative overflow-hidden lg:min-h-[720px]">
       <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[60%] lg:block">
         <img src={heroComposicao.url} alt="Suelen Gubeisse e convidados do Não Repara na Bagunça 2026" fetchPriority="high" className="hero-photo-desktop h-full w-full object-contain object-center" />
       </div>
-      <div className="relative mx-auto flex max-w-7xl flex-col px-5 pb-10 pt-6 sm:px-6 lg:grid lg:min-h-[680px] lg:grid-cols-[44%_1fr] lg:items-center lg:py-12">
-        <div className="order-1 -mx-5 h-[235px] sm:-mx-6 sm:h-[300px] lg:hidden">
+      <div className="relative mx-auto flex max-w-7xl flex-col px-5 pb-8 pt-4 sm:px-6 sm:pb-10 sm:pt-5 lg:grid lg:min-h-[720px] lg:grid-cols-[46%_1fr] lg:items-center lg:py-8">
+        <div className="order-1 -mx-5 h-[205px] sm:-mx-6 sm:h-[270px] lg:hidden">
           <img src={heroComposicao.url} alt="Suelen Gubeisse e convidados do Não Repara na Bagunça 2026" fetchPriority="high" className="hero-photo-mobile h-full w-full object-contain object-center" />
         </div>
         <div className="order-2 text-center lg:order-1 lg:text-left">
-          <img src={logoNrnb.url} alt="Não Repara na Bagunça" width={546} height={187} className="mx-auto w-[190px] sm:w-[250px] lg:mx-0 lg:w-[360px]" />
-          <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.12em] text-sky-highlight sm:mt-4 sm:text-xs sm:tracking-[0.14em]">2 DIAS • EXPERIÊNCIA PRÁTICA • 7 PASSOS DA ORGANIZAÇÃO</p>
-          <h1 className="mt-3 text-balance text-[2rem] italic leading-[1.05] text-foreground sm:mt-4 sm:text-5xl lg:max-w-[620px] lg:text-6xl">
+          <img src={logoNrnb.url} alt="Não Repara na Bagunça" width={546} height={187} className="mx-auto w-[165px] sm:w-[220px] lg:mx-0 lg:w-[290px]" />
+          <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.16em] text-sky-highlight sm:mt-3 sm:text-xs">4ª EDIÇÃO</p>
+          <h1 className="mt-2 text-balance text-[1.9rem] italic leading-[1.05] text-foreground sm:mt-3 sm:text-5xl lg:max-w-[620px] lg:text-[3.4rem]">
             Organize sua casa. Simplifique sua rotina. Viva com mais leveza.
           </h1>
-          <p className="mx-auto mt-3 max-w-xl text-balance text-sm font-medium leading-relaxed text-muted-foreground sm:mt-4 sm:text-lg lg:mx-0">
+          <p className="mx-auto mt-2.5 max-w-xl text-balance text-sm font-medium leading-relaxed text-muted-foreground sm:mt-3 sm:text-base lg:mx-0">
             Em 2 dias, aprenda os <strong>7 Passos da Organização</strong> e técnicas práticas para fazer sua casa funcionar melhor — sem depender de rotinas impossíveis de manter.
           </p>
-          <div className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-1.5 text-xs font-semibold text-foreground sm:mt-5 sm:gap-x-5 sm:gap-y-2 sm:text-sm lg:justify-start">
-            <span className="flex items-center gap-2"><Calendar className="h-4 w-4 text-sky-highlight" />24 e 25 de outubro</span>
-            <span className="flex items-center gap-2"><Clock className="h-4 w-4 text-sky-highlight" />9h às 18h30</span>
-            <span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-sky-highlight" />PIT • São José dos Campos/SP</span>
+          <div className="mt-3 grid grid-cols-3 border-y border-border text-foreground sm:mt-4">
+            <div className="flex min-w-0 items-center justify-center gap-1.5 px-1.5 py-2.5 sm:gap-2 sm:px-3 lg:justify-start">
+              <Calendar className="h-4 w-4 shrink-0 text-sky-highlight" />
+              <span className="text-left text-[10px] font-bold uppercase leading-tight sm:text-xs"><strong className="block text-xs sm:text-sm">24 + 25</strong>Outubro</span>
+            </div>
+            <div className="flex min-w-0 items-center justify-center gap-1.5 border-x border-border px-1.5 py-2.5 sm:gap-2 sm:px-3">
+              <MapPin className="h-4 w-4 shrink-0 text-sky-highlight" />
+              <span className="text-left text-[10px] font-bold uppercase leading-tight sm:text-xs">São José dos<br />Campos • SP</span>
+            </div>
+            <div className="flex min-w-0 items-center justify-center gap-1.5 px-1.5 py-2.5 sm:gap-2 sm:px-3 lg:justify-end">
+              <Clock className="h-4 w-4 shrink-0 text-sky-highlight" />
+              <span className="text-left text-[10px] font-bold leading-tight sm:text-xs"><strong className="block text-xs sm:text-sm">9h às</strong>18h30</span>
+            </div>
           </div>
-          <div className="mx-auto mt-5 max-w-md lg:mx-0 lg:mt-6">
+          <div className="mt-3 grid grid-cols-[auto_1fr] items-center gap-x-3 border border-border bg-foreground/90 px-3 py-2.5 text-primary-foreground shadow-card sm:grid-cols-[auto_1fr_auto] sm:gap-x-5 sm:px-4 lg:mt-4">
+            <div className="text-left">
+              <span className="inline-flex rounded-full bg-primary px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.1em] text-primary-foreground sm:text-[10px]">2º lote disponível</span>
+              <p className="mt-1 text-[9px] font-bold uppercase leading-tight tracking-[0.08em] text-primary-foreground/75 sm:text-[10px]">Ingressos a partir de</p>
+            </div>
+            <div className="flex items-end justify-center gap-1 whitespace-nowrap">
+              <span className="pb-0.5 text-xs font-semibold sm:text-sm">12x de</span>
+              <strong className="font-display text-[1.75rem] leading-none text-sky-highlight sm:text-4xl">R$ 15,11</strong>
+            </div>
+            <div className="col-span-2 mt-2 border-t border-primary-foreground/20 pt-2 text-center sm:col-span-1 sm:mt-0 sm:border-l sm:border-t-0 sm:pl-5 sm:pt-0 sm:text-left">
+              <p className="text-[10px] text-primary-foreground/80 sm:text-xs">ou R$ 147 à vista</p>
+              <p className="mt-0.5 text-[9px] font-bold uppercase tracking-[0.08em] text-primary-foreground sm:text-[10px]">Compromisso • VIP • Platinum</p>
+            </div>
+          </div>
+          <div className="mx-auto mt-3 max-w-md lg:mx-0 lg:mt-4">
             <TrackedCTA event="hero_cta_click" className="w-full">QUERO PARTICIPAR</TrackedCTA>
-            <p className="mt-2 text-xs font-semibold text-foreground sm:mt-3 sm:text-sm">Ingressos a partir de 12x de R$ 15,11</p>
           </div>
         </div>
       </div>
