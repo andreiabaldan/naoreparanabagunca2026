@@ -200,6 +200,30 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   return <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">{children}</p>;
 }
 
+function TopTicker() {
+  const message = "2º LOTE LIBERADO • GARANTA O SEU ANTES QUE ACABE";
+  const repetitions = Array.from({ length: 4 });
+
+  return (
+    <div className="nrnb-top-ticker bg-foreground text-primary-foreground" role="region" aria-label={message}>
+      <span className="sr-only">{message}</span>
+      <div className="nrnb-top-ticker-track" aria-hidden="true">
+        {[0, 1].map((group) => (
+          <div key={group} className="nrnb-top-ticker-group">
+            {repetitions.map((_, index) => (
+              <span key={index} className="nrnb-top-ticker-item">
+                <strong>{message}</strong>
+                <span className="nrnb-top-ticker-separator">✦</span>
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+      <span className="nrnb-top-ticker-static" aria-hidden="true">{message}</span>
+    </div>
+  );
+}
+
 function Hero() {
   return (
     <section className="hero-scene relative overflow-hidden lg:min-h-[680px]">
@@ -321,5 +345,5 @@ function ConversionLandingPage() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-  return <main className="nrnb2026-2-page min-h-screen bg-background pb-20 lg:pb-0"><div className="bg-foreground px-4 py-2.5 text-center text-[10px] font-bold uppercase tracking-[0.14em] text-primary-foreground sm:text-xs">2º LOTE LIBERADO • GARANTA O SEU ANTES QUE ACABE</div><Hero /><ProofStrip /><Objections /><Deliveries /><PracticalDifference /><ContentsAndDays /><Teachers /><SocialProof /><Tickets /><AudienceAndFaq /><FinalDecision /><Footer /><StickyCTA /><WhatsAppFloating /></main>;
+  return <main className="nrnb2026-2-page min-h-screen overflow-x-clip bg-background pb-20 lg:pb-0"><TopTicker /><Hero /><ProofStrip /><Objections /><Deliveries /><PracticalDifference /><ContentsAndDays /><Teachers /><SocialProof /><Tickets /><AudienceAndFaq /><FinalDecision /><Footer /><StickyCTA /><WhatsAppFloating /></main>;
 }
