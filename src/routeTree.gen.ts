@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as Nrnb2026ParticipeRouteImport } from './routes/nrnb2026-participe'
 import { Route as Nrnb20262RouteImport } from './routes/nrnb2026-2'
 import { Route as Nrnb20261RouteImport } from './routes/nrnb2026-1'
 import { Route as Nrnb2026RouteImport } from './routes/nrnb2026'
@@ -16,6 +17,11 @@ import { Route as EspecialRouteImport } from './routes/especial'
 import { Route as R2por1RouteImport } from './routes/2por1'
 import { Route as IndexRouteImport } from './routes/index'
 
+const Nrnb2026ParticipeRoute = Nrnb2026ParticipeRouteImport.update({
+  id: '/nrnb2026-participe',
+  path: '/nrnb2026-participe',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const Nrnb20262Route = Nrnb20262RouteImport.update({
   id: '/nrnb2026-2',
   path: '/nrnb2026-2',
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/nrnb2026': typeof Nrnb2026Route
   '/nrnb2026-1': typeof Nrnb20261Route
   '/nrnb2026-2': typeof Nrnb20262Route
+  '/nrnb2026-participe': typeof Nrnb2026ParticipeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/nrnb2026': typeof Nrnb2026Route
   '/nrnb2026-1': typeof Nrnb20261Route
   '/nrnb2026-2': typeof Nrnb20262Route
+  '/nrnb2026-participe': typeof Nrnb2026ParticipeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/nrnb2026': typeof Nrnb2026Route
   '/nrnb2026-1': typeof Nrnb20261Route
   '/nrnb2026-2': typeof Nrnb20262Route
+  '/nrnb2026-participe': typeof Nrnb2026ParticipeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,8 +90,16 @@ export interface FileRouteTypes {
     | '/nrnb2026'
     | '/nrnb2026-1'
     | '/nrnb2026-2'
+    | '/nrnb2026-participe'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/2por1' | '/especial' | '/nrnb2026' | '/nrnb2026-1' | '/nrnb2026-2'
+  to:
+    | '/'
+    | '/2por1'
+    | '/especial'
+    | '/nrnb2026'
+    | '/nrnb2026-1'
+    | '/nrnb2026-2'
+    | '/nrnb2026-participe'
   id:
     | '__root__'
     | '/'
@@ -91,6 +108,7 @@ export interface FileRouteTypes {
     | '/nrnb2026'
     | '/nrnb2026-1'
     | '/nrnb2026-2'
+    | '/nrnb2026-participe'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -100,10 +118,18 @@ export interface RootRouteChildren {
   Nrnb2026Route: typeof Nrnb2026Route
   Nrnb20261Route: typeof Nrnb20261Route
   Nrnb20262Route: typeof Nrnb20262Route
+  Nrnb2026ParticipeRoute: typeof Nrnb2026ParticipeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/nrnb2026-participe': {
+      id: '/nrnb2026-participe'
+      path: '/nrnb2026-participe'
+      fullPath: '/nrnb2026-participe'
+      preLoaderRoute: typeof Nrnb2026ParticipeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/nrnb2026-2': {
       id: '/nrnb2026-2'
       path: '/nrnb2026-2'
@@ -156,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   Nrnb2026Route: Nrnb2026Route,
   Nrnb20261Route: Nrnb20261Route,
   Nrnb20262Route: Nrnb20262Route,
+  Nrnb2026ParticipeRoute: Nrnb2026ParticipeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
