@@ -41,5 +41,5 @@
 
 ## Nova LP curta /nrnb2026-participe
 - [x] Criar rota independente conforme briefing aprovado
-- [ ] Validar desktop, mobile, CTAs, checkouts, UTMs e tracking
-- [ ] Confirmar que a página principal permaneceu intacta
+- [x] Validar desktop, mobile, CTAs, checkouts, UTMs e tracking
+- [x] Confirmar que a página principal permaneceu intacta
