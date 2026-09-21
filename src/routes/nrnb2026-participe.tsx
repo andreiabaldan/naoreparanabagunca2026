@@ -102,8 +102,8 @@ const TICKETS: Ticket[] = [
     includesFrom: "TUDO DO INGRESSO VIP +",
     benefits: [
       "Sacola com brindes exclusivos",
-      "Assentos nas primeiras fileiras (1ª e 2ª fileira — melhor localização da plateia)",
-      "Curso online completo de organização da casa toda por 1 ano",
+      "Assentos nas primeiras fileiras (1ª e 2ª fileira com a melhor localização da plateia)",
+      "Curso online completo de organização da casa toda, por 1 ano",
       "Um encontro ao vivo com a Suelen para tirar dúvidas no momento da prática",
     ],
     event: "ticket_platinum_click",
@@ -123,19 +123,19 @@ const SPEAKERS = [
 ];
 
 const OBJECTIONS = [
-  ["Eu já tentei cronogramas e rotinas de organização.", "Você não precisa de mais uma rotina pronta para tentar encaixar na sua vida. Precisa entender técnicas e criar uma organização que funcione para a sua realidade."],
-  ["Eu arrumo, mas depois tudo volta a ficar bagunçado.", "O objetivo não é organizar uma vez. É aprender formas de manter a casa funcionando sem precisar recomeçar do zero toda semana."],
-  ["Eu simplesmente não tenho tempo para dar conta de tudo.", "Organização não deveria criar mais tarefas. Ela precisa simplificar decisões, ambientes e rotina."],
+  ["Eu já tentei cronogramas e rotinas de organização.", "\n"],
+  ["Eu arrumo, mas depois tudo volta a ficar bagunçado.", "\n"],
+  ["Eu simplesmente não tenho tempo para dar conta de tudo.", "\n"],
 ];
 
 const DELIVERIES: Array<{ icon: LucideIcon; title: string; text: string }> = [
   { icon: Home, title: "ORGANIZAR", text: "Técnicas práticas para organizar ambientes, guarda-roupa, limpeza e os espaços que fazem parte da sua rotina." },
-  { icon: Check, title: "MANTER", text: "Aprenda a criar uma lógica de organização que você consiga manter — em vez de arrumar tudo e ver a bagunça voltar." },
+  { icon: Check, title: "MANTER", text: "Aprenda a criar uma lógica de organização que você consiga manter, em vez de arrumar tudo e ver a bagunça voltar." },
   { icon: Heart, title: "VIVER MAIS LEVE", text: "Menos tempo apagando incêndios dentro de casa e mais espaço para você, sua família, seus planos e sua vida." },
 ];
 
 const CONTENTS = [
-  "Organização residencial", "Guarda-roupa", "Limpeza", "Mesa e cama posta", "Finanças",
+  "Organização residencial", "Guarda-roupa", "Limpeza\ndoméstica", "Mesa e cama posta", "Finanças",
   "Saúde e bem-estar", "Organização da mente", "Rotina", "Imagem e estilo", "Arquitetura e funcionalidade",
 ];
 
@@ -241,12 +241,12 @@ function Hero() {
             Organize sua casa. Simplifique sua rotina. Viva com mais leveza.
           </h1>
           <p className="mx-auto mt-2.5 max-w-xl text-balance text-sm font-medium leading-relaxed text-muted-foreground sm:mt-3 sm:text-base lg:mx-0">
-            Em 2 dias, aprenda os <strong>7 Passos da Organização</strong> e técnicas práticas para fazer sua casa funcionar melhor — sem depender de rotinas impossíveis de manter.
+            Em 2 dias, aprenda os <strong>7 Passos da Organização</strong> e técnicas práticas para fazer sua casa funcionar melhor, sem depender de rotinas impossíveis de manter.
           </p>
           <div className="mt-3 grid grid-cols-3 border-y border-border text-foreground sm:mt-4">
             <div className="flex min-w-0 items-center justify-center gap-1.5 px-1.5 py-2.5 sm:gap-2 sm:px-3 lg:justify-start">
               <Calendar className="h-4 w-4 shrink-0 text-sky-highlight" />
-              <span className="text-left text-[10px] font-bold uppercase leading-tight sm:text-xs"><strong className="block text-xs sm:text-sm">24 + 25</strong>Outubro</span>
+              <span className="text-left text-[10px] font-bold uppercase leading-tight sm:text-xs"><strong className="block text-xs sm:text-sm">24 E 25</strong>Outubro</span>
             </div>
             <div className="flex min-w-0 items-center justify-center gap-1.5 border-x border-border px-1.5 py-2.5 sm:gap-2 sm:px-3">
               <MapPin className="h-4 w-4 shrink-0 text-sky-highlight" />
@@ -294,11 +294,11 @@ function Deliveries() {
 
 function PracticalDifference() {
   const photos = [nrnb1.url, nova4.url, nova2.url, nova1.url];
-  return <Section className="bg-sky-tint"><div className="grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr]"><div><Eyebrow>Na prática</Eyebrow><h2 className="mt-4 text-balance text-3xl leading-tight sm:text-5xl">Você não vai passar 2 dias apenas ouvindo falar de organização.</h2><p className="mt-4 text-base leading-relaxed text-muted-foreground">O NRNB reúne método, demonstrações, técnicas e especialistas para você entender como aplicar a organização na sua própria realidade.</p><p className="mt-5 text-lg font-bold text-primary">Você sai sabendo o que fazer — e não apenas inspirada para tentar depois.</p><span className="mt-5 inline-flex rounded-full border border-primary/25 bg-card px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-primary">MÉTODO • 7 PASSOS DA ORGANIZAÇÃO</span></div><div className="grid grid-cols-2 gap-3">{photos.map((src, index) => <img key={src} src={src} alt={`Experiência real do NRNB ${index + 1}`} loading="lazy" className={`w-full rounded-lg object-cover ${index === 0 ? "col-span-2 aspect-[2/1]" : "aspect-square"}`} />)}</div></div></Section>;
+  return <Section className="bg-sky-tint"><div className="grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr]"><div><Eyebrow>Na prática</Eyebrow><h2 className="mt-4 text-balance text-3xl leading-tight sm:text-5xl">Você não vai passar 2 dias apenas ouvindo falar de organização.</h2><p className="mt-4 text-base leading-relaxed text-muted-foreground">O NRNB reúne método, demonstrações, técnicas e especialistas para você entender como aplicar a organização na sua própria realidade.</p><p className="mt-5 text-lg font-bold text-primary">Você sai sabendo o que fazer, e não apenas inspirada para tentar depois.</p><span className="mt-5 inline-flex rounded-full border border-primary/25 bg-card px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-primary">MÉTODO • 7 PASSOS DA ORGANIZAÇÃO</span></div><div className="grid grid-cols-2 gap-3">{photos.map((src, index) => <img key={src} src={src} alt={`Experiência real do NRNB ${index + 1}`} loading="lazy" className={`w-full rounded-lg object-cover ${index === 0 ? "col-span-2 aspect-[2/1]" : "aspect-square"}`} />)}</div></div></Section>;
 }
 
 function ContentsAndDays() {
-  return <><Section><div className="text-center"><Eyebrow>Você vai aprender sobre</Eyebrow><h2 className="mt-4 text-balance text-3xl leading-tight sm:text-5xl">Da casa à rotina. Da organização ao seu bem-estar.</h2></div><div className="mx-auto mt-8 grid max-w-5xl grid-cols-2 gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-3 lg:grid-cols-5">{CONTENTS.map((content) => <div key={content} className="flex min-h-24 items-center justify-center bg-card p-4 text-center text-sm font-semibold">{content}</div>)}</div><p className="mt-4 text-center text-sm text-muted-foreground">+ outros conteúdos durante os 2 dias.</p></Section><Section className="surface-rose"><div className="text-center"><Eyebrow>24 e 25 de outubro</Eyebrow><h2 className="mx-auto mt-4 max-w-3xl text-balance text-3xl leading-tight sm:text-5xl">Dois dias para sair do “eu preciso me organizar” e começar a saber como.</h2></div><div className="mx-auto mt-8 grid max-w-4xl gap-4 md:grid-cols-2">{[["DIA 1", "ENTENDER E ORGANIZAR", "Você começa entendendo os princípios, técnicas e decisões que fazem uma casa funcionar melhor."], ["DIA 2", "APLICAR E MANTER", "Você aprofunda as soluções e conecta organização, rotina e vida para conseguir manter o que construiu."]].map(([day, title, text]) => <article key={day} className="border border-border bg-card p-6"><p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">{day}</p><h3 className="mt-3 text-2xl font-bold">{title}</h3><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{text}</p></article>)}</div><p className="mt-4 text-center text-xs text-muted-foreground">Uma narrativa da experiência; a programação oficial será divulgada posteriormente.</p></Section></>;
+  return <><Section><div className="text-center"><Eyebrow>VOCÊ VAI APRENDER</Eyebrow><h2 className="mt-4 text-balance text-3xl leading-tight sm:text-5xl">Da casa à rotina. Da organização ao seu bem-estar.</h2></div><div className="mx-auto mt-8 grid max-w-5xl grid-cols-2 gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-3 lg:grid-cols-5">{CONTENTS.map((content) => <div key={content} className="flex min-h-24 items-center justify-center whitespace-pre-line bg-card p-4 text-center text-sm font-semibold">{content}</div>)}</div><p className="mt-4 text-center text-sm text-muted-foreground">+ outros conteúdos durante os 2 dias.</p></Section><Section className="surface-rose"><div className="text-center"><Eyebrow>24 e 25 de outubro</Eyebrow><h2 className="mx-auto mt-4 max-w-3xl text-balance text-3xl leading-tight sm:text-5xl">Dois dias para sair do “eu preciso me organizar” e começar a saber como.</h2></div><div className="mx-auto mt-8 grid max-w-4xl gap-4 md:grid-cols-2">{[["DIA 1", "ENTENDER E ORGANIZAR", "Você começa entendendo os princípios, técnicas e decisões que fazem uma casa funcionar melhor."], ["DIA 2", "APLICAR E MANTER", "Você aprofunda as soluções e conecta organização, rotina e vida para conseguir manter o que construiu."]].map(([day, title, text]) => <article key={day} className="border border-border bg-card p-6"><p className="text-xs font-bold uppercase tracking-[0.16em] text-primary">{day}</p><h3 className="mt-3 text-2xl font-bold">{title}</h3><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{text}</p></article>)}</div><p className="mt-4 text-center text-xs text-muted-foreground">Uma narrativa da experiência, a programação oficial será divulgada posteriormente.</p></Section></>;
 }
 
 function SpeakerCard({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
@@ -307,7 +307,7 @@ function SpeakerCard({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
 }
 
 function Teachers() {
-  return <Section><div className="grid items-center gap-6 border-y border-border py-8 md:grid-cols-[42%_1fr]"><img src={suelenPhoto.url} alt="Suelen Gubeisse, idealizadora e anfitriã" loading="lazy" className="aspect-[4/3] w-full rounded-lg object-cover object-center md:aspect-[4/5]" /><div><Eyebrow>Idealizadora e anfitriã</Eyebrow><h2 className="mt-3 text-4xl sm:text-5xl">Suelen Gubeisse</h2><p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">Suelen criou o Não Repara na Bagunça para levar a organização para a vida real — de quem trabalha, cuida da casa, da família e precisa de soluções possíveis de manter.</p></div></div><div className="mt-12 text-center"><h2 className="mx-auto max-w-3xl text-balance text-3xl leading-tight sm:text-5xl">Especialistas para olhar a organização por diferentes partes da sua vida.</h2></div><div className="mt-8"><CarouselRow ariaLabel="Especialistas do NRNB 2026" hint="Deslize para conhecer →" itemClassName="w-[82%] sm:w-[46%] lg:w-[31%]" items={SPEAKERS.map((speaker) => <SpeakerCard key={speaker.name} speaker={speaker} />)} /></div></Section>;
+  return <Section><div className="grid items-center gap-6 border-y border-border py-8 md:grid-cols-[42%_1fr]"><img src={suelenPhoto.url} alt="Suelen Gubeisse, idealizadora e anfitriã" loading="lazy" className="aspect-[4/3] w-full rounded-lg object-cover object-center md:aspect-[4/5]" /><div><Eyebrow>Idealizadora e anfitriã</Eyebrow><h2 className="mt-3 text-4xl sm:text-5xl">Suelen Gubeisse</h2><p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">Suelen criou o Não Repara na Bagunça para levar a organização para a vida real de quem trabalha, cuida da casa, da família e precisa de soluções possíveis de manter.</p></div></div><div className="mt-12 text-center"><h2 className="mx-auto max-w-3xl text-balance text-3xl leading-tight sm:text-5xl">Especialistas para olhar a organização por diferentes partes da sua vida.</h2></div><div className="mt-8"><CarouselRow ariaLabel="Especialistas do NRNB 2026" hint="Deslize para conhecer →" itemClassName="w-[82%] sm:w-[46%] lg:w-[31%]" items={SPEAKERS.map((speaker) => <SpeakerCard key={speaker.name} speaker={speaker} />)} /></div></Section>;
 }
 
 function SocialProof() {
