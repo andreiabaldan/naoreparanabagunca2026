@@ -52,7 +52,12 @@ export type TrackEvent =
   | "nrnb_2for1_experience_click"
   | "nrnb_2for1_offer_click"
   | "nrnb_2for1_whatsapp_click"
-  | "nrnb_2for1_timer_expired";
+  | "nrnb_2for1_timer_expired"
+  | "view_speakers"
+  | "view_schedule"
+  | "view_tickets"
+  | "faq_open"
+  | "checkout_click";
 
 
 declare global {
