@@ -46,3 +46,9 @@
 - [x] Transformar a faixa preta em ticker contínuo e acessível
 - [x] Reorganizar o Hero com promessa, serviço, preço inicial e CTA
 - [x] Validar o novo Hero no desktop e celular sem alterar os ingressos
+
+## Nova LP NRNB 2026 — briefing integral
+- [ ] Analisar briefing e conteúdo reutilizável
+- [ ] Criar rota independente sem alterar páginas existentes
+- [ ] Implementar estrutura, copy, imagens, ingressos e mensuração
+- [ ] Validar desktop, mobile, links e páginas atuais
