@@ -48,7 +48,7 @@
 - [x] Validar o novo Hero no desktop e celular sem alterar os ingressos
 
 ## Nova LP NRNB 2026 — briefing integral
-- [ ] Analisar briefing e conteúdo reutilizável
-- [ ] Criar rota independente sem alterar páginas existentes
-- [ ] Implementar estrutura, copy, imagens, ingressos e mensuração
+- [x] Analisar briefing e conteúdo reutilizável
+- [x] Criar rota independente sem alterar páginas existentes
+- [x] Implementar estrutura, copy, imagens, ingressos e mensuração
 - [ ] Validar desktop, mobile, links e páginas atuais
