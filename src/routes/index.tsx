@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { NewNrnbLanding } from "./nrnb2026-nova";
 
+const SOCIAL_IMAGE =
+  "https://naoreparanabagunca.com.br/__l5e/assets-v1/5c769b68-e747-424f-8dee-1c949e5b7f59/nrnb-whatsapp-hero.jpg";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -20,7 +23,9 @@ export const Route = createFileRoute("/")({
           "Viva dois dias de conteúdo, experiências e conexões para organizar casa, rotina e vida de um jeito possível de manter.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: SOCIAL_IMAGE },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: SOCIAL_IMAGE },
     ],
     links: [{ rel: "canonical", href: "https://naoreparanabagunca.com.br/" }],
   }),
