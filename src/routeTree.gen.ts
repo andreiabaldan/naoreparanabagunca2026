@@ -17,6 +17,7 @@ import { Route as Nrnb20261RouteImport } from './routes/nrnb2026-1'
 import { Route as Nrnb2026RouteImport } from './routes/nrnb2026'
 import { Route as EspecialRouteImport } from './routes/especial'
 import { Route as R2por1RouteImport } from './routes/2por1'
+import { Route as IndexRouteImport } from './routes/index'
 
 const Nrnb2026ParticipeRoute = Nrnb2026ParticipeRouteImport.update({
   id: '/nrnb2026-participe',
@@ -58,8 +59,14 @@ const R2por1Route = R2por1RouteImport.update({
   path: '/2por1',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
   '/2por1': typeof R2por1Route
   '/especial': typeof EspecialRoute
   '/nrnb2026': typeof Nrnb2026Route
@@ -70,6 +77,7 @@ export interface FileRoutesByFullPath {
   '/nrnb2026-participe': typeof Nrnb2026ParticipeRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
   '/2por1': typeof R2por1Route
   '/especial': typeof EspecialRoute
   '/nrnb2026': typeof Nrnb2026Route
@@ -81,6 +89,7 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
   '/2por1': typeof R2por1Route
   '/especial': typeof EspecialRoute
   '/nrnb2026': typeof Nrnb2026Route
@@ -93,6 +102,7 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/2por1'
     | '/especial'
     | '/nrnb2026'
@@ -103,6 +113,7 @@ export interface FileRouteTypes {
     | '/nrnb2026-participe'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/2por1'
     | '/especial'
     | '/nrnb2026'
@@ -113,6 +124,7 @@ export interface FileRouteTypes {
     | '/nrnb2026-participe'
   id:
     | '__root__'
+    | '/'
     | '/2por1'
     | '/especial'
     | '/nrnb2026'
@@ -124,6 +136,7 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
   R2por1Route: typeof R2por1Route
   EspecialRoute: typeof EspecialRoute
   Nrnb2026Route: typeof Nrnb2026Route
@@ -192,10 +205,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R2por1RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   R2por1Route: R2por1Route,
   EspecialRoute: EspecialRoute,
   Nrnb2026Route: Nrnb2026Route,
