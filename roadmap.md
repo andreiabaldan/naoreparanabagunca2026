@@ -59,3 +59,10 @@
 - [x] Simplificar a seção azul conforme a nova copy
 - [x] Reestruturar a hierarquia dos cards de palestrantes
 - [x] Validar desktop e mobile sem alterar estrutura, links ou conteúdo protegido
+
+## Publicação da nova LP na página principal
+- [x] Preservar a página principal anterior em /nrnb2026-anterior
+- [x] Servir a nova LP diretamente em /
+- [x] Manter /nrnb2026-nova disponível
+- [x] Validar rotas, recursos, links, tracking e metadados
+- [x] Verificar segurança e solicitar publicação
