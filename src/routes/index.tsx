@@ -1982,6 +1982,7 @@ function Sponsors() {
             Quer conhecer as possibilidades de parceria e patrocínio do evento? Fale com a nossa equipe.
           </p>
           <a
+            suppressHydrationWarning
             href={sponsorWhatsAppUrl}
             target="_blank"
             rel="noopener noreferrer"
