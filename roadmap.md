@@ -58,4 +58,4 @@
 - [x] Padronizar CTAs magenta com contraste e interação
 - [x] Simplificar a seção azul conforme a nova copy
 - [x] Reestruturar a hierarquia dos cards de palestrantes
-- [ ] Validar desktop e mobile sem alterar estrutura, links ou conteúdo protegido
+- [x] Validar desktop e mobile sem alterar estrutura, links ou conteúdo protegido
