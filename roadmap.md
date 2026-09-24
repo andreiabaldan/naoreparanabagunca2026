@@ -64,5 +64,5 @@
 - [x] Preservar a página principal anterior em /nrnb2026-anterior
 - [x] Servir a nova LP diretamente em /
 - [x] Manter /nrnb2026-nova disponível
-- [ ] Validar rotas, recursos, links, tracking e metadados
-- [ ] Verificar segurança e solicitar publicação
+- [x] Validar rotas, recursos, links, tracking e metadados
+- [x] Verificar segurança e solicitar publicação
