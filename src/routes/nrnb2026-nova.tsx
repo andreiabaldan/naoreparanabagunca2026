@@ -209,7 +209,7 @@ function Footer() { return <footer className="bg-foreground px-5 py-10 text-back
 function StickyCTA() { const [show,setShow]=useState(false);useEffect(()=>{const f=()=>setShow(window.scrollY>window.innerHeight*.75);f();window.addEventListener("scroll",f,{passive:true});return()=>window.removeEventListener("scroll",f);},[]);return <div className={`fixed inset-x-0 bottom-0 z-50 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-t border-border bg-surface/95 px-4 py-2 backdrop-blur transition-transform lg:hidden ${show?"translate-y-0":"translate-y-full"}`}><p className="min-w-0 truncate text-sm font-bold">NRNB • 24 E 25 OUT</p><Button type="button" size="sm" onClick={()=>{track("sticky_cta_click",{variant:VARIANT});goTo("ingressos");}} className="bg-primary text-primary-foreground">VER INGRESSOS</Button></div>; }
 function WhatsApp() { return <a suppressHydrationWarning href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp" onClick={()=>track("whatsapp_floating_click",{variant:VARIANT})} className="fixed bottom-20 right-4 z-30 grid h-12 w-12 place-items-center rounded-full bg-whatsapp text-primary-foreground shadow-card lg:bottom-6 lg:right-6"><MessageCircle/></a>; }
 
-function NewNrnbLanding() {
-  useEffect(()=>{track("page_view",{variant:VARIANT,page:"/nrnb2026-nova"});},[]);
+export function NewNrnbLanding({ page = "/nrnb2026-nova" }: { page?: string }) {
+  useEffect(()=>{track("page_view",{variant:VARIANT,page});},[page]);
   return <main className="nrnb2026-nova-page min-h-screen overflow-x-clip bg-background pb-16 lg:pb-0"><Ticker/><Hero/><Navigation/><Identification/><Presentation/><Benefits/><Topics/><EventExperience/><Speakers/><Schedule/><SocialProof/><Fair/><Tickets/><AboutSuelen/><Closing/><Faq/><FinalCTA/><Footer/><StickyCTA/><WhatsApp/></main>;
 }
