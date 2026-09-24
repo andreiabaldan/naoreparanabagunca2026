@@ -78,3 +78,9 @@
 - [x] Atualizar apenas os checkouts Compromisso e VIP
 - [x] Remover a repetição promocional da Programação
 - [x] Validar desktop, mobile, âncoras e checkouts
+
+## Ajuste de escala do Hero e presença da marca
+- [x] Reduzir em 20% a headline do Hero
+- [x] Dobrar o tamanho do logo do Hero com limite responsivo
+- [x] Repetir o logo em mais três pontos da página
+- [ ] Validar desktop e mobile
