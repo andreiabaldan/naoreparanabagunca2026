@@ -119,7 +119,7 @@ function CTA({ children, event = "benefits_cta_click", className = "" }: { child
 }
 function Section({ children, id, className = "" }: { children: React.ReactNode; id?: string; className?: string }) { return <section id={id} className={`scroll-mt-20 px-5 py-14 sm:px-6 sm:py-20 ${className}`}><div className="mx-auto max-w-6xl">{children}</div></section>; }
 function Eyebrow({ children }: { children: React.ReactNode }) { return <p className="text-sm font-bold uppercase tracking-[0.14em] text-primary">{children}</p>; }
-function LogoDivider() { return <div className="bg-surface px-5 py-10 sm:px-6 sm:py-14"><img src={logoNrnb.url} alt="Não Repara na Bagunça" loading="lazy" className="mx-auto w-80 max-w-full sm:w-[26rem]" /></div>; }
+function LogoDivider() { return <div className="bg-event-magenta px-5 py-10 sm:px-6 sm:py-14"><img src={logoNrnb.url} alt="Não Repara na Bagunça" loading="lazy" className="mx-auto w-80 max-w-full sm:w-[26rem]" /></div>; }
 
 function TwoForOneCallout({
   context,
