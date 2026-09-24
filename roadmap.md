@@ -71,3 +71,10 @@
 - [x] Destacar a oferta no Hero e nos pontos estratégicos da jornada
 - [x] Aplicar 2 por 1 somente aos ingressos Compromisso e VIP
 - [x] Validar desktop, mobile, âncoras, checkouts e preservação do Platinum
+
+## Ajustes pontuais da campanha na página principal
+- [x] Diferenciar visualmente os boxes promocionais dos CTAs
+- [x] Reordenar faixa, menu e Hero e adicionar CTA na identificação
+- [x] Atualizar apenas os checkouts Compromisso e VIP
+- [x] Remover a repetição promocional da Programação
+- [x] Validar desktop, mobile, âncoras e checkouts
