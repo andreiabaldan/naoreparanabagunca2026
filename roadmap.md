@@ -77,4 +77,4 @@
 - [x] Reordenar faixa, menu e Hero e adicionar CTA na identificação
 - [x] Atualizar apenas os checkouts Compromisso e VIP
 - [x] Remover a repetição promocional da Programação
-- [ ] Validar desktop, mobile, âncoras e checkouts
+- [x] Validar desktop, mobile, âncoras e checkouts
