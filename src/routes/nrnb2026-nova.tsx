@@ -115,7 +115,7 @@ export const Route = createFileRoute("/nrnb2026-nova")({
 
 function goTo(id: string) { document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }); }
 function CTA({ children, event = "benefits_cta_click", className = "" }: { children: React.ReactNode; event?: "hero_cta_click" | "benefits_cta_click" | "final_cta_click" | "sticky_cta_click"; className?: string }) {
-  return <Button type="button" size="lg" onClick={() => { track(event, { variant: VARIANT }); goTo("ingressos"); }} className={`h-auto min-h-12 rounded-md bg-cta-magenta px-7 py-3.5 text-center text-sm font-bold uppercase text-primary-foreground shadow-card hover:brightness-110 ${className}`}>{children}<ArrowRight /></Button>;
+  return <Button type="button" size="lg" onClick={() => { track(event, { variant: VARIANT }); goTo("ingressos"); }} className={`h-auto min-h-12 rounded-md bg-cta-magenta px-7 py-3.5 text-center text-sm font-bold uppercase text-background shadow-card hover:brightness-110 ${className}`}>{children}<ArrowRight /></Button>;
 }
 function Section({ children, id, className = "" }: { children: React.ReactNode; id?: string; className?: string }) { return <section id={id} className={`scroll-mt-20 px-5 py-14 sm:px-6 sm:py-20 ${className}`}><div className="mx-auto max-w-6xl">{children}</div></section>; }
 function Eyebrow({ children }: { children: React.ReactNode }) { return <p className="text-sm font-bold uppercase tracking-[0.14em] text-primary">{children}</p>; }
