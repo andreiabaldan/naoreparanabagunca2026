@@ -65,6 +65,7 @@
   --color-event-magenta: var(--event-magenta);
   --color-event-blue: var(--event-blue);
   --color-event-magenta-hover: var(--event-magenta-hover);
+  --color-event-on-magenta: var(--event-on-magenta);
 }
 
 :root {
@@ -96,6 +97,7 @@
   --event-magenta: oklch(0.485 0.195 342.6);
   --event-magenta-hover: oklch(0.425 0.174 342.6);
   --event-blue: oklch(0.922 0.015 256.8);
+  --event-on-magenta: #ffffff;
 
   --primary: #9c0369;
   --primary-foreground: #ffffff;
@@ -584,13 +586,13 @@
 
 .nrnb2026-nova-page .nrnb-nova-cta {
   background: var(--event-magenta);
-  color: var(--primary-foreground);
+  color: var(--event-on-magenta);
   transition: background-color 180ms ease, box-shadow 180ms ease, transform 120ms ease;
 }
 
 .nrnb2026-nova-page .nrnb-nova-cta:hover {
   background: var(--event-magenta-hover);
-  color: var(--primary-foreground);
+  color: var(--event-on-magenta);
   box-shadow: var(--shadow-glow);
 }
 
@@ -614,6 +616,11 @@
 
 .nrnb-nova-speaker-card {
   min-height: 100%;
+}
+
+.nrnb2026-nova-page .nrnb-nova-offer {
+  background: var(--event-magenta);
+  color: var(--event-on-magenta);
 }
 
 @media (prefers-reduced-motion: reduce) {

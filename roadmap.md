@@ -66,3 +66,8 @@
 - [x] Manter /nrnb2026-nova disponível
 - [x] Validar rotas, recursos, links, tracking e metadados
 - [x] Verificar segurança e solicitar publicação
+
+## Campanha 2 por 1 na página principal
+- [x] Destacar a oferta no Hero e nos pontos estratégicos da jornada
+- [x] Aplicar 2 por 1 somente aos ingressos Compromisso e VIP
+- [x] Validar desktop, mobile, âncoras, checkouts e preservação do Platinum
