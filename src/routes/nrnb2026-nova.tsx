@@ -35,7 +35,7 @@ import testimonialVideo from "@/assets/depoimento-1.mp4.asset.json";
 import testimonialPoster from "@/assets/depoimento-1-poster.jpg.asset.json";
 
 const VARIANT = "nrnb2026-nova";
-const WHATSAPP_URL = `https://wa.me/5512991402832?text=${encodeURIComponent("Olá, Suelen. Vim da nova página do NRNB 2026 e quero tirar uma dúvida sobre o evento.")}`;
+const WHATSAPP_URL = `https://wa.me/5512991402832?text=${encodeURIComponent("Olá, Suelen. Vim do site e quero tirar uma dúvida sobre o evento.")}`;
 
 type Ticket = {
   id: "compromisso" | "vip" | "platinum";
