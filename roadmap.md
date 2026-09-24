@@ -51,4 +51,4 @@
 - [x] Analisar briefing e conteúdo reutilizável
 - [x] Criar rota independente sem alterar páginas existentes
 - [x] Implementar estrutura, copy, imagens, ingressos e mensuração
-- [ ] Validar desktop, mobile, links e páginas atuais
+- [x] Validar desktop, mobile, links e páginas atuais
