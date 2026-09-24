@@ -52,3 +52,10 @@
 - [x] Criar rota independente sem alterar páginas existentes
 - [x] Implementar estrutura, copy, imagens, ingressos e mensuração
 - [x] Validar desktop, mobile, links e páginas atuais
+
+## Refinamento visual de /nrnb2026-nova
+- [x] Aplicar Manrope e reforçar a hierarquia dos títulos
+- [x] Padronizar CTAs magenta com contraste e interação
+- [x] Simplificar a seção azul conforme a nova copy
+- [x] Reestruturar a hierarquia dos cards de palestrantes
+- [ ] Validar desktop e mobile sem alterar estrutura, links ou conteúdo protegido

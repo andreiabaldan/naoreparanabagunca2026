@@ -115,7 +115,7 @@ export const Route = createFileRoute("/nrnb2026-nova")({
 
 function goTo(id: string) { document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" }); }
 function CTA({ children, event = "benefits_cta_click", className = "" }: { children: React.ReactNode; event?: "hero_cta_click" | "benefits_cta_click" | "final_cta_click" | "sticky_cta_click"; className?: string }) {
-  return <Button type="button" size="lg" onClick={() => { track(event, { variant: VARIANT }); goTo("ingressos"); }} className={`h-auto min-h-12 rounded-md bg-cta-magenta px-7 py-3.5 text-center text-sm font-bold uppercase text-background shadow-card hover:brightness-110 ${className}`}>{children}<ArrowRight /></Button>;
+  return <Button type="button" size="lg" onClick={() => { track(event, { variant: VARIANT }); goTo("ingressos"); }} className={`nrnb-nova-cta h-auto min-h-12 rounded-md px-7 py-4 text-center text-sm font-bold uppercase shadow-card ${className}`}>{children}<ArrowRight /></Button>;
 }
 function Section({ children, id, className = "" }: { children: React.ReactNode; id?: string; className?: string }) { return <section id={id} className={`scroll-mt-20 px-5 py-14 sm:px-6 sm:py-20 ${className}`}><div className="mx-auto max-w-6xl">{children}</div></section>; }
 function Eyebrow({ children }: { children: React.ReactNode }) { return <p className="text-sm font-bold uppercase tracking-[0.14em] text-primary">{children}</p>; }
@@ -141,7 +141,7 @@ function Identification() {
 }
 
 function Presentation() {
-  return <Section className="surface-blue"><div className="mx-auto max-w-4xl text-center"><Eyebrow>Não Repara na Bagunça 2026</Eyebrow><h2 className="mt-4 text-balance text-3xl leading-tight sm:text-5xl">Organização não é sobre ter uma casa perfeita. É sobre ter uma vida que funciona melhor.</h2><p className="mx-auto mt-6 max-w-3xl leading-relaxed text-muted-foreground">O Não Repara na Bagunça chega à sua 4ª edição reunindo mulheres, especialistas e marcas para dois dias de aprendizado, experiências e conexões.</p><p className="mt-3 text-lg font-semibold">Você vai descobrir práticas para organizar não apenas espaços, mas também diferentes áreas da vida.</p><div className="mt-8"><CTA>QUERO PARTICIPAR DO NRNB 2026</CTA></div></div></Section>;
+  return <Section className="nrnb-nova-presentation"><div className="mx-auto max-w-4xl text-center"><Eyebrow>Não Repara na Bagunça 2026</Eyebrow><h2 className="mt-4 text-balance text-3xl leading-tight sm:text-5xl">Organização não é sobre ter uma casa perfeita. É sobre ter uma vida que funciona melhor.</h2><p className="mx-auto mt-6 max-w-3xl leading-relaxed text-muted-foreground">O Não Repara na Bagunça chega à sua 4ª edição para mostrar, na prática, como a organização pode transformar não apenas os seus espaços, mas também sua rotina, seu tempo e diferentes áreas da sua vida.</p><div className="mt-8"><CTA>QUERO PARTICIPAR DO NRNB 2026</CTA></div></div></Section>;
 }
 
 function Benefits() {
@@ -158,7 +158,7 @@ function EventExperience() {
 
 function SpeakerCard({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
   const [open,setOpen]=useState(false);
-  return <article className="flex h-full flex-col border border-border bg-card p-4 shadow-card"><div className="aspect-[4/3] overflow-hidden bg-sky-tint"><img src={speaker.photo} alt={`Foto de ${speaker.name}`} loading="lazy" className="h-full w-full object-contain object-bottom" /></div><h3 className="mt-4 text-xl font-semibold">{speaker.name}</h3><p className="mt-1 text-sm text-muted-foreground">{speaker.specialty}</p><p className="mt-2 text-sm font-bold text-primary">{speaker.topic}</p>{open && <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{speaker.bio}</p>}<Button type="button" variant="ghost" size="sm" onClick={() => setOpen(v=>!v)} className="mt-auto self-start px-0 text-primary">{open ? "Fechar" : "Conheça"}<ChevronRight /></Button></article>;
+  return <article className="nrnb-nova-speaker-card flex h-full flex-col border border-border bg-card p-4 shadow-card"><div className="aspect-[4/3] overflow-hidden bg-sky-tint"><img src={speaker.photo} alt={`Foto de ${speaker.name}`} loading="lazy" className="h-full w-full object-contain object-bottom" /></div><h3 className="mt-4 text-xl font-bold">{speaker.name}</h3><p className="mt-3 text-lg font-bold leading-snug text-primary">{speaker.topic}</p>{open && <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{speaker.bio}</p>}<Button type="button" variant="ghost" size="sm" onClick={() => setOpen(v=>!v)} aria-expanded={open} className="mt-auto self-start px-0 pt-4 font-bold text-primary hover:text-primary">{open ? "Ver menos ↑" : "Conheça a palestrante →"}</Button></article>;
 }
 
 function Speakers() {
@@ -211,5 +211,5 @@ function WhatsApp() { return <a suppressHydrationWarning href={WHATSAPP_URL} tar
 
 function NewNrnbLanding() {
   useEffect(()=>{track("page_view",{variant:VARIANT,page:"/nrnb2026-nova"});},[]);
-  return <main className="min-h-screen overflow-x-clip bg-background pb-16 lg:pb-0"><Ticker/><Hero/><Navigation/><Identification/><Presentation/><Benefits/><Topics/><EventExperience/><Speakers/><Schedule/><SocialProof/><Fair/><Tickets/><AboutSuelen/><Closing/><Faq/><FinalCTA/><Footer/><StickyCTA/><WhatsApp/></main>;
+  return <main className="nrnb2026-nova-page min-h-screen overflow-x-clip bg-background pb-16 lg:pb-0"><Ticker/><Hero/><Navigation/><Identification/><Presentation/><Benefits/><Topics/><EventExperience/><Speakers/><Schedule/><SocialProof/><Fair/><Tickets/><AboutSuelen/><Closing/><Faq/><FinalCTA/><Footer/><StickyCTA/><WhatsApp/></main>;
 }
