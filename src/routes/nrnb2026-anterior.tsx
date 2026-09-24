@@ -398,7 +398,7 @@ const TICKETS: Ticket[] = [
 ];
 
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/nrnb2026-anterior")({
   component: LandingPage,
   head: () => ({
     meta: [
