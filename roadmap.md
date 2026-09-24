@@ -83,4 +83,4 @@
 - [x] Reduzir em 20% a headline do Hero
 - [x] Dobrar o tamanho do logo do Hero com limite responsivo
 - [x] Repetir o logo em mais três pontos da página
-- [ ] Validar desktop e mobile
+- [x] Validar desktop e mobile
