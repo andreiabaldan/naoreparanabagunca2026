@@ -619,8 +619,17 @@
 }
 
 .nrnb2026-nova-page .nrnb-nova-offer {
-  background: var(--event-magenta);
+  background: rgb(255 255 255 / 0.1);
+  border-radius: 0.25rem;
   color: var(--event-on-magenta);
+  cursor: default;
+}
+
+.nrnb2026-nova-page .nrnb-nova-topic-offer {
+  background: var(--event-on-magenta);
+  border-color: var(--border);
+  border-radius: 0.375rem;
+  color: var(--cta-dark);
 }
 
 @media (prefers-reduced-motion: reduce) {
