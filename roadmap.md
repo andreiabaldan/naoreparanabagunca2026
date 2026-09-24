@@ -70,4 +70,4 @@
 ## Campanha 2 por 1 na página principal
 - [x] Destacar a oferta no Hero e nos pontos estratégicos da jornada
 - [x] Aplicar 2 por 1 somente aos ingressos Compromisso e VIP
-- [ ] Validar desktop, mobile, âncoras, checkouts e preservação do Platinum
+- [x] Validar desktop, mobile, âncoras, checkouts e preservação do Platinum
