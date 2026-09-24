@@ -62,6 +62,9 @@
   --color-champagne: var(--champagne);
   --color-cta-dark: var(--cta-dark);
   --color-cta-magenta: var(--cta-magenta);
+  --color-event-magenta: var(--event-magenta);
+  --color-event-blue: var(--event-blue);
+  --color-event-magenta-hover: var(--event-magenta-hover);
 }
 
 :root {
@@ -90,6 +93,9 @@
   --champagne: #f6d77a;
   --cta-dark: #17141a;
   --cta-magenta: #9c0369;
+  --event-magenta: oklch(0.485 0.195 342.6);
+  --event-magenta-hover: oklch(0.425 0.174 342.6);
+  --event-blue: oklch(0.922 0.015 256.8);
 
   --primary: #9c0369;
   --primary-foreground: #ffffff;
@@ -544,4 +550,74 @@
 .nrnb2026-2-page .ticket-cta:focus-visible {
   outline: 3px solid #ffffff;
   outline-offset: 3px;
+}
+
+/* Nova LP NRNB — linguagem contemporânea de grande evento */
+.nrnb2026-nova-page {
+  --primary: var(--event-magenta);
+  --ring: var(--event-magenta);
+  --sky-tint: var(--event-blue);
+}
+
+.nrnb2026-nova-page h1,
+.nrnb2026-nova-page h2,
+.nrnb2026-nova-page h3,
+.nrnb2026-nova-page h4 {
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0;
+}
+
+.nrnb2026-nova-page h1 {
+  font-weight: 800;
+  line-height: 1.08;
+}
+
+.nrnb2026-nova-page h2 {
+  font-weight: 800;
+  line-height: 1.14;
+}
+
+.nrnb2026-nova-page h3,
+.nrnb2026-nova-page h4 {
+  font-weight: 700;
+}
+
+.nrnb2026-nova-page .nrnb-nova-cta {
+  background: var(--event-magenta);
+  color: var(--primary-foreground);
+  transition: background-color 180ms ease, box-shadow 180ms ease, transform 120ms ease;
+}
+
+.nrnb2026-nova-page .nrnb-nova-cta:hover {
+  background: var(--event-magenta-hover);
+  color: var(--primary-foreground);
+  box-shadow: var(--shadow-glow);
+}
+
+.nrnb2026-nova-page .nrnb-nova-cta:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 3px;
+}
+
+.nrnb2026-nova-page .nrnb-nova-cta:active {
+  transform: scale(0.98);
+}
+
+.nrnb-nova-presentation {
+  background: var(--event-blue);
+  color: var(--foreground);
+}
+
+.nrnb-nova-presentation .text-primary {
+  color: var(--event-magenta);
+}
+
+.nrnb-nova-speaker-card {
+  min-height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nrnb2026-nova-page .nrnb-nova-cta {
+    transition: none;
+  }
 }
