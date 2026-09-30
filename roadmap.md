@@ -90,6 +90,6 @@
 - [x] Validar conteúdo, ingressos, links e exibição no desktop e celular
 
 ## Atualização comercial imediata dos ingressos
-- [ ] Atualizar preços e parcelamentos somente na página principal
-- [ ] Atualizar os três checkouts dos cards
+- [x] Atualizar preços e parcelamentos somente na página principal
+- [x] Atualizar os três checkouts dos cards
 - [ ] Validar desktop, mobile, links e regra 2 por 1
