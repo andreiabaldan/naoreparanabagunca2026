@@ -87,4 +87,4 @@
 
 ## Backup da página principal
 - [x] Criar uma cópia independente em /nrnb2026-backup
-- [ ] Validar conteúdo, ingressos, links e exibição no desktop e celular
+- [x] Validar conteúdo, ingressos, links e exibição no desktop e celular
