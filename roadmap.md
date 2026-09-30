@@ -92,4 +92,4 @@
 ## Atualização comercial imediata dos ingressos
 - [x] Atualizar preços e parcelamentos somente na página principal
 - [x] Atualizar os três checkouts dos cards
-- [ ] Validar desktop, mobile, links e regra 2 por 1
+- [x] Validar desktop, mobile, links e regra 2 por 1
