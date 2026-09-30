@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as Nrnb2026ParticipeRouteImport } from './routes/nrnb2026-participe'
 import { Route as Nrnb2026NovaRouteImport } from './routes/nrnb2026-nova'
+import { Route as Nrnb2026BackupRouteImport } from './routes/nrnb2026-backup'
 import { Route as Nrnb2026AnteriorRouteImport } from './routes/nrnb2026-anterior'
 import { Route as Nrnb20262RouteImport } from './routes/nrnb2026-2'
 import { Route as Nrnb20261RouteImport } from './routes/nrnb2026-1'
@@ -27,6 +28,11 @@ const Nrnb2026ParticipeRoute = Nrnb2026ParticipeRouteImport.update({
 const Nrnb2026NovaRoute = Nrnb2026NovaRouteImport.update({
   id: '/nrnb2026-nova',
   path: '/nrnb2026-nova',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Nrnb2026BackupRoute = Nrnb2026BackupRouteImport.update({
+  id: '/nrnb2026-backup',
+  path: '/nrnb2026-backup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Nrnb2026AnteriorRoute = Nrnb2026AnteriorRouteImport.update({
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/nrnb2026-1': typeof Nrnb20261Route
   '/nrnb2026-2': typeof Nrnb20262Route
   '/nrnb2026-anterior': typeof Nrnb2026AnteriorRoute
+  '/nrnb2026-backup': typeof Nrnb2026BackupRoute
   '/nrnb2026-nova': typeof Nrnb2026NovaRoute
   '/nrnb2026-participe': typeof Nrnb2026ParticipeRoute
 }
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/nrnb2026-1': typeof Nrnb20261Route
   '/nrnb2026-2': typeof Nrnb20262Route
   '/nrnb2026-anterior': typeof Nrnb2026AnteriorRoute
+  '/nrnb2026-backup': typeof Nrnb2026BackupRoute
   '/nrnb2026-nova': typeof Nrnb2026NovaRoute
   '/nrnb2026-participe': typeof Nrnb2026ParticipeRoute
 }
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/nrnb2026-1': typeof Nrnb20261Route
   '/nrnb2026-2': typeof Nrnb20262Route
   '/nrnb2026-anterior': typeof Nrnb2026AnteriorRoute
+  '/nrnb2026-backup': typeof Nrnb2026BackupRoute
   '/nrnb2026-nova': typeof Nrnb2026NovaRoute
   '/nrnb2026-participe': typeof Nrnb2026ParticipeRoute
 }
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/nrnb2026-1'
     | '/nrnb2026-2'
     | '/nrnb2026-anterior'
+    | '/nrnb2026-backup'
     | '/nrnb2026-nova'
     | '/nrnb2026-participe'
   fileRoutesByTo: FileRoutesByTo
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/nrnb2026-1'
     | '/nrnb2026-2'
     | '/nrnb2026-anterior'
+    | '/nrnb2026-backup'
     | '/nrnb2026-nova'
     | '/nrnb2026-participe'
   id:
@@ -131,6 +142,7 @@ export interface FileRouteTypes {
     | '/nrnb2026-1'
     | '/nrnb2026-2'
     | '/nrnb2026-anterior'
+    | '/nrnb2026-backup'
     | '/nrnb2026-nova'
     | '/nrnb2026-participe'
   fileRoutesById: FileRoutesById
@@ -143,6 +155,7 @@ export interface RootRouteChildren {
   Nrnb20261Route: typeof Nrnb20261Route
   Nrnb20262Route: typeof Nrnb20262Route
   Nrnb2026AnteriorRoute: typeof Nrnb2026AnteriorRoute
+  Nrnb2026BackupRoute: typeof Nrnb2026BackupRoute
   Nrnb2026NovaRoute: typeof Nrnb2026NovaRoute
   Nrnb2026ParticipeRoute: typeof Nrnb2026ParticipeRoute
 }
@@ -161,6 +174,13 @@ declare module '@tanstack/react-router' {
       path: '/nrnb2026-nova'
       fullPath: '/nrnb2026-nova'
       preLoaderRoute: typeof Nrnb2026NovaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nrnb2026-backup': {
+      id: '/nrnb2026-backup'
+      path: '/nrnb2026-backup'
+      fullPath: '/nrnb2026-backup'
+      preLoaderRoute: typeof Nrnb2026BackupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/nrnb2026-anterior': {
@@ -223,6 +243,7 @@ const rootRouteChildren: RootRouteChildren = {
   Nrnb20261Route: Nrnb20261Route,
   Nrnb20262Route: Nrnb20262Route,
   Nrnb2026AnteriorRoute: Nrnb2026AnteriorRoute,
+  Nrnb2026BackupRoute: Nrnb2026BackupRoute,
   Nrnb2026NovaRoute: Nrnb2026NovaRoute,
   Nrnb2026ParticipeRoute: Nrnb2026ParticipeRoute,
 }

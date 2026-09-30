@@ -84,3 +84,7 @@
 - [x] Dobrar o tamanho do logo do Hero com limite responsivo
 - [x] Repetir o logo em mais três pontos da página
 - [x] Validar desktop e mobile
+
+## Backup da página principal
+- [x] Criar uma cópia independente em /nrnb2026-backup
+- [ ] Validar conteúdo, ingressos, links e exibição no desktop e celular
