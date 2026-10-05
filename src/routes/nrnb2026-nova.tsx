@@ -78,7 +78,7 @@ const SPEAKERS = [
 ];
 
 const NEW_SPEAKERS = [
-  { name: "Lizi Benites", topic: "Tema em breve", photo: spLize, isNew: true },
+  { name: "Lizi Benites", topic: "Nosso Corpo é Nossa Primeira Casa", photo: spLize, isNew: true, bio: "Não se moldem aos padrões do mundo, mas sejam transformados pela renovação da sua mente, para viver a boa, perfeita e agradável vontade de Deus. Romanos 12:2." },
   { name: "Juliana Soubhia", topic: "Uma Casa Pensada para a Vida", photo: spJuliana, isNew: true, bio: "Uma casa bonita também precisa funcionar para quem vive nela. Juliana traz o olhar da arquitetura para mostrar como os espaços podem acompanhar a rotina, as necessidades e os diferentes momentos da vida." },
   { name: "Liliane Ferreira", topic: "O Lar como Prioridade", photo: spLiliane, isNew: true, bio: "Em meio a tantas demandas, o lar também precisa encontrar seu lugar entre as nossas prioridades. Uma conversa sobre a importância de olhar para a casa como parte da vida que queremos construir." },
   { name: "Polyana Soler", topic: "Brilhe em Cada Fase da Sua Vida", photo: spPolyana, isNew: true, bio: "Os acessórios têm o poder de transformar uma produção e também a forma como nos expressamos. Polyana mostra como usá-los para valorizar sua imagem e seu estilo em diferentes fases da vida." },
