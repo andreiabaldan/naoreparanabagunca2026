@@ -9,55 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as R2por1RouteImport } from './routes/2por1'
-import { Route as EspecialRouteImport } from './routes/especial'
-import { Route as Nrnb2026RouteImport } from './routes/nrnb2026'
-import { Route as Nrnb20261RouteImport } from './routes/nrnb2026-1'
-import { Route as Nrnb20262RouteImport } from './routes/nrnb2026-2'
-import { Route as Nrnb2026AnteriorRouteImport } from './routes/nrnb2026-anterior'
-import { Route as Nrnb2026BackupRouteImport } from './routes/nrnb2026-backup'
-import { Route as Nrnb2026NovaRouteImport } from './routes/nrnb2026-nova'
 import { Route as Nrnb2026ParticipeRouteImport } from './routes/nrnb2026-participe'
+import { Route as Nrnb2026NovaRouteImport } from './routes/nrnb2026-nova'
+import { Route as Nrnb2026BackupRouteImport } from './routes/nrnb2026-backup'
+import { Route as Nrnb2026AnteriorRouteImport } from './routes/nrnb2026-anterior'
+import { Route as Nrnb20262RouteImport } from './routes/nrnb2026-2'
+import { Route as Nrnb20261RouteImport } from './routes/nrnb2026-1'
+import { Route as Nrnb2026RouteImport } from './routes/nrnb2026'
+import { Route as EspecialRouteImport } from './routes/especial'
+import { Route as R2por1RouteImport } from './routes/2por1'
+import { Route as IndexRouteImport } from './routes/index'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const R2por1Route = R2por1RouteImport.update({
-  id: '/2por1',
-  path: '/2por1',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EspecialRoute = EspecialRouteImport.update({
-  id: '/especial',
-  path: '/especial',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const Nrnb2026Route = Nrnb2026RouteImport.update({
-  id: '/nrnb2026',
-  path: '/nrnb2026',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const Nrnb20261Route = Nrnb20261RouteImport.update({
-  id: '/nrnb2026-1',
-  path: '/nrnb2026-1',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const Nrnb20262Route = Nrnb20262RouteImport.update({
-  id: '/nrnb2026-2',
-  path: '/nrnb2026-2',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const Nrnb2026AnteriorRoute = Nrnb2026AnteriorRouteImport.update({
-  id: '/nrnb2026-anterior',
-  path: '/nrnb2026-anterior',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const Nrnb2026BackupRoute = Nrnb2026BackupRouteImport.update({
-  id: '/nrnb2026-backup',
-  path: '/nrnb2026-backup',
+const Nrnb2026ParticipeRoute = Nrnb2026ParticipeRouteImport.update({
+  id: '/nrnb2026-participe',
+  path: '/nrnb2026-participe',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Nrnb2026NovaRoute = Nrnb2026NovaRouteImport.update({
@@ -65,9 +30,44 @@ const Nrnb2026NovaRoute = Nrnb2026NovaRouteImport.update({
   path: '/nrnb2026-nova',
   getParentRoute: () => rootRouteImport,
 } as any)
-const Nrnb2026ParticipeRoute = Nrnb2026ParticipeRouteImport.update({
-  id: '/nrnb2026-participe',
-  path: '/nrnb2026-participe',
+const Nrnb2026BackupRoute = Nrnb2026BackupRouteImport.update({
+  id: '/nrnb2026-backup',
+  path: '/nrnb2026-backup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Nrnb2026AnteriorRoute = Nrnb2026AnteriorRouteImport.update({
+  id: '/nrnb2026-anterior',
+  path: '/nrnb2026-anterior',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Nrnb20262Route = Nrnb20262RouteImport.update({
+  id: '/nrnb2026-2',
+  path: '/nrnb2026-2',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Nrnb20261Route = Nrnb20261RouteImport.update({
+  id: '/nrnb2026-1',
+  path: '/nrnb2026-1',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Nrnb2026Route = Nrnb2026RouteImport.update({
+  id: '/nrnb2026',
+  path: '/nrnb2026',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EspecialRoute = EspecialRouteImport.update({
+  id: '/especial',
+  path: '/especial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R2por1Route = R2por1RouteImport.update({
+  id: '/2por1',
+  path: '/2por1',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -162,60 +162,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/2por1': {
-      id: '/2por1'
-      path: '/2por1'
-      fullPath: '/2por1'
-      preLoaderRoute: typeof R2por1RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/especial': {
-      id: '/especial'
-      path: '/especial'
-      fullPath: '/especial'
-      preLoaderRoute: typeof EspecialRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/nrnb2026': {
-      id: '/nrnb2026'
-      path: '/nrnb2026'
-      fullPath: '/nrnb2026'
-      preLoaderRoute: typeof Nrnb2026RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/nrnb2026-1': {
-      id: '/nrnb2026-1'
-      path: '/nrnb2026-1'
-      fullPath: '/nrnb2026-1'
-      preLoaderRoute: typeof Nrnb20261RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/nrnb2026-2': {
-      id: '/nrnb2026-2'
-      path: '/nrnb2026-2'
-      fullPath: '/nrnb2026-2'
-      preLoaderRoute: typeof Nrnb20262RouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/nrnb2026-anterior': {
-      id: '/nrnb2026-anterior'
-      path: '/nrnb2026-anterior'
-      fullPath: '/nrnb2026-anterior'
-      preLoaderRoute: typeof Nrnb2026AnteriorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/nrnb2026-backup': {
-      id: '/nrnb2026-backup'
-      path: '/nrnb2026-backup'
-      fullPath: '/nrnb2026-backup'
-      preLoaderRoute: typeof Nrnb2026BackupRouteImport
+    '/nrnb2026-participe': {
+      id: '/nrnb2026-participe'
+      path: '/nrnb2026-participe'
+      fullPath: '/nrnb2026-participe'
+      preLoaderRoute: typeof Nrnb2026ParticipeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/nrnb2026-nova': {
@@ -225,11 +176,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Nrnb2026NovaRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/nrnb2026-participe': {
-      id: '/nrnb2026-participe'
-      path: '/nrnb2026-participe'
-      fullPath: '/nrnb2026-participe'
-      preLoaderRoute: typeof Nrnb2026ParticipeRouteImport
+    '/nrnb2026-backup': {
+      id: '/nrnb2026-backup'
+      path: '/nrnb2026-backup'
+      fullPath: '/nrnb2026-backup'
+      preLoaderRoute: typeof Nrnb2026BackupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nrnb2026-anterior': {
+      id: '/nrnb2026-anterior'
+      path: '/nrnb2026-anterior'
+      fullPath: '/nrnb2026-anterior'
+      preLoaderRoute: typeof Nrnb2026AnteriorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nrnb2026-2': {
+      id: '/nrnb2026-2'
+      path: '/nrnb2026-2'
+      fullPath: '/nrnb2026-2'
+      preLoaderRoute: typeof Nrnb20262RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nrnb2026-1': {
+      id: '/nrnb2026-1'
+      path: '/nrnb2026-1'
+      fullPath: '/nrnb2026-1'
+      preLoaderRoute: typeof Nrnb20261RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nrnb2026': {
+      id: '/nrnb2026'
+      path: '/nrnb2026'
+      fullPath: '/nrnb2026'
+      preLoaderRoute: typeof Nrnb2026RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/especial': {
+      id: '/especial'
+      path: '/especial'
+      fullPath: '/especial'
+      preLoaderRoute: typeof EspecialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/2por1': {
+      id: '/2por1'
+      path: '/2por1'
+      fullPath: '/2por1'
+      preLoaderRoute: typeof R2por1RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
