@@ -211,7 +211,7 @@ function Speakers({ campaign }: { campaign: boolean }) {
   return <section ref={ref} id="palestrantes" className="scroll-mt-20 bg-sky-tint px-5 py-14 sm:px-6 sm:py-20"><div className="mx-auto max-w-6xl"><div className="text-center"><Eyebrow>Quem vai estar no palco</Eyebrow><h2 className="mx-auto mt-4 max-w-4xl text-balance text-3xl sm:text-5xl">Aprenda com mulheres e especialistas que entendem que organização vai muito além da casa.</h2></div><div className="mt-9 grid items-center gap-7 border-y border-border py-7 md:grid-cols-[38%_1fr]"><img src={suelenPhoto.url} alt="Suelen Gubeisse, idealizadora e anfitriã" loading="lazy" className="aspect-[4/3] w-full object-cover md:aspect-[4/5]"/><div><span className="inline-flex rounded-full bg-primary px-3 py-1 text-sm font-bold uppercase text-primary-foreground">Idealizadora e anfitriã</span><h3 className="mt-4 text-4xl sm:text-5xl">Suelen Gubeisse</h3><p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">Criadora do Não Repara na Bagunça, Suelen leva a organização para a vida real de quem trabalha, cuida da casa, da família e precisa de soluções possíveis de manter.</p></div></div><div className="mt-9"><CarouselRow ariaLabel="Palestrantes confirmados" hint="Deslize para conhecer →" itemClassName="w-[82%] sm:w-[46%] lg:w-[31%]" items={speakers.map(s=><SpeakerCard key={s.name} speaker={s}/>)}/></div></div></section>;
 }
 
-function Schedule() {
+function Schedule({ campaign }: { campaign: boolean }) {
   const ref = useRef<HTMLElement>(null);
   useEffect(() => {
     const e = ref.current;
@@ -232,14 +232,14 @@ function Schedule() {
       title: "CASA QUE FUNCIONA",
       items: [
         "Organização residencial",
-        "Organização de armários & closets",
-        "Técnicas modernas de limpeza",
-        "Cama posta",
-        "Perfumação da casa",
+        "Organização de Armários & Closets",
+        "Técnicas Modernas de Limpeza",
+        "Descomplicando a Mesa Posta",
+        "Cama Posta",
+        "Perfumação da Casa",
         "Arquitetura e funcionalidade",
-        "Uma casa pensada para a vida",
-        "O lar como prioridade",
-        "Mesa posta"
+        "Uma Casa Pensada para a Vida",
+        "O Lar como Prioridade"
       ]
     },
     {
@@ -248,7 +248,8 @@ function Schedule() {
       items: [
         "Rotina prática",
         "Organização da mente",
-        "Organização do tempo"
+        "O Poder da Comunicação",
+        "A Força do Ecossistema"
       ]
     },
     {
@@ -256,9 +257,7 @@ function Schedule() {
       title: "BEM-ESTAR & AUTOCUIDADO",
       items: [
         "Saúde e bem-estar",
-        "Autocuidado",
-        "Nosso corpo é nossa primeira casa",
-        "Autoestima"
+        "Nosso Corpo é Nossa Primeira Casa"
       ]
     },
     {
@@ -266,10 +265,8 @@ function Schedule() {
       title: "IMAGEM, ESTILO & EXPRESSÃO",
       items: [
         "Imagem e estilo",
-        "Brilhe em cada fase da sua vida",
-        "Imagem que comunica",
-        "Acessórios e expressão",
-        "Guarda-roupa"
+        "Brilhe em Cada Fase da Sua Vida",
+        "Imagem que Comunica"
       ]
     },
     {
@@ -277,14 +274,13 @@ function Schedule() {
       title: "FINANÇAS, PROPÓSITO & VIDA",
       items: [
         "Finanças",
-        "Propósito",
-        "Organização financeira",
         "Crescimento Inteligente",
-        "A trilha do propósito",
-        "A força do ecossistema"
+        "A Trilha do Propósito"
       ]
     }
   ];
+
+  if (!campaign) return <section ref={ref} id="programacao" className="scroll-mt-20 surface-cream px-5 py-14 sm:px-6 sm:py-20"><div className="mx-auto max-w-4xl text-center"><Eyebrow>Programação</Eyebrow><h2 className="mt-4 text-3xl sm:text-5xl">Dois dias para olhar para diferentes áreas da sua vida.</h2><Tabs defaultValue="dia1" className="mt-8"><TabsList className="grid h-auto w-full grid-cols-2"><TabsTrigger value="dia1" className="py-3">DIA 24 - SÁB</TabsTrigger><TabsTrigger value="dia2" className="py-3">DIA 25 - DOM</TabsTrigger></TabsList><TabsContent value="dia1" className="mt-4 text-left"><div className="border border-border bg-card p-6"><p className="text-sm font-bold uppercase text-primary">Das 09h às 18h30</p><h3 className="mt-3 text-2xl">Sábado, 24 de outubro</h3><p className="mt-4 leading-relaxed text-muted-foreground">A programação detalhada de palestras e experiências será divulgada em breve.</p></div></TabsContent><TabsContent value="dia2" className="mt-4 text-left"><div className="border border-border bg-card p-6"><p className="text-sm font-bold uppercase text-primary">Das 09h às 18h30</p><h3 className="mt-3 text-2xl">Domingo, 25 de outubro</h3><p className="mt-4 leading-relaxed text-muted-foreground">A programação detalhada de palestras e experiências será divulgada em breve.</p></div></TabsContent></Tabs><div className="mt-8"><CTA>VER INGRESSOS</CTA></div></div></section>;
 
   return (
     <section ref={ref} id="programacao" className="scroll-mt-20 surface-cream px-5 py-14 sm:px-6 sm:py-20">
@@ -321,7 +317,7 @@ function Schedule() {
               type="button" 
               size="lg" 
               onClick={() => { track("schedule_cta_click", { variant: VARIANT }); goTo("ingressos"); }} 
-              className="h-auto min-h-12 rounded-md bg-[#9C0369] px-7 py-4 text-center text-sm font-bold uppercase text-white shadow-card hover:bg-[#800256]"
+              className="nrnb-nova-cta h-auto min-h-12 rounded-md px-7 py-4 text-center text-sm font-bold uppercase text-primary-foreground shadow-card"
             >
               QUERO VIVER ESSES DOIS DIAS <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
@@ -374,5 +370,5 @@ function WhatsApp() { return <a suppressHydrationWarning href={WHATSAPP_URL} tar
 export function NewNrnbLanding({ page = "/nrnb2026-nova" }: { page?: string }) {
   const campaign = page === "/";
   useEffect(()=>{track("page_view",{variant:VARIANT,page});},[page]);
-  return <main className="nrnb2026-nova-page min-h-screen overflow-x-clip bg-background pb-16 lg:pb-0"><Ticker/>{campaign&&<Navigation/>}<Hero campaign={campaign}/>{!campaign&&<Navigation/>}<Identification campaign={campaign}/><Presentation campaign={campaign}/><LogoDivider/><Benefits/><Topics campaign={campaign}/><EventExperience/><LogoDivider/><Speakers campaign={campaign}/><Schedule/><SocialProof/><Fair/><Tickets campaign={campaign}/><AboutSuelen campaign={campaign}/><LogoDivider/><Closing/><Faq/><FinalCTA/><Footer/><StickyCTA/><WhatsApp/></main>;
+  return <main className="nrnb2026-nova-page min-h-screen overflow-x-clip bg-background pb-16 lg:pb-0"><Ticker/>{campaign&&<Navigation/>}<Hero campaign={campaign}/>{!campaign&&<Navigation/>}<Identification campaign={campaign}/><Presentation campaign={campaign}/><LogoDivider/><Benefits/><Topics campaign={campaign}/><EventExperience/><LogoDivider/><Speakers campaign={campaign}/><Schedule campaign={campaign}/><SocialProof/><Fair/><Tickets campaign={campaign}/><AboutSuelen campaign={campaign}/><LogoDivider/><Closing/><Faq/><FinalCTA/><Footer/><StickyCTA/><WhatsApp/></main>;
 }
