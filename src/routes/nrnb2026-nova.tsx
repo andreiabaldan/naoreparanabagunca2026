@@ -21,6 +21,10 @@ import spNatalia from "@/assets/natalia-rico-busto.png.asset.json";
 import spPaula from "@/assets/paula-chiaradia-busto.png.asset.json";
 import spStella from "@/assets/stella-vilella-busto.png.asset.json";
 import spThais from "@/assets/thais-cut.png.asset.json";
+import spLize from "@/assets/lize-benites-cut.png";
+import spJuliana from "@/assets/juliana-soubhia-cut.png";
+import spLiliane from "@/assets/liliane-ferreira-cut.png";
+import spPolyana from "@/assets/polyana-soler-cut.png";
 import nrnb1 from "@/assets/dan_9014.jpg.asset.json";
 import nova1 from "@/assets/nova1.jpg.asset.json";
 import nova2 from "@/assets/nova2.jpg.asset.json";
@@ -65,6 +69,20 @@ const SPEAKERS = [
   { name: "Paula Chiaradia", specialty: "Especialista em imagem", topic: "Imagem que Comunica", photo: spPaula.url, bio: "Antes de você falar, a sua imagem já contou uma história." },
   { name: "Stella Vilella", specialty: "Médica e especialista em saúde", topic: "Nosso Corpo é Nossa Primeira Casa", photo: spStella.url, bio: "Cuidar do seu corpo é o primeiro passo para viver com mais leveza e qualidade de vida." },
   { name: "Thaís Paraíso", specialty: "Especialista em autocuidado", topic: "Imagem que Comunica", photo: spThais.url, bio: "O autocuidado pode resgatar sua confiança e valorizar a mulher que existe em você." },
+];
+
+const NEW_SPEAKERS = [
+  { name: "Lize Benites", topic: "Tema em breve", photo: spLize },
+  { name: "Juliana Soubhia", topic: "Uma Casa Pensada para a Vida", photo: spJuliana },
+  { name: "Liliane Ferreira", topic: "O Lar como Prioridade", photo: spLiliane },
+  { name: "Polyana Soler", topic: "Brilhe em Cada Fase da Sua Vida", photo: spPolyana },
+];
+
+const SUELEN_TOPICS = [
+  "Organização de Armários & Closets",
+  "Técnicas Modernas de Limpeza",
+  "Cama Posta",
+  "Perfumação da Casa",
 ];
 
 const BENEFITS: Array<{ icon: LucideIcon; title: string; text: string }> = [
@@ -173,15 +191,23 @@ function EventExperience() {
   return <Section><div className="text-center"><Eyebrow>Experiência NRNB</Eyebrow><h2 className="mt-4 text-3xl sm:text-5xl">Você não vai apenas assistir. Vai viver o NRNB.</h2></div><div className="mt-8 grid auto-rows-[150px] grid-cols-2 gap-2 sm:auto-rows-[220px] sm:grid-cols-4">{GALLERY.map((img,index) => <div key={img.src} className={`overflow-hidden ${index===0 ? "col-span-2 row-span-2" : ""} ${index===3 ? "sm:row-span-2" : ""}`}><img src={img.src} alt={img.alt} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" /></div>)}</div><div className="mt-6 flex flex-wrap justify-center gap-2">{EXPERIENCE_TAGS.map(tag => <span key={tag} className="rounded-full bg-sky-tint px-4 py-2 text-sm font-bold text-primary">{tag}</span>)}</div><p className="mx-auto mt-7 max-w-3xl text-center text-lg leading-relaxed">Do momento em que você chega até o encerramento do segundo dia, queremos que cada detalhe faça parte da experiência.</p></Section>;
 }
 
-function SpeakerCard({ speaker }: { speaker: (typeof SPEAKERS)[number] }) {
+type Speaker = {
+  name: string;
+  topic: string;
+  photo: string;
+  bio?: string;
+};
+
+function SpeakerCard({ speaker }: { speaker: Speaker }) {
   const [open,setOpen]=useState(false);
-  return <article className="nrnb-nova-speaker-card flex h-full flex-col border border-border bg-card p-4 shadow-card"><div className="aspect-[4/3] overflow-hidden bg-sky-tint"><img src={speaker.photo} alt={`Foto de ${speaker.name}`} loading="lazy" className="h-full w-full object-contain object-bottom" /></div><h3 className="mt-4 text-xl font-bold">{speaker.name}</h3><p className="mt-3 text-lg font-bold leading-snug text-primary">{speaker.topic}</p>{open && <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{speaker.bio}</p>}<Button type="button" variant="ghost" size="sm" onClick={() => setOpen(v=>!v)} aria-expanded={open} className="mt-auto self-start px-0 pt-4 font-bold text-primary hover:text-primary">{open ? "Ver menos ↑" : "Saiba mais →"}</Button></article>;
+  return <article className="nrnb-nova-speaker-card flex h-full flex-col border border-border bg-card p-4 shadow-card"><div className="aspect-[4/3] overflow-hidden bg-sky-tint"><img src={speaker.photo} alt={`Foto de ${speaker.name}`} loading="lazy" className="h-full w-full object-contain object-bottom" /></div><h3 className="mt-4 text-xl font-bold">{speaker.name}</h3><p className="mt-3 text-lg font-bold leading-snug text-primary">{speaker.topic}</p>{speaker.bio&&<>{open && <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{speaker.bio}</p>}<Button type="button" variant="ghost" size="sm" onClick={() => setOpen(v=>!v)} aria-expanded={open} className="mt-auto self-start px-0 pt-4 font-bold text-primary hover:text-primary">{open ? "Ver menos ↑" : "Saiba mais →"}</Button></>}</article>;
 }
 
-function Speakers() {
+function Speakers({ campaign }: { campaign: boolean }) {
   const ref=useRef<HTMLElement>(null);
   useEffect(()=>{const e=ref.current;if(!e)return;const o=new IntersectionObserver(([x])=>{if(x?.isIntersecting){track("view_speakers",{variant:VARIANT});o.disconnect();}},{threshold:.2});o.observe(e);return()=>o.disconnect();},[]);
-  return <section ref={ref} id="palestrantes" className="scroll-mt-20 bg-sky-tint px-5 py-14 sm:px-6 sm:py-20"><div className="mx-auto max-w-6xl"><div className="text-center"><Eyebrow>Quem vai estar no palco</Eyebrow><h2 className="mx-auto mt-4 max-w-4xl text-balance text-3xl sm:text-5xl">Aprenda com mulheres e especialistas que entendem que organização vai muito além da casa.</h2></div><div className="mt-9 grid items-center gap-7 border-y border-border py-7 md:grid-cols-[38%_1fr]"><img src={suelenPhoto.url} alt="Suelen Gubeisse, idealizadora e anfitriã" loading="lazy" className="aspect-[4/3] w-full object-cover md:aspect-[4/5]"/><div><span className="inline-flex rounded-full bg-primary px-3 py-1 text-sm font-bold uppercase text-primary-foreground">Idealizadora e anfitriã</span><h3 className="mt-4 text-4xl sm:text-5xl">Suelen Gubeisse</h3><p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">Criadora do Não Repara na Bagunça, Suelen leva a organização para a vida real de quem trabalha, cuida da casa, da família e precisa de soluções possíveis de manter.</p></div></div><div className="mt-9"><CarouselRow ariaLabel="Palestrantes confirmados" hint="Deslize para conhecer →" itemClassName="w-[82%] sm:w-[46%] lg:w-[31%]" items={SPEAKERS.map(s=><SpeakerCard key={s.name} speaker={s}/>)}/></div></div></section>;
+  const speakers: Speaker[] = campaign ? [...SPEAKERS, ...NEW_SPEAKERS] : SPEAKERS;
+  return <section ref={ref} id="palestrantes" className="scroll-mt-20 bg-sky-tint px-5 py-14 sm:px-6 sm:py-20"><div className="mx-auto max-w-6xl"><div className="text-center"><Eyebrow>Quem vai estar no palco</Eyebrow><h2 className="mx-auto mt-4 max-w-4xl text-balance text-3xl sm:text-5xl">Aprenda com mulheres e especialistas que entendem que organização vai muito além da casa.</h2></div><div className="mt-9 grid items-center gap-7 border-y border-border py-7 md:grid-cols-[38%_1fr]"><img src={suelenPhoto.url} alt="Suelen Gubeisse, idealizadora e anfitriã" loading="lazy" className="aspect-[4/3] w-full object-cover md:aspect-[4/5]"/><div><span className="inline-flex rounded-full bg-primary px-3 py-1 text-sm font-bold uppercase text-primary-foreground">Idealizadora e anfitriã</span><h3 className="mt-4 text-4xl sm:text-5xl">Suelen Gubeisse</h3><p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">Criadora do Não Repara na Bagunça, Suelen leva a organização para a vida real de quem trabalha, cuida da casa, da família e precisa de soluções possíveis de manter.</p></div></div><div className="mt-9"><CarouselRow ariaLabel="Palestrantes confirmados" hint="Deslize para conhecer →" itemClassName="w-[82%] sm:w-[46%] lg:w-[31%]" items={speakers.map(s=><SpeakerCard key={s.name} speaker={s}/>)}/></div></div></section>;
 }
 
 function Schedule() {
@@ -211,8 +237,8 @@ function Tickets({ campaign }: { campaign: boolean }) {
   }:t;return <article key={t.id} className={`card-light flex flex-col border bg-card p-6 text-center ${t.id==="vip"?"border-primary shadow-glow lg:-mt-3":"border-border shadow-card"}`}>{participates&&<span className="mx-auto mb-3 rounded-full bg-primary px-4 py-1 text-sm font-extrabold uppercase text-primary-foreground">2 por 1</span>}{t.badge&&<span className="mx-auto mb-4 rounded-full bg-primary px-3 py-1 text-sm font-bold uppercase text-primary-foreground">{t.badge}</span>}<h3 className="text-3xl font-semibold">{t.name}</h3><span className="mx-auto mt-4 rounded-full bg-magenta-soft px-4 py-1 text-sm font-bold uppercase text-primary">2º lote</span>{participates&&<div className="mt-4 border-y border-primary/20 py-3"><p className="font-extrabold uppercase text-primary">1 ingresso = 2 pessoas</p><p className="mt-1 text-sm text-muted-foreground">Compre seu ingresso {t.name} e ganhe +1 ingresso para levar uma amiga.</p></div>}<p className="mt-5 text-sm font-semibold text-muted-foreground">12x de</p><p className="mt-1 whitespace-nowrap font-display text-5xl font-semibold leading-none text-primary">R$ {currentTicket.installment}</p><p className="mt-2 text-sm font-semibold text-muted-foreground">À vista R$ {currentTicket.price}</p><div className="my-5 h-px bg-border"/>{t.includesFrom&&<p className="bg-magenta-soft px-3 py-2 text-sm font-bold uppercase text-primary">{t.includesFrom}</p>}<ul className="mt-4 flex-1 space-y-3 text-left">{t.benefits.map(b=><li key={b} className="flex items-start gap-2 text-sm"><Check className="mt-1 h-4 w-4 shrink-0 text-primary"/><span>{b}</span></li>)}</ul><Button asChild size="lg" className="mt-6 h-auto min-h-12 w-full bg-primary px-5 py-3.5 font-bold uppercase text-primary-foreground"><a suppressHydrationWarning href={currentTicket.checkout} target="_blank" rel="noopener noreferrer" onClick={()=>{track(t.event,{ticket:t.id,variant:VARIANT});track("checkout_click",{ticket:t.id,variant:VARIANT});track("checkout_start",{ticket:t.id,variant:VARIANT});}}>{t.cta}<ArrowRight/></a></Button><p className="mt-3 flex items-center justify-center gap-2 text-sm text-muted-foreground"><Lock className="h-4 w-4 text-primary"/>Compra protegida</p></article>})}</div><div className="mt-7 text-center text-sky-highlight"><p className="font-semibold">Ingresso válido para os dois dias do evento.</p><p className="mt-1 text-sm">Compra protegida • Garantia de 7 dias</p><Button asChild variant="outline" className="mt-5 border-sky text-sky-highlight hover:bg-sky-tint"><a suppressHydrationWarning href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={()=>track("whatsapp_tickets_click",{variant:VARIANT})}><MessageCircle/>Falar no WhatsApp</a></Button></div></div></section>;
 }
 
-function AboutSuelen() {
-  return <Section><div className="grid items-center gap-8 lg:grid-cols-2"><img src={suelenPhoto.url} alt="Suelen Gubeisse" loading="lazy" className="aspect-[4/5] w-full object-cover object-center"/><div><Eyebrow>Quem criou tudo isso</Eyebrow><h2 className="mt-4 text-4xl sm:text-6xl">Prazer, eu sou a Suelen.</h2><div className="mt-5 space-y-4 leading-relaxed text-muted-foreground"><p>A organização transformou a forma como eu enxergo a minha casa, a minha rotina e as escolhas que fazemos todos os dias.</p><p>Criei o Não Repara na Bagunça para reunir mulheres e especialistas em torno de uma organização possível, prática e conectada à vida real.</p><p>Na 4ª edição, meu propósito é ampliar essa conversa e fazer com que cada participante volte para casa com novas ferramentas e vontade de colocá-las em prática.</p></div></div></div></Section>;
+function AboutSuelen({ campaign }: { campaign: boolean }) {
+  return <Section><div className="grid items-start gap-8 lg:grid-cols-[.82fr_1.18fr] lg:gap-12"><div><Eyebrow>{campaign ? "Idealizadora e anfitriã" : "Quem criou tudo isso"}</Eyebrow><h2 className="mt-4 text-4xl sm:text-6xl">Prazer, eu sou a Suelen.</h2><img src={suelenPhoto.url} alt="Suelen Gubeisse" loading="lazy" className="mt-6 aspect-[4/5] w-full object-cover object-center"/></div><div className="lg:pt-12"><div className="space-y-4 leading-relaxed text-muted-foreground"><p>A organização transformou a forma como eu enxergo a minha casa, a minha rotina e as escolhas que fazemos todos os dias.</p><p>Criei o Não Repara na Bagunça para reunir mulheres e especialistas em torno de uma organização possível, prática e conectada à vida real.</p><p>Na 4ª edição, meu propósito é ampliar essa conversa e fazer com que cada participante volte para casa com novas ferramentas e vontade de colocá-las em prática.</p></div>{campaign&&<div className="mt-9 border-t border-border pt-8"><p className="max-w-2xl text-lg font-semibold leading-relaxed">Além de idealizar o Não Repara na Bagunça, Suelen também sobe ao palco para compartilhar, na prática, sua experiência em quatro temas que transformam a rotina da casa.</p><p className="mt-7 text-sm font-extrabold uppercase tracking-[0.14em] text-primary">4 conteúdos com Suelen Gubeisse</p><ol className="mt-4 border-t border-border">{SUELEN_TOPICS.map((topic,index)=><li key={topic} className="grid grid-cols-[3rem_1fr] items-center gap-4 border-b border-border py-5"><span className="font-display text-2xl font-bold text-primary">{String(index+1).padStart(2,"0")}</span><span className="text-base font-extrabold uppercase sm:text-lg">{topic}</span></li>)}</ol><div className="mt-8"><CTA>QUERO VIVER ESSA EXPERIÊNCIA</CTA></div></div>}</div></div></Section>;
 }
 
 function Closing() {
@@ -234,5 +260,5 @@ function WhatsApp() { return <a suppressHydrationWarning href={WHATSAPP_URL} tar
 export function NewNrnbLanding({ page = "/nrnb2026-nova" }: { page?: string }) {
   const campaign = page === "/";
   useEffect(()=>{track("page_view",{variant:VARIANT,page});},[page]);
-  return <main className="nrnb2026-nova-page min-h-screen overflow-x-clip bg-background pb-16 lg:pb-0"><Ticker/>{campaign&&<Navigation/>}<Hero campaign={campaign}/>{!campaign&&<Navigation/>}<Identification campaign={campaign}/><Presentation campaign={campaign}/><LogoDivider/><Benefits/><Topics campaign={campaign}/><EventExperience/><LogoDivider/><Speakers/><Schedule/><SocialProof/><Fair/><Tickets campaign={campaign}/><AboutSuelen/><LogoDivider/><Closing/><Faq/><FinalCTA/><Footer/><StickyCTA/><WhatsApp/></main>;
+  return <main className="nrnb2026-nova-page min-h-screen overflow-x-clip bg-background pb-16 lg:pb-0"><Ticker/>{campaign&&<Navigation/>}<Hero campaign={campaign}/>{!campaign&&<Navigation/>}<Identification campaign={campaign}/><Presentation campaign={campaign}/><LogoDivider/><Benefits/><Topics campaign={campaign}/><EventExperience/><LogoDivider/><Speakers campaign={campaign}/><Schedule/><SocialProof/><Fair/><Tickets campaign={campaign}/><AboutSuelen campaign={campaign}/><LogoDivider/><Closing/><Faq/><FinalCTA/><Footer/><StickyCTA/><WhatsApp/></main>;
 }

@@ -93,3 +93,9 @@
 - [x] Atualizar preços e parcelamentos somente na página principal
 - [x] Atualizar os três checkouts dos cards
 - [x] Validar desktop, mobile, links e regra 2 por 1
+
+## Novas palestrantes e destaque da idealizadora
+- [x] Preparar e inserir as quatro fotos reais no carrossel existente
+- [x] Adicionar nomes e temas sem inventar informações ausentes
+- [x] Integrar os quatro conteúdos da Suelen em sequência editorial vertical
+- [x] Validar desktop, mobile, carrossel, CTA e preservação das demais áreas
