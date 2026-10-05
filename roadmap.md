@@ -99,3 +99,9 @@
 - [x] Adicionar nomes e temas sem inventar informações ausentes
 - [x] Integrar os quatro conteúdos da Suelen em sequência editorial vertical
 - [x] Validar desktop, mobile, carrossel, CTA e preservação das demais áreas
+
+## Nova rodada: palestrantes e programação
+- [x] Adicionar Saiba mais aprovado para Juliana, Liliane e Polyana
+- [x] Padronizar as quatro fotos novas como headshots
+- [x] Redesenhar a programação editorial somente na homepage
+- [x] Validar desktop, mobile, CTA e preservação dos backups
