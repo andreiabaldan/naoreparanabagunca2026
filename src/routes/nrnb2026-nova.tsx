@@ -72,10 +72,10 @@ const SPEAKERS = [
 ];
 
 const NEW_SPEAKERS = [
-  { name: "Lize Benites", topic: "Tema em breve", photo: spLize },
-  { name: "Juliana Soubhia", topic: "Uma Casa Pensada para a Vida", photo: spJuliana },
-  { name: "Liliane Ferreira", topic: "O Lar como Prioridade", photo: spLiliane },
-  { name: "Polyana Soler", topic: "Brilhe em Cada Fase da Sua Vida", photo: spPolyana },
+  { name: "Lize Benites", topic: "Tema em breve", photo: spLize, isNew: true },
+  { name: "Juliana Soubhia", topic: "Uma Casa Pensada para a Vida", photo: spJuliana, isNew: true, bio: "Uma casa bonita também precisa funcionar para quem vive nela. Juliana traz o olhar da arquitetura para mostrar como os espaços podem acompanhar a rotina, as necessidades e os diferentes momentos da vida." },
+  { name: "Liliane Ferreira", topic: "O Lar como Prioridade", photo: spLiliane, isNew: true, bio: "Em meio a tantas demandas, o lar também precisa encontrar seu lugar entre as nossas prioridades. Uma conversa sobre a importância de olhar para a casa como parte da vida que queremos construir." },
+  { name: "Polyana Soler", topic: "Brilhe em Cada Fase da Sua Vida", photo: spPolyana, isNew: true, bio: "Os acessórios têm o poder de transformar uma produção e também a forma como nos expressamos. Polyana mostra como usá-los para valorizar sua imagem e seu estilo em diferentes fases da vida." },
 ];
 
 const SUELEN_TOPICS = [
@@ -196,11 +196,12 @@ type Speaker = {
   topic: string;
   photo: string;
   bio?: string;
+  isNew?: boolean;
 };
 
 function SpeakerCard({ speaker }: { speaker: Speaker }) {
   const [open,setOpen]=useState(false);
-  return <article className="nrnb-nova-speaker-card flex h-full flex-col border border-border bg-card p-4 shadow-card"><div className="aspect-[4/3] overflow-hidden bg-sky-tint"><img src={speaker.photo} alt={`Foto de ${speaker.name}`} loading="lazy" className="h-full w-full object-contain object-bottom" /></div><h3 className="mt-4 text-xl font-bold">{speaker.name}</h3><p className="mt-3 text-lg font-bold leading-snug text-primary">{speaker.topic}</p>{speaker.bio&&<>{open && <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{speaker.bio}</p>}<Button type="button" variant="ghost" size="sm" onClick={() => setOpen(v=>!v)} aria-expanded={open} className="mt-auto self-start px-0 pt-4 font-bold text-primary hover:text-primary">{open ? "Ver menos ↑" : "Saiba mais →"}</Button></>}</article>;
+  return <article className="nrnb-nova-speaker-card flex h-full flex-col border border-border bg-card p-4 shadow-card"><div className="aspect-[4/3] overflow-hidden bg-sky-tint"><img src={speaker.photo} alt={`Foto de ${speaker.name}`} loading="lazy" className={`h-full w-full ${speaker.isNew ? "object-cover object-[center_15%] scale-110 origin-top" : "object-contain object-bottom"}`} /></div><h3 className="mt-4 text-xl font-bold">{speaker.name}</h3><p className="mt-3 text-lg font-bold leading-snug text-primary">{speaker.topic}</p>{speaker.bio&&<>{open && <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{speaker.bio}</p>}<Button type="button" variant="ghost" size="sm" onClick={() => setOpen(v=>!v)} aria-expanded={open} className="mt-auto self-start px-0 pt-4 font-bold text-primary hover:text-primary">{open ? "Ver menos ↑" : "Saiba mais →"}</Button></>}</article>;
 }
 
 function Speakers({ campaign }: { campaign: boolean }) {
