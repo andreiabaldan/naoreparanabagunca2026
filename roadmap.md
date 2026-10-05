@@ -98,4 +98,4 @@
 - [x] Preparar e inserir as quatro fotos reais no carrossel existente
 - [x] Adicionar nomes e temas sem inventar informações ausentes
 - [x] Integrar os quatro conteúdos da Suelen em sequência editorial vertical
-- [ ] Validar desktop, mobile, carrossel, CTA e preservação das demais áreas
+- [x] Validar desktop, mobile, carrossel, CTA e preservação das demais áreas
