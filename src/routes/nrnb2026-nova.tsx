@@ -23,6 +23,7 @@ import spMichelle from "@/assets/michelle-cut.png.asset.json";
 import spMichelleUniform from "@/assets/michelle-sampaio-uniform.png";
 import spNatalia from "@/assets/natalia-rico-busto.png.asset.json";
 import spPaula from "@/assets/paula-chiaradia-busto.png.asset.json";
+import spPaulaUniform from "@/assets/paula-chiaradia-uniform.png";
 import spStella from "@/assets/stella-vilella-busto.png.asset.json";
 import spStellaUniform from "@/assets/stella-vilella-uniform.png";
 import spThais from "@/assets/thais-cut.png.asset.json";
@@ -72,7 +73,7 @@ const SPEAKERS = [
   { name: "Fernanda Ardito", specialty: "Especialista em mesa posta", topic: "Descomplicando a Mesa Posta", photo: spFernanda.url, campaignPhoto: spFernandaUniform, bio: "Aprenda a fazer uma mesa posta simples, descomplicada, encantadora e feita com carinho." },
   { name: "Michelle Sampaio", specialty: "Especialista em comunicação", topic: "O Poder da Comunicação", photo: spMichelle.url, campaignPhoto: spMichelleUniform, bio: "Uma comunicação clara e intencional pode transformar a maneira como você é percebida." },
   { name: "Natália Rico", specialty: "Especialista em conexões", topic: "A Força do Ecossistema", photo: spNatalia.url, bio: "O poder do ecossistema pode transformar vidas e fortalecer mulheres." },
-  { name: "Paula Chiaradia", specialty: "Especialista em imagem", topic: "Imagem que Comunica", photo: spPaula.url, bio: "Antes de você falar, a sua imagem já contou uma história." },
+  { name: "Paula Chiaradia", specialty: "Especialista em imagem", topic: "Imagem que Comunica", photo: spPaula.url, campaignPhoto: spPaulaUniform, bio: "Antes de você falar, a sua imagem já contou uma história." },
   { name: "Stella Vilella", specialty: "Médica e especialista em saúde", topic: "Nosso Corpo é Nossa Primeira Casa", photo: spStella.url, campaignPhoto: spStellaUniform, bio: "Cuidar do seu corpo é o primeiro passo para viver com mais leveza e qualidade de vida." },
   { name: "Thaís Paraíso", specialty: "Especialista em autocuidado", topic: "Imagem que Comunica", photo: spThais.url, campaignPhoto: spThaisUniform, bio: "O autocuidado pode resgatar sua confiança e valorizar a mulher que existe em você." },
 ];
@@ -215,9 +216,10 @@ function SpeakerCard({ speaker }: { speaker: Speaker }) {
 function Speakers({ campaign }: { campaign: boolean }) {
   const ref=useRef<HTMLElement>(null);
   useEffect(()=>{const e=ref.current;if(!e)return;const o=new IntersectionObserver(([x])=>{if(x?.isIntersecting){track("view_speakers",{variant:VARIANT});o.disconnect();}},{threshold:.2});o.observe(e);return()=>o.disconnect();},[]);
+  const campaignSpeakerOrder = ["Lizi Benites", "Fernanda Ardito", "Michelle Sampaio", "Polyana Soler", "Paula Chiaradia", "Thaís Paraíso", "Juliana Soubhia", "Andréia Baldan", "Douglas Lopes", "Stella Vilella", "Liliane Ferreira", "Natália Rico"];
   const speakers: Speaker[] = campaign
     ? [...SPEAKERS.map(speaker => ({ ...speaker, photo: speaker.campaignPhoto ?? speaker.photo, fullBleed: true })), ...NEW_SPEAKERS.map(speaker => ({ ...speaker, fullBleed: true }))]
-        .sort((a, b) => a.name.localeCompare(b.name, "pt-BR"))
+        .sort((a, b) => campaignSpeakerOrder.indexOf(a.name) - campaignSpeakerOrder.indexOf(b.name))
     : SPEAKERS;
   return <section ref={ref} id="palestrantes" className="scroll-mt-20 bg-sky-tint px-5 py-14 sm:px-6 sm:py-20"><div className="mx-auto max-w-6xl"><div className="text-center"><Eyebrow>Quem vai estar no palco</Eyebrow><h2 className="mx-auto mt-4 max-w-4xl text-balance text-3xl sm:text-5xl">Aprenda com mulheres e especialistas que entendem que organização vai muito além da casa.</h2></div><div className="mt-9 grid items-center gap-7 border-y border-border py-7 md:grid-cols-[38%_1fr]"><img src={suelenPhoto.url} alt="Suelen Gubeisse, idealizadora e anfitriã" loading="lazy" className="aspect-[4/3] w-full object-cover md:aspect-[4/5]"/><div><span className="inline-flex rounded-full bg-primary px-3 py-1 text-sm font-bold uppercase text-primary-foreground">Idealizadora e anfitriã</span><h3 className="mt-4 text-4xl sm:text-5xl">Suelen Gubeisse</h3><p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">Criadora do Não Repara na Bagunça, Suelen leva a organização para a vida real de quem trabalha, cuida da casa, da família e precisa de soluções possíveis de manter.</p></div></div>{campaign&&<div className="mx-auto max-w-4xl border-b border-border py-9"><p className="max-w-3xl text-lg font-semibold leading-relaxed">Além de idealizar o Não Repara na Bagunça, Suelen também sobe ao palco para compartilhar, na prática, sua experiência em quatro temas que transformam a rotina da casa.</p><p className="mt-7 text-sm font-extrabold uppercase tracking-[0.14em] text-primary">4 conteúdos com Suelen Gubeisse</p><ol className="mt-4 border-t border-border">{SUELEN_TOPICS.map((topic,index)=><li key={topic} className="grid grid-cols-[3rem_1fr] items-center gap-4 border-b border-border py-5"><span className="font-display text-2xl font-bold text-primary">{String(index+1).padStart(2,"0")}</span><span className="text-base font-extrabold uppercase sm:text-lg">{topic}</span></li>)}</ol><div className="mt-8"><CTA>QUERO VIVER ESSA EXPERIÊNCIA</CTA></div></div>}<div className="mt-9"><CarouselRow ariaLabel="Palestrantes confirmados" hint="Deslize para conhecer →" itemClassName="w-[82%] sm:w-[46%] lg:w-[31%]" items={speakers.map(s=><SpeakerCard key={s.name} speaker={s}/>)}/></div></div></section>;
 }
