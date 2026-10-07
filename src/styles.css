@@ -732,6 +732,7 @@
   }
   .nrnb-cast-hero-photo::after {
     background: linear-gradient(180deg, transparent, var(--background));
+    mask-image: linear-gradient(90deg, transparent, #000 12%);
   }
   .nrnb2026-nova-page .nrnb-cast-hero-headline { font-size: 32px; }
 }
