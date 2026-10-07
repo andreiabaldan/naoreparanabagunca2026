@@ -618,6 +618,125 @@
   min-height: 100%;
 }
 
+/* Main-page cast: the original photograph is never cropped or zoomed. */
+.nrnb-cast-hero {
+  --background: #160d17;
+  --foreground: var(--event-on-magenta);
+  --muted-foreground: color-mix(in srgb, var(--event-on-magenta) 84%, var(--background));
+  --border: color-mix(in srgb, var(--event-on-magenta) 22%, transparent);
+  --cast-photo-edge: #7d0753;
+  --cast-blend: linear-gradient(180deg, var(--cast-photo-edge), var(--background));
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.nrnb-cast-hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+.nrnb-cast-hero-photo {
+  position: relative;
+  background: var(--cast-photo-edge);
+  align-self: end;
+}
+
+.nrnb-cast-hero-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom right;
+}
+
+.nrnb-cast-hero-photo::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px;
+  height: 3%;
+  background: linear-gradient(180deg, transparent, var(--cast-photo-edge));
+  pointer-events: none;
+}
+
+.nrnb-cast-hero-content {
+  min-width: 0;
+  padding: 32px 20px 40px;
+  background: var(--cast-blend) no-repeat top / 100% 64px;
+}
+
+.nrnb-cast-hero-logo {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+}
+
+.nrnb2026-nova-page .nrnb-cast-hero-headline {
+  font-size: 30px;
+  line-height: 1.15;
+  letter-spacing: 0;
+  overflow-wrap: break-word;
+}
+
+.nrnb-cast-hero-offer {
+  background: color-mix(in srgb, var(--event-on-magenta) 4%, transparent);
+}
+
+@media (min-width: 640px) {
+  .nrnb-cast-hero-content { padding-inline: 32px; }
+  .nrnb2026-nova-page .nrnb-cast-hero-headline { font-size: 36px; }
+}
+
+@media (min-width: 1024px) {
+  .nrnb-cast-hero {
+    --cast-blend: linear-gradient(90deg, var(--background) 42%, var(--cast-photo-edge) 65%);
+    background: var(--cast-blend);
+  }
+  .nrnb-cast-hero-layout {
+    grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
+  }
+  .nrnb-cast-hero-content {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    padding: 32px 28px 32px 40px;
+    background: none;
+  }
+  .nrnb-cast-hero-content > .mt-6 { margin-top: 20px; }
+  .nrnb-cast-hero-content > .mt-7 { margin-top: 20px; }
+  .nrnb-cast-hero-logo { max-width: 280px; }
+  .nrnb-cast-hero-photo {
+    grid-column: 2;
+    grid-row: 1;
+    background: none;
+  }
+  .nrnb-cast-hero-photo img {
+    max-width: 704px;
+    margin-left: auto;
+    mask-image: linear-gradient(180deg, transparent, #000 15%);
+  }
+  .nrnb-cast-hero-photo::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: max(0px, calc(100% - 704px));
+    background: linear-gradient(90deg, transparent, var(--cast-photo-edge));
+    pointer-events: none;
+  }
+  .nrnb-cast-hero-photo::after {
+    background: linear-gradient(180deg, transparent, var(--background));
+  }
+  .nrnb2026-nova-page .nrnb-cast-hero-headline { font-size: 32px; }
+}
+
+@media (min-width: 1280px) {
+  .nrnb2026-nova-page .nrnb-cast-hero-headline { font-size: 36px; }
+}
+
 .nrnb2026-nova-page .nrnb-nova-offer {
   background: rgb(255 255 255 / 0.1);
   border-radius: 0.25rem;

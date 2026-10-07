@@ -1,9 +1,9 @@
 # Roadmap
 
 ## Hero com novo elenco oficial
-- [ ] Redesenhar somente a abertura da página principal com NRNB_oficial.png, preservando todos os integrantes
-- [ ] Preservar conteúdo comercial, menu, links e demais páginas
-- [ ] Validar todas as larguras desktop e mobile solicitadas
+- [x] Redesenhar somente a abertura da página principal com NRNB_oficial.png, preservando todos os integrantes
+- [x] Preservar conteúdo comercial, menu, links e demais páginas
+- [x] Validar todas as larguras desktop e mobile solicitadas
 
 - [x] Aplicar nova copy e jornada comercial apenas em /nrnb2026-2
 - [x] Validar desktop e mobile
