@@ -618,7 +618,7 @@
   min-height: 100%;
 }
 
-/* Main-page cast: the original photograph is never cropped or zoomed. */
+/* Main-page cast: desktop preserves the original ratio; mobile crops only empty space and lower bodies. */
 .nrnb-cast-hero {
   --background: #160d17;
   --foreground: var(--event-on-magenta);
@@ -682,6 +682,30 @@
 
 .nrnb-cast-hero-offer {
   background: color-mix(in srgb, var(--event-on-magenta) 4%, transparent);
+}
+
+@media (max-width: 639px) {
+  .nrnb-cast-hero-photo {
+    aspect-ratio: 20 / 17;
+    overflow: hidden;
+    background: var(--background);
+  }
+  .nrnb-cast-hero-photo img {
+    position: absolute;
+    inset: -20% 0 auto;
+    width: 100%;
+    height: auto;
+  }
+  .nrnb-cast-hero-photo::after {
+    height: 14%;
+    background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--cast-photo-edge) 60%, transparent) 35%, var(--background));
+  }
+  .nrnb-cast-hero-content {
+    padding-top: 12px;
+    background: none;
+  }
+  .nrnb-cast-hero-logo { max-width: 280px; }
+  .nrnb-cast-hero-content > .mt-6:first-of-type { margin-top: 12px; }
 }
 
 @media (min-width: 640px) {
