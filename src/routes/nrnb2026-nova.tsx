@@ -189,6 +189,7 @@ function OfficialCastHero() {
         </div>
         <div className="mt-7"><CTA event="hero_cta_click" className="w-full px-4 sm:w-auto">QUERO VIVER ESSA EXPERIÊNCIA</CTA><p className="mt-3 text-sm text-muted-foreground">Escolha seu ingresso para os dois dias do evento.</p></div>
         <Button type="button" variant="ghost" onClick={() => goTo("experiencia")} aria-label="Continuar conhecendo o evento" className="mt-5 h-auto justify-start px-0 text-sm text-muted-foreground hover:bg-transparent hover:text-sky-highlight"><ArrowDown className="h-4 w-4" /> Continue</Button>
+        <Button asChild variant="ghost" className="ml-3 h-auto px-0 text-sky-highlight sm:hidden"><a suppressHydrationWarning href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={()=>track("whatsapp_floating_click",{variant:VARIANT})}><MessageCircle className="h-4 w-4"/>WhatsApp</a></Button>
       </div>
     </div>
   </section>;
@@ -406,7 +407,11 @@ function FinalCTA() {
 
 function Footer() { return <footer className="bg-foreground px-5 py-10 text-background"><div className="mx-auto grid max-w-6xl gap-7 text-center sm:grid-cols-[1fr_auto] sm:text-left"><div><img src={logoNrnb.url} alt="Não Repara na Bagunça" className="mx-auto w-80 max-w-full sm:mx-0"/><p className="mt-3 text-sm text-background/70">Não Repara na Bagunça 2026</p></div><div className="flex flex-wrap items-center justify-center gap-5 text-sm"><a suppressHydrationWarning href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Contato</a></div></div><p className="mx-auto mt-7 max-w-6xl border-t border-background/20 pt-5 text-center text-sm text-background/60">© 2026 Não Repara na Bagunça. Todos os direitos reservados.</p></footer>; }
 function StickyCTA() { const [show,setShow]=useState(false);useEffect(()=>{const f=()=>setShow(window.scrollY>window.innerHeight*.75);f();window.addEventListener("scroll",f,{passive:true});return()=>window.removeEventListener("scroll",f);},[]);return <div className={`fixed inset-x-0 bottom-0 z-50 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-t border-border bg-surface/95 px-4 py-2 backdrop-blur transition-transform lg:hidden ${show?"translate-y-0":"translate-y-full"}`}><p className="min-w-0 truncate text-sm font-bold">NRNB • 24 E 25 OUT</p><Button type="button" size="sm" onClick={()=>{track("sticky_cta_click",{variant:VARIANT});goTo("ingressos");}} className="bg-primary text-primary-foreground">VER INGRESSOS</Button></div>; }
-function WhatsApp() { return <a suppressHydrationWarning href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp" onClick={()=>track("whatsapp_floating_click",{variant:VARIANT})} className="fixed bottom-20 right-4 z-30 grid h-12 w-12 place-items-center rounded-full bg-whatsapp text-primary-foreground shadow-card lg:bottom-6 lg:right-6"><MessageCircle/></a>; }
+function WhatsApp() {
+  const [overHero,setOverHero]=useState(true);
+  useEffect(()=>{const hero=document.querySelector('.nrnb-cast-hero');if(!hero){setOverHero(false);return;}const observer=new IntersectionObserver(([entry])=>setOverHero(entry?.isIntersecting ?? false));observer.observe(hero);return()=>observer.disconnect();},[]);
+  return <a suppressHydrationWarning href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp" onClick={()=>track("whatsapp_floating_click",{variant:VARIANT})} className={`fixed bottom-20 right-4 z-30 h-12 w-12 place-items-center rounded-full bg-whatsapp text-primary-foreground shadow-card lg:bottom-6 lg:right-6 ${overHero?'hidden sm:grid':'grid'}`}><MessageCircle/></a>;
+}
 
 export function NewNrnbLanding({ page = "/nrnb2026-nova" }: { page?: string }) {
   const campaign = page === "/";
