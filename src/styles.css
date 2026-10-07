@@ -691,7 +691,7 @@
 
 @media (min-width: 1024px) {
   .nrnb-cast-hero {
-    --cast-blend: linear-gradient(90deg, var(--background) 42%, var(--cast-photo-edge) 65%);
+    --cast-blend: linear-gradient(90deg, var(--background) 30%, color-mix(in srgb, var(--background) 65%, var(--cast-photo-edge)) 43%, var(--cast-photo-edge) 64%);
     background: var(--cast-blend);
   }
   .nrnb-cast-hero-layout {
@@ -715,7 +715,10 @@
   .nrnb-cast-hero-photo img {
     max-width: 704px;
     margin-left: auto;
-    mask-image: linear-gradient(180deg, transparent, #000 15%);
+    mask-image:
+      linear-gradient(180deg, transparent, #000 15%),
+      linear-gradient(90deg, transparent, #000 8%);
+    mask-composite: intersect;
   }
   .nrnb-cast-hero-photo::before {
     content: "";
@@ -724,11 +727,12 @@
     bottom: 0;
     left: 0;
     width: max(0px, calc(100% - 704px));
-    background: linear-gradient(90deg, transparent, var(--cast-photo-edge));
+    background: none;
     pointer-events: none;
   }
   .nrnb-cast-hero-photo::after {
     background: linear-gradient(180deg, transparent, var(--background));
+    mask-image: linear-gradient(90deg, transparent, #000 12%);
   }
   .nrnb2026-nova-page .nrnb-cast-hero-headline { font-size: 32px; }
 }
