@@ -691,7 +691,7 @@
 
 @media (min-width: 1024px) {
   .nrnb-cast-hero {
-    --cast-blend: linear-gradient(90deg, var(--background), var(--cast-photo-edge));
+    --cast-blend: linear-gradient(90deg, var(--background) 42%, var(--cast-photo-edge) 65%);
     background: var(--cast-blend);
   }
   .nrnb-cast-hero-layout {
@@ -701,9 +701,12 @@
     grid-column: 1;
     grid-row: 1;
     align-self: center;
-    padding: 40px 32px 40px 40px;
-    background: var(--background);
+    padding: 32px 28px 32px 40px;
+    background: none;
   }
+  .nrnb-cast-hero-content > .mt-6 { margin-top: 20px; }
+  .nrnb-cast-hero-content > .mt-7 { margin-top: 20px; }
+  .nrnb-cast-hero-logo { max-width: 280px; }
   .nrnb-cast-hero-photo {
     grid-column: 2;
     grid-row: 1;
@@ -712,6 +715,7 @@
   .nrnb-cast-hero-photo img {
     max-width: 704px;
     margin-left: auto;
+    mask-image: linear-gradient(180deg, transparent, #000 15%);
   }
   .nrnb-cast-hero-photo::before {
     content: "";
@@ -720,12 +724,16 @@
     bottom: 0;
     left: 0;
     width: max(0px, calc(100% - 704px));
-    background: var(--cast-blend);
+    background: linear-gradient(90deg, transparent, var(--cast-photo-edge));
     pointer-events: none;
   }
   .nrnb-cast-hero-photo::after {
     background: linear-gradient(180deg, transparent, var(--background));
   }
+  .nrnb2026-nova-page .nrnb-cast-hero-headline { font-size: 32px; }
+}
+
+@media (min-width: 1280px) {
   .nrnb2026-nova-page .nrnb-cast-hero-headline { font-size: 36px; }
 }
 
