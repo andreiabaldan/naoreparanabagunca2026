@@ -686,26 +686,32 @@
 
 @media (max-width: 639px) {
   .nrnb-cast-hero-photo {
-    aspect-ratio: 20 / 17;
+    aspect-ratio: 25 / 19;
     overflow: hidden;
     background: var(--background);
   }
   .nrnb-cast-hero-photo img {
     position: absolute;
-    inset: -20% 0 auto;
+    inset: -25% 0 auto;
     width: 100%;
     height: auto;
   }
   .nrnb-cast-hero-photo::after {
-    height: 14%;
-    background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--cast-photo-edge) 60%, transparent) 35%, var(--background));
+    height: 12%;
+    background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--cast-photo-edge) 40%, transparent) 25%, var(--background));
   }
   .nrnb-cast-hero-content {
-    padding-top: 12px;
+    position: relative;
+    margin-top: -4px;
+    padding-top: 0;
     background: none;
   }
-  .nrnb-cast-hero-logo { max-width: 280px; }
-  .nrnb-cast-hero-content > .mt-6:first-of-type { margin-top: 12px; }
+  .nrnb-cast-hero-logo { max-width: 220px; }
+  .nrnb-cast-hero-content > .mt-6,
+  .nrnb-cast-hero-content > .mt-7,
+  .nrnb-cast-hero-content > .mt-5 { margin-top: 14px; }
+  .nrnb-cast-hero-content > .mt-6:first-of-type { margin-top: 6px; }
+  .nrnb-cast-hero-offer { padding: 12px 16px; }
 }
 
 @media (min-width: 640px) {
