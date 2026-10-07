@@ -12,6 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { track } from "@/lib/tracking";
 import logoNrnb from "@/assets/logo-nrnb-alpha.png.asset.json";
 import heroImage from "@/assets/hero-oficial-2608.jpeg.asset.json";
+import officialCast from "@/assets/nrnb-elenco-oficial.png.asset.json";
 import suelenPhoto from "@/assets/suelen-idealizadora.jpg.asset.json";
 import spAndreia from "@/assets/andreia-ombros.png.asset.json";
 import spAndreiaUniform from "@/assets/andreia-baldan-uniform.png";
@@ -167,7 +168,34 @@ function Ticker() {
   return <div className="nrnb-top-ticker bg-foreground text-background" role="region" aria-label={text}><span className="sr-only">{text}</span><div className="nrnb-top-ticker-track" aria-hidden="true">{[0,1].map(group => <div className="nrnb-top-ticker-group" key={group}>{[0,1,2].map(item => <span className="nrnb-top-ticker-item" key={item}><strong>{text}</strong></span>)}</div>)}</div><span className="nrnb-top-ticker-static">{text}</span></div>;
 }
 
+function OfficialCastHero() {
+  return <section className="nrnb-cast-hero">
+    <div className="nrnb-cast-hero-layout">
+      <div className="nrnb-cast-hero-photo">
+        <img src={officialCast.url} width={768} height={960} alt="Elenco completo do Não Repara na Bagunça 2026, com Suelen Gubeisse ao centro" fetchPriority="high" decoding="async" />
+      </div>
+      <div className="nrnb-cast-hero-content">
+        <img src={logoNrnb.url} alt="Não Repara na Bagunça" width={546} height={187} className="nrnb-cast-hero-logo" />
+        <p className="mt-6 text-sm font-bold uppercase text-sky-highlight">24 E 25 DE OUTUBRO • SÃO JOSÉ DOS CAMPOS</p>
+        <h1 className="nrnb-cast-hero-headline mt-5 italic text-foreground">Se a bagunça sempre volta, o problema não é você. É o <span className="text-sky-highlight underline decoration-2 underline-offset-4">jeito</span> que você está tentando organizar.</h1>
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">Em 2 dias você aprende um jeito de organizar que funciona mesmo com a correria de trabalho, casa e filhos. Sem precisar viver arrumando tudo de novo.</p>
+        <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 border-l-2 border-sky pl-4 text-sm font-semibold text-foreground">
+          <span>Casa • Rotina • Bem-estar</span><span>2 dias de experiência</span>
+        </div>
+        <div className="nrnb-cast-hero-offer mt-7 w-fit max-w-full rounded-md border border-sky/50 px-5 py-4">
+          <p className="text-xs font-bold uppercase text-sky-highlight">Oferta especial da 4ª edição</p>
+          <p className="mt-2 text-lg font-extrabold uppercase leading-tight text-foreground">Compre 1 ingresso e ganhe +1</p>
+          <p className="mt-1 text-sm font-bold uppercase text-sky-highlight">Para levar uma amiga</p>
+        </div>
+        <div className="mt-7"><CTA event="hero_cta_click" className="w-full px-4 sm:w-auto">QUERO VIVER ESSA EXPERIÊNCIA</CTA><p className="mt-3 text-sm text-muted-foreground">Escolha seu ingresso para os dois dias do evento.</p></div>
+        <Button type="button" variant="ghost" onClick={() => goTo("experiencia")} aria-label="Continuar conhecendo o evento" className="mt-5 h-auto justify-start px-0 text-sm text-muted-foreground hover:bg-transparent hover:text-sky-highlight"><ArrowDown className="h-4 w-4" /> Continue</Button>
+      </div>
+    </div>
+  </section>;
+}
+
 function Hero({ campaign }: { campaign: boolean }) {
+  if (campaign) return <OfficialCastHero />;
   return <section className="hero-scene relative min-h-[calc(100svh-38px)] overflow-hidden"><div className="absolute inset-0"><img src={heroImage.url} alt="Suelen Gubeisse e especialistas do Não Repara na Bagunça 2026" fetchPriority="high" className="absolute left-1/2 top-12 h-auto w-[125%] max-w-none -translate-x-1/2 object-contain opacity-80 lg:static lg:h-full lg:w-full lg:max-w-full lg:translate-x-0 lg:object-cover lg:object-[68%_center]" /><div className="absolute inset-0 bg-gradient-to-r from-cta-dark/95 via-cta-dark/80 to-cta-dark/10" /><div className="absolute inset-0 bg-gradient-to-t from-cta-dark/95 via-cta-dark/55 to-cta-dark/10 lg:hidden" /></div><div className="relative mx-auto flex min-h-[calc(100svh-38px)] max-w-7xl items-end px-5 pb-8 pt-20 sm:px-6 lg:items-center lg:py-16"><div className="max-w-2xl"><img src={logoNrnb.url} alt="Não Repara na Bagunça" width={546} height={187} className="w-full max-w-[380px] sm:max-w-[520px]" /><p className="mt-5 text-sm font-bold uppercase tracking-[0.14em] text-sky-highlight">24 e 25 de outubro • São José dos Campos</p><h1 className="mt-4 text-balance text-3xl italic leading-[1.05] text-foreground sm:text-5xl">Se a bagunça sempre volta, o problema não é você. É o jeito que você está tentando organizar.</h1><p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">Em 2 dias você aprende um jeito de organizar que funciona mesmo com a correria de trabalho, casa e filhos. Sem precisar viver arrumando tudo de novo.</p><div className="mt-5 grid gap-2 text-sm font-semibold sm:grid-cols-3"><span className="border-l-2 border-sky pl-3">{"\n"}</span><span className="border-l-2 border-sky pl-3">Casa • Rotina • Bem-estar</span><span className="border-l-2 border-sky pl-3">2 dias de experiência</span></div>{campaign && <div className="nrnb-nova-offer mt-5 w-fit max-w-full border border-border border-l-4 border-l-sky px-5 py-4"><p className="text-xs font-bold uppercase tracking-[0.14em] text-sky-highlight">Oferta especial da 4ª edição</p><p className="mt-1 text-lg font-extrabold uppercase leading-tight text-foreground">Compre 1 ingresso e ganhe +1</p><p className="mt-1 text-sm font-bold uppercase text-foreground">Para levar uma amiga</p></div>}<div className="mt-7"><CTA event="hero_cta_click">QUERO VIVER ESSA EXPERIÊNCIA</CTA><p className="mt-3 text-sm text-muted-foreground">Escolha seu ingresso para os dois dias do evento.</p></div><button type="button" onClick={() => goTo("experiencia")} aria-label="Continuar conhecendo o evento" className="mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground"><ArrowDown className="h-4 w-4" /> Continue</button></div></div></section>;
 }
 
