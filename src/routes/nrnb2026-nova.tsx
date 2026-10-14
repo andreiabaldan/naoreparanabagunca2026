@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { CarouselRow } from "@/components/carousel-row";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { track } from "@/lib/tracking";
+import { NRNB_2027 } from "@/lib/nrnb2027";
 import logoNrnb from "@/assets/logo-nrnb-alpha.png.asset.json";
 import heroImage from "@/assets/hero-oficial-2608.jpeg.asset.json";
 import officialCast from "@/assets/nrnb-elenco-oficial.png.asset.json";
@@ -172,22 +173,17 @@ function OfficialCastHero() {
   return <section className="nrnb-cast-hero">
     <div className="nrnb-cast-hero-layout">
       <div className="nrnb-cast-hero-photo">
-        <img src={officialCast.url} width={768} height={960} alt="Elenco completo do Não Repara na Bagunça 2026, com Suelen Gubeisse ao centro" fetchPriority="high" decoding="async" />
+        <img src={officialCast.url} width={768} height={960} alt="Elenco completo do Não Repara na Bagunça 2027, com Suelen Gubeisse ao centro" fetchPriority="high" decoding="async" />
       </div>
       <div className="nrnb-cast-hero-content">
         <img src={logoNrnb.url} alt="Não Repara na Bagunça" width={546} height={187} className="nrnb-cast-hero-logo" />
-        <p className="mt-6 text-sm font-bold uppercase text-sky-highlight">24 E 25 DE OUTUBRO • SÃO JOSÉ DOS CAMPOS</p>
+        <p className="mt-6 text-sm font-bold uppercase text-sky-highlight">{NRNB_2027.dateUpper} • {NRNB_2027.location}</p>
         <h1 className="nrnb-cast-hero-headline mt-5 italic text-foreground">Se a bagunça sempre volta, o problema não é você. É o <span className="text-sky-highlight underline decoration-2 underline-offset-4">jeito</span> que você está tentando organizar.</h1>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">Em 2 dias você aprende um jeito de organizar que funciona mesmo com a correria de trabalho, casa e filhos. Sem precisar viver arrumando tudo de novo.</p>
         <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 border-l-2 border-sky pl-4 text-sm font-semibold text-foreground">
           <span>Casa • Rotina • Bem-estar</span><span>2 dias de experiência</span>
         </div>
-        <div className="nrnb-cast-hero-offer mt-7 w-fit max-w-full rounded-md border border-sky/50 px-5 py-4">
-          <p className="text-xs font-bold uppercase text-sky-highlight">Oferta especial da 4ª edição</p>
-          <p className="mt-2 text-lg font-extrabold uppercase leading-tight text-foreground">Compre 1 ingresso e ganhe +1</p>
-          <p className="mt-1 text-sm font-bold uppercase text-sky-highlight">Para levar uma amiga</p>
-        </div>
-        <div className="mt-7"><CTA event="hero_cta_click" className="w-full px-4 sm:w-auto">QUERO VIVER ESSA EXPERIÊNCIA</CTA><p className="mt-3 text-sm text-muted-foreground">Escolha seu ingresso para os dois dias do evento.</p></div>
+        <div className="mt-7"><CTA event="hero_cta_click" className="w-full px-4 sm:w-auto">QUERO VIVER ESSA EXPERIÊNCIA</CTA><p className="mt-3 text-sm text-muted-foreground">Conheça as opções de ingresso para os dois dias do evento.</p></div>
         <Button type="button" variant="ghost" onClick={() => goTo("experiencia")} aria-label="Continuar conhecendo o evento" className="mt-5 h-auto justify-start px-0 text-sm text-muted-foreground hover:bg-transparent hover:text-sky-highlight"><ArrowDown className="h-4 w-4" /> Continue</Button>
         <Button asChild variant="ghost" className="ml-3 h-auto px-0 text-sky-highlight sm:hidden"><a suppressHydrationWarning href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={()=>track("whatsapp_floating_click",{variant:VARIANT})}><MessageCircle className="h-4 w-4"/>WhatsApp</a></Button>
       </div>
