@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { NRNB_2027 } from "./nrnb2027";
 
 describe("NRNB 2027 commercial rules", () => {
