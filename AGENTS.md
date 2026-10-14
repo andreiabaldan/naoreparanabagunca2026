@@ -12,3 +12,4 @@
 - Keep campaign-specific speaker additions and Suelen's four-topic editorial block gated by `page === "/"` so `/nrnb2026-nova` and backups remain unchanged.
 - Keep campaign-only speaker additions, Suelen topics, and editorial schedule gated by the page prop so backup routes preserve their original content.
 - Render the official cast Hero only for the main-page campaign, keeping the legacy Hero on other pages; preserve its intrinsic ratio on desktop and crop only empty space and lower bodies on mobile so all faces remain visible.
+- Keep edition-specific dates, prices, and checkout readiness in a dedicated configuration module so the homepage can advance editions without changing archived routes.

@@ -7,15 +7,15 @@ const SOCIAL_IMAGE =
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Não Repara na Bagunça 2026 — Organização para a vida real" },
+      { title: "Não Repara na Bagunça 2027 — Organização para a vida real" },
       {
         name: "description",
         content:
-          "Dois dias para aprender práticas de organização que tornam sua casa mais funcional e sua rotina mais leve. 24 e 25 de outubro, em São José dos Campos.",
+          "Dois dias para aprender práticas de organização que tornam sua casa mais funcional e sua rotina mais leve. 17 e 18 de abril de 2027, em São José dos Campos.",
       },
       {
         property: "og:title",
-        content: "Não Repara na Bagunça 2026 — Organização para a vida real",
+        content: "Não Repara na Bagunça 2027 — Organização para a vida real",
       },
       {
         property: "og:description",

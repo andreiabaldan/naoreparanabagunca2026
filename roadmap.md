@@ -110,3 +110,10 @@
 - [x] Padronizar as quatro fotos novas como headshots
 - [x] Redesenhar a programação editorial somente na homepage
 - [x] Validar desktop, mobile, CTA e preservação dos backups
+
+## Atualização da página principal para NRNB 2027
+- [x] Atualizar data, ano e metadados somente na página principal
+- [x] Remover a campanha 2 por 1 sem alterar páginas preservadas
+- [x] Atualizar os três preços à vista e ocultar parcelamentos antigos
+- [x] Bloquear compras até a confirmação dos três novos checkouts
+- [x] Validar computador, celular, conteúdo comercial e ausência de overflow
