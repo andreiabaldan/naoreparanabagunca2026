@@ -7,17 +7,12 @@ describe("NRNB 2027 commercial rules", () => {
   });
 
   test.each([
-    ["compromisso", "97,00"],
-    ["vip", "147,00"],
-    ["platinum", "347,00"],
-  ] as const)("sets %s price", (ticket, price) => {
+    ["compromisso", "97,00", "9,97", "https://payfast.greenn.com.br/168687?batch=13831_RugVFv"],
+    ["vip", "147,00", "15,11", "https://payfast.greenn.com.br/168687?batch=13832_Drsg4t"],
+    ["platinum", "347,00", "35,68", "https://payfast.greenn.com.br/168687?batch=13834_ERwt5D"],
+  ] as const)("sets confirmed %s sales details", (ticket, price, installment, checkout) => {
     expect(NRNB_2027.tickets[ticket].price).toBe(price);
+    expect(NRNB_2027.tickets[ticket].installment).toBe(installment);
+    expect(NRNB_2027.tickets[ticket].checkout).toBe(checkout);
   });
-
-  test.each(["compromisso", "vip", "platinum"] as const)(
-    "keeps %s checkout unavailable until confirmation",
-    (ticket) => {
-      expect(NRNB_2027.tickets[ticket].checkout).toBeNull();
-    },
-  );
 });

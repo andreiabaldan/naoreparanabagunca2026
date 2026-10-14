@@ -5,9 +5,21 @@ export const NRNB_2027 = {
   dateShort: "17 E 18 ABR",
   location: "SÃO JOSÉ DOS CAMPOS",
   tickets: {
-    compromisso: { price: "97,00", checkout: null },
-    vip: { price: "147,00", checkout: null },
-    platinum: { price: "347,00", checkout: null },
+    compromisso: {
+      price: "97,00",
+      installment: "9,97",
+      checkout: "https://payfast.greenn.com.br/168687?batch=13831_RugVFv",
+    },
+    vip: {
+      price: "147,00",
+      installment: "15,11",
+      checkout: "https://payfast.greenn.com.br/168687?batch=13832_Drsg4t",
+    },
+    platinum: {
+      price: "347,00",
+      installment: "35,68",
+      checkout: "https://payfast.greenn.com.br/168687?batch=13834_ERwt5D",
+    },
   },
 } as const;
 
